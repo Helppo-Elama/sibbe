@@ -49,7 +49,6 @@
 
 - [ ] Enable
 - [ ] No registration
-- [ ]
 
 ### Api
 
