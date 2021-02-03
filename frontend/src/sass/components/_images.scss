@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the images component.
+// -----------------------------------------------------------------------------
+
+.source-kivaa-tekemista-fi {
+  position: absolute;
+  bottom: 0.1em;
+  right: 0.5em;
+}
+.source-kivaa-tekemista-fi a {
+  color: $color5 !important;
+}
+.source-kivaa-tekemista-fi a:hover,
+.source-kivaa-tekemista-fi a:active {
+  color: $color4 !important;
+}
+img {
+  width: 100%;
+  height: auto;
+}

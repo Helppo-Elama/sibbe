@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": ["webpack-env", "vuetify", "googlemaps"],
+    "typeRoots": ["./node_modules/@types", "./node_modules/vuetify/types"],
+    "paths": {
+      "@/*": ["src/ts/*"],
+      "@s/*": ["src/sass/*"],
+      "@h/*": ["src/helpers/*"],
+      "@i/*": ["src/assets/img/*"],
+      "@in/*": ["src/instances/*"],
+      "@m/*": ["src/views/components/modules/*"],
+      "@mix/*": ["src/mixins/*"],
+      "@c/*": ["src/views/components/*"],
+      "@p/*": ["src/plugins/*"],
+      "@v/*": ["src/views/*"],
+      "@d/*": ["src/data/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

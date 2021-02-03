@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the link component.
+// -----------------------------------------------------------------------------
+
+a {
+  text-decoration: none !important;
+}
+a:hover,
+a:active {
+  text-shadow: 0.05rem 0.07rem $color1;
+}
+a.color-light:hover,
+a.color-light:active {
+  color: $color4;
+}
+
+a.color-dark:hover,
+a.color-dark:active {
+  color: $color2;
+}
+
+a.color-green:hover,
+a.color-green:active {
+  color: $color4 !important;
+  text-shadow: none;
+}

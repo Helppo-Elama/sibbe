@@ -1,0 +1,42 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+//Fonts
+@font-face {
+  font-family: "Bello-Script";
+  src: url(/fonts/Bello-Script.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Museo-700-Regular";
+  src: url(/fonts/Museo700-Regular.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url(/fonts/OpenSans-Light.woff2) format("woff2");
+  font-display: swap;
+}
+.roboto {
+  font-family: "Open Sans" !important;
+}
+.museo {
+  font-family: "Museo-700-Regular" !important;
+}
+
+.museo-heading {
+  font-size: 3rem !important;
+  font-weight: 400;
+  line-height: 3.125rem;
+  letter-spacing: normal !important;
+}
+.museo-subheading {
+  font-size: 2rem !important;
+  font-weight: 400;
+  line-height: 2.1rem;
+  letter-spacing: normal !important;
+  padding-bottom: 0.5rem;
+}
+.bello {
+  font-family: "Bello-Script" !important;
+}

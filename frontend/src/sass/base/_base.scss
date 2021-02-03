@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// This file contains all basic declarations, if any.
+// -----------------------------------------------------------------------------
+
+.full-height {
+  min-height: 100vh;
+}
+.half-quart-height {
+  min-height: 75vh;
+}
+.half-height {
+  min-height: 50vh;
+}
+.quart-height {
+  min-height: 25vh;
+}
+.animate {
+  transition: all 0.5s ease-in-out 0s;
+}
+.pointer {
+  cursor: pointer;
+}
+.zoom-in {
+  cursor: zoom-in;
+}
+.google-map {
+  position: static !important;
+  height: 100vh !important;
+  width: 100% !important;
+}
+.mt-minus-4-em {
+  margin-top: -4em;
+}
+ul {
+  list-style: none !important;
+}
