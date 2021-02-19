@@ -7,8 +7,8 @@ import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
 import { googleInit } from "@mix/google.init";
 import { IgoogleMapsInit } from "@d/interfaces/maps.interface";
 
-const { villa: placeId } = placeIds.placeIds;
-const { routes } = routeDestination;
+const { villa: placeId } = placeIds;
+const { villa } = routeDestination;
 
 const googleMapsInit: IgoogleMapsInit = {
   apiKey: "",
@@ -18,7 +18,7 @@ const googleMapsInit: IgoogleMapsInit = {
   mapOptions: mapOptions,
   placeId: placeId,
   markerOptions: markerOptions,
-  routeDestination: routes.villa,
+  routeDestination: villa,
 };
 
 const maps = googleInit.extend({

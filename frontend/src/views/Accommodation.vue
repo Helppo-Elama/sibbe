@@ -27,17 +27,8 @@
         align="center"
         justify="center"
       >
-        <v-col>
-          <h3
-            class="museo"
-            :class="{
-              'display-1': $vuetify.breakpoint.xs,
-              'display-2': $vuetify.breakpoint.sm,
-              'display-3': $vuetify.breakpoint.mdAndUp,
-            }"
-          >
-            Huoneet
-          </h3>
+        <v-col cols="12">
+          <h3 class="museo heading">Huoneet</h3>
         </v-col>
         <v-col cols="12" md="8" class="quart-height pt-16 pb-16">
           <picture>
@@ -53,7 +44,7 @@
             />
           </picture>
         </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" class="pb-16">
           <p>
             Täällä voit todella tuntea historian huminaa.
             <br /><br />

@@ -49,7 +49,7 @@
               companyEmail
             }}</router-link>
             <br />
-            <router-link to="/mail" class="animate color-light">{{
+            <router-link to="/salesmail" class="animate color-light">{{
               salesEmail
             }}</router-link>
           </p>
@@ -103,22 +103,23 @@ const contact = Vue.extend({
   data(): {
     images: Array<IImage>;
     companyData: ICompanyData;
-    companyEmail: string;
-    salesEmail: string;
     senderForContactForm: string;
   } {
     return {
       images: images,
       companyData: companyData,
-      companyEmail: "",
-      salesEmail: "",
       senderForContactForm: "contact",
     };
   },
+  computed: {
+    companyEmail(): string {
+      return companyData.getEmail("company");
+    },
+    salesEmail(): string {
+      return companyData.getEmail("sales");
+    },
+  },
   mounted(): void {
-    this.companyEmail = companyData.getEmail("company");
-    this.salesEmail = companyData.getEmail("sales");
-
     console.log("📡 Contact mounted.");
   },
 });

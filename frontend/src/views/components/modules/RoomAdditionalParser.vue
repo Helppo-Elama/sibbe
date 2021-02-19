@@ -2,16 +2,13 @@
   <v-container>
     <v-row v-if="dataType === 'accommodation'" :class="additional.htmlClass">
       <v-col cols="12" xs="12" sm="6" md="12" class="vertical-middle">
-        <!-- FIND A WAY TO AXIOS VUE OBJECTS -->
         <p>
           Huoneet ovat valmiina tulopäivänä klo 15 alkaen ja ne tulee luovuttaa
           läh&shy;tö&shy;päi&shy;vä&shy;nä klo 11 mennessä. Voit tehdä suoraan
           varauksen
-          <router-link class="additional color-green animate" to="/booking">
-            täältä
-            <v-icon size="20px">{{
-              "$vuetify.icons.booking"
-            }}</v-icon></router-link
+          <router-link class="additional color-green animate" to="/siteminder">
+            <v-icon size="20px">{{ "$vuetify.icons.siteminder" }}</v-icon>
+            täältä</router-link
           >.
           <br />
           <br />
@@ -54,7 +51,6 @@
         <v-container fluid>
           <v-row>
             <v-col cols="12" sm="5">
-              <!-- FIND A WAY TO AXIOS VUE OBJECTS -->
               <ul class="museo">
                 <u>Koko päivän paketti</u>
                 <li>8h kokouspaketti 6-16 hengelle</li>

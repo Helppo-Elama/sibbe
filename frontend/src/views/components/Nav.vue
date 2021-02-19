@@ -59,6 +59,7 @@ import {
   mdiAccountGroupOutline,
   mdiMapSearchOutline,
   mdiCoffeeOutline,
+  mdiCalendarArrowRight,
 } from "@mdi/js";
 interface AppBarItem {
   title: string;
@@ -75,8 +76,8 @@ const appBar: Array<AppBarItem> = [
   },
   {
     title: "Varaa huone",
-    path: "/booking",
-    icon: "$vuetify.icons.booking",
+    path: "/booking.html",
+    icon: mdiCalendarArrowRight,
   },
   { title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline },
   { title: "Kahvila", path: "/cafe.html", icon: mdiCoffeeOutline },

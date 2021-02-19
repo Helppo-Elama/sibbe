@@ -56,6 +56,7 @@ if (process.env.NODE_ENV === "production") {
             "/",
             "/accommodation.html",
             "/conference.html",
+            "/booking.html",
             "/contact.html",
             "/cafe.html",
           ],
@@ -128,22 +129,23 @@ if (process.env.NODE_ENV === "production") {
       }
     },
     pluginOptions: {
-      /*
       prerenderSpa: {
+        /*
         staticDir: path.join(__dirname, "dist"),
         registry: undefined,
         renderRoutes: [
           "/",
           "/accommodation.html",
           "/conference.html",
+          "/booking.html",
           "/contact.html",
           "/cafe.html",
         ],
         useRenderEvent: true,
         headless: true,
         onlyProduction: true,
+        */
       },
-      */
     },
   };
 } else {
@@ -205,7 +207,6 @@ if (process.env.NODE_ENV === "production") {
         bundleAnalyzerPlugin.use(BundleAnalyzerPlugin).end();
       }
     },
-
     pluginOptions: {
       prerenderSpa: {
         onlyProduction: true,

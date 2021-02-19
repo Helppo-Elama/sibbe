@@ -91,10 +91,12 @@ const accommodationCarousel = Vue.extend({
       this.dialogImage = image;
     },
     getCarouselHeight() {
-      let height = document.getElementsByClassName(
+      const el = document.getElementsByClassName(
         "accommodation-carousel-image"
-      )[0].clientHeight;
-      this.carouselHeight = height + "px !important";
+      )[0];
+      if (el) {
+        this.carouselHeight = el.clientHeight + "px !important";
+      }
     },
   },
   mounted(): void {

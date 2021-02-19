@@ -14,4 +14,5 @@ export interface ICompanyData {
   salesEmail: IEmail;
   ytj: string;
   images: Array<IImage>;
+  reservationUrl: string;
 }

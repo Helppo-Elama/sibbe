@@ -10,9 +10,6 @@ $color3: #86ba90; //RGB 134 186 144
 $color4: #f5f3bb; //RGB 245 243 187
 $color5: #eaeaea; //RGB 234 234 234
 
-/*
-$material-light: (
-  text-color: fuchsia,
-  cards: blue,
-);
-*/
+.v-application {
+  background-color: $color5;
+}

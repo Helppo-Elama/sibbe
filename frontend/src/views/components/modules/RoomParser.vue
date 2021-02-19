@@ -75,7 +75,7 @@ const roomParser = Vue.extend({
     };
   },
   mounted(): void {
-    console.log("👯‍♂️ Accommodationparser mounted.");
+    console.log("👯‍♂️ Roomparser mounted.");
   },
 });
 export default roomParser;

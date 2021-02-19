@@ -52,15 +52,7 @@ const accommodationImages: {
     alt: "Villa Sibbe auringossa",
   },
 };
-const accommodationCarouselImages: {
-  artturi: Array<IImage>;
-  lilja: Array<IImage>;
-  kaarlo: Array<IImage>;
-  olavi: Array<IImage>;
-  rico: Array<IImage>;
-  isanta: Array<IImage>;
-  labra: Array<IImage>;
-} = {
+const accommodationCarouselImages: Record<string, Array<IImage>> = {
   artturi: [
     { img: artturiImg1, webp: artturiWebp1, alt: "Villa Sibben Artturihuone" },
     { img: artturiImg2, webp: artturiWebp2, alt: "Villa Sibben Artturihuone" },

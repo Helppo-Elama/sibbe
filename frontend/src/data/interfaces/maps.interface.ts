@@ -10,12 +10,9 @@ export interface IgoogleMapsInit {
   markerOptions: google.maps.MarkerOptions;
   routeDestination: string;
 }
-export interface IPlaceIds {
-  placeIds: Record<string, string>;
-}
-export interface IRouteDestinations {
-  routes: Record<string, string>;
-}
+export type IPlaceIds = Record<string, string>;
+
+export type IRouteDestinations = Record<string, string>;
 
 export type IMapOptions = google.maps.MapOptions;
 export type IMarkerOptions = google.maps.MarkerOptions;

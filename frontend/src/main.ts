@@ -1,7 +1,8 @@
+import debounce from "lodash.debounce";
+
 interface IWindow extends Window {
-  debounce?: any;
+  debounce?: typeof debounce;
 }
-import { debounce } from "@h/debounce";
 
 const w: IWindow = window;
 w.debounce = debounce;
@@ -11,7 +12,7 @@ import Vue from "vue";
 import "./registerServiceWorker";
 import router from "./router";
 //import store from "./store";
-import vuetify from "./plugins/vuetify";
+import vuetify from "./vuetify/vuetify";
 
 import {
   FontAwesomeIcon,

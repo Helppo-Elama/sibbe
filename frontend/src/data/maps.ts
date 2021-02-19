@@ -1,9 +1,7 @@
 import { IPlaceIds, IRouteDestinations } from "./interfaces/maps.interface";
 const placeIds: IPlaceIds = {
-  placeIds: {
-    villa: "ChIJl5iEI7kEkkYRMlFazWMlsIg",
-    cafe: "ChIJMbjOo7kEkkYRO2Hhkn_Tqj0",
-  },
+  villa: "ChIJl5iEI7kEkkYRMlFazWMlsIg",
+  cafe: "ChIJMbjOo7kEkkYRO2Hhkn_Tqj0",
 };
 
 const markerOptions: google.maps.MarkerOptions = {
@@ -28,10 +26,8 @@ const mapOptions: google.maps.MapOptions = {
   ],
 };
 const routeDestination: IRouteDestinations = {
-  routes: {
-    villa: "Villa+Sibbe",
-    cafe: "Cafe+Sibbe",
-  },
+  villa: "Villa+Sibbe",
+  cafe: "Cafe+Sibbe",
 };
 
 export { placeIds, mapOptions, markerOptions, routeDestination };

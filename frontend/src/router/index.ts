@@ -26,9 +26,14 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "conference" */ "@v/Conference.vue"),
   },
   {
-    path: "/booking",
+    path: "/booking.html",
+    name: "Booking",
+    component: () => import(/* webpackChunkName: "booking" */ "@v/Booking.vue"),
+  },
+  {
+    path: "/siteminder",
     beforeEnter() {
-      location.href = "https://www.booking.com/hotel/fi/villa-sibbe.html";
+      location.href = "https://direct-book.com/properties/alarautaoydirect";
     },
   },
   {

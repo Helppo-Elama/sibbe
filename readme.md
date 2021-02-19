@@ -1,13 +1,20 @@
 # TO DO
 
+## Facebook
+
+- [ ] Lisää Little Hotellier palikka: <https://help.littlehotelier.com/s/article/How-do-I-enable-Facebook-Bookings?language=en_US>
+
 ## <https://sibbe.fi>
 
 ## Villa Sibbe
 
 - [x] Basic frontend
+- [ ] Timezones?
+- [ ] Find a correct way to organize interfaces, classes and types
 - [ ] Karusellit automaattiseksi
 - [ ] Axios sibbe service fetcher
 - [ ] Service worker integration to axios data
+- [ ] Korjaa tyylit (karuselli, kalenteri)
 
 ### Villa etusivu
 
@@ -58,6 +65,6 @@
 ### Backend
 
 - [ ] Lock management
-- [ ] SMS management
+- [ ] SMS management <https://gatewayapi.com/>
 - [ ] A'la Carte / lunch menus calendar
 - [ ] Other fields for frontend axios

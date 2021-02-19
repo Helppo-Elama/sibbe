@@ -4,7 +4,7 @@ export interface IEmail {
   domain: string;
   tld: string;
 }
-export interface ICompanyData {
+export interface ICafeCompanyData {
   title: string;
   address: string;
   postalCode: string;

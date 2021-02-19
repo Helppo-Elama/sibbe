@@ -98,6 +98,17 @@ args = {
 };
 const conference = parse(args);
 
+//BOOKING
+const bookingUrl = homeUrl + "/booking.html";
+args = {
+  title: "Villa Sibbe Majoitu varaa huone",
+  description: "Joensuun raitti 58 01150, Söderkulla, +358 50 4391925",
+  socialImage:
+    "https://sibbe.fi/img/social/accommodation-villa-sibbe-social.jpg",
+  url: bookingUrl,
+};
+const booking = parse(args);
+
 //CONTACT
 const contactUrl = homeUrl + "/contact.html";
 args = {
@@ -119,4 +130,4 @@ args = {
 };
 const cafe = parse(args);
 
-export { home, accommodation, conference, contact, cafe };
+export { home, accommodation, conference, booking, contact, cafe };

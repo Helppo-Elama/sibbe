@@ -1,7 +1,7 @@
 import { IImage } from "./images.interface";
 export interface IRoom {
   id: number;
-  htmlClass: string;
+  htmlClass?: string;
   breakpoints?: {
     xs?: number;
     sm?: number;

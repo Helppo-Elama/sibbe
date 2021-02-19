@@ -41,8 +41,8 @@
           >
             <br />
           </div>
-          <v-btn class="mr-4 yellow-on-dark" @click="submit"> Lähetä </v-btn>
-          <v-btn class="dark-on-light" @click="clear"> Tyhjennä </v-btn>
+          <v-btn class="mr-4 primary" @click="submit"> Lähetä </v-btn>
+          <v-btn class="warn" @click="clear"> Tyhjennä </v-btn>
         </form>
       </div>
     </v-container>
@@ -53,7 +53,8 @@ import Vue from "vue";
 
 import { validationMixin } from "vuelidate";
 import { required, minLength, email } from "vuelidate/lib/validators";
-import { axiosInstance as axios } from "@in/axios";
+import { api as axios } from "@in/axios";
+import { IXHttp } from "@d/interfaces/xhttp.interface";
 
 const contactForm = Vue.extend({
   name: "ContactForm",
@@ -74,12 +75,7 @@ const contactForm = Vue.extend({
     name: string;
     email: string;
     message: string;
-    xhttp: {
-      action: string;
-      success: boolean;
-      loaded: boolean;
-      errors: Array<string>;
-    };
+    xhttp: IXHttp;
   } {
     return {
       name: "",
@@ -87,7 +83,7 @@ const contactForm = Vue.extend({
       message: "",
 
       xhttp: {
-        action: "/submit",
+        url: "/submit",
         success: false,
         loaded: true,
         errors: [],
@@ -121,7 +117,7 @@ const contactForm = Vue.extend({
   },
   methods: {
     submit(): void {
-      let { loaded, action } = this.xhttp;
+      let { loaded, url } = this.xhttp;
       this.$v.$touch();
       if (loaded) {
         this.xhttp.loaded = false;
@@ -138,7 +134,7 @@ const contactForm = Vue.extend({
           sender: this.sender,
         };
         axios
-          .post(action, formData)
+          .post(url, formData)
           .then((response) => {
             if (response.status === 200) {
               this.clear();

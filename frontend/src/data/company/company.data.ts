@@ -12,14 +12,15 @@ class CompanyData implements ICompanyData {
   ytj =
     "https://tietopalvelu.ytj.fi/yritystiedot.aspx?yavain=2916794&tarkiste=2DD2BCB225B8AB66EA22D4DB589F589FF95B7398";
   images = images;
+  reservationUrl = "https://direct-book.com/properties/alarautaoydirect";
 
   getEmail(target: string) {
     if (target === "company") {
       const { name, domain, tld } = this.companyEmail;
-      return name + "@" + domain + tld;
+      return name + "(at)" + domain + "." + tld;
     } else if (target === "sales") {
       const { name, domain, tld } = this.salesEmail;
-      return name + "@" + domain + tld;
+      return name + "(at)" + domain + "." + tld;
     } else {
       throw "Can't find target: " + target + " for getEmail(target)";
     }
@@ -39,4 +40,6 @@ class CompanyData implements ICompanyData {
 
 const companyData = new CompanyData();
 
-export { companyData, images };
+const reservationUrl = companyData.reservationUrl;
+
+export { companyData, images, reservationUrl };

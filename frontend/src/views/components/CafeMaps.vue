@@ -9,8 +9,8 @@ import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
 import { googleInit } from "@mix/google.init";
 import { IgoogleMapsInit } from "@d/interfaces/maps.interface";
 
-const { cafe: placeId } = placeIds.placeIds;
-const { routes } = routeDestination;
+const { cafe: placeId } = placeIds;
+const { cafe } = routeDestination;
 
 const googleMapsInit: IgoogleMapsInit = {
   apiKey: "",
@@ -20,7 +20,7 @@ const googleMapsInit: IgoogleMapsInit = {
   mapOptions: mapOptions,
   placeId: placeId,
   markerOptions: markerOptions,
-  routeDestination: routes.cafe,
+  routeDestination: cafe,
 };
 
 const cafeMaps = googleInit.extend({
@@ -55,8 +55,8 @@ const cafeMaps = googleInit.extend({
     },
   },
   watch: {
-    isOpen: function (newValue, oldValue) {
-      if (newValue !== oldValue) {
+    isOpen: function (val, old) {
+      if (val !== old) {
         this.updateIsOpen();
       }
     },
@@ -68,7 +68,6 @@ const cafeMaps = googleInit.extend({
     this.$nextTick(() => {
       try {
         this.googleMaps(googleMapsInit);
-        //this.updateIsOpen();
       } catch (err) {
         console.log(err);
       }
