@@ -2,7 +2,7 @@
   <v-container fluid class="pa-0 ma-0">
     <v-row class="ma-0">
       <v-lazy>
-        <RoomParser v-bind:roomsData="conference" v-bind:dataType="roomType" />
+        <RoomParser :roomsData="conference" :dataType="roomType" />
       </v-lazy>
     </v-row>
   </v-container>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from "vue";
 import RoomParser from "@m/RoomParser.vue";
-import { conference } from "@d/roomDataCollector";
+import { conference } from "@d/conference/conference.data";
 import { IRooms } from "@d/interfaces/rooms.interface";
 
 const conferenceList = Vue.extend({

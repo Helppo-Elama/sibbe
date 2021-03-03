@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Carousel />
+    <Carousel :images="carouselImages" />
     <v-container fluid>
       <v-row
         class="green-on-light half-quart-height pt-16 pb-16"
@@ -78,7 +78,10 @@ import { accommodation as metaData } from "@h/metaData";
 
 import Carousel from "@c/Carousel.vue";
 import AccommodationList from "@c/AccommodationList.vue";
-import { accommodationImages as images } from "@d/accommodation/accommodation.data";
+import {
+  accommodationImages as images,
+  accommodationCarouselImages as carouselImages,
+} from "@d/accommodation/accommodation.images";
 
 import { IImage } from "@d/interfaces/images.interface";
 
@@ -86,9 +89,10 @@ const accommodation = Vue.extend({
   name: "Accommodation",
   metaInfo: { ...metaData },
   components: { Carousel, AccommodationList },
-  data(): { one: IImage } {
+  data(): { one: IImage; carouselImages: Record<string, IImage[]> } {
     return {
       one: images.one,
+      carouselImages: carouselImages,
     };
   },
   mounted(): void {

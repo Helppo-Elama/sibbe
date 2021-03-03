@@ -1,6 +1,5 @@
 import {
-  conferenceCarouselImages as images,
-  conferenceImages,
+  conferenceRoomsCarouselImages as images,
   conferenceAdditionalImages as additionalImages,
 } from "./conference.images";
 import { IRooms } from "../interfaces/rooms.interface";
@@ -57,4 +56,4 @@ const conference: IRooms = {
   ],
   additionalImages: additionalImages,
 };
-export { conference, conferenceImages };
+export { conference };

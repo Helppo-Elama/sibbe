@@ -13,6 +13,10 @@ class CompanyData implements ICompanyData {
     "https://tietopalvelu.ytj.fi/yritystiedot.aspx?yavain=2916794&tarkiste=2DD2BCB225B8AB66EA22D4DB589F589FF95B7398";
   images = images;
   reservationUrl = "https://direct-book.com/properties/alarautaoydirect";
+  socialUrls = {
+    fbUrl: "https://www.facebook.com/villasibbehotel/",
+    fbUrlCafe: "https://www.facebook.com/cafesibbekahvila/",
+  };
 
   getEmail(target: string) {
     if (target === "company") {
@@ -41,5 +45,6 @@ class CompanyData implements ICompanyData {
 const companyData = new CompanyData();
 
 const reservationUrl = companyData.reservationUrl;
+const socialUrls = companyData.socialUrls;
 
-export { companyData, images, reservationUrl };
+export { companyData, images, reservationUrl, socialUrls };

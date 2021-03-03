@@ -37,15 +37,34 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: "/contact.html",
-    name: "Contact",
-    component: () => import(/* webpackChunkName: "contact" */ "@v/Contact.vue"),
-  },
-  {
     path: "/cafe.html",
     name: "Cafe",
     component: () => import(/* webpackChunkName: "cafe" */ "@v/Cafe.vue"),
   },
+  {
+    path: "/festivity.html",
+    name: "Festivity",
+    component: () =>
+      import(/* webpackChunkName: "restaurant" */ "@v/Festivity.vue"),
+  },
+  {
+    path: "/recreation.html",
+    name: "Recreation",
+    component: () =>
+      import(/* webpackChunkName: "recreation" */ "@v/Recreation.vue"),
+  },
+  {
+    path: "/restaurant.html",
+    name: "Restaurant",
+    component: () =>
+      import(/* webpackChunkName: "restaurant" */ "@v/Restaurant.vue"),
+  },
+  {
+    path: "/contact.html",
+    name: "Contact",
+    component: () => import(/* webpackChunkName: "contact" */ "@v/Contact.vue"),
+  },
+
   {
     path: "/mail",
     beforeEnter() {

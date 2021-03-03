@@ -15,4 +15,5 @@ export interface ICompanyData {
   ytj: string;
   images: Array<IImage>;
   reservationUrl: string;
+  socialUrls: Record<string, string>;
 }

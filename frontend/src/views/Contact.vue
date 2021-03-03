@@ -1,6 +1,5 @@
 <template>
   <div class="text-center">
-    <Header />
     <v-container fluid class="pa-0 ma-0">
       <v-row
         class="ma-0 green-on-light half-height"
@@ -84,7 +83,6 @@
 import Vue from "vue";
 import { contact as metaData } from "@h/metaData";
 
-import Header from "@c/Header.vue";
 import Maps from "@c/Maps.vue";
 import ContactForm from "@c/ContactForm.vue";
 
@@ -96,7 +94,6 @@ const contact = Vue.extend({
   name: "Contact",
   metaInfo: { ...metaData },
   components: {
-    Header,
     Maps,
     ContactForm,
   },

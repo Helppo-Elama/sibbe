@@ -1,15 +1,13 @@
 <template>
   <div class="text-center" data-aos="fade-up">
     <h3 class="museo museo-heading pb-16">
-      <a class="animate" href="https://www.facebook.com/villasibbehotel/"
-        >Facebook</a
-      >
+      <a class="animate" :href="fbUrl">Facebook</a>
     </h3>
     <div ref="fbContainer" class="d-flex justify-center">
       <div id="fb-root">
         <div
           class="fb-page"
-          data-href="https://www.facebook.com/villasibbehotel/"
+          :data-href="fbUrl"
           data-tabs="timeline, messages, events"
           data-width="500"
           data-height="500"
@@ -19,13 +17,8 @@
           data-show-facepile="true"
           ref="fbFeed"
         >
-          <blockquote
-            cite="https://www.facebook.com/villasibbehotel/"
-            class="fb-xfbml-parse-ignore"
-          >
-            <a href="https://www.facebook.com/villasibbehotel/"
-              >Café &amp; Villa Sibbe</a
-            >
+          <blockquote :cite="fbUrl" class="fb-xfbml-parse-ignore">
+            <a :href="fbUrl">{{ fbUrl }}</a>
           </blockquote>
         </div>
       </div>
@@ -38,7 +31,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const VueFB = {
   name: "VueFB",
-  props: ["data-href", "link-text"],
+  props: {
+    fbUrl: { type: String },
+  },
   data: function () {
     return {
     };

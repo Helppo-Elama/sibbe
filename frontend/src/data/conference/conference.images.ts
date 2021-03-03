@@ -1,12 +1,18 @@
 import { IImage } from "../interfaces/images.interface";
 
-//conference
+// Header
+import conferenceHeaderImg from "@i/originals/conference/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
+import conferenceHeaderWebp from "@i/originals/conference/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+import conferenceHeaderImgCropped from "@i/originals/conference/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
+import conferenceHeaderWebpCropped from "@i/originals/conference/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+
+// Conference
 import conferenceImg1 from "@i/originals/conference/conference-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import conferenceWebp1 from "@i/originals/conference/conference-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 import conferenceImg2 from "@i/originals/conference/conference-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import conferenceWebp2 from "@i/originals/conference/conference-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
-//NOBEL
+// Nobel
 import nobelImg1 from "@i/originals/conference/nobel-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import nobelWebp1 from "@i/originals/conference/nobel-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 import nobelImg2 from "@i/originals/conference/nobel-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
@@ -14,7 +20,7 @@ import nobelWebp2 from "@i/originals/conference/nobel-2.jpg?sizes[]=300,sizes[]=
 import nobelImg3 from "@i/originals/conference/nobel-3.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import nobelWebp3 from "@i/originals/conference/nobel-3.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
-//LABRA
+// Labra
 import labraImg1 from "@i/originals/conference/labra-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import labraWebp1 from "@i/originals/conference/labra-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 import labraImg2 from "@i/originals/conference/labra-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
@@ -22,6 +28,20 @@ import labraWebp2 from "@i/originals/conference/labra-2.jpg?sizes[]=300,sizes[]=
 
 import conferenceAdditionalImg1 from "@i/originals/conference/conference-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import conferenceAdditionalWebp1 from "@i/originals/conference/conference-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
+
+const conferenceHeaderImages: { normal: IImage; cropped: IImage } = {
+  normal: {
+    img: conferenceHeaderImg,
+    webp: conferenceHeaderWebp,
+    alt: "Tervetuloa Villa Sibbeen",
+  },
+  cropped: {
+    img: conferenceHeaderImgCropped,
+    webp: conferenceHeaderWebpCropped,
+    alt: "Tervetuloa Villa Sibbeen",
+  },
+};
+
 const conferenceImages: {
   one: IImage;
   two: IImage;
@@ -37,7 +57,7 @@ const conferenceImages: {
     alt: "Villa Sibbe auringossa",
   },
 };
-const conferenceCarouselImages: {
+const conferenceRoomsCarouselImages: {
   nobel: Array<IImage>;
   labra: Array<IImage>;
 } = {
@@ -79,7 +99,8 @@ const conferenceAdditionalImages: Array<IImage> = [
   },
 ];
 export {
+  conferenceHeaderImages,
   conferenceImages,
-  conferenceCarouselImages,
+  conferenceRoomsCarouselImages,
   conferenceAdditionalImages,
 };

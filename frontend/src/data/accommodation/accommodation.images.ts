@@ -1,5 +1,24 @@
 import { IImage } from "../interfaces/images.interface";
 
+//CAROUSEL
+import carouselImg1 from "@i/originals/slides/villa-sibbe.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
+import carouselWebp1 from "@i/originals/slides/villa-sibbe.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+import carouselImg2 from "@i/originals/slides/ville-sibbe-etupiha-piilossa.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
+import carouselWebp2 from "@i/originals/slides/ville-sibbe-etupiha-piilossa.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+import carouselImg3 from "@i/originals/slides/hiekka-leikki.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
+import carouselWebp3 from "@i/originals/slides/hiekka-leikki.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+import carouselImg4 from "@i/originals/slides/huone-8.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
+import carouselWebp4 from "@i/originals/slides/huone-8.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+
+import carouselCroppedImg1 from "@i/originals/slides/villa-sibbe-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselCroppedWebp1 from "@i/originals/slides/villa-sibbe-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import carouselCroppedImg2 from "@i/originals/slides/ville-sibbe-etupiha-piilossa-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselCroppedWebp2 from "@i/originals/slides/ville-sibbe-etupiha-piilossa-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import carouselCroppedImg3 from "@i/originals/slides/hiekka-leikki-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselCroppedWebp3 from "@i/originals/slides/hiekka-leikki-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import carouselCroppedImg4 from "@i/originals/slides/huone-8-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselCroppedWebp4 from "@i/originals/slides/huone-8-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+
 //ACCOMMODATION
 import accommodationImg1 from "@i/originals/accommodation/accommodation-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import accommodationWebp1 from "@i/originals/accommodation/accommodation-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
@@ -43,6 +62,41 @@ import labraWebp2 from "@i/originals/accommodation/labra-2.jpg?sizes[]=300,sizes
 import accommodationAdditionalImg1 from "@i/originals/accommodation/accommodation-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import accommodationAdditionalWebp1 from "@i/originals/accommodation/accommodation-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
+const accommodationCarouselImages: Record<string, Array<IImage>> = {
+  normal: [
+    {
+      img: carouselImg1,
+      webp: carouselWebp1,
+      alt: "Villa Sibben julkisivu",
+    },
+    {
+      img: carouselImg2,
+      webp: carouselWebp2,
+      alt: "Villa Sibben etupihaa",
+    },
+    { img: carouselImg3, webp: carouselWebp3, alt: "Hiekkaleikit kesken" },
+    { img: carouselImg4, webp: carouselWebp4, alt: "Huonekuva" },
+  ],
+  cropped: [
+    {
+      img: carouselCroppedImg1,
+      webp: carouselCroppedWebp1,
+      alt: "Villa Sibben julkisivu",
+    },
+    {
+      img: carouselCroppedImg2,
+      webp: carouselCroppedWebp2,
+      alt: "Villa Sibben etupihaa",
+    },
+    {
+      img: carouselCroppedImg3,
+      webp: carouselCroppedWebp3,
+      alt: "Hiekkaleikit kesken",
+    },
+    { img: carouselCroppedImg4, webp: carouselCroppedWebp4, alt: "Huonekuva" },
+  ],
+};
+
 const accommodationImages: {
   one: IImage;
 } = {
@@ -52,7 +106,7 @@ const accommodationImages: {
     alt: "Villa Sibbe auringossa",
   },
 };
-const accommodationCarouselImages: Record<string, Array<IImage>> = {
+const accommodationRoomsCarouselImages: Record<string, Array<IImage>> = {
   artturi: [
     { img: artturiImg1, webp: artturiWebp1, alt: "Villa Sibben Artturihuone" },
     { img: artturiImg2, webp: artturiWebp2, alt: "Villa Sibben Artturihuone" },
@@ -132,5 +186,6 @@ const accommodationAdditionalImages: Array<IImage> = [
 export {
   accommodationImages,
   accommodationCarouselImages,
+  accommodationRoomsCarouselImages,
   accommodationAdditionalImages,
 };

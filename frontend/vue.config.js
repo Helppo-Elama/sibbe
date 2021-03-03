@@ -57,8 +57,11 @@ if (process.env.NODE_ENV === "production") {
             "/accommodation.html",
             "/conference.html",
             "/booking.html",
+            "/festivity.html",
             "/contact.html",
             "/cafe.html",
+            "/recreation.html",
+            "/restaurant.html",
           ],
 
           // IMPORTANT HERE

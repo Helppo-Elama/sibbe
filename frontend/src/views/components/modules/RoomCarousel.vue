@@ -100,7 +100,7 @@ const accommodationCarousel = Vue.extend({
     },
   },
   mounted(): void {
-    console.log("🎠 Accommodation carousel mounted.");
+    console.log("🎠 Room Carousel mounted.");
     this.$nextTick(() => {
       this.getCarouselHeight();
     });

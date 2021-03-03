@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header />
+    <Header :images="headerImages" :kivaatekemista="true" />
     <v-container fluid>
       <v-row
         class="half-quart-height"
@@ -23,9 +23,7 @@
           </h3>
         </v-col>
       </v-row>
-      <v-lazy>
-        <Hero />
-      </v-lazy>
+      <v-lazy> <Hero /> </v-lazy>
       <v-row>
         <v-col
           cols="12"
@@ -42,7 +40,7 @@
           class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16"
         >
           <v-lazy>
-            <VueFB />
+            <VueFB :fbUrl="fbUrl" />
           </v-lazy>
         </v-col>
       </v-row>
@@ -62,23 +60,35 @@ import Vue from "vue";
 import { home as metaData } from "@h/metaData";
 
 import Header from "@c/Header.vue";
+
+import { headerImages } from "@d/commonImages";
+import { IImage } from "@d/interfaces/images.interface";
+
 import Hero from "@c/Hero.vue";
 
 import VueFB from "@c/VueFB.vue";
 import Reviews from "@c/Reviews.vue";
 import ContactForm from "@c/ContactForm.vue";
 
+import { socialUrls } from "@d/company/company.data";
+
 export default Vue.extend({
   name: "Home",
   metaInfo: { ...metaData },
   components: { Header, Hero, VueFB, Reviews, ContactForm },
+  data(): {
+    fbUrl: string;
+    senderForContactForm: string;
+    headerImages: Record<string, IImage>;
+  } {
+    return {
+      fbUrl: socialUrls.fbUrl,
+      senderForContactForm: "feedback",
+      headerImages: headerImages,
+    };
+  },
   mounted(): void {
     console.log("👽 Home mounted!");
-  },
-  data(): { senderForContactForm: string } {
-    return {
-      senderForContactForm: "feedback",
-    };
   },
 });
 </script>

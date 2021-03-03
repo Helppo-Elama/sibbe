@@ -159,7 +159,7 @@ const Hero = Vue.extend({
     faNormalStyle(el: string) {
       (this.$refs[el] as SVGElement).classList.remove(el + "-circle-hover");
     },
-    faClickedStyle(el: string) {
+    faClickStyle(el: string) {
       (this.$refs[el] as SVGElement).classList.add(el + "-circle-clicked");
     },
   },

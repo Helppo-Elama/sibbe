@@ -1,7 +1,4 @@
-import {
-  bookingImages,
-  bookingCarouselImages as images,
-} from "./booking.images";
+import { bookingCarouselImages as images } from "./booking.images";
 import {
   IBookingData,
   IBookingApiUrl,
@@ -9,8 +6,10 @@ import {
 } from "../interfaces/booking.interface";
 import { IRooms } from "../interfaces/rooms.interface";
 
+const serviceUrl: string = process.env.VUE_APP_SERVICE_URL;
+
 const urlStatic: Record<string, Array<string>> = {
-  siteminder: ["https://service.sibbe.fi/proxy.php?start_date=", "&end_date="],
+  siteminder: [serviceUrl + "/proxy.php?start_date=", "&end_date="],
   //&locale=fi&currency=EUR&items[0][adults]=2&items[0][children]=0&items[0][infants]=0
   directbook: [
     "https://direct-book.com/properties/alarautaoydirect?checkInDate=",
@@ -20,12 +19,12 @@ const urlStatic: Record<string, Array<string>> = {
   ],
 };
 
-export const createApiURL = (o: IBookingApiUrl) => {
+export const createApiURL = (o: IBookingApiUrl): string => {
   const url =
     urlStatic.siteminder[0] + o.start + urlStatic.siteminder[1] + o.end;
   return url;
 };
-export const createBookingURL = (o: IBookingUrl) => {
+export const createBookingURL = (o: IBookingUrl): string => {
   const url =
     urlStatic.directbook[0] +
     o.start +
@@ -52,7 +51,6 @@ const bookingData = (): IBookingData => {
   };
 };
 
-//Artturi, lilja/rico, olavi/kaarlo, isäntä
 const bookingRooms: IRooms = {
   rooms: [
     {
@@ -120,4 +118,4 @@ const bookingRooms: IRooms = {
   ],
 };
 
-export { bookingData, bookingImages, bookingRooms };
+export { bookingData, bookingRooms };

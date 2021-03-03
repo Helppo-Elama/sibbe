@@ -1,6 +1,5 @@
 import {
-  accommodationCarouselImages as images,
-  accommodationImages,
+  accommodationRoomsCarouselImages as images,
   accommodationAdditionalImages as additionalImages,
 } from "./accommodation.images";
 import { IRooms } from "../interfaces/rooms.interface";
@@ -147,4 +146,4 @@ const accommodation: IRooms = {
   ],
   additionalImages: additionalImages,
 };
-export { accommodation, accommodationImages };
+export { accommodation };

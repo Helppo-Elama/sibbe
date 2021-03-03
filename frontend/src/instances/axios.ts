@@ -8,8 +8,9 @@ declare module "axios" {
     delayed?: boolean;
   }
 }
+
 const api = axios.create({
-  baseURL: "https://service.sibbe.fi",
+  baseURL: process.env.SERVICE_URL,
   headers: {
     "X-Requested-With": "XMLHttpRequest",
   },

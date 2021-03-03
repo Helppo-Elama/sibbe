@@ -12,6 +12,13 @@ const googleInit = Vue.extend({
       isOpen: "",
     };
   },
+  watch: {
+    isOpen: function (val, old) {
+      if (val !== old) {
+        this.$emit("updateisopen", val);
+      }
+    },
+  },
   methods: {
     googleMaps(googleMapsInit: IgoogleMapsInit): void {
       const {
@@ -24,7 +31,6 @@ const googleInit = Vue.extend({
         markerOptions,
         routeDestination,
       } = googleMapsInit;
-
       this.loader = new Loader({
         apiKey: apiKey,
         libraries: libraries,

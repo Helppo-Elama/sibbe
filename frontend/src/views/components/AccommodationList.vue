@@ -1,14 +1,14 @@
 <template>
   <v-container fluid class="pa-0 ma-0">
     <v-row class="ma-0">
-      <RoomParser v-bind:roomsData="accommodation" v-bind:dataType="roomType" />
+      <RoomParser :roomsData="accommodation" :dataType="roomType" />
     </v-row>
   </v-container>
 </template>
 <script lang="ts">
 import Vue from "vue";
 import RoomParser from "@m/RoomParser.vue";
-import { accommodation } from "@d/roomDataCollector";
+import { accommodation } from "@d/accommodation/accommodation.data";
 import { IRooms } from "@d/interfaces/rooms.interface";
 
 const accommodationList = Vue.extend({

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header />
+    <Header :images="headerImages" :kivaatekemista="true" />
     <v-container fluid>
       <v-row
         class="green-on-light half-quart-height pt-16 pb-16"
@@ -144,7 +144,8 @@ import { conference as metaData } from "@h/metaData";
 
 import Header from "@c/Header.vue";
 import ConferenceList from "@c/ConferenceList.vue";
-import { conferenceImages as images } from "@d/conference/conference.data";
+import { conferenceImages as images } from "@d/conference/conference.images";
+import { conferenceHeaderImages as headerImages } from "@d/conference/conference.images";
 
 import { IImage } from "@d/interfaces/images.interface";
 
@@ -152,10 +153,11 @@ const conference = Vue.extend({
   name: "Conference",
   metaInfo: { ...metaData },
   components: { Header, ConferenceList },
-  data(): { one: IImage; two: IImage } {
+  data(): { one: IImage; two: IImage; headerImages: Record<string, IImage> } {
     return {
       one: images.one,
       two: images.two,
+      headerImages: headerImages,
     };
   },
   mounted(): void {

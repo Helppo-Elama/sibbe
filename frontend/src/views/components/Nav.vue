@@ -5,6 +5,8 @@
       app
       width="220"
       class="light-on-dark"
+      :permanent="$vuetify.breakpoint.xlOnly"
+      :temporary="$vuetify.breakpoint.lgAndDown"
     >
       <v-list>
         <v-list-item
@@ -24,7 +26,7 @@
     </v-navigation-drawer>
 
     <v-app-bar app class="menu-icon-right">
-      <span class="hidden-md-and-up menu-icon-button-resize">
+      <span class="hidden-lg-and-up menu-icon-button-resize">
         <v-app-bar-nav-icon
           @click="sidebar = !sidebar"
           class="menu-icon menu-icon-button-resize"
@@ -33,9 +35,7 @@
           <v-icon size="55px">{{ mdiMenu }}</v-icon>
         </v-app-bar-nav-icon>
       </span>
-      <v-toolbar-items
-        class="hidden-sm-and-down hidden-lg-and-up light-on-dark"
-      >
+      <v-toolbar-items class="hidden-md-and-down d-xl-none light-on-dark">
         <v-btn
           text
           v-for="item in appBar"
@@ -57,7 +57,10 @@ import {
   mdiHomeCircleOutline,
   mdiBedOutline,
   mdiAccountGroupOutline,
+  mdiHeartCircleOutline,
   mdiMapSearchOutline,
+  //mdiPartyPopper,
+  //mdiFoodForkDrink,
   mdiCoffeeOutline,
   mdiCalendarArrowRight,
 } from "@mdi/js";
@@ -70,17 +73,35 @@ const appBar: Array<AppBarItem> = [
   { title: "Etusivu", path: "/", icon: mdiHomeCircleOutline },
   { title: "Majoitus", path: "/accommodation.html", icon: mdiBedOutline },
   {
-    title: "Kokoukset",
-    path: "/conference.html",
-    icon: mdiAccountGroupOutline,
-  },
-  {
     title: "Varaa huone",
     path: "/booking.html",
     icon: mdiCalendarArrowRight,
   },
-  { title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline },
+  {
+    title: "Kokoukset",
+    path: "/conference.html",
+    icon: mdiAccountGroupOutline,
+  },
+  /*
+  {
+    title: "Juhlat",
+    path: "/festivity.html",
+    icon: mdiPartyPopper,
+  },
+  {
+    title: "Ravintola",
+    path: "/restaurant.html",
+    icon: mdiFoodForkDrink,
+  },
+  */
   { title: "Kahvila", path: "/cafe.html", icon: mdiCoffeeOutline },
+  {
+    title: "Virkisty",
+    path: "/recreation.html",
+    icon: mdiHeartCircleOutline,
+  },
+
+  { title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline },
 ];
 const nav = Vue.extend({
   name: "Nav",
@@ -93,7 +114,7 @@ const nav = Vue.extend({
     };
   },
   mounted() {
-    if (this.$vuetify.breakpoint.lgAndUp) this.sidebar = true;
+    if (this.$vuetify.breakpoint.xlOnly) this.sidebar = true;
 
     console.log("🥽 Nav mounted.");
   },
@@ -128,7 +149,7 @@ header {
   flex-flow: row-reverse;
 }
 
-@media #{map-get($display-breakpoints, 'sm-and-down')} {
+@media #{map-get($display-breakpoints, 'md-and-down')} {
   .menu-icon-right {
     margin-top: 0.5em !important;
   }
@@ -140,7 +161,7 @@ header {
     box-shadow: none !important;
   }
 }
-@media #{map-get($display-breakpoints, 'lg-and-up')} {
+@media #{map-get($display-breakpoints, 'xl-only')} {
   nav {
     background-color: $color3 !important;
   }

@@ -27,40 +27,12 @@ const cafeMaps = googleInit.extend({
   name: "CafeMaps",
   data(): {
     googleMapsInit: IgoogleMapsInit;
-    //isOpen: "" | "Avoinna" | "Suljettu"; inherited from GoogleMapInit
   } {
     return {
       googleMapsInit,
-      //isOpen: "",
     };
   },
-  methods: {
-    updateIsOpen(): void {
-      if (this.isOpen === "Avoinna") {
-        console.log(this.$parent.$parent.$refs["open"]);
-        (this.$parent.$parent.$refs["closed"] as HTMLElement).classList.add(
-          "d-none"
-        );
-        (this.$parent.$parent.$refs["open"] as HTMLElement).classList.remove(
-          "d-none"
-        );
-      } else {
-        (this.$parent.$parent.$refs["open"] as HTMLElement).classList.add(
-          "d-none"
-        );
-        (this.$parent.$parent.$refs["closed"] as HTMLElement).classList.remove(
-          "d-none"
-        );
-      }
-    },
-  },
-  watch: {
-    isOpen: function (val, old) {
-      if (val !== old) {
-        this.updateIsOpen();
-      }
-    },
-  },
+  methods: {},
   mounted(): void {
     if (process.env.VUE_APP_GOOGLE_API_KEY) {
       this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY;
@@ -90,20 +62,5 @@ export default cafeMaps;
   height: 100vh;
   width: 100%;
   position: absolute;
-}
-
-.open-closed-container {
-  margin-top: -8em;
-  background: $color4;
-  border: 4px solid $color1;
-  border-radius: 12px;
-}
-
-.closed {
-  color: $color2;
-}
-
-.yes {
-  transform: rotate(-40deg);
 }
 </style>

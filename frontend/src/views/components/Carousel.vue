@@ -1,90 +1,102 @@
 <template>
   <div class="header">
-    <v-carousel
-      v-if="$vuetify.breakpoint.mdAndDown"
-      hide-delimiter-background
-      show-arrows-on-hover
-      :prev-icon="mdiChevronLeft"
-      :next-icon="mdiChevronRight"
-      v-resize:debounce="getCarouselHeight"
-      height=""
-      :style="{ height: this.carouselHeight }"
-    >
-      <v-carousel-item eager v-for="(image, i) in normal" :key="i">
-        <picture>
-          <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
-          <img
-            class="header"
-            :src="image.img.src"
-            v-bind:srcSet="image.img.srcSet"
-            v-bind:width="image.img.width"
-            v-bind:height="image.img.height"
-            v-bind:alt="image.alt"
-            loading="lazy"
-          />
-        </picture>
-      </v-carousel-item>
-    </v-carousel>
-    <v-carousel
-      v-else
-      hide-delimiter-background
-      show-arrows-on-hover
-      :prev-icon="mdiChevronLeft"
-      :next-icon="mdiChevronRight"
-      v-resize:debounce="getCarouselHeight"
-      height=""
-      :style="{ height: this.carouselHeight }"
-    >
-      <v-carousel-item eager v-for="(image, i) in cropped" :key="i">
-        <picture>
-          <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
-          <img
-            class="header"
-            :src="image.img.src"
-            v-bind:srcSet="image.img.srcSet"
-            v-bind:width="image.img.width"
-            v-bind:height="image.img.height"
-            v-bind:alt="image.alt"
-            loading="lazy"
-          />
-        </picture>
-      </v-carousel-item>
-    </v-carousel>
+    <div class="header-image-container">
+      <v-carousel
+        v-if="$vuetify.breakpoint.mdAndDown"
+        cycle
+        interval="3000"
+        hide-delimiter-background
+        show-arrows-on-hover
+        :prev-icon="mdiChevronLeft"
+        :next-icon="mdiChevronRight"
+        v-resize:debounce="getCarouselHeight"
+        height=""
+        :style="{ height: this.carouselHeight }"
+      >
+        <v-carousel-item eager v-for="(image, i) in images.normal" :key="i">
+          <picture>
+            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <img
+              class="header-carousel-image header"
+              :src="image.img.src"
+              v-bind:srcSet="image.img.srcSet"
+              v-bind:width="image.img.width"
+              v-bind:height="image.img.height"
+              v-bind:alt="image.alt"
+              loading="lazy"
+            />
+          </picture>
+        </v-carousel-item>
+      </v-carousel>
+      <v-carousel
+        v-else
+        cycle
+        interval="3000"
+        hide-delimiter-background
+        show-arrows-on-hover
+        :prev-icon="mdiChevronLeft"
+        :next-icon="mdiChevronRight"
+        v-resize:debounce="getCarouselHeight"
+        height=""
+        :style="{ height: this.carouselHeight }"
+      >
+        <v-carousel-item eager v-for="(image, i) in images.cropped" :key="i">
+          <picture>
+            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <img
+              class="header-carousel-image header"
+              :src="image.img.src"
+              v-bind:srcSet="image.img.srcSet"
+              v-bind:width="image.img.width"
+              v-bind:height="image.img.height"
+              v-bind:alt="image.alt"
+              loading="lazy"
+            />
+          </picture>
+        </v-carousel-item>
+      </v-carousel>
+      <div class="centered">
+        <div class="d-inline-flex museo header-museo">CAFE</div>
+        <div class="d-inline-flex bello header-bello">Sibbe</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
 import resize from "vue-resize-directive";
-import { carouselImages as images } from "@d/commonImages";
 import { IImage } from "@d/interfaces/images.interface";
-
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
-const carousel = Vue.extend({
-  name: "Carousel",
+const cafeCarousel = Vue.extend({
+  name: "CafeCarousel",
   directives: {
     resize,
   },
+  props: { images: { type: Object as () => PropType<IImage[]> } },
   data(): {
-    normal: Array<IImage>;
-    cropped: Array<IImage>;
     carouselHeight: string;
+    carouselPrevHeight: number | undefined;
     mdiChevronLeft: string;
     mdiChevronRight: string;
   } {
     return {
-      normal: images.normal,
-      cropped: images.cropped,
       carouselHeight: "",
+      carouselPrevHeight: 0,
       mdiChevronLeft: mdiChevronLeft,
       mdiChevronRight: mdiChevronRight,
     };
   },
   methods: {
     getCarouselHeight() {
-      let item = document.getElementsByClassName("v-carousel__item");
-      this.carouselHeight = item[0].clientHeight + "px !important";
+      const elements = document.getElementsByClassName("header-carousel-image");
+      let heightArray: Array<number> = [];
+      for (let i = 0; i < elements.length; i++) {
+        heightArray.push(elements[i].clientHeight);
+      }
+      const height = Math.max(...heightArray);
+      this.carouselHeight = height + "px !important";
     },
   },
   mounted(): void {
@@ -94,7 +106,7 @@ const carousel = Vue.extend({
     });
   },
 });
-export default carousel;
+export default cafeCarousel;
 </script>
 
 <style lang="scss" scoped>
@@ -102,5 +114,24 @@ export default carousel;
   width: 100%;
   height: auto;
   display: block;
+}
+.header-image-container {
+  position: relative;
+}
+.centered {
+  text-shadow: $color4 0px 0px 10px, $color4 0px 0px 20px, $color4 0px 0px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: $color5;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+.header-museo {
+  padding-top: 0.8em;
+  font-size: 8vw;
+}
+.header-bello {
+  font-size: 20vw;
 }
 </style>

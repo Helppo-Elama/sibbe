@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header />
+    <Header :images="headerImages" :kivaatekemista="true" />
     <v-container fluid class="pa-0 ma-0">
       <v-row
         class="ma-0 green-on-light half-height"
@@ -137,6 +137,10 @@
 import Vue from "vue";
 import { booking as metaData } from "@h/metaData";
 import Header from "@c/Header.vue";
+
+import { bookingHeaderImages as headerImages } from "@d/booking/booking.images";
+import { IImage } from "@d/interfaces/images.interface";
+
 import Loading from "@m/Loading.vue";
 
 import {
@@ -145,6 +149,7 @@ import {
   createBookingURL,
   bookingRooms as rooms,
 } from "@d/booking/booking.data";
+
 import { currentMonth, getMonth } from "@h/dateArray";
 import { IErrors, bookingErrors as errors } from "@d/errors";
 
@@ -157,9 +162,6 @@ import {
 } from "@d/interfaces/booking.interface";
 
 import { IRoom, IRooms } from "@d/interfaces/rooms.interface";
-
-//import { bookingData, bookingImages as images } from "@d/booking/booking.data";
-//import { IImage } from "../data/interfaces/images.interface";
 
 import { axiosGetBookingData } from "@in/axios";
 
@@ -178,6 +180,7 @@ const contact = Vue.extend({
     RoomCarousel,
   },
   data(): {
+    headerImages: Record<string, IImage>;
     bookingData: IBookingData;
     companyData: ICompanyData;
     senderForContactForm: string;
@@ -196,6 +199,7 @@ const contact = Vue.extend({
     rooms: IRooms;
   } {
     return {
+      headerImages: headerImages,
       bookingData: bookingData(),
       companyData: companyData,
       senderForContactForm: "booking",
