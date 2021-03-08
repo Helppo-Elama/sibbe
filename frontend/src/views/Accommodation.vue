@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Carousel :images="carouselImages" />
+    <Carousel :images="carouselImages" :textOverlay="['VILLA', 'Sibbe']" />
     <v-container fluid>
       <v-row
         class="green-on-light half-quart-height pt-16 pb-16"
@@ -64,7 +64,7 @@
       </v-row>
       <v-row class="text-center">
         <v-lazy>
-          <v-col class="mt-0 ml-0 mr-0">
+          <v-col class="ma-0 pa-0">
             <AccommodationList />
           </v-col>
         </v-lazy>

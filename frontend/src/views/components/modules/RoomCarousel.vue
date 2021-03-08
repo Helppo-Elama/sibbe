@@ -11,16 +11,16 @@
     >
       <v-carousel-item eager v-for="image in images" :key="image.img.src">
         <picture>
-          <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+          <source :srcSet="image.webp.srcSet" type="image/webp" />
           <img
             class="accommodation-carousel-image zoom-in"
             v-on:click="showDialog(image)"
             :ref="image.img.src"
-            v-bind:data-v="image.img.src"
-            v-bind:srcSet="image.img.srcSet"
-            v-bind:width="image.img.width"
-            v-bind:height="image.img.height"
-            v-bind:alt="image.alt"
+            :data-v="image.img.src"
+            :srcSet="image.img.srcSet"
+            :width="image.img.width"
+            :height="image.img.height"
+            :alt="image.alt"
             loading="lazy"
           />
         </picture>
@@ -29,14 +29,14 @@
 
     <v-dialog content-class="dialog-image" v-model="dialogVisible" fullscreen>
       <picture>
-        <source v-bind:srcSet="dialogImage.webp.srcSet" type="image/webp" />
+        <source :srcSet="dialogImage.webp.srcSet" type="image/webp" />
         <img
           :src="dialogImage.img.src"
           class="center"
-          v-bind:srcSet="dialogImage.img.srcSet"
-          v-bind:width="dialogImage.img.width"
-          v-bind:height="dialogImage.img.height"
-          v-bind:alt="dialogImage.alt"
+          :srcSet="dialogImage.img.srcSet"
+          :width="dialogImage.img.width"
+          :height="dialogImage.img.height"
+          :alt="dialogImage.alt"
           loading="lazy"
         />
       </picture>

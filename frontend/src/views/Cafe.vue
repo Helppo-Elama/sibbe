@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Carousel :images="carouselImages" />
+    <Carousel :images="carouselImages" :textOverlay="['CAFE', 'Sibbe']" />
     <v-container fluid class="pa-0 ma-0">
       <v-row
         class="ma-0 dark-on-yellow half-height pt-16"
@@ -62,9 +62,9 @@
           </p>
           <img
             class="pt-16 pb-10"
-            :src="logo.image"
-            :alt="logo.alt"
-            :style="logo.imageMaxWidth"
+            :src="lofbergsLogo.image"
+            :alt="lofbergsLogo.alt"
+            :style="lofbergsLogo.imageMaxWidth"
           />
         </v-col>
         <v-col
@@ -100,7 +100,7 @@ import {
 } from "@d/cafe/cafe.images";
 
 import { IImage } from "@d/interfaces/images.interface";
-import Logo from "@i/originals/cafe/lofbergs-logo.svg";
+import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg";
 import { socialUrls } from "@d/company/company.data";
 
 const cafe = Vue.extend({
@@ -110,16 +110,16 @@ const cafe = Vue.extend({
   data(): {
     fbUrl: string;
     one: IImage;
-    logo: { image: string; imageMaxWidth: string; alt: string };
+    lofbergsLogo: { image: string; imageMaxWidth: string; alt: string };
     carouselImages: Record<string, IImage[]>;
   } {
     return {
       fbUrl: socialUrls.fbUrlCafe,
       one: images.one,
-      logo: {
-        image: Logo,
+      lofbergsLogo: {
+        image: lofbergsLogo,
         imageMaxWidth: "width: 10em;",
-        alt: "löfbergs logo",
+        alt: "Löfbergs logo",
       },
       carouselImages: carouselImages,
     };

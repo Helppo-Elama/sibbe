@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header :images="headerImages" :kivaatekemista="true" />
+    <Header :images="headerImages" />
     <v-container fluid class="pa-0 ma-0">
       <v-row
         class="ma-0 green-on-light half-height"
@@ -75,7 +75,7 @@
                   <h1>{{ selectedRoom.title }}</h1>
                 </v-col>
                 <v-col v-if="parsedSiteminder" cols="12" md="6">
-                  <RoomCarousel v-bind:images="selectedRoom.images" />
+                  <RoomCarousel :images="selectedRoom.images" />
                 </v-col>
                 <v-col cols="12" md="6">
                   <h2 v-if="selectRoomIndex === false"></h2>
@@ -118,8 +118,8 @@
                     <u class="museo pb-2">Huoneen lisätiedot</u>
                     <li
                       v-for="e in selectedRoom.equipments"
-                      v-bind:key="e.title"
-                      v-bind:title="e.title"
+                      :key="e.title"
+                      :title="e.title"
                     >
                       {{ e.title }}
                     </li>
@@ -139,7 +139,7 @@ import { booking as metaData } from "@h/metaData";
 import Header from "@c/Header.vue";
 
 import { bookingHeaderImages as headerImages } from "@d/booking/booking.images";
-import { IImage } from "@d/interfaces/images.interface";
+import { IHeaderImages } from "@d/interfaces/images.interface";
 
 import Loading from "@m/Loading.vue";
 
@@ -180,7 +180,7 @@ const contact = Vue.extend({
     RoomCarousel,
   },
   data(): {
-    headerImages: Record<string, IImage>;
+    headerImages: IHeaderImages;
     bookingData: IBookingData;
     companyData: ICompanyData;
     senderForContactForm: string;
@@ -475,7 +475,7 @@ const contact = Vue.extend({
         }
       }
     }
-    console.log("📡 Contact mounted.");
+    console.log("🏰 Booking mounted.");
   },
 });
 

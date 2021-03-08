@@ -10,8 +10,9 @@ const twitterCard: MetaPropertyProperty = {
   content: "summary_large_image",
 };
 
-//PARSER
 let args = {};
+
+//PARSER
 function parse(args: Record<string, string>): MetaInfo {
   const { title, description, socialImage, url } = args;
   return {
@@ -90,7 +91,7 @@ const accommodation = parse(args);
 //CONFERENCE
 const conferenceUrl = homeUrl + "/conference.html";
 args = {
-  title: "Villa Sibbe kokousta ja viihdy tammipuiden suojassa",
+  title: "Villa Sibbe Kokousta ja viihdy tammipuiden suojassa",
   description:
     "Intiimiin ja te­hok­kaa­seen ko­kous­ta­mi­seen No­bel -pal­ki­tun kek­si­jän ta­paan.",
   socialImage: "https://sibbe.fi/img/social/conference-sibbe-social.jpg",
@@ -101,7 +102,7 @@ const conference = parse(args);
 //BOOKING
 const bookingUrl = homeUrl + "/booking.html";
 args = {
-  title: "Villa Sibbe Majoitu varaa huone",
+  title: "Villa Sibbe Majoitus, tarkista saatavuus ja varaa huone",
   description: "Joensuun raitti 58 01150, Söderkulla, +358 50 4391925",
   socialImage:
     "https://sibbe.fi/img/social/accommodation-villa-sibbe-social.jpg",
@@ -130,4 +131,46 @@ args = {
 };
 const cafe = parse(args);
 
-export { home, accommodation, conference, booking, contact, cafe };
+//RESTAURANT
+const restaurantUrl = homeUrl + "/restaurant.html";
+args = {
+  title: "Avaamme vuoden 2021 aikana ravintolatoimintaa",
+  description:
+    "Villa Sibbe tulee tarjoamaan laadukasta lounasta sekä ruokaa listalta.",
+  socialImage: "https://sibbe.fi/img/social/restaurant-sibbe-social.jpg",
+  url: restaurantUrl,
+};
+const restaurant = parse(args);
+
+//FESTIVITY
+const festivityUrl = homeUrl + "/festivity.html";
+args = {
+  title: "",
+  description: "",
+  socialImage: "https://sibbe.fi/img/social/festivity-sibbe-social.jpg",
+  url: festivityUrl,
+};
+const festivity = parse(args);
+
+//RECREATION
+const recreationUrl = homeUrl + "/recreation.html";
+args = {
+  title: "Villa Sibbe Luonto, meri, frisbeegolf, uinti sekä lähimatkailu",
+  description:
+    "Hyvät puitteet harrastamiseen sekä lähimatkailuun. Koe Sipoon saaristo ja luonto tai rentoudu harrastusten parissa",
+  socialImage: "https://sibbe.fi/img/social/recreation-sibbe-social.jpg",
+  url: recreationUrl,
+};
+const recreation = parse(args);
+
+export {
+  home,
+  accommodation,
+  conference,
+  booking,
+  contact,
+  cafe,
+  restaurant,
+  festivity,
+  recreation,
+};

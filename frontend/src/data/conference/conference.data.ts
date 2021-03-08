@@ -1,6 +1,6 @@
 import {
   conferenceRoomsCarouselImages as images,
-  conferenceAdditionalImages as additionalImages,
+  conferenceAdditionalImage as additionalImage,
 } from "./conference.images";
 import { IRooms } from "../interfaces/rooms.interface";
 
@@ -44,16 +44,34 @@ const conference: IRooms = {
       images: images.labra,
     },
   ],
-  additional: [
-    {
-      id: 0,
-      htmlClass: "light-on-green",
-      title: "Kokous&shy;pa&shy;ke&shy;tit",
-      breakpoints: { md: 12 },
-      // prettier-disable-next-line
-      body: [""],
-    },
-  ],
-  additionalImages: additionalImages,
+  additional: {
+    data: [
+      {
+        id: 0,
+        htmlClass: "light-on-green",
+        title: "Kokous&shy;pa&shy;ke&shy;tit",
+        breakpoints: { md: 12 },
+        body: [
+          {
+            type: "text",
+            content: "",
+          },
+        ],
+      },
+      {
+        id: 1,
+        htmlClass: "light-on-green",
+        title: "Kokous&shy;pa&shy;ke&shy;tit",
+        breakpoints: { md: 12 },
+        body: [
+          {
+            type: "text",
+            content: "",
+          },
+        ],
+      },
+    ],
+    image: additionalImage,
+  },
 };
 export { conference };

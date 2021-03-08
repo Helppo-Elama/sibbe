@@ -72,7 +72,7 @@
       <v-row class="ma-0 full-height dark-on-yellow full-height pt-16 pb-16">
         <v-col cols="12">
           <v-lazy>
-            <ContactForm v-bind:sender="senderForContactForm" />
+            <ContactForm :sender="senderForContactForm" />
           </v-lazy>
         </v-col>
       </v-row>

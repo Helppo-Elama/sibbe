@@ -9,9 +9,10 @@ import bookingHeaderWebpCropped from "@i/originals/booking/header-cropped.jpg?si
 //booking
 import bookingImg1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
 import bookingWebp1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
-import { accommodationCarouselImages as images } from "@d/accommodation/accommodation.images";
+import { accommodationRoomsCarouselImages as images } from "@d/accommodation/accommodation.images";
+import { IHeaderImages } from "@d/interfaces/images.interface";
 
-const bookingHeaderImages: { normal: IImage; cropped: IImage } = {
+const bookingHeaderImages: IHeaderImages = {
   normal: {
     img: bookingHeaderImg,
     webp: bookingHeaderWebp,
@@ -21,6 +22,10 @@ const bookingHeaderImages: { normal: IImage; cropped: IImage } = {
     img: bookingHeaderImgCropped,
     webp: bookingHeaderWebpCropped,
     alt: "Tervetuloa Villa Sibbeen",
+  },
+  author: {
+    name: "KivaaTekemistä.fi",
+    url: "https://kivaatekemistä.fi/",
   },
 };
 

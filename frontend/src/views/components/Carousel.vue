@@ -15,21 +15,21 @@
       >
         <v-carousel-item eager v-for="(image, i) in images.normal" :key="i">
           <picture>
-            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <source :srcSet="image.webp.srcSet" type="image/webp" />
             <img
               class="header-carousel-image header"
               :src="image.img.src"
-              v-bind:srcSet="image.img.srcSet"
-              v-bind:width="image.img.width"
-              v-bind:height="image.img.height"
-              v-bind:alt="image.alt"
+              :srcSet="image.img.srcSet"
+              :width="image.img.width"
+              :height="image.img.height"
+              :alt="image.alt"
               loading="lazy"
             />
           </picture>
         </v-carousel-item>
       </v-carousel>
       <v-carousel
-        v-else
+        v-else-if="images.cropped"
         cycle
         interval="3000"
         hide-delimiter-background
@@ -42,22 +42,22 @@
       >
         <v-carousel-item eager v-for="(image, i) in images.cropped" :key="i">
           <picture>
-            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <source :srcSet="image.webp.srcSet" type="image/webp" />
             <img
               class="header-carousel-image header"
               :src="image.img.src"
-              v-bind:srcSet="image.img.srcSet"
-              v-bind:width="image.img.width"
-              v-bind:height="image.img.height"
-              v-bind:alt="image.alt"
+              :srcSet="image.img.srcSet"
+              :width="image.img.width"
+              :height="image.img.height"
+              :alt="image.alt"
               loading="lazy"
             />
           </picture>
         </v-carousel-item>
       </v-carousel>
-      <div class="centered">
-        <div class="d-inline-flex museo header-museo">CAFE</div>
-        <div class="d-inline-flex bello header-bello">Sibbe</div>
+      <div v-if="textOverlay" class="centered">
+        <div class="d-inline-flex museo header-museo">{{ textOverlay[0] }}</div>
+        <div class="d-inline-flex bello header-bello">{{ textOverlay[1] }}</div>
       </div>
     </div>
   </div>
@@ -74,7 +74,11 @@ const cafeCarousel = Vue.extend({
   directives: {
     resize,
   },
-  props: { images: { type: Object as () => PropType<IImage[]> } },
+  props: {
+    images: { type: Object as () => PropType<IImage[]> },
+    textOverlay: { type: Array as () => PropType<string> },
+    logoOverlay: { type: Object as () => PropType<Record<string, string>> },
+  },
   data(): {
     carouselHeight: string;
     carouselPrevHeight: number | undefined;

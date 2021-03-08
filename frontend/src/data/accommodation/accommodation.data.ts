@@ -1,6 +1,6 @@
 import {
   accommodationRoomsCarouselImages as images,
-  accommodationAdditionalImages as additionalImages,
+  accommodationAdditionalImage as additionalImage,
 } from "./accommodation.images";
 import { IRooms } from "../interfaces/rooms.interface";
 
@@ -132,18 +132,17 @@ const accommodation: IRooms = {
       images: images.labra,
     },
   ],
-  additional: [
-    {
-      id: 0,
-      htmlClass: "yellow-on-dark",
-      title: "Lisätie&shy;dot ja varauk&shy;set",
-      breakpoints: { md: 5 },
-      // prettier-disable-next-line
-      body: [
-        "Huoneet ovat valmiina tulopäivänä klo 15 alkaen ja ne tulee luovuttaa läh&shy;tö&shy;päi&shy;vä&shy;nä klo 11 mennessä. Voit tehdä suoraan varauksen <router-link class='additional color-green animate' to='/booking'>täältä <v-icon size='20px'>{{ '$vuetify.icons.booking' }}</v-icon></router-link>. Voit myös tiedustella varauksia esimerkiksi pidemmälle ajanjaksolle tai muuten erityistoiveilla kir&shy;joit&shy;ta&shy;mal&shy;la sähköpos&shy;tia o&shy;soit&shy;tee&shy;seen <router-link to='/mail' class='additional color-green animate'>villa(ät)sibbe.fi <v-icon>{{ emailIcon }}</v-icon></router-link>.",
-      ],
-    },
-  ],
-  additionalImages: additionalImages,
+  additional: {
+    data: [
+      {
+        id: 0,
+        htmlClass: "yellow-on-dark",
+        title: "Lisätie&shy;dot ja varauk&shy;set",
+        breakpoints: { xs: 12, md: 5 },
+        body: [{}],
+      },
+    ],
+    image: additionalImage,
+  },
 };
 export { accommodation };

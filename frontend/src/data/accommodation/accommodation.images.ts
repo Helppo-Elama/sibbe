@@ -176,16 +176,19 @@ const accommodationRoomsCarouselImages: Record<string, Array<IImage>> = {
     },
   ],
 };
-const accommodationAdditionalImages: Array<IImage> = [
-  {
-    img: accommodationAdditionalImg1,
-    webp: accommodationAdditionalWebp1,
-    alt: "Villa Sibben somisteita",
+const accommodationAdditionalImage: IImage = {
+  img: accommodationAdditionalImg1,
+  webp: accommodationAdditionalWebp1,
+  alt: "Villa Sibben somisteita",
+  author: {
+    name: "KivaaTekemistä.fi",
+    url: "https://kivaatekemistä.fi",
   },
-];
+};
+
 export {
   accommodationImages,
   accommodationCarouselImages,
   accommodationRoomsCarouselImages,
-  accommodationAdditionalImages,
+  accommodationAdditionalImage,
 };

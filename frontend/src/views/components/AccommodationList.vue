@@ -1,7 +1,11 @@
 <template>
   <v-container fluid class="pa-0 ma-0">
-    <v-row class="ma-0">
-      <RoomParser :roomsData="accommodation" :dataType="roomType" />
+    <v-row class="ma-0 pa-0">
+      <v-lazy>
+        <v-col cols="12" class="ma-0 pa-0">
+          <RoomParser :roomsData="accommodation" :roomType="roomType" />
+        </v-col>
+      </v-lazy>
     </v-row>
   </v-container>
 </template>
@@ -19,8 +23,8 @@ const accommodationList = Vue.extend({
     roomType: string;
   } {
     return {
-      roomType: "accommodation",
       accommodation: accommodation,
+      roomType: "accommodation",
     };
   },
   mounted(): void {

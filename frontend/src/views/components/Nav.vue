@@ -60,7 +60,7 @@ import {
   mdiHeartCircleOutline,
   mdiMapSearchOutline,
   //mdiPartyPopper,
-  //mdiFoodForkDrink,
+  mdiFoodForkDrink,
   mdiCoffeeOutline,
   mdiCalendarArrowRight,
 } from "@mdi/js";
@@ -88,12 +88,13 @@ const appBar: Array<AppBarItem> = [
     path: "/festivity.html",
     icon: mdiPartyPopper,
   },
+  */
   {
     title: "Ravintola",
     path: "/restaurant.html",
     icon: mdiFoodForkDrink,
   },
-  */
+
   { title: "Kahvila", path: "/cafe.html", icon: mdiCoffeeOutline },
   {
     title: "Virkisty",

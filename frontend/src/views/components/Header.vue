@@ -2,28 +2,28 @@
   <div class="header-image-container">
     <div v-if="$vuetify.breakpoint.mdAndDown">
       <picture>
-        <source v-bind:srcSet="images.normal.webp.srcSet" type="image/webp" />
+        <source :srcSet="images.normal.webp.srcSet" type="image/webp" />
         <img
           class="header"
           :src="images.normal.img.src"
-          v-bind:srcSet="images.normal.img.srcSet"
-          v-bind:width="images.normal.img.width"
-          v-bind:height="images.normal.img.height"
-          v-bind:alt="images.normal.alt"
+          :srcSet="images.normal.img.srcSet"
+          :width="images.normal.img.width"
+          :height="images.normal.img.height"
+          :alt="images.normal.alt"
           loading="lazy"
         />
       </picture>
     </div>
     <div v-else>
       <picture>
-        <source v-bind:srcSet="images.cropped.webp.srcSet" type="image/webp" />
+        <source :srcSet="images.cropped.webp.srcSet" type="image/webp" />
         <img
           class="header"
           :src="images.cropped.img.src"
-          v-bind:srcSet="images.cropped.img.srcSet"
-          v-bind:width="images.cropped.img.width"
-          v-bind:height="images.cropped.img.height"
-          v-bind:alt="images.cropped.alt"
+          :srcSet="images.cropped.img.srcSet"
+          :width="images.cropped.img.width"
+          :height="images.cropped.img.height"
+          :alt="images.cropped.alt"
           loading="lazy"
         />
       </picture>
@@ -32,14 +32,11 @@
       <div class="museo header-museo">VILLA</div>
       <div class="bello header-bello">Sibbe</div>
     </div>
-    <div
-      v-if="kivaatekemista === true"
-      class="color-light source-kivaa-tekemista-fi"
-    >
+    <div v-if="images.author" class="color-light image-with-author">
       &copy;
-      <a href="https://kivaatekemistä.fi" rel="noopener noreferrer"
-        >KivaaTekemistä.fi</a
-      >
+      <a :href="images.author.url" rel="noopener noreferrer">{{
+        images.author.name
+      }}</a>
     </div>
   </div>
 </template>
@@ -52,7 +49,6 @@ const Header = Vue.extend({
   name: "Header",
   props: {
     images: { type: Object as () => PropType<Record<string, IImage>> },
-    kivaatekemista: { type: Boolean },
   },
 
   mounted() {
@@ -89,13 +85,13 @@ export default Header;
 }
 
 @media #{map-get($display-breakpoints, 'sm-only')} {
-  .source-kivaa-tekemista-fi {
+  .image-with-author {
     font-size: 2.2vw;
   }
 }
 
 @media #{map-get($display-breakpoints, 'xs-only')} {
-  .source-kivaa-tekemista-fi {
+  .image-with-author {
     font-size: 2.7vw;
   }
 }

@@ -2,16 +2,16 @@
 // This file contains all styles related to the images component.
 // -----------------------------------------------------------------------------
 
-.source-kivaa-tekemista-fi {
+.image-with-author {
   position: absolute;
   bottom: 0.1em;
   right: 0.5em;
 }
-.source-kivaa-tekemista-fi a {
+.image-with-author a {
   color: $color5 !important;
 }
-.source-kivaa-tekemista-fi a:hover,
-.source-kivaa-tekemista-fi a:active {
+.image-with-author a:hover,
+.image-with-author a:active {
   color: $color4 !important;
 }
 img {

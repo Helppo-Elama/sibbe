@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header :images="headerImages" :kivaatekemista="false" />
+    <Header :images="headerImages" />
     <v-container fluid>
       <v-row
         class="half-quart-height"
@@ -19,23 +19,25 @@
               'display-3': $vuetify.breakpoint.mdAndUp,
             }"
           >
-            Majoitu, kokousta ja viihdy tammipuiden suojassa.
+            Laajennamme myös ravintolatoiminnan puolelle heti kun ajat antavat
+            myöden!
+            <br />
+            <br />
+            Seuratkaa tilannetta Facebookin välityksellä.
           </h3>
         </v-col>
       </v-row>
-      <v-lazy>
-        <Hero />
-      </v-lazy>
       <v-row>
         <v-col
           cols="12"
-          md="6"
-          class="green-on-light full-height pt-16 pb-16 pl-5 pr-5"
+          class="yellow-on-dark full-height pt-16 pb-16 pl-5 pr-5"
         >
           <v-lazy>
-            <Reviews />
+            <VueFB :fbUrl="fbUrl" />
           </v-lazy>
         </v-col>
+
+        <!--
         <v-col
           cols="12"
           md="6"
@@ -49,9 +51,10 @@
       <v-row>
         <v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
           <v-lazy>
-            <ContactForm v-bind:sender="senderForContactForm" />
+            <ContactForm :sender="senderForContactForm" />
           </v-lazy>
         </v-col>
+      -->
       </v-row>
     </v-container>
   </div>
@@ -60,33 +63,28 @@
 <script lang="ts">
 import Vue from "vue";
 
-//// METADATA!
-
-import { home as metaData } from "@h/metaData";
+import { restaurant as metaData } from "@h/metaData";
 
 import { restaurantHeaderImages as headerImages } from "@d/restaurant/restaurant.images";
-import { IImage } from "@d/interfaces/images.interface";
+import { IHeaderImages } from "@d/interfaces/images.interface";
 
 import Header from "@c/Header.vue";
-import Hero from "@c/Hero.vue";
 
 import VueFB from "@c/VueFB.vue";
-import Reviews from "@c/Reviews.vue";
-import ContactForm from "@c/ContactForm.vue";
 
 import { socialUrls } from "@d/company/company.data";
 
 export default Vue.extend({
   name: "Restaurant",
   metaInfo: { ...metaData },
-  components: { Header, Hero, VueFB, Reviews, ContactForm },
+  components: { Header, VueFB },
   mounted(): void {
-    console.log("👽 Restaurant mounted!");
+    console.log("🍕 Restaurant mounted!");
   },
   data(): {
     fbUrl: string;
     senderForContactForm: string;
-    headerImages: Record<string, IImage>;
+    headerImages: IHeaderImages;
   } {
     return {
       fbUrl: socialUrls.fbUrl,

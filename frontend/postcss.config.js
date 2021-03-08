@@ -110,7 +110,7 @@ if (process.env.NODE_ENV === "development") {
             "header-museo",
             "bello",
             "header-bello",
-            "source-kivaa-tekemista-fi",
+            "image-with-author",
             "row",
             "half-quart-height",
             "pb-16",

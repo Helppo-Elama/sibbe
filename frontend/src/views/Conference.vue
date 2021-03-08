@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header :images="headerImages" :kivaatekemista="true" />
+    <Header :images="headerImages" />
     <v-container fluid>
       <v-row
         class="green-on-light half-quart-height pt-16 pb-16"
@@ -48,18 +48,26 @@
           </p>
         </v-col>
         <v-col cols="12" md="4">
-          <picture>
-            <source :srcSet="one.webp.srcSet" type="image/webp" />
-            <img
-              class="header"
-              :src="one.img.src"
-              v-bind:srcSet="one.img.srcSet"
-              v-bind:width="one.img.width"
-              v-bind:height="one.img.height"
-              v-bind:alt="one.alt"
-              loading="lazy"
-            />
-          </picture>
+          <div style="position: relative">
+            <picture>
+              <source :srcSet="one.webp.srcSet" type="image/webp" />
+              <img
+                class="header"
+                :src="one.img.src"
+                :srcSet="one.img.srcSet"
+                :width="one.img.width"
+                :height="one.img.height"
+                :alt="one.alt"
+                loading="lazy"
+              />
+            </picture>
+            <div v-if="one.author" class="color-light image-with-author">
+              &copy;
+              <a :href="one.author.url" rel="noopener noreferrer">{{
+                one.author.name
+              }}</a>
+            </div>
+          </div>
         </v-col>
       </v-row>
       <v-row
@@ -72,20 +80,26 @@
           <h3 class="museo pb-16 museo-heading">Palvelut</h3>
         </v-col>
         <v-col cols="12" md="6">
-          <v-lazy>
+          <div style="position: relative">
             <picture>
-              <source v-bind:srcSet="two.webp.srcSet" type="image/webp" />
+              <source :srcSet="two.webp.srcSet" type="image/webp" />
               <img
                 class="header"
                 :src="two.img.src"
-                v-bind:srcSet="two.img.srcSet"
-                v-bind:width="two.width"
-                v-bind:height="two.img.height"
-                v-bind:alt="two.alt"
+                :srcSet="two.img.srcSet"
+                :width="two.width"
+                :height="two.img.height"
+                :alt="two.alt"
                 loading="lazy"
               />
             </picture>
-          </v-lazy>
+            <div v-if="two.author" class="color-light image-with-author">
+              &copy;
+              <a :href="two.author.url" rel="noopener noreferrer">{{
+                two.author.name
+              }}</a>
+            </div>
+          </div>
         </v-col>
         <v-col cols="12" md="6">
           <p>
@@ -108,16 +122,7 @@
       <v-row data-aos="fade-up" class="light-on-red half-height pt-16 pb-16">
         <v-lazy>
           <v-col cols="12">
-            <h3
-              class="museo pt-16 pb-16"
-              :class="{
-                'display-1': $vuetify.breakpoint.xs,
-                'display-2': $vuetify.breakpoint.sm,
-                'display-3': $vuetify.breakpoint.mdAndUp,
-              }"
-            >
-              Tilat ja varustelu
-            </h3>
+            <h3 class="museo pb-16 museo-heading">Tilat ja varustelu</h3>
             <p>
               Villa Sibbessä on 2 pääasiallista kokoustilaa joista löytyy
               tarvittavaa AV-tekniikkaa esityksiä varten. Lisäksi Villasta
@@ -130,7 +135,7 @@
       </v-row>
       <v-row class="text-center">
         <v-lazy>
-          <v-col class="mt-0 ml-0 mr-0">
+          <v-col class="ma-0 pa-0">
             <ConferenceList />
           </v-col>
         </v-lazy>
@@ -147,13 +152,13 @@ import ConferenceList from "@c/ConferenceList.vue";
 import { conferenceImages as images } from "@d/conference/conference.images";
 import { conferenceHeaderImages as headerImages } from "@d/conference/conference.images";
 
-import { IImage } from "@d/interfaces/images.interface";
+import { IImage, IHeaderImages } from "@d/interfaces/images.interface";
 
 const conference = Vue.extend({
   name: "Conference",
   metaInfo: { ...metaData },
   components: { Header, ConferenceList },
-  data(): { one: IImage; two: IImage; headerImages: Record<string, IImage> } {
+  data(): { one: IImage; two: IImage; headerImages: IHeaderImages } {
     return {
       one: images.one,
       two: images.two,
@@ -161,7 +166,6 @@ const conference = Vue.extend({
     };
   },
   mounted(): void {
-    console.log(this.$vuetify.breakpoint.width);
     console.log("🎀 Conference mounted.");
   },
 });
@@ -171,5 +175,10 @@ export default conference;
 img {
   width: 100%;
   height: auto;
+}
+.image-with-author {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
 }
 </style>

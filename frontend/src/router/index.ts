@@ -77,6 +77,10 @@ const routes: Array<RouteConfig> = [
       location.href = companyData.getEmailLink("sales");
     },
   },
+  {
+    path: "*",
+    component: Home,
+  },
 ];
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <Header :images="headerImages" :kivaatekemista="true" />
+    <Header :images="headerImages" />
     <v-container fluid>
       <v-row
         class="half-quart-height"
@@ -47,7 +47,7 @@
       <v-row>
         <v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
           <v-lazy>
-            <ContactForm v-bind:sender="senderForContactForm" />
+            <ContactForm :sender="senderForContactForm" />
           </v-lazy>
         </v-col>
       </v-row>
@@ -62,7 +62,7 @@ import { home as metaData } from "@h/metaData";
 import Header from "@c/Header.vue";
 
 import { headerImages } from "@d/commonImages";
-import { IImage } from "@d/interfaces/images.interface";
+import { IHeaderImages } from "@d/interfaces/images.interface";
 
 import Hero from "@c/Hero.vue";
 
@@ -79,7 +79,7 @@ export default Vue.extend({
   data(): {
     fbUrl: string;
     senderForContactForm: string;
-    headerImages: Record<string, IImage>;
+    headerImages: IHeaderImages;
   } {
     return {
       fbUrl: socialUrls.fbUrl,

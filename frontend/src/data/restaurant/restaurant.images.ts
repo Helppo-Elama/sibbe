@@ -6,7 +6,11 @@ import restaurantHeaderWebp from "@i/originals/restaurant/header.jpg?sizes[]=300
 import restaurantHeaderImgCropped from "@i/originals/restaurant/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
 import restaurantHeaderWebpCropped from "@i/originals/restaurant/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
 
-const restaurantHeaderImages: { normal: IImage; cropped: IImage } = {
+const restaurantHeaderImages: {
+  normal: IImage;
+  cropped: IImage;
+  author: { name: string; url: string };
+} = {
   normal: {
     img: restaurantHeaderImg,
     webp: restaurantHeaderWebp,
@@ -16,6 +20,10 @@ const restaurantHeaderImages: { normal: IImage; cropped: IImage } = {
     img: restaurantHeaderImgCropped,
     webp: restaurantHeaderWebpCropped,
     alt: "Tervetuloa Villa Sibbeen",
+  },
+  author: {
+    name: "KivaaTekemistä.fi",
+    url: "https://kivaatekemistä.fi/",
   },
 };
 export { restaurantHeaderImages };

@@ -49,7 +49,7 @@
       <v-row>
         <v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
           <v-lazy>
-            <ContactForm v-bind:sender="senderForContactForm" />
+            <ContactForm :sender="senderForContactForm" />
           </v-lazy>
         </v-col>
       </v-row>
@@ -60,9 +60,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-///METADATA!
-
-import { home as metaData } from "@h/metaData";
+import { festivity as metaData } from "@h/metaData";
 
 import Header from "@c/Header.vue";
 

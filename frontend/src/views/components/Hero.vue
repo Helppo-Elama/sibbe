@@ -108,15 +108,30 @@
     >
       <div class="mt-minus-4-em">
         <font-awesome-layers class="mb-15 fa-10x animate color-light">
-          <font-awesome-icon icon="circle" transform="grow-8" />
-          <font-awesome-icon
-            icon="circle"
-            transform="grow-7"
-            class="color-red"
-          />
-          <font-awesome-icon icon="heart" transform="shrink-7" />
+          <router-link
+            aria-label="Virkisty"
+            to="/recreation.html"
+            id="fa-heart"
+            class="animate color-light"
+          >
+            <font-awesome-icon icon="circle" transform="grow-8" />
+            <font-awesome-icon
+              icon="circle"
+              transform="grow-7"
+              class="color-red"
+            />
+            <font-awesome-icon
+              icon="heart"
+              transform="shrink-7"
+              @mouseover="faHoverStyle('fa-heart')"
+              @mouseout="faNormalStyle('fa-heart')"
+              @click="faClickStyle('fa-heart')"
+            />
+          </router-link>
         </font-awesome-layers>
-        <h3 class="museo museo-heading pt-16 pb-16 color-light">Virkisty</h3>
+        <router-link to="/recreation.html" class="animate color-light">
+          <h3 class="museo museo-heading pt-16 pb-16">Virkisty</h3>
+        </router-link>
         <p class="pl-10 pr-10">
           Kesällä juhla- ja kokoustilana toimii aitta, jossa pääset aistimaan
           vanhaa maalaismiljöötä. Aitassa järjestät sujuvasti pienet
@@ -190,6 +205,17 @@ export default Hero;
   color: $color2;
 }
 
+.fa-heart:hover,
+.fa-heart:active {
+  color: $color4;
+}
+.fa-heart-circle-hover {
+  color: $color4;
+}
+
+.fa-heart-circle-clicked {
+  color: $color4;
+}
 .animate > svg {
   transition: all 0.5s ease-in-out 0s;
 }

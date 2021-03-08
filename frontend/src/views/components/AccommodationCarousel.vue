@@ -13,14 +13,14 @@
       >
         <v-carousel-item eager v-for="(image, i) in normal" :key="i">
           <picture>
-            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <source :srcSet="image.webp.srcSet" type="image/webp" />
             <img
               class="header"
               :src="image.img.src"
-              v-bind:srcSet="image.img.srcSet"
-              v-bind:width="image.img.width"
-              v-bind:height="image.img.height"
-              v-bind:alt="image.alt"
+              :srcSet="image.img.srcSet"
+              :width="image.img.width"
+              :height="image.img.height"
+              :alt="image.alt"
               loading="lazy"
             />
           </picture>
@@ -38,14 +38,14 @@
       >
         <v-carousel-item eager v-for="(image, i) in cropped" :key="i">
           <picture>
-            <source v-bind:srcSet="image.webp.srcSet" type="image/webp" />
+            <source :srcSet="image.webp.srcSet" type="image/webp" />
             <img
               class="header"
               :src="image.img.src"
-              v-bind:srcSet="image.img.srcSet"
-              v-bind:width="image.img.width"
-              v-bind:height="image.img.height"
-              v-bind:alt="image.alt"
+              :srcSet="image.img.srcSet"
+              :width="image.img.width"
+              :height="image.img.height"
+              :alt="image.alt"
               loading="lazy"
             />
           </picture>

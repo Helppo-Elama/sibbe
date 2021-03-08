@@ -34,11 +34,19 @@ const conferenceHeaderImages: { normal: IImage; cropped: IImage } = {
     img: conferenceHeaderImg,
     webp: conferenceHeaderWebp,
     alt: "Tervetuloa Villa Sibbeen",
+    author: {
+      name: "KivaaTekemistä.fi",
+      url: "https://kivaatekemistä.fi/",
+    },
   },
   cropped: {
     img: conferenceHeaderImgCropped,
     webp: conferenceHeaderWebpCropped,
     alt: "Tervetuloa Villa Sibbeen",
+    author: {
+      name: "KivaaTekemistä.fi",
+      url: "https://kivaatekemistä.fi/",
+    },
   },
 };
 
@@ -55,6 +63,10 @@ const conferenceImages: {
     img: conferenceImg2,
     webp: conferenceWebp2,
     alt: "Villa Sibbe auringossa",
+    author: {
+      name: "KivaaTekemistä.fi",
+      url: "https://kivaatekemistä.fi/",
+    },
   },
 };
 const conferenceRoomsCarouselImages: {
@@ -91,16 +103,14 @@ const conferenceRoomsCarouselImages: {
     },
   ],
 };
-const conferenceAdditionalImages: Array<IImage> = [
-  {
-    img: conferenceAdditionalImg1,
-    webp: conferenceAdditionalWebp1,
-    alt: "Villa Sibben somisteita",
-  },
-];
+const conferenceAdditionalImage: IImage = {
+  img: conferenceAdditionalImg1,
+  webp: conferenceAdditionalWebp1,
+  alt: "Villa Sibben somisteita",
+};
 export {
   conferenceHeaderImages,
   conferenceImages,
   conferenceRoomsCarouselImages,
-  conferenceAdditionalImages,
+  conferenceAdditionalImage,
 };
