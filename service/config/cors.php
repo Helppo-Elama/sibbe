@@ -15,6 +15,12 @@ return [
     |
     */
 
+    /*
+    header('Access-Control-Allow-Origin: https://sibbe.fi');
+    header('Access-Control-Allow-Methods: *');
+    header('Access-Control-Allow-Headers: *');
+    */
+
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'submit/'],
 
     'allowed_methods' => ['*'],

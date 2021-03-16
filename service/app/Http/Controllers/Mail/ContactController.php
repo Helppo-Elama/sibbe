@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mail;
 
-use App\Mail\FeedbackMail;
+use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class SubmitController extends Controller
+class ContactController extends Controller
 {
     public function submit(Request $request)
     {
@@ -16,7 +17,7 @@ class SubmitController extends Controller
                 "message" => "required",
             ]);
         Mail::to(config("mail.to.address"))->send(
-            new FeedbackMail($request["name"], $validated["email"], $validated["message"], $request->sender)
+            new ContactMail($request["name"], $validated["email"], $validated["message"], $request->sender)
         );
         return response()->json(null, 200);
     }//end submit()

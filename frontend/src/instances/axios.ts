@@ -10,7 +10,7 @@ declare module "axios" {
 }
 
 const api = axios.create({
-  baseURL: process.env.SERVICE_URL,
+  baseURL: process.env.VUE_APP_SERVICE_URL,
   headers: {
     "X-Requested-With": "XMLHttpRequest",
   },

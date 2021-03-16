@@ -300,7 +300,7 @@
               >
             </h3>
           </v-col>
-          <v-col cols="2">
+          <v-col cols="3" md="2">
             <a
               href="https://sibbediscgolf.fi/"
               class="animate color-light"
@@ -312,12 +312,11 @@
                 :style="discgolfLogo.imageMaxWidth"
             /></a>
           </v-col>
-          <v-col cols="10">
+          <v-col cols="9" md="10">
             <h4 class="display-1 museo">
               Rata, jonka vuoksi pelaajat haluavat matkustaa.
             </h4>
           </v-col>
-
           <v-col cols="12" md="6" lg="4">
             <p>
               <a

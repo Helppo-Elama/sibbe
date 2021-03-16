@@ -30,12 +30,12 @@ import venevuokrausImg1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=3
 import venevuokrausWebp1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
 //CAROUSEL
-import carouselImg1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
-import carouselWebp1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
-import carouselImg2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
-import carouselWebp2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
-import carouselImg3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
-import carouselWebp3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
+import carouselImg1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselWebp1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import carouselImg2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselWebp2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import carouselImg3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048";
+import carouselWebp3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
 
 const recreationHeaderImages: { normal: IImage; cropped: IImage } = {
   normal: {

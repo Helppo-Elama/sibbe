@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+Route::middleware(["auth:sanctum", "verified"])->namespace("Restaurant")->group(function () {
+        Route::post("/restaurant/lunch", [LunchController::class, "post"]);
+        Route::get("/restaurant/lunch", [LunchController::class, "get"]);
+     });
+*/
+
+$namespace = 'App\\Http\\Controllers\\Restaurant';
+Route::post("/restaurant/lunch", [App\Http\Controllers\Restaurant\LunchController::class, "post"]);
+Route::get("/restaurant/lunch", [App\Http\Controllers\Restaurant\LunchController::class, "get"]);

@@ -1,29 +1,30 @@
 <?php
 
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-    |--------------------------------------------------------------------------
-    | Web Routes
-    |--------------------------------------------------------------------------
-    |
-    | Here is where you can register web routes for your application. These
-    | routes are loaded by the RouteServiceProvider within a group which
-    | contains the "web" middleware group. Now create something great!
-    |
-*/
-
-Route::get("/", function () {
-    return Inertia::render("Auth/Login", ["canResetPassword" => true]);
-});
-
-Route::post("/submit", [SubmitController::class, "submit"]);
+$namespace = 'App\\Http\\Controllers';
 
 Route::middleware(["auth:sanctum", "verified"])
     ->get("/dashboard", function () {
         return Inertia::render("Dashboard");
     })
     ->name("dashboard");
+
+Route::middleware(["auth:sanctum", "verified"])
+    ->namespace($namespace . "\\Restaurant")
+    ->prefix("restaurant")
+    ->group(base_path("routes/service/restaurant.php"));
+
+    Route::get("/", function () {
+    return Inertia::render("Auth/Login", ["canResetPassword" => true]);
+});
+
+
+/*
+Route::get("/", function () {
+    return Inertia::render("Auth/Register");
+});
+*/
+
+Route::namespace("Mail")->post("/mail/contact", [ContactController::class, "submit"]);

@@ -10,13 +10,21 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@babel/core": "^7.12.16",
+        "@babel/eslint-parser": "^7.12.16",
         "@inertiajs/inertia": "^0.8.2",
         "@inertiajs/inertia-vue": "^0.5.4",
-        "@prettier/plugin-php": "^0.16.1",
         "@tailwindcss/forms": "^0.2.1",
         "@tailwindcss/typography": "^0.3.0",
+        "@vue/cli-plugin-babel": "^4.5.11",
+        "@vue/eslint-config-airbnb": "^5.3.0",
         "autoprefixer": "^10.0.2",
         "axios": "^0.21",
+        "eslint": "^7.20.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-vue": "^7.6.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "portal-vue": "^2.1.7",
@@ -27,5 +35,9 @@
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "date-fns": "^2.19.0",
+        "v-calendar": "^2.2.4"
     }
 }

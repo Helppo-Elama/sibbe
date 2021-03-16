@@ -83,7 +83,7 @@ const contactForm = Vue.extend({
       message: "",
 
       xhttp: {
-        url: "/submit",
+        url: "/mail/contact",
         success: false,
         loaded: true,
         errors: [],

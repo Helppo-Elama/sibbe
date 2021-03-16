@@ -31,9 +31,6 @@
         <exclude name="Squiz.Commenting.FunctionComment"/>
         <exclude name="Squiz.Commenting.VariableComment"/>
     </rule>
-    <rule ref="PHPCS">
-        <exclude name="Generic.Files.LineLength.TooLong" />
-    </rule>
     <!--
 	Allow class tags.
 	-->

@@ -55,6 +55,33 @@
           </picture>
         </v-carousel-item>
       </v-carousel>
+      <v-carousel
+        v-else
+        cycle
+        interval="3000"
+        hide-delimiter-background
+        show-arrows-on-hover
+        :prev-icon="mdiChevronLeft"
+        :next-icon="mdiChevronRight"
+        v-resize:debounce="getCarouselHeight"
+        height=""
+        :style="{ height: this.carouselHeight }"
+      >
+        <v-carousel-item eager v-for="(image, i) in images.normal" :key="i">
+          <picture>
+            <source :srcSet="image.webp.srcSet" type="image/webp" />
+            <img
+              class="header-carousel-image header"
+              :src="image.img.src"
+              :srcSet="image.img.srcSet"
+              :width="image.img.width"
+              :height="image.img.height"
+              :alt="image.alt"
+              loading="lazy"
+            />
+          </picture>
+        </v-carousel-item>
+      </v-carousel>
       <div v-if="textOverlay" class="centered">
         <div class="d-inline-flex museo header-museo">{{ textOverlay[0] }}</div>
         <div class="d-inline-flex bello header-bello">{{ textOverlay[1] }}</div>
