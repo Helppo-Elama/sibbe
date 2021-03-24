@@ -2209,6 +2209,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     type: {
@@ -3321,17 +3328,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3634,6 +3630,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
+      // eslint-disable-next-line no-undef
       this.$inertia.post(route("logout"));
     }
   }
@@ -3662,33 +3659,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3968,10 +3938,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ApiTokenManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApiTokenManager */ "./resources/js/Pages/API/ApiTokenManager.vue");
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-//
-//
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _ApiTokenManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApiTokenManager */ "./resources/js/Pages/API/ApiTokenManager.vue");
 //
 //
 //
@@ -3995,8 +3963,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["tokens", "availablePermissions", "defaultPermissions"],
   components: {
-    ApiTokenManager: _ApiTokenManager__WEBPACK_IMPORTED_MODULE_0__.default,
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__.default
+    ApiTokenManager: _ApiTokenManager__WEBPACK_IMPORTED_MODULE_1__.default,
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default
   }
 });
 
@@ -5826,6 +5794,288 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime.js */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
+/* harmony import */ var date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! date-fns/locale/fi */ "./node_modules/date-fns/locale/fi/index.js");
+/* harmony import */ var date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Helpers/dateFunctions */ "./resources/js/Helpers/dateFunctions.js");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Helpers_axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Helpers/axios */ "./resources/js/Helpers/axios.js");
+/* harmony import */ var _Helpers_apiEndPoints__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Helpers/apiEndPoints */ "./resources/js/Helpers/apiEndPoints.js");
+/* harmony import */ var _PortionIterator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./PortionIterator */ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue");
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__.default,
+    PortionIterator: _PortionIterator__WEBPACK_IMPORTED_MODULE_8__.default
+  },
+  props: {
+    data: {
+      Type: Object
+    }
+  },
+  data: function data() {
+    return {
+      lunches: "",
+      updateIndex: ""
+    };
+  },
+  watch: {
+    data: {
+      deep: true,
+      immediate: true,
+      handler: function handler() {
+        this.lunches = window._.cloneDeep(this.data);
+      }
+    }
+  },
+  methods: {
+    parseDate: function parseDate(date) {
+      var isoString = "".concat(date, "T12:00:00.000Z");
+      var result = (0,_Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_4__.capitalizeFormattedDate)((0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(Date.parse((0,_Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_4__.ISOStringToDate)(isoString)), "EEEEEE dd.MM.yyyy", {
+        locale: (date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_10___default())
+      }));
+      return result;
+    },
+    deletePortion: function deletePortion(_ref) {
+      var lunchIndex = _ref.lunchIndex,
+          portionIndex = _ref.portionIndex;
+      var portion = this.lunches[lunchIndex].json;
+      portion.splice(portionIndex, 1);
+    },
+    addPortion: function addPortion(lunchIndex) {
+      if (!this.lunches[lunchIndex].json) {
+        this.lunches[lunchIndex].json = [];
+      }
+
+      this.lunches[lunchIndex].json.push({
+        title: "",
+        body: "",
+        ingredients: "",
+        allergenic: "",
+        price: ""
+      });
+    },
+    updatePortion: function updatePortion(lunchIndex) {
+      var _this = this;
+
+      return (0,C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+        var i, update, data, lunches, url, json, request, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                i = lunchIndex;
+                update = true;
+
+                if (_this.data[i].json && _this.lunches[i].json) {
+                  data = _this.data[i].json;
+                  lunches = _this.lunches[i].json;
+
+                  if (JSON.stringify(data) === JSON.stringify(lunches)) {
+                    console.log("\uD83D\uDE94 Initial data loaded, no update [".concat(i, "]."));
+                    update = false;
+                  }
+                }
+
+                if (!update) {
+                  _context.next = 11;
+                  break;
+                }
+
+                url = (0,_Helpers_apiEndPoints__WEBPACK_IMPORTED_MODULE_7__.postRestaurantLunchApiUrl)(_this.lunches[i].date);
+                json = JSON.stringify(_this.lunches[i]);
+                request = {
+                  url: url,
+                  json: json
+                };
+                _context.next = 9;
+                return (0,_Helpers_axios__WEBPACK_IMPORTED_MODULE_6__.axiosPost)(request);
+
+              case 9:
+                response = _context.sent;
+
+                if (response) {
+                  console.log(response);
+                }
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  created: function created() {
+    this.updatePortion = window._.debounce(this.updatePortion, 3000);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  props: {
+    data: {
+      Type: Object
+    },
+    date: {
+      Type: String
+    },
+    lunchIndex: {
+      Type: Number
+    }
+  },
+  watch: {
+    data: {
+      deep: true,
+      handler: function handler() {
+        this.$emit("update", this.lunchIndex);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Lunch.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Lunch.vue?vue&type=script&lang=js& ***!
@@ -5834,26 +6084,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime.js */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/ApplicationLogo */ "./resources/js/Jetstream/ApplicationLogo.vue");
-/* harmony import */ var _Jetstream_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/Switch */ "./resources/js/Jetstream/Switch.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Helpers_dateExtensions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Helpers/dateExtensions */ "./resources/js/Helpers/dateExtensions.js");
-/* harmony import */ var _Helpers_dateArray__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Helpers/dateArray */ "./resources/js/Helpers/dateArray.js");
-/* harmony import */ var _Helpers_axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Helpers/axios */ "./resources/js/Helpers/axios.js");
-/* harmony import */ var _Helpers_apiEndPoints_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Helpers/apiEndPoints.js */ "./resources/js/Helpers/apiEndPoints.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
-/* harmony import */ var date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! date-fns/locale/fi */ "./node_modules/date-fns/locale/fi/index.js");
-/* harmony import */ var date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _dummyData_json__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./dummyData.json */ "./resources/js/Pages/Restaurant/dummyData.json");
-
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime.js */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Switch */ "./resources/js/Jetstream/Switch.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Helpers/dateFunctions */ "./resources/js/Helpers/dateFunctions.js");
+/* harmony import */ var _Helpers_axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Helpers/axios */ "./resources/js/Helpers/axios.js");
+/* harmony import */ var _Helpers_apiEndPoints__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Helpers/apiEndPoints */ "./resources/js/Helpers/apiEndPoints.js");
+/* harmony import */ var _Components_Lunch_DateIterator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Components/Lunch/DateIterator */ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue");
+/* harmony import */ var _dummyData_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dummyData.json */ "./resources/js/Pages/Restaurant/dummyData.json");
 
 
 
@@ -5918,91 +6161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
 
 
 
@@ -6014,10 +6172,10 @@ __webpack_require__.r(__webpack_exports__);
 var now = new Date();
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_4__.default,
-    JetApplicationLogo: _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_5__.default,
-    JetSwitch: _Jetstream_Switch__WEBPACK_IMPORTED_MODULE_6__.default,
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_7__.default
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__.default,
+    JetSwitch: _Jetstream_Switch__WEBPACK_IMPORTED_MODULE_4__.default,
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__.default,
+    DateIterator: _Components_Lunch_DateIterator__WEBPACK_IMPORTED_MODULE_9__.default
   },
   data: function data() {
     return {
@@ -6035,10 +6193,14 @@ var now = new Date();
         disabledWhenSelecting: false,
         disabledBeforeSelecting: true
       },
-      lunches: _dummyData_json__WEBPACK_IMPORTED_MODULE_12__
+      lunches: _dummyData_json__WEBPACK_IMPORTED_MODULE_10__
     };
   },
   watch: {
+    lunches: function lunches() {
+      console.log(this.lunches);
+    },
+    // eslint-disable-next-line func-names
     "datePicker.allowPastDate": function datePickerAllowPastDate(val) {
       if (val === false) {
         this.datePicker.allowedDateRange.start = null;
@@ -6046,6 +6208,7 @@ var now = new Date();
         this.datePicker.allowedDateRange.start = now;
       }
     },
+    // eslint-disable-next-line func-names
     "datePicker.selectedDateRange.end": function datePickerSelectedDateRangeEnd(val) {
       if (val !== null) {
         this.datePicker.disabledBeforeSelecting = false;
@@ -6054,8 +6217,8 @@ var now = new Date();
   },
   methods: {
     datePickerOnClick: function datePickerOnClick(val) {
-      var date = val.date;
-      date.correctOffset(date.getTimezoneOffset());
+      var date = (0,_Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_6__.correctOffset)(val.date);
+      console.log(date);
       var _this$datePicker = this.datePicker,
           removeRangeLimit = _this$datePicker.removeRangeLimit,
           allowPastDate = _this$datePicker.allowPastDate,
@@ -6069,7 +6232,7 @@ var now = new Date();
         allowedDateRange.start = date;
 
         if (removeRangeLimit) {
-          allowedDateRange.end = date.addDays(14);
+          allowedDateRange.end = (0,_Helpers_dateFunctions__WEBPACK_IMPORTED_MODULE_6__.addDays)(date, 14);
         }
       } else if (selectedDateRange.end === null) {
         selectedDateRange.end = date;
@@ -6087,27 +6250,26 @@ var now = new Date();
     fetchData: function fetchData() {
       var _this = this;
 
-      return (0,C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+      return (0,C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var _this$datePicker$sele, start, end, url, request, response;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _this$datePicker$sele = _this.datePicker.selectedDateRange, start = _this$datePicker$sele.start, end = _this$datePicker$sele.end;
-                url = (0,_Helpers_apiEndPoints_js__WEBPACK_IMPORTED_MODULE_11__.getRestaurantLunchApiUrl)(start, end);
+                url = (0,_Helpers_apiEndPoints__WEBPACK_IMPORTED_MODULE_8__.getRestaurantLunchApiUrl)(start, end);
                 request = {
                   url: url
                 };
                 _context.next = 5;
-                return (0,_Helpers_axios__WEBPACK_IMPORTED_MODULE_10__.axios)(request);
+                return (0,_Helpers_axios__WEBPACK_IMPORTED_MODULE_7__.axios)(request);
 
               case 5:
                 response = _context.sent;
 
                 if (response) {
                   _this.lunches = response;
-                  console.log(response);
                 }
 
               case 7:
@@ -6117,14 +6279,6 @@ var now = new Date();
           }
         }, _callee);
       }))();
-    },
-    parseDate: function parseDate(date) {
-      var isoString = date + "T12:00:00.000Z";
-      var result = (0,date_fns__WEBPACK_IMPORTED_MODULE_13__.default)(Date.parse(isoString.ISOStringToDate()), "EEEEEE dd.MM.yyyy", {
-        locale: (date_fns_locale_fi__WEBPACK_IMPORTED_MODULE_14___default())
-      }); //ISO KIRJAIN
-
-      return result.charAt(0).toUpperCase() + result.slice(1);
     }
   }
 });
@@ -6374,15 +6528,27 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getRestaurantLunchApiUrl": function() { return /* binding */ getRestaurantLunchApiUrl; }
+/* harmony export */   "getRestaurantLunchApiUrl": function() { return /* binding */ getRestaurantLunchApiUrl; },
+/* harmony export */   "postRestaurantLunchApiUrl": function() { return /* binding */ postRestaurantLunchApiUrl; }
 /* harmony export */ });
-/* harmony import */ var _Helpers_dateExtensions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Helpers/dateExtensions */ "./resources/js/Helpers/dateExtensions.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _dateFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dateFunctions */ "./resources/js/Helpers/dateFunctions.js");
 
-var apiUrl = "https://service.sibbe.test" + "/api";
+
+var url = "https://service.sibbe.test"; // const apiUrl = `${url}/api`;
+
 var getRestaurantLunchApiUrl = function getRestaurantLunchApiUrl(start, end) {
-  var restaurantLunchApiUrl = apiUrl + "/restaurant/lunch" + "?start_date=" + start.toStringYYYYMMDD(start) + "&end_date=" + end.toStringYYYYMMDD(end);
+  var restaurantLunchApiUrl = "".concat(url, "/restaurant/lunch/authorized") + "?start_date=".concat((0,_dateFunctions__WEBPACK_IMPORTED_MODULE_1__.dateToStringYYYYMMDD)(start), "&end_date=").concat((0,_dateFunctions__WEBPACK_IMPORTED_MODULE_1__.dateToStringYYYYMMDD)(end));
   return restaurantLunchApiUrl;
 };
+
+var postRestaurantLunchApiUrl = function postRestaurantLunchApiUrl() {
+  var restaurantLunchApiUrl = "".concat(url, "/restaurant/lunch/authorized");
+  return restaurantLunchApiUrl;
+};
+
+
 
 /***/ }),
 
@@ -6395,7 +6561,8 @@ var getRestaurantLunchApiUrl = function getRestaurantLunchApiUrl(start, end) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "axios": function() { return /* binding */ axios; }
+/* harmony export */   "axios": function() { return /* binding */ axios; },
+/* harmony export */   "axiosPost": function() { return /* binding */ axiosPost; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -6403,6 +6570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors */ "./resources/js/Helpers/errors.js");
+
 
 
 
@@ -6425,9 +6593,10 @@ var axios = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            (0,_errors__WEBPACK_IMPORTED_MODULE_3__.axiosError)(200, _context.t0);
+            (0,_errors__WEBPACK_IMPORTED_MODULE_3__.default)(200, _context.t0);
+            return _context.abrupt("return", false);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -6440,105 +6609,115 @@ var axios = /*#__PURE__*/function () {
   };
 }();
 
+var axiosPost = /*#__PURE__*/function () {
+  var _ref2 = (0,C_Dev_work_sibbe_www_service_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(request) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return window.axios.post(request.url, request.json, {
+              headers: {
+                "Content-Type": "application/json"
+              }
+            });
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            (0,_errors__WEBPACK_IMPORTED_MODULE_3__.default)(200, _context2.t0);
+            return _context2.abrupt("return", false);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function axiosPost(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+
+
 /***/ }),
 
-/***/ "./resources/js/Helpers/dateArray.js":
-/*!*******************************************!*\
-  !*** ./resources/js/Helpers/dateArray.js ***!
-  \*******************************************/
+/***/ "./resources/js/Helpers/dateFunctions.js":
+/*!***********************************************!*\
+  !*** ./resources/js/Helpers/dateFunctions.js ***!
+  \***********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getDays": function() { return /* binding */ getDays; }
+/* harmony export */   "correctOffset": function() { return /* binding */ correctOffset; },
+/* harmony export */   "addDays": function() { return /* binding */ addDays; },
+/* harmony export */   "removeDays": function() { return /* binding */ removeDays; },
+/* harmony export */   "ISOStringToDate": function() { return /* binding */ ISOStringToDate; },
+/* harmony export */   "parseISOString": function() { return /* binding */ parseISOString; },
+/* harmony export */   "dateToStringYYYYMMDD": function() { return /* binding */ dateToStringYYYYMMDD; },
+/* harmony export */   "capitalizeFormattedDate": function() { return /* binding */ capitalizeFormattedDate; }
 /* harmony export */ });
-/* harmony import */ var _dateExtensions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dateExtensions */ "./resources/js/Helpers/dateExtensions.js");
-
-var getDays = function getDays(start, end) {
-  var days = [];
-  var day = start;
-
-  while (day <= end) {
-    days.push(day.toStringYYYYMMDD(day));
-    day = day.addDays(1);
-  }
-
-  return days;
-};
-
-/***/ }),
-
-/***/ "./resources/js/Helpers/dateExtensions.js":
-/*!************************************************!*\
-  !*** ./resources/js/Helpers/dateExtensions.js ***!
-  \************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.split.js */ "./node_modules/core-js/modules/es.string.split.js");
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.split.js */ "./node_modules/core-js/modules/es.string.split.js");
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
-Date.prototype.correctOffset = function (min) {
-  this.setTime(this.getTime() - min * 60 * 1000);
-  return this;
-};
-
-Date.prototype.addDays = function (days) {
-  var date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-};
-
-Date.prototype.removeDays = function (days) {
-  var date = new Date(this.valueOf());
-  date.setDate(date.getDate() - days);
-  return date;
-};
-
-Date.prototype.toStringWithOffset = function () {
-  var date = new Date(this.valueOf());
-  date.correctOffset(date.getTimezoneOffset());
-  var result = date.toISOString().split("T")[0];
+function correctOffset(date) {
+  var result = new Date(date);
+  result.setTime(result.getTime() - result.getTimezoneOffset() * 60 * 1000);
   return result;
-};
+}
 
-Date.prototype.toStringYYYYMMDD = function () {
-  var date = new Date(this.valueOf());
-  var result = date.toISOString().split("T")[0];
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
   return result;
-};
+}
 
-Date.prototype.toISOStringWithOffset = function () {
-  var date = new Date(this.valueOf());
-  date.correctOffset(date.getTimezoneOffset());
-  var result = date.toISOString();
+function removeDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() - days);
   return result;
-};
+}
 
 function parseISOString(string) {
   var b = string.split(/\D+/);
-  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+  var result = new Date(Date.UTC(b[0], b[1] -= 1, b[2], b[3], b[4], b[5], b[6]));
+  return result;
 }
 
-String.prototype.ISOStringToDateWithoutOffset = function () {
-  var string = this.valueOf();
-  var date = parseISOString(string);
-  date.correctOffset(-date.getTimezoneOffset());
-  return date;
-};
+function ISOStringToDate(string) {
+  var result = parseISOString(string);
+  return result;
+}
 
-String.prototype.ISOStringToDate = function () {
-  var string = this.valueOf();
-  var date = parseISOString(string);
-  return date;
-};
+function dateToStringYYYYMMDD(date) {
+  var result = new Date(date).toISOString().split("T")[0];
+  return result;
+}
+
+function capitalizeFormattedDate(string) {
+  var result = string.charAt(0).toUpperCase() + string.slice(1);
+  return result;
+}
+
+
 
 /***/ }),
 
@@ -6550,23 +6729,25 @@ String.prototype.ISOStringToDate = function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "axiosError": function() { return /* binding */ axiosError; }
-/* harmony export */ });
 var axiosError = function axiosError(type, e) {
   switch (type) {
     case 200:
       {
-        console.log("💔 Axios did not get 200. " + e);
+        console.log("\uD83D\uDC94 Axios did not get 200. ".concat(e));
         return {
           axiosError: 200
         };
       }
 
     default:
-      console.log("💔 Axios: " + e);
+      console.log("\uD83D\uDC94 Axios: ".concat(e));
+      return {
+        axiosError: "".concat(e)
+      };
   }
 };
+
+/* harmony default export */ __webpack_exports__["default"] = (axiosError);
 
 /***/ }),
 
@@ -6578,32 +6759,35 @@ var axiosError = function axiosError(type, e) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
-/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/lib/v-calendar.umd.min.js");
-/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(v_calendar__WEBPACK_IMPORTED_MODULE_3__);
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Import modules...
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
+/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/lib/v-calendar.umd.min.js");
+/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(v_calendar__WEBPACK_IMPORTED_MODULE_2__);
+// Import modules...
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.plugin);
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use(portal_vue__WEBPACK_IMPORTED_MODULE_2__.default);
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use((v_calendar__WEBPACK_IMPORTED_MODULE_3___default()), {});
-vue__WEBPACK_IMPORTED_MODULE_1__.default.mixin({
+vue__WEBPACK_IMPORTED_MODULE_3__.default.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.plugin);
+vue__WEBPACK_IMPORTED_MODULE_3__.default.use(portal_vue__WEBPACK_IMPORTED_MODULE_1__.default);
+vue__WEBPACK_IMPORTED_MODULE_3__.default.use((v_calendar__WEBPACK_IMPORTED_MODULE_2___default()), {}); // eslint-disable-next-line no-undef
+
+vue__WEBPACK_IMPORTED_MODULE_3__.default.mixin({
   methods: {
     route: route
   }
 });
 var app = document.getElementById("app");
-new vue__WEBPACK_IMPORTED_MODULE_1__.default({
+new vue__WEBPACK_IMPORTED_MODULE_3__.default({
   render: function render(h) {
     return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.App, {
       props: {
         initialPage: JSON.parse(app.dataset.page),
+        // eslint-disable-next-line import/no-dynamic-require, global-require
         resolveComponent: function resolveComponent(name) {
           return __webpack_require__("./resources/js/Pages sync recursive ^\\.\\/.*$")("./".concat(name))["default"];
         }
@@ -6809,6 +6993,36 @@ module.exports = function (METHOD_NAME) {
     };
     return array[METHOD_NAME](Boolean).foo !== 1;
   });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-species-create.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-species-create.js ***!
+  \****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var SPECIES = wellKnownSymbol('species');
+
+// `ArraySpeciesCreate` abstract operation
+// https://tc39.es/ecma262/#sec-arrayspeciescreate
+module.exports = function (originalArray, length) {
+  var C;
+  if (isArray(originalArray)) {
+    C = originalArray.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    else if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
 };
 
 
@@ -7591,6 +7805,33 @@ module.exports = fails(function () {
 }) ? function (it) {
   return classof(it) == 'String' ? split.call(it, '') : Object(it);
 } : Object;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/inherit-if-required.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/internals/inherit-if-required.js ***!
+  \***************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ "./node_modules/core-js/internals/object-set-prototype-of.js");
+
+// makes subclassing work correct for wrapped built-ins
+module.exports = function ($this, dummy, Wrapper) {
+  var NewTarget, NewTargetPrototype;
+  if (
+    // it can work only with native `setPrototypeOf`
+    setPrototypeOf &&
+    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
+    typeof (NewTarget = dummy.constructor) == 'function' &&
+    NewTarget !== Wrapper &&
+    isObject(NewTargetPrototype = NewTarget.prototype) &&
+    NewTargetPrototype !== Wrapper.prototype
+  ) setPrototypeOf($this, NewTargetPrototype);
+  return $this;
+};
 
 
 /***/ }),
@@ -8691,6 +8932,44 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/string-trim.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/string-trim.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+var whitespaces = __webpack_require__(/*! ../internals/whitespaces */ "./node_modules/core-js/internals/whitespaces.js");
+
+var whitespace = '[' + whitespaces + ']';
+var ltrim = RegExp('^' + whitespace + whitespace + '*');
+var rtrim = RegExp(whitespace + whitespace + '*$');
+
+// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
+var createMethod = function (TYPE) {
+  return function ($this) {
+    var string = String(requireObjectCoercible($this));
+    if (TYPE & 1) string = string.replace(ltrim, '');
+    if (TYPE & 2) string = string.replace(rtrim, '');
+    return string;
+  };
+};
+
+module.exports = {
+  // `String.prototype.{ trimLeft, trimStart }` methods
+  // https://tc39.es/ecma262/#sec-string.prototype.trimstart
+  start: createMethod(1),
+  // `String.prototype.{ trimRight, trimEnd }` methods
+  // https://tc39.es/ecma262/#sec-string.prototype.trimend
+  end: createMethod(2),
+  // `String.prototype.trim` method
+  // https://tc39.es/ecma262/#sec-string.prototype.trim
+  trim: createMethod(3)
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/to-absolute-index.js":
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/internals/to-absolute-index.js ***!
@@ -8888,6 +9167,91 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/whitespaces.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/whitespaces.js ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+// a string of all valid unicode whitespaces
+module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
+  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.concat.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.concat.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
+
+var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
+
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
+
+// `Array.prototype.concat` method
+// https://tc39.es/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$({ target: 'Array', proto: true, forced: FORCED }, {
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  concat: function concat(arg) {
+    var O = toObject(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+      if (isConcatSpreadable(E)) {
+        len = toLength(E.length);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty(A, n++, E);
+      }
+    }
+    A.length = n;
+    return A;
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.array.iterator.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.iterator.js ***!
@@ -9010,6 +9374,85 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.array.splice.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.splice.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js/internals/to-absolute-index.js");
+var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modules/core-js/internals/to-integer.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+var max = Math.max;
+var min = Math.min;
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_LENGTH_EXCEEDED = 'Maximum allowed length exceeded';
+
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  splice: function splice(start, deleteCount /* , ...items */) {
+    var O = toObject(this);
+    var len = toLength(O.length);
+    var actualStart = toAbsoluteIndex(start, len);
+    var argumentsLength = arguments.length;
+    var insertCount, actualDeleteCount, A, k, from, to;
+    if (argumentsLength === 0) {
+      insertCount = actualDeleteCount = 0;
+    } else if (argumentsLength === 1) {
+      insertCount = 0;
+      actualDeleteCount = len - actualStart;
+    } else {
+      insertCount = argumentsLength - 2;
+      actualDeleteCount = min(max(toInteger(deleteCount), 0), len - actualStart);
+    }
+    if (len + insertCount - actualDeleteCount > MAX_SAFE_INTEGER) {
+      throw TypeError(MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
+    }
+    A = arraySpeciesCreate(O, actualDeleteCount);
+    for (k = 0; k < actualDeleteCount; k++) {
+      from = actualStart + k;
+      if (from in O) createProperty(A, k, O[from]);
+    }
+    A.length = actualDeleteCount;
+    if (insertCount < actualDeleteCount) {
+      for (k = actualStart; k < len - actualDeleteCount; k++) {
+        from = k + actualDeleteCount;
+        to = k + insertCount;
+        if (from in O) O[to] = O[from];
+        else delete O[to];
+      }
+      for (k = len; k > len - actualDeleteCount + insertCount; k--) delete O[k - 1];
+    } else if (insertCount > actualDeleteCount) {
+      for (k = len - actualDeleteCount; k > actualStart; k--) {
+        from = k + actualDeleteCount - 1;
+        to = k + insertCount - 1;
+        if (from in O) O[to] = O[from];
+        else delete O[to];
+      }
+    }
+    for (k = 0; k < insertCount; k++) {
+      O[k + actualStart] = arguments[k + 2];
+    }
+    O.length = len - actualDeleteCount + insertCount;
+    return A;
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.function.name.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es.function.name.js ***!
@@ -9037,6 +9480,97 @@ if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
       }
     }
   });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.number.constructor.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.number.constructor.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var isForced = __webpack_require__(/*! ../internals/is-forced */ "./node_modules/core-js/internals/is-forced.js");
+var redefine = __webpack_require__(/*! ../internals/redefine */ "./node_modules/core-js/internals/redefine.js");
+var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js/internals/has.js");
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
+var inheritIfRequired = __webpack_require__(/*! ../internals/inherit-if-required */ "./node_modules/core-js/internals/inherit-if-required.js");
+var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "./node_modules/core-js/internals/to-primitive.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
+var getOwnPropertyNames = __webpack_require__(/*! ../internals/object-get-own-property-names */ "./node_modules/core-js/internals/object-get-own-property-names.js").f;
+var getOwnPropertyDescriptor = __webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "./node_modules/core-js/internals/object-get-own-property-descriptor.js").f;
+var defineProperty = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f;
+var trim = __webpack_require__(/*! ../internals/string-trim */ "./node_modules/core-js/internals/string-trim.js").trim;
+
+var NUMBER = 'Number';
+var NativeNumber = global[NUMBER];
+var NumberPrototype = NativeNumber.prototype;
+
+// Opera ~12 has broken Object#toString
+var BROKEN_CLASSOF = classof(create(NumberPrototype)) == NUMBER;
+
+// `ToNumber` abstract operation
+// https://tc39.es/ecma262/#sec-tonumber
+var toNumber = function (argument) {
+  var it = toPrimitive(argument, false);
+  var first, third, radix, maxCode, digits, length, index, code;
+  if (typeof it == 'string' && it.length > 2) {
+    it = trim(it);
+    first = it.charCodeAt(0);
+    if (first === 43 || first === 45) {
+      third = it.charCodeAt(2);
+      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+    } else if (first === 48) {
+      switch (it.charCodeAt(1)) {
+        case 66: case 98: radix = 2; maxCode = 49; break; // fast equal of /^0b[01]+$/i
+        case 79: case 111: radix = 8; maxCode = 55; break; // fast equal of /^0o[0-7]+$/i
+        default: return +it;
+      }
+      digits = it.slice(2);
+      length = digits.length;
+      for (index = 0; index < length; index++) {
+        code = digits.charCodeAt(index);
+        // parseInt parses a string to a first unavailable symbol
+        // but ToNumber should return NaN if a string contains unavailable symbols
+        if (code < 48 || code > maxCode) return NaN;
+      } return parseInt(digits, radix);
+    }
+  } return +it;
+};
+
+// `Number` constructor
+// https://tc39.es/ecma262/#sec-number-constructor
+if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumber('+0x1'))) {
+  var NumberWrapper = function Number(value) {
+    var it = arguments.length < 1 ? 0 : value;
+    var dummy = this;
+    return dummy instanceof NumberWrapper
+      // check on 1..constructor(foo) case
+      && (BROKEN_CLASSOF ? fails(function () { NumberPrototype.valueOf.call(dummy); }) : classof(dummy) != NUMBER)
+        ? inheritIfRequired(new NativeNumber(toNumber(it)), dummy, NumberWrapper) : toNumber(it);
+  };
+  for (var keys = DESCRIPTORS ? getOwnPropertyNames(NativeNumber) : (
+    // ES3:
+    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+    // ES2015 (in case, if modules with ES2015 Number statics required before):
+    'EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,' +
+    'MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger,' +
+    // ESNext
+    'fromString,range'
+  ).split(','), j = 0, key; keys.length > j; j++) {
+    if (has(NativeNumber, key = keys[j]) && !has(NumberWrapper, key)) {
+      defineProperty(NumberWrapper, key, getOwnPropertyDescriptor(NativeNumber, key));
+    }
+  }
+  NumberWrapper.prototype = NumberPrototype;
+  NumberPrototype.constructor = NumberWrapper;
+  redefine(global, NUMBER, NumberWrapper);
 }
 
 
@@ -9385,7 +9919,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tooltip-text[data-v-7e111e68] {\n  visibility: hidden;\n  opacity: 0;\n  left: 37px;\n  top: -1px;\n  position: absolute;\n  z-index: 1;\n}\n.tooltip:hover .tooltip-text[data-v-7e111e68] {\n  visibility: visible;\n  opacity: 1;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tooltip-text[data-v-7e111e68] {\n\tvisibility: hidden;\n\topacity: 0;\n\tleft: 37px;\n\ttop: -1px;\n\tposition: absolute;\n\tz-index: 1;\n}\n.tooltip:hover .tooltip-text[data-v-7e111e68] {\n\tvisibility: visible;\n\topacity: 1;\n}\n", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -34833,6 +35367,78 @@ component.options.__file = "resources/js/Pages/Profile/UpdateProfileInformationF
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DateIterator.vue?vue&type=template&id=6c957fde& */ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde&");
+/* harmony import */ var _DateIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DateIterator.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _DateIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue ***!
+  \****************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PortionIterator.vue?vue&type=template&id=2600f1a0& */ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0&");
+/* harmony import */ var _PortionIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PortionIterator.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PortionIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Restaurant/Lunch.vue":
 /*!*************************************************!*\
   !*** ./resources/js/Pages/Restaurant/Lunch.vue ***!
@@ -35494,6 +36100,32 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfileInformationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UpdateProfileInformationForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Profile/UpdateProfileInformationForm.vue?vue&type=script&lang=js&");
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfileInformationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DateIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DateIterator.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=script&lang=js&");
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DateIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PortionIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PortionIterator.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=script&lang=js&");
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PortionIterator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -36344,6 +36976,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde& ***!
+  \********************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__.render; },
+/* harmony export */   "staticRenderFns": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateIterator_vue_vue_type_template_id_6c957fde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DateIterator.vue?vue&type=template&id=6c957fde& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0& ***!
+  \***********************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__.render; },
+/* harmony export */   "staticRenderFns": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PortionIterator_vue_vue_type_template_id_2600f1a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PortionIterator.vue?vue&type=template&id=2600f1a0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0&");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Restaurant/Lunch.vue?vue&type=template&id=6c3b4b61&":
 /*!********************************************************************************!*\
   !*** ./resources/js/Pages/Restaurant/Lunch.vue?vue&type=template&id=6c3b4b61& ***!
@@ -36774,9 +37440,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n            " +
+                              "\n\t\t\t\t\t\t" +
                                 _vm._s(_vm.message) +
-                                "\n          "
+                                "\n\t\t\t\t\t"
                             )
                           ]
                         )
@@ -36878,6 +37544,17 @@ var render = function() {
         {
           staticClass:
             "inline-flex items-center px-4 py-2 bg-white-800 border border-red-600 text-red-600 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-red-700 hover:text-white active:bg-darkred active:text-white-600 focus:outline-none focus:border-darkred focus:shadow-outline-red-300 focus:text-color-white transition ease-in-out duration-150",
+          attrs: { type: _vm.type }
+        },
+        [_vm._t("default")],
+        2
+      )
+    : !_vm.disabled && _vm.action === "add"
+    ? _c(
+        "button",
+        {
+          staticClass:
+            "inline-flex items-center px-4 py-2 bg-white-800 border border-green-600 text-green-600 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-green-700 hover:text-white active:bg-darkgreen active:text-white-600 focus:outline-none focus:border-darkgreen focus:shadow-outline-green-300 focus:text-color-white transition ease-in-out duration-150",
           attrs: { type: _vm.type }
         },
         [_vm._t("default")],
@@ -38089,7 +38766,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "mt-8 text-2xl" }, [
-          _vm._v("\n      Tervetuloa Villa Sibben sivuston hallintaan.\n    ")
+          _vm._v("Tervetuloa Villa Sibben sivuston hallintaan.")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "mt-6 text-gray-500" }, [_vm._v("BLAH")])
@@ -38133,7 +38810,7 @@ var render = function() {
           _c("div", { staticClass: "ml-12" }, [
             _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
               _vm._v(
-                "\n          Laravel has wonderful documentation covering every aspect of the\n          framework. Whether you're new to the framework or have previous\n          experience, we recommend reading all of the documentation from\n          beginning to end.\n        "
+                "\n\t\t\t\t\tLaravel has wonderful documentation covering every aspect of the framework. Whether\n\t\t\t\t\tyou're new to the framework or have previous experience, we recommend reading all of the\n\t\t\t\t\tdocumentation from beginning to end.\n\t\t\t\t"
               )
             ]),
             _vm._v(" "),
@@ -38213,7 +38890,7 @@ var render = function() {
             _c("div", { staticClass: "ml-12" }, [
               _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
                 _vm._v(
-                  "\n          Laracasts offers thousands of video tutorials on Laravel, PHP, and\n          JavaScript development. Check them out, see for yourself, and\n          massively level up your development skills in the process.\n        "
+                  "\n\t\t\t\t\tLaracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript\n\t\t\t\t\tdevelopment. Check them out, see for yourself, and massively level up your development\n\t\t\t\t\tskills in the process.\n\t\t\t\t"
                 )
               ]),
               _vm._v(" "),
@@ -38315,7 +38992,7 @@ var render = function() {
                 staticClass:
                   "ml-4 text-lg text-gray-600 leading-7 font-semibold"
               },
-              [_vm._v("\n          Authentication\n        ")]
+              [_vm._v("Authentication")]
             )
           ]),
           _vm._v(" "),
@@ -38375,7 +39052,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ml-12" }, [
       _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
         _vm._v(
-          "\n          Laravel Jetstream is built with Tailwind, an amazing utility first\n          CSS framework that doesn't get in your way. You'll be amazed how\n          easily you can build and maintain fresh, modern designs with this\n          wonderful framework at your fingertips.\n        "
+          "\n\t\t\t\t\tLaravel Jetstream is built with Tailwind, an amazing utility first CSS framework that\n\t\t\t\t\tdoesn't get in your way. You'll be amazed how easily you can build and maintain fresh,\n\t\t\t\t\tmodern designs with this wonderful framework at your fingertips.\n\t\t\t\t"
         )
       ])
     ])
@@ -38387,7 +39064,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ml-12" }, [
       _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
         _vm._v(
-          "\n          Authentication and registration views are included with Laravel\n          Jetstream, as well as support for user email verification and\n          resetting forgotten passwords. So, you're free to get started what\n          matters most: building your application.\n        "
+          "\n\t\t\t\t\tAuthentication and registration views are included with Laravel Jetstream, as well as\n\t\t\t\t\tsupport for user email verification and resetting forgotten passwords. So, you're free\n\t\t\t\t\tto get started what matters most: building your application.\n\t\t\t\t"
         )
       ])
     ])
@@ -38466,7 +39143,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Hallintapaneeli\n              "
+                              "\n\t\t\t\t\t\t\t\tHallintapaneeli\n\t\t\t\t\t\t\t"
                             )
                           ]
                         )
@@ -38501,7 +39178,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                      Ravintola\n\n                      "
+                                            "\n\t\t\t\t\t\t\t\t\t\t\tRavintola\n\n\t\t\t\t\t\t\t\t\t\t\t"
                                           ),
                                           _c(
                                             "svg",
@@ -38547,7 +39224,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Lounas\n                  "
+                                        "\n\t\t\t\t\t\t\t\t\t\tLounas\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]
                                   ),
@@ -38571,7 +39248,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Muut asiat\n                  "
+                                        "\n\t\t\t\t\t\t\t\t\t\tMuut asiat\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]
                                   ),
@@ -38603,7 +39280,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Ravintola\n              "
+                              "\n\t\t\t\t\t\t\t\tRavintola\n\t\t\t\t\t\t\t"
                             )
                           ]
                         )
@@ -38664,11 +39341,11 @@ var render = function() {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                      " +
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t" +
                                                     _vm._s(
                                                       _vm.$page.props.user.name
                                                     ) +
-                                                    "\n\n                      "
+                                                    "\n\n\t\t\t\t\t\t\t\t\t\t\t"
                                                 ),
                                                 _c(
                                                   "svg",
@@ -38736,7 +39413,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                    API avaimet\n                  "
+                                              "\n\t\t\t\t\t\t\t\t\t\tAPI avaimet\n\t\t\t\t\t\t\t\t\t"
                                             )
                                           ]
                                         )
@@ -38861,7 +39538,7 @@ var render = function() {
                           active: _vm.route().current("dashboard")
                         }
                       },
-                      [_vm._v("\n            Hallintapaneeli\n          ")]
+                      [_vm._v("\n\t\t\t\t\t\tHallintapaneeli\n\t\t\t\t\t")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -38872,7 +39549,7 @@ var render = function() {
                           active: _vm.route().current("restaurant")
                         }
                       },
-                      [_vm._v("\n            Ravintola\n          ")]
+                      [_vm._v("\n\t\t\t\t\t\tRavintola\n\t\t\t\t\t")]
                     )
                   ],
                   1
@@ -38904,9 +39581,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                " +
+                              "\n\t\t\t\t\t\t\t\t" +
                                 _vm._s(_vm.$page.props.user.name) +
-                                "\n              "
+                                "\n\t\t\t\t\t\t\t"
                             )
                           ]
                         ),
@@ -38916,9 +39593,9 @@ var render = function() {
                           { staticClass: "font-medium text-sm text-gray-500" },
                           [
                             _vm._v(
-                              "\n                " +
+                              "\n\t\t\t\t\t\t\t\t" +
                                 _vm._s(_vm.$page.props.user.email) +
-                                "\n              "
+                                "\n\t\t\t\t\t\t\t"
                             )
                           ]
                         )
@@ -38937,7 +39614,7 @@ var render = function() {
                               active: _vm.route().current("profile.show")
                             }
                           },
-                          [_vm._v("\n              Profiili\n            ")]
+                          [_vm._v("\n\t\t\t\t\t\t\tProfiili\n\t\t\t\t\t\t")]
                         ),
                         _vm._v(" "),
                         _vm.$page.props.jetstream.hasApiFeatures
@@ -38953,7 +39630,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n              API Avaimet\n            "
+                                  "\n\t\t\t\t\t\t\tAPI Avaimet\n\t\t\t\t\t\t"
                                 )
                               ]
                             )
@@ -39052,7 +39729,7 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n      API tokens allow third-party services to authenticate with our\n      application on your behalf.\n    "
+                  "\n\t\t\tAPI tokens allow third-party services to authenticate with our application on your behalf.\n\t\t"
                 )
               ]
             },
@@ -39159,7 +39836,7 @@ var render = function() {
                     staticClass: "mr-3",
                     attrs: { on: _vm.createApiTokenForm.recentlySuccessful }
                   },
-                  [_vm._v("\n        Created.\n      ")]
+                  [_vm._v("\n\t\t\t\tCreated.\n\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -39168,7 +39845,7 @@ var render = function() {
                     class: { "opacity-25": _vm.createApiTokenForm.processing },
                     attrs: { disabled: _vm.createApiTokenForm.processing }
                   },
-                  [_vm._v("\n        Create\n      ")]
+                  [_vm._v("\n\t\t\t\tCreate\n\t\t\t")]
                 )
               ]
             },
@@ -39202,7 +39879,7 @@ var render = function() {
                           fn: function() {
                             return [
                               _vm._v(
-                                "\n          You may delete any of your existing tokens if they are no longer\n          needed.\n        "
+                                "\n\t\t\t\t\tYou may delete any of your existing tokens if they are no longer needed.\n\t\t\t\t"
                               )
                             ]
                           },
@@ -39226,9 +39903,9 @@ var render = function() {
                                     [
                                       _c("div", [
                                         _vm._v(
-                                          "\n                " +
+                                          "\n\t\t\t\t\t\t\t\t" +
                                             _vm._s(token.name) +
-                                            "\n              "
+                                            "\n\t\t\t\t\t\t\t"
                                         )
                                       ]),
                                       _vm._v(" "),
@@ -39245,11 +39922,11 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                  Last used " +
+                                                    "\n\t\t\t\t\t\t\t\t\tLast used " +
                                                       _vm._s(
                                                         token.last_used_ago
                                                       ) +
-                                                      "\n                "
+                                                      "\n\t\t\t\t\t\t\t\t"
                                                   )
                                                 ]
                                               )
@@ -39271,7 +39948,7 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                  Permissions\n                "
+                                                    "\n\t\t\t\t\t\t\t\t\tPermissions\n\t\t\t\t\t\t\t\t"
                                                   )
                                                 ]
                                               )
@@ -39292,7 +39969,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                  Delete\n                "
+                                                "\n\t\t\t\t\t\t\t\t\tDelete\n\t\t\t\t\t\t\t\t"
                                               )
                                             ]
                                           )
@@ -39310,7 +39987,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      2403282090
+                      3639524688
                     )
                   })
                 ],
@@ -39342,7 +40019,7 @@ var render = function() {
               return [
                 _c("div", [
                   _vm._v(
-                    "\n        Please copy your new API token. For your security, it won't be shown\n        again.\n      "
+                    "Please copy your new API token. For your security, it won't be shown again."
                   )
                 ]),
                 _vm._v(" "),
@@ -39355,9 +40032,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n        " +
+                          "\n\t\t\t\t" +
                             _vm._s(_vm.$page.props.jetstream.flash.token) +
-                            "\n      "
+                            "\n\t\t\t"
                         )
                       ]
                     )
@@ -39379,7 +40056,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Close\n      ")]
+                  [_vm._v(" Close ")]
                 )
               ]
             },
@@ -39460,7 +40137,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Nevermind\n      ")]
+                  [_vm._v("\n\t\t\t\tNevermind\n\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -39475,7 +40152,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Save\n      ")]
+                  [_vm._v("\n\t\t\t\tSave\n\t\t\t")]
                 )
               ]
             },
@@ -39504,7 +40181,7 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n      Are you sure you would like to delete this API token?\n    "
+                  " Are you sure you would like to delete this API token? "
                 )
               ]
             },
@@ -39523,7 +40200,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Nevermind\n      ")]
+                  [_vm._v("\n\t\t\t\tNevermind\n\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -39538,7 +40215,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n        Delete\n      ")]
+                  [_vm._v("\n\t\t\t\tDelete\n\t\t\t")]
                 )
               ]
             },
@@ -39587,7 +40264,7 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n      API Tokens\n    ")]
+                [_vm._v("API Tokens")]
               )
             ]
           },
@@ -42033,6 +42710,267 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue?vue&type=template&id=6c957fde& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* binding */ render; },
+/* harmony export */   "staticRenderFns": function() { return /* binding */ staticRenderFns; }
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "bg-gray-200 bg-opacity-25" }, [
+    _c(
+      "div",
+      { staticClass: "p-4" },
+      [
+        _vm._l(_vm.lunches, function(lunch, lunchIndex) {
+          return _c("div", { key: lunch + lunchIndex }, [
+            _c(
+              "div",
+              { staticClass: "p-4 rounded-xl shadow-md" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "pb-6 text-grey-600 text-2xl text-center" },
+                  [
+                    _vm._v(
+                      "\n\t\t\t\t\t" +
+                        _vm._s(_vm.parseDate(lunch.date)) +
+                        "\n\t\t\t\t\t"
+                    ),
+                    _c("hr", { staticClass: "mt-4" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("PortionIterator", {
+                  attrs: {
+                    data: lunch.json,
+                    date: lunch.date,
+                    lunchIndex: lunchIndex
+                  },
+                  on: { delete: _vm.deletePortion, update: _vm.updatePortion }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex justify-center w-100 py-6" },
+                  [
+                    _c(
+                      "jet-button",
+                      {
+                        staticClass: "px-12",
+                        attrs: { action: "add" },
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.addPortion(lunchIndex)
+                          }
+                        }
+                      },
+                      [_vm._v("\n\t\t\t\t\t\tLisää uusi annos\n\t\t\t\t\t")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ml-12" }, [
+      _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
+        _vm._v("blaablaa")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue?vue&type=template&id=2600f1a0& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* binding */ render; },
+/* harmony export */   "staticRenderFns": function() { return /* binding */ staticRenderFns; }
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "grid grid-cols-1 sm:grid-cols-2 gap-4 frist:border-r-2" },
+    _vm._l(_vm.data, function(portion, portionIndex) {
+      return _c("div", { key: portion + portionIndex }, [
+        _c("div", { staticClass: "mr-4" }, [
+          _c(
+            "div",
+            { staticClass: "flex justify-between pb-3 text-2xl text-gray-700" },
+            [
+              _c("div", { staticClass: "break-all" }, [
+                _vm._v(_vm._s(portionIndex + 1) + ". " + _vm._s(portion.title))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c(
+                    "jet-button",
+                    {
+                      staticClass: "px-6 ml-3",
+                      attrs: { action: "delete" },
+                      nativeOn: {
+                        click: function($event) {
+                          return _vm.$emit("delete", {
+                            lunchIndex: _vm.lunchIndex,
+                            portionIndex: portionIndex
+                          })
+                        }
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\t\tPoista\n\t\t\t\t\t")]
+                  )
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("label", [
+            _c("span", { staticClass: "pt-4 pb-1 pl-2 text-gray-700 block" }, [
+              _vm._v("Nimike")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass:
+                "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+              attrs: { type: "text" },
+              domProps: { value: portion.title },
+              on: {
+                change: function($event) {
+                  portion.title = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _c("span", { staticClass: "pt-4 pb-1 pl-2 text-gray-700 block" }, [
+              _vm._v("Tarkempi kuvaus")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              staticClass:
+                "block mt-1 w-full h-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+              domProps: { value: portion.body },
+              on: {
+                change: function($event) {
+                  portion.body = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _c("span", { staticClass: "pt-4 pb-1 pl-1 text-gray-700 block" }, [
+              _vm._v("Ainesosat")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass:
+                "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+              attrs: { type: "text" },
+              domProps: { value: portion.ingredients },
+              on: {
+                change: function($event) {
+                  portion.ingredients = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("label", [
+            _c("span", { staticClass: "pt-4 pb-1 pl-2 text-gray-700 block" }, [
+              _vm._v("Hinta")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex mt-1" }, [
+              _c("input", {
+                staticClass:
+                  "block rounded-md w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+                attrs: { type: "number" },
+                domProps: { value: portion.price },
+                on: {
+                  change: function($event) {
+                    portion.price = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "pl-4 flex items-center" }, [
+                _vm._v("EUR")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "pb-3 block" }, [
+            _c("span", { staticClass: "pt-4 pb-1 pl-2 text-gray-700 block" }, [
+              _vm._v("Allergiatiedot")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass:
+                "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
+              attrs: { type: "text" },
+              domProps: { value: portion.allergenic },
+              on: {
+                change: function($event) {
+                  portion.allergenic = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ])
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Lunch.vue?vue&type=template&id=6c3b4b61&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Restaurant/Lunch.vue?vue&type=template&id=6c3b4b61& ***!
@@ -42063,7 +43001,7 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 text-2xl text-center"
                 },
-                [_vm._v("\n      Ravintolan lounaslista\n    ")]
+                [_vm._v("\n\t\t\tRavintolan lounaslista\n\t\t")]
               )
             ]
           },
@@ -42075,306 +43013,121 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "py-12" }, [
         _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
-          _c("div", { staticClass: "bg-white shadow-xl sm:rounded-lg" }, [
-            _c(
-              "div",
-              { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
-              [
-                _c("div", { staticClass: "mt-8 text-2xl text-center" }, [
-                  _vm._v("Valitse päivämäärä(t)")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mt-6" },
-                  [
-                    _c("v-date-picker", {
-                      attrs: {
-                        value: null,
-                        "available-dates": _vm.datePicker.allowedDateRange,
-                        "model-config": _vm.datePicker.modelConfig,
-                        "first-day-of-week": 2,
-                        locale: "fi",
-                        "is-range": "",
-                        "is-expanded": "",
-                        columns: _vm.$screens({ default: 1, lg: 2 })
-                      },
-                      on: { dayclick: _vm.datePickerOnClick }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "grid justify-items-stretch" }, [
-                  _c(
-                    "div",
-                    { staticClass: "justify-self-center" },
-                    [
-                      _c(
-                        "jet-button",
-                        {
-                          staticClass: "mt-6 pl-6 pr-6",
-                          attrs: {
-                            disabled: _vm.datePicker.disabledBeforeSelecting
-                          },
-                          nativeOn: {
-                            click: function($event) {
-                              return _vm.fetchData($event)
-                            }
-                          }
-                        },
-                        [_vm._v("\n                Hae tiedot\n              ")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mt-6" },
-                  [
-                    _c("JetSwitch", {
-                      attrs: {
-                        label:
-                          "Aikaraja on rajattu kahden (2) viikon mittaiseksi.",
-                        disabled: _vm.datePicker.disabledWhenSelecting
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.datePicker.removeRangeLimit = !_vm.datePicker
-                            .removeRangeLimit
-                        }
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mt-2" },
-                  [
-                    _c("JetSwitch", {
-                      attrs: {
-                        label: "Menneitä päiviä ei voi muokata.",
-                        disabled: _vm.datePicker.disabledWhenSelecting
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.datePicker.allowPastDate = !_vm.datePicker
-                            .allowPastDate
-                        }
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "mt-6 text-green-600" }, [
-                  _c("h1", [_vm._v(_vm._s(_vm.datePicker.selectedDateRange))])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "bg-gray-200 bg-opacity-25" }, [
+          _c(
+            "div",
+            { staticClass: "bg-white shadow-xl sm:rounded-lg" },
+            [
               _c(
                 "div",
-                { staticClass: "p-6" },
+                {
+                  staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200"
+                },
                 [
-                  _vm._l(_vm.lunches, function(lunch) {
-                    return _c("div", [
-                      _c(
-                        "div",
-                        { staticClass: "p-6 rounded-xl shadow-md" },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "text-grey-600 text-2xl text-center"
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.parseDate(lunch.date)) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _vm._l(lunch.json, function(portion, index) {
-                            return _c(
-                              "div",
-                              {
-                                staticClass: "grid grid-cols-1 sm:grid-cols-2"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "sm:col-span-2 pb-3 text-2xl text-gray-700"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                    " +
-                                        _vm._s(index + 1) +
-                                        ". " +
-                                        _vm._s(portion.title) +
-                                        "\n                  "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "mr-4" }, [
-                                  _c("label", { staticClass: "pb-3" }, [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-gray-700 block" },
-                                      [_vm._v("Nimike")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass:
-                                        "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: portion.title
-                                      }
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "pb-3" }, [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-gray-700 block" },
-                                      [_vm._v("Ainesosat")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass:
-                                        "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: portion.ingredients
-                                      }
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "pb-3" }, [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-gray-700 block" },
-                                      [_vm._v("Hinta")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass:
-                                        "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-                                      attrs: {
-                                        type: "number",
-                                        placeholder: portion.price
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", [
-                                  _c("label", { staticClass: "pb-3" }, [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-gray-700 block" },
-                                      [_vm._v("Tarkempi kuvaus")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("textarea", {
-                                      staticClass:
-                                        "block mt-1 w-full h-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-                                      attrs: { placeholder: portion.body }
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "pb-3 block" }, [
-                                    _c(
-                                      "span",
-                                      { staticClass: "text-gray-700" },
-                                      [_vm._v("Allergiatiedot")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass:
-                                        "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: portion.allergenic
-                                      }
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "text-right" },
-                                    [
-                                      _c(
-                                        "jet-button",
-                                        {
-                                          staticClass: "mt-6 pl-6 pr-6",
-                                          attrs: { action: "delete" },
-                                          nativeOn: {
-                                            click: function($event) {
-                                              return _vm.fetchData($event)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                        Poista annos\n                      "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "text-red-600 pl-3 pr-3"
-                                        },
-                                        [_vm._v("Poista annos")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "sm:col-span-2" }, [
-                                  _c("hr", { staticClass: "my-6" })
-                                ])
-                              ]
-                            )
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "text-green-600 text-2xl text-center"
-                            },
-                            [_vm._v("Lisää annos")]
-                          )
-                        ],
-                        2
-                      )
-                    ])
-                  }),
+                  _c("div", { staticClass: "mt-8 text-2xl text-center" }, [
+                    _vm._v("Valitse päivämäärä(t)")
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "ml-12" }, [
-                    _c("div", { staticClass: "mt-2 text-sm text-gray-500" }, [
-                      _vm._v("blaablaa")
-                    ])
+                  _c(
+                    "div",
+                    { staticClass: "mt-6" },
+                    [
+                      _c("v-date-picker", {
+                        attrs: {
+                          value: null,
+                          "available-dates": _vm.datePicker.allowedDateRange,
+                          "model-config": _vm.datePicker.modelConfig,
+                          "first-day-of-week": 2,
+                          locale: "fi",
+                          "is-range": "",
+                          "is-expanded": "",
+                          columns: _vm.$screens({ default: 1, lg: 2 })
+                        },
+                        on: { dayclick: _vm.datePickerOnClick }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "grid justify-items-stretch" }, [
+                    _c(
+                      "div",
+                      { staticClass: "justify-self-center" },
+                      [
+                        _c(
+                          "jet-button",
+                          {
+                            staticClass: "mt-6 pl-6 pr-6",
+                            attrs: {
+                              disabled: _vm.datePicker.disabledBeforeSelecting
+                            },
+                            nativeOn: {
+                              click: function($event) {
+                                return _vm.fetchData($event)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\tHae tiedot\n\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mt-6" },
+                    [
+                      _c("JetSwitch", {
+                        attrs: {
+                          label:
+                            "Aikaraja on rajattu kahden (2) viikon mittaiseksi.",
+                          disabled: _vm.datePicker.disabledWhenSelecting
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.datePicker.removeRangeLimit = !_vm.datePicker
+                              .removeRangeLimit
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mt-2" },
+                    [
+                      _c("JetSwitch", {
+                        attrs: {
+                          label: "Menneitä päiviä ei voi muokata.",
+                          disabled: _vm.datePicker.disabledWhenSelecting
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.datePicker.allowPastDate = !_vm.datePicker
+                              .allowPastDate
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-6 text-green-600" }, [
+                    _c("h1", [_vm._v(_vm._s(_vm.datePicker.selectedDateRange))])
                   ])
-                ],
-                2
-              )
-            ])
-          ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("DateIterator", { attrs: { data: _vm.lunches } })
+            ],
+            1
+          )
         ])
       ])
     ]
@@ -54937,6 +55690,10 @@ var map = {
 	"./Profile/UpdatePasswordForm.vue": "./resources/js/Pages/Profile/UpdatePasswordForm.vue",
 	"./Profile/UpdateProfileInformationForm": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
 	"./Profile/UpdateProfileInformationForm.vue": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
+	"./Restaurant/Components/Lunch/DateIterator": "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue",
+	"./Restaurant/Components/Lunch/DateIterator.vue": "./resources/js/Pages/Restaurant/Components/Lunch/DateIterator.vue",
+	"./Restaurant/Components/Lunch/PortionIterator": "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue",
+	"./Restaurant/Components/Lunch/PortionIterator.vue": "./resources/js/Pages/Restaurant/Components/Lunch/PortionIterator.vue",
 	"./Restaurant/Lunch": "./resources/js/Pages/Restaurant/Lunch.vue",
 	"./Restaurant/Lunch.vue": "./resources/js/Pages/Restaurant/Lunch.vue",
 	"./Restaurant/Menu": "./resources/js/Pages/Restaurant/Menu.vue",

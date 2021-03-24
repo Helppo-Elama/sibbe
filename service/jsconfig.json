@@ -1,3 +1,15 @@
 {
-    "include": ["./resources/**/*"]
+  "include": [
+    "./resources/**/*",
+    "./resources/js/**/*.js",
+    "./resources/js/**/*.vue"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./resources/js/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "exclude": ["node_modules"]
 }

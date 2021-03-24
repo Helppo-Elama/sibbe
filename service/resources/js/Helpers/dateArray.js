@@ -1,11 +1,13 @@
-import "./dateExtensions";
+import { addDays } from "./dateFunctions";
 
-export const getDays = function (start, end) {
-  const days = [];
-  let day = start;
-  while (day <= end) {
-    days.push(day.toStringYYYYMMDD(day));
-    day = day.addDays(1);
-  }
-  return days;
+const getDays = (start, end) => {
+	const days = [];
+	let day = start;
+	while (day <= end) {
+		days.push(day.toStringYYYYMMDD(day));
+		day = addDays(1);
+	}
+	return days;
 };
+
+export default getDays;

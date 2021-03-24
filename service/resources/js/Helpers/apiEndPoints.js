@@ -1,14 +1,18 @@
-import "@/Helpers/dateExtensions";
+import { dateToStringYYYYMMDD } from "./dateFunctions";
 
-const apiUrl = process.env.MIX_APP_URL + "/api";
+const url = process.env.MIX_APP_URL;
+// const apiUrl = `${url}/api`;
 
-export const getRestaurantLunchApiUrl = (start, end) => {
-  const restaurantLunchApiUrl =
-    apiUrl +
-    "/restaurant/lunch" +
-    "?start_date=" +
-    start.toStringYYYYMMDD(start) +
-    "&end_date=" +
-    end.toStringYYYYMMDD(end);
-  return restaurantLunchApiUrl;
+const getRestaurantLunchApiUrl = (start, end) => {
+	const restaurantLunchApiUrl =
+		`${url}/restaurant/lunch/authorized` +
+		`?start_date=${dateToStringYYYYMMDD(start)}&end_date=${dateToStringYYYYMMDD(end)}`;
+	return restaurantLunchApiUrl;
 };
+
+const postRestaurantLunchApiUrl = () => {
+	const restaurantLunchApiUrl = `${url}/restaurant/lunch/authorized`;
+	return restaurantLunchApiUrl;
+};
+
+export { getRestaurantLunchApiUrl, postRestaurantLunchApiUrl };

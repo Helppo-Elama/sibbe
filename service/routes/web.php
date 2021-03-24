@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Mail\ContactController;
 
-$namespace = 'App\\Http\\Controllers';
 
 Route::middleware(["auth:sanctum", "verified"])
     ->get("/dashboard", function () {
@@ -12,19 +12,18 @@ Route::middleware(["auth:sanctum", "verified"])
     ->name("dashboard");
 
 Route::middleware(["auth:sanctum", "verified"])
-    ->namespace($namespace . "\\Restaurant")
     ->prefix("restaurant")
     ->group(base_path("routes/service/restaurant.php"));
 
-    Route::get("/", function () {
+Route::get("/", function () {
     return Inertia::render("Auth/Login", ["canResetPassword" => true]);
 });
 
 
 /*
-Route::get("/", function () {
-    return Inertia::render("Auth/Register");
-});
+    Route::get("/", function () {
+        return Inertia::render("Auth/Register");
+    });
 */
 
 Route::namespace("Mail")->post("/mail/contact", [ContactController::class, "submit"]);
