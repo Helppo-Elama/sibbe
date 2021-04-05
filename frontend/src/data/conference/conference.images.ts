@@ -30,87 +30,87 @@ import conferenceAdditionalImg1 from "@i/originals/conference/conference-additio
 import conferenceAdditionalWebp1 from "@i/originals/conference/conference-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
 const conferenceHeaderImages: { normal: IImage; cropped: IImage } = {
-  normal: {
-    img: conferenceHeaderImg,
-    webp: conferenceHeaderWebp,
-    alt: "Tervetuloa Villa Sibbeen",
-    author: {
-      name: "KivaaTekemistä.fi",
-      url: "https://kivaatekemistä.fi/",
-    },
-  },
-  cropped: {
-    img: conferenceHeaderImgCropped,
-    webp: conferenceHeaderWebpCropped,
-    alt: "Tervetuloa Villa Sibbeen",
-    author: {
-      name: "KivaaTekemistä.fi",
-      url: "https://kivaatekemistä.fi/",
-    },
-  },
+	normal: {
+		img: conferenceHeaderImg,
+		webp: conferenceHeaderWebp,
+		alt: "Tervetuloa Villa Sibbeen",
+		author: {
+			name: "KivaaTekemistä.fi",
+			url: "https://kivaatekemistä.fi/",
+		},
+	},
+	cropped: {
+		img: conferenceHeaderImgCropped,
+		webp: conferenceHeaderWebpCropped,
+		alt: "Tervetuloa Villa Sibbeen",
+		author: {
+			name: "KivaaTekemistä.fi",
+			url: "https://kivaatekemistä.fi/",
+		},
+	},
 };
 
 const conferenceImages: {
-  one: IImage;
-  two: IImage;
+	one: IImage;
+	two: IImage;
 } = {
-  one: {
-    img: conferenceImg1,
-    webp: conferenceWebp1,
-    alt: "Villa Sibbe auringossa",
-  },
-  two: {
-    img: conferenceImg2,
-    webp: conferenceWebp2,
-    alt: "Villa Sibbe auringossa",
-    author: {
-      name: "KivaaTekemistä.fi",
-      url: "https://kivaatekemistä.fi/",
-    },
-  },
+	one: {
+		img: conferenceImg1,
+		webp: conferenceWebp1,
+		alt: "Villa Sibbe auringossa",
+	},
+	two: {
+		img: conferenceImg2,
+		webp: conferenceWebp2,
+		alt: "Villa Sibbe auringossa",
+		author: {
+			name: "KivaaTekemistä.fi",
+			url: "https://kivaatekemistä.fi/",
+		},
+	},
 };
 const conferenceRoomsCarouselImages: {
-  nobel: Array<IImage>;
-  labra: Array<IImage>;
+	nobel: Array<IImage>;
+	labra: Array<IImage>;
 } = {
-  nobel: [
-    {
-      img: nobelImg1,
-      webp: nobelWebp1,
-      alt: "Kuva Villa Sibben Nobel kokoustilasta",
-    },
-    {
-      img: nobelImg2,
-      webp: nobelWebp2,
-      alt: "Kuva Villa Sibben Nobel kokoustilasta",
-    },
-    {
-      img: nobelImg3,
-      webp: nobelWebp3,
-      alt: "Kuva Villa Sibben Nobel kokoustilasta",
-    },
-  ],
-  labra: [
-    {
-      img: labraImg1,
-      webp: labraWebp1,
-      alt: "Kuva Villa Sibben Labra kokoustilasta",
-    },
-    {
-      img: labraImg2,
-      webp: labraWebp2,
-      alt: "Kuva Villa Sibben Labra kokoustilasta",
-    },
-  ],
+	nobel: [
+		{
+			img: nobelImg1,
+			webp: nobelWebp1,
+			alt: "Kuva Villa Sibben Nobel kokoustilasta",
+		},
+		{
+			img: nobelImg2,
+			webp: nobelWebp2,
+			alt: "Kuva Villa Sibben Nobel kokoustilasta",
+		},
+		{
+			img: nobelImg3,
+			webp: nobelWebp3,
+			alt: "Kuva Villa Sibben Nobel kokoustilasta",
+		},
+	],
+	labra: [
+		{
+			img: labraImg1,
+			webp: labraWebp1,
+			alt: "Kuva Villa Sibben Labra kokoustilasta",
+		},
+		{
+			img: labraImg2,
+			webp: labraWebp2,
+			alt: "Kuva Villa Sibben Labra kokoustilasta",
+		},
+	],
 };
 const conferenceAdditionalImage: IImage = {
-  img: conferenceAdditionalImg1,
-  webp: conferenceAdditionalWebp1,
-  alt: "Villa Sibben somisteita",
+	img: conferenceAdditionalImg1,
+	webp: conferenceAdditionalWebp1,
+	alt: "Villa Sibben somisteita",
 };
 export {
-  conferenceHeaderImages,
-  conferenceImages,
-  conferenceRoomsCarouselImages,
-  conferenceAdditionalImage,
+	conferenceHeaderImages,
+	conferenceImages,
+	conferenceRoomsCarouselImages,
+	conferenceAdditionalImage,
 };

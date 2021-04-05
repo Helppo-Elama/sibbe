@@ -24,4 +24,22 @@ const axiosPost = async (request) => {
 	}
 };
 
-export { axios, axiosPost };
+const axiosDelete = async (request) => {
+	try {
+		const response = await window.axios.delete(
+			request.url,
+			{ data: { id: request.id } },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
+		return response.data;
+	} catch (error) {
+		axiosError(200, error);
+		return false;
+	}
+};
+
+export { axios, axiosPost, axiosDelete };

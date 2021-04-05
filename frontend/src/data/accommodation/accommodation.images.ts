@@ -63,132 +63,132 @@ import accommodationAdditionalImg1 from "@i/originals/accommodation/accommodatio
 import accommodationAdditionalWebp1 from "@i/originals/accommodation/accommodation-additional-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
 const accommodationCarouselImages: Record<string, Array<IImage>> = {
-  normal: [
-    {
-      img: carouselImg1,
-      webp: carouselWebp1,
-      alt: "Villa Sibben julkisivu",
-    },
-    {
-      img: carouselImg2,
-      webp: carouselWebp2,
-      alt: "Villa Sibben etupihaa",
-    },
-    { img: carouselImg3, webp: carouselWebp3, alt: "Hiekkaleikit kesken" },
-    { img: carouselImg4, webp: carouselWebp4, alt: "Huonekuva" },
-  ],
-  cropped: [
-    {
-      img: carouselCroppedImg1,
-      webp: carouselCroppedWebp1,
-      alt: "Villa Sibben julkisivu",
-    },
-    {
-      img: carouselCroppedImg2,
-      webp: carouselCroppedWebp2,
-      alt: "Villa Sibben etupihaa",
-    },
-    {
-      img: carouselCroppedImg3,
-      webp: carouselCroppedWebp3,
-      alt: "Hiekkaleikit kesken",
-    },
-    { img: carouselCroppedImg4, webp: carouselCroppedWebp4, alt: "Huonekuva" },
-  ],
+	normal: [
+		{
+			img: carouselImg1,
+			webp: carouselWebp1,
+			alt: "Villa Sibben julkisivu",
+		},
+		{
+			img: carouselImg2,
+			webp: carouselWebp2,
+			alt: "Villa Sibben etupihaa",
+		},
+		{ img: carouselImg3, webp: carouselWebp3, alt: "Hiekkaleikit kesken" },
+		{ img: carouselImg4, webp: carouselWebp4, alt: "Huonekuva" },
+	],
+	cropped: [
+		{
+			img: carouselCroppedImg1,
+			webp: carouselCroppedWebp1,
+			alt: "Villa Sibben julkisivu",
+		},
+		{
+			img: carouselCroppedImg2,
+			webp: carouselCroppedWebp2,
+			alt: "Villa Sibben etupihaa",
+		},
+		{
+			img: carouselCroppedImg3,
+			webp: carouselCroppedWebp3,
+			alt: "Hiekkaleikit kesken",
+		},
+		{ img: carouselCroppedImg4, webp: carouselCroppedWebp4, alt: "Huonekuva" },
+	],
 };
 
 const accommodationImages: {
-  one: IImage;
+	one: IImage;
 } = {
-  one: {
-    img: accommodationImg1,
-    webp: accommodationWebp1,
-    alt: "Villa Sibbe auringossa",
-  },
+	one: {
+		img: accommodationImg1,
+		webp: accommodationWebp1,
+		alt: "Villa Sibbe auringossa",
+	},
 };
 const accommodationRoomsCarouselImages: Record<string, Array<IImage>> = {
-  artturi: [
-    { img: artturiImg1, webp: artturiWebp1, alt: "Villa Sibben Artturihuone" },
-    { img: artturiImg2, webp: artturiWebp2, alt: "Villa Sibben Artturihuone" },
-  ],
-  lilja: [
-    { img: liljaImg1, webp: liljaWebp1, alt: "Villa Sibben Liljahuone" },
-    { img: liljaImg2, webp: liljaWebp2, alt: "Villa Sibben Liljahuone" },
-  ],
-  kaarlo: [
-    {
-      img: kaarloImg1,
-      webp: kaarloWebp1,
-      alt: "Kuva Villa Sibben Kaarlohuoneesta",
-    },
-    {
-      img: kaarloImg2,
-      webp: kaarloWebp2,
-      alt: "Kuva Villa Sibben Kaarlohuoneesta",
-    },
-  ],
-  olavi: [
-    {
-      img: olaviImg1,
-      webp: olaviWebp1,
-      alt: "Kuva Villa Sibben Olavihuoneesta",
-    },
-    {
-      img: olaviImg2,
-      webp: olaviWebp2,
-      alt: "Kuva Villa Sibben Olavihuoneesta",
-    },
-  ],
-  rico: [
-    {
-      img: ricoImg1,
-      webp: ricoWebp1,
-      alt: "Kuva Villa Sibben Ricohuoneesta",
-    },
-    {
-      img: ricoImg2,
-      webp: ricoWebp2,
-      alt: "Kuva Villa Sibben Ricohuoneesta",
-    },
-  ],
-  isanta: [
-    {
-      img: isantaImg1,
-      webp: isantaWebp1,
-      alt: "Kuva Villa Sibben Isäntähuoneesta",
-    },
-    {
-      img: isantaImg2,
-      webp: isantaWebp2,
-      alt: "Kuva Villa Sibben Isäntähuoneesta",
-    },
-  ],
-  labra: [
-    {
-      img: labraImg1,
-      webp: labraWebp1,
-      alt: "Kuva Villa Sibben Labra oleskelutilasta",
-    },
-    {
-      img: labraImg2,
-      webp: labraWebp2,
-      alt: "Kuva Villa Sibben Labra oleskelutilasta",
-    },
-  ],
+	artturi: [
+		{ img: artturiImg1, webp: artturiWebp1, alt: "Villa Sibben Artturihuone" },
+		{ img: artturiImg2, webp: artturiWebp2, alt: "Villa Sibben Artturihuone" },
+	],
+	lilja: [
+		{ img: liljaImg1, webp: liljaWebp1, alt: "Villa Sibben Liljahuone" },
+		{ img: liljaImg2, webp: liljaWebp2, alt: "Villa Sibben Liljahuone" },
+	],
+	kaarlo: [
+		{
+			img: kaarloImg1,
+			webp: kaarloWebp1,
+			alt: "Kuva Villa Sibben Kaarlohuoneesta",
+		},
+		{
+			img: kaarloImg2,
+			webp: kaarloWebp2,
+			alt: "Kuva Villa Sibben Kaarlohuoneesta",
+		},
+	],
+	olavi: [
+		{
+			img: olaviImg1,
+			webp: olaviWebp1,
+			alt: "Kuva Villa Sibben Olavihuoneesta",
+		},
+		{
+			img: olaviImg2,
+			webp: olaviWebp2,
+			alt: "Kuva Villa Sibben Olavihuoneesta",
+		},
+	],
+	rico: [
+		{
+			img: ricoImg1,
+			webp: ricoWebp1,
+			alt: "Kuva Villa Sibben Ricohuoneesta",
+		},
+		{
+			img: ricoImg2,
+			webp: ricoWebp2,
+			alt: "Kuva Villa Sibben Ricohuoneesta",
+		},
+	],
+	isanta: [
+		{
+			img: isantaImg1,
+			webp: isantaWebp1,
+			alt: "Kuva Villa Sibben Isäntähuoneesta",
+		},
+		{
+			img: isantaImg2,
+			webp: isantaWebp2,
+			alt: "Kuva Villa Sibben Isäntähuoneesta",
+		},
+	],
+	labra: [
+		{
+			img: labraImg1,
+			webp: labraWebp1,
+			alt: "Kuva Villa Sibben Labra oleskelutilasta",
+		},
+		{
+			img: labraImg2,
+			webp: labraWebp2,
+			alt: "Kuva Villa Sibben Labra oleskelutilasta",
+		},
+	],
 };
 const accommodationAdditionalImage: IImage = {
-  img: accommodationAdditionalImg1,
-  webp: accommodationAdditionalWebp1,
-  alt: "Villa Sibben somisteita",
-  author: {
-    name: "KivaaTekemistä.fi",
-    url: "https://kivaatekemistä.fi",
-  },
+	img: accommodationAdditionalImg1,
+	webp: accommodationAdditionalWebp1,
+	alt: "Villa Sibben somisteita",
+	author: {
+		name: "KivaaTekemistä.fi",
+		url: "https://kivaatekemistä.fi",
+	},
 };
 
 export {
-  accommodationImages,
-  accommodationCarouselImages,
-  accommodationRoomsCarouselImages,
-  accommodationAdditionalImage,
+	accommodationImages,
+	accommodationCarouselImages,
+	accommodationRoomsCarouselImages,
+	accommodationAdditionalImage,
 };

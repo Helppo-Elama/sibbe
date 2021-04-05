@@ -8,20 +8,20 @@ import siteminder from "@m/SiteminderIcon.vue";
 Vue.use(Vuetify);
 
 const vuetify = new Vuetify({
-  theme: {
-    default: "light",
-    themes: { light },
-  },
-  lang: {
-    locales: { fi },
-    current: "fi",
-  },
-  icons: {
-    values: {
-      siteminder: {
-        component: siteminder,
-      },
-    },
-  },
+	theme: {
+		default: "light",
+		themes: { light },
+	},
+	lang: {
+		locales: { fi },
+		current: "fi",
+	},
+	icons: {
+		values: {
+			siteminder: {
+				component: siteminder,
+			},
+		},
+	},
 });
 export default vuetify;

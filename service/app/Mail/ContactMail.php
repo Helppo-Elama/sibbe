@@ -15,12 +15,13 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public function __construct($name, $email, $message, $sender)
+    public function __construct($name, $reply_to, $message, $sender, $email)
     {
         $this->name = $name;
-        $this->email = $email;
+        $this->reply_to = $reply_to;
         $this->message = $message;
         $this->sender = $sender;
+        $this->email = $email;
     } //end __construct()
 
     /**
@@ -30,55 +31,59 @@ class ContactMail extends Mailable
      */
     public function build()
     {
+        $name = $this->name;
+        $email = $this->email;
+        $message = $this->message;
+        $sender = $this->sender;
         if ($this->sender == "contact") {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject("Yhteydenottopyyntö Villa Sibbe -sivustolta")
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);
         } elseif ($this->sender == "feedback") {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject("Palautetta Villa Sibbe -sivustolta")
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);
         } elseif ($this->sender == "restaurant") {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject("Ravintolatiedustelu Villa Sibbe -sivustolta")
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);
         } elseif ($this->sender == "cafe") {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject("Kahvilatiedustelu Villa Sibbe -sivustolta")
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);
         } elseif ($this->sender == "festivity") {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject("Juhlatilatiedustelu Villa Sibbe -sivustolta")
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);
         } else {
             return $this->from($this->email, $this->name)
-                ->replyTo($this->email, $this->name)
+                ->replyTo($this->reply_to, $this->name)
                 ->subject(
                     "Tuntematon (" .
                         $this->sender .
                         ", ilmoittakaa verkkovastaavalle) tiedustelu Villa Sibbe -sivustolta"
                 )
-                ->view("feedback")
+                ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
                 ->with("body", $this->message);

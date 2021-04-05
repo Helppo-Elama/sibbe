@@ -46,6 +46,7 @@
 					<div class="flex mt-1">
 						<input
 							type="number"
+							step=".01"
 							class="block rounded-md w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 							:value="portion.price"
 							@change="portion.price = $event.target.value"
@@ -86,9 +87,17 @@ export default {
 		data: {
 			deep: true,
 			handler() {
-				this.$emit("update", this.lunchIndex);
+				this.emitHandler();
 			},
 		},
+	},
+	methods: {
+		emitHandler() {
+			this.$emit("change", this.lunchIndex);
+		},
+	},
+	created() {
+		this.emitHandler = window._.debounce(this.emitHandler, 2000);
 	},
 };
 </script>

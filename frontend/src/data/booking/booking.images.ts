@@ -13,58 +13,58 @@ import { accommodationRoomsCarouselImages as images } from "@d/accommodation/acc
 import { IHeaderImages } from "@d/interfaces/images.interface";
 
 const bookingHeaderImages: IHeaderImages = {
-  normal: {
-    img: bookingHeaderImg,
-    webp: bookingHeaderWebp,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  cropped: {
-    img: bookingHeaderImgCropped,
-    webp: bookingHeaderWebpCropped,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  author: {
-    name: "KivaaTekemistä.fi",
-    url: "https://kivaatekemistä.fi/",
-  },
+	normal: {
+		img: bookingHeaderImg,
+		webp: bookingHeaderWebp,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	cropped: {
+		img: bookingHeaderImgCropped,
+		webp: bookingHeaderWebpCropped,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	author: {
+		name: "KivaaTekemistä.fi",
+		url: "https://kivaatekemistä.fi/",
+	},
 };
 
 const bookingImages: {
-  one: IImage;
+	one: IImage;
 } = {
-  one: {
-    img: bookingImg1,
-    webp: bookingWebp1,
-    alt: "Villa Sibbe auringossa",
-  },
+	one: {
+		img: bookingImg1,
+		webp: bookingWebp1,
+		alt: "Villa Sibbe auringossa",
+	},
 };
 
 const bookingCarouselImages: Record<string, Array<IImage>> = {
-  artturi: [
-    {
-      ...images.artturi[0],
-    },
-    {
-      ...images.artturi[1],
-    },
-  ],
-  liljaRico: [{ ...images.lilja[0] }, { ...images.rico[0] }],
-  olaviKaarlo: [
-    {
-      ...images.olavi[0],
-    },
-    {
-      ...images.kaarlo[0],
-    },
-  ],
-  isanta: [
-    {
-      ...images.isanta[0],
-    },
-    {
-      ...images.isanta[1],
-    },
-  ],
+	artturi: [
+		{
+			...images.artturi[0],
+		},
+		{
+			...images.artturi[1],
+		},
+	],
+	liljaRico: [{ ...images.lilja[0] }, { ...images.rico[0] }],
+	olaviKaarlo: [
+		{
+			...images.olavi[0],
+		},
+		{
+			...images.kaarlo[0],
+		},
+	],
+	isanta: [
+		{
+			...images.isanta[0],
+		},
+		{
+			...images.isanta[1],
+		},
+	],
 };
 
 export { bookingHeaderImages, bookingImages, bookingCarouselImages };

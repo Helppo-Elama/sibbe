@@ -1,6 +1,12 @@
  <IfModule mod_rewrite.c>
   RewriteEngine on
-  #enforce https
+
+  # remove www from host
+  RewriteCond %{HTTP_HOST} ^www\.(.+)
+  RewriteCond %{HTTPS}s/%1 ^(on(s)|offs)/(.+)
+  RewriteRule ^ http%2://%3%{REQUEST_URI} [L,R=301]
+
+  # enforce https
   RewriteCond %{HTTPS} !=on
   RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
   #rewrite non-existent uris to /index.html

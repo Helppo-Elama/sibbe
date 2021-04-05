@@ -9,24 +9,24 @@ FOR FUTURE:
 */
 
 const classList: any = (previousClassList: any) => {
-  if (process.env.ANALYZE) {
-    const allClasses: any = [];
-    const allElements = document.querySelectorAll("*");
-    for (let i = 0; i < allElements.length; i++) {
-      const classes = allElements[i].className.toString().split(/\s+/);
-      for (let j = 0; j < classes.length; j++) {
-        const cls = "/" + classes[j] + "/";
-        if (cls && allClasses.indexOf(cls) === -1) allClasses.push(cls);
-      }
-    }
-    allClasses.shift();
+	if (process.env.ANALYZE) {
+		const allClasses: any = [];
+		const allElements = document.querySelectorAll("*");
+		for (let i = 0; i < allElements.length; i++) {
+			const classes = allElements[i].className.toString().split(/\s+/);
+			for (let j = 0; j < classes.length; j++) {
+				const cls = "/" + classes[j] + "/";
+				if (cls && allClasses.indexOf(cls) === -1) allClasses.push(cls);
+			}
+		}
+		allClasses.shift();
 
-    const joinedClasses = allClasses.concat(previousClassList);
-    const parsedClasses = joinedClasses.filter(function (item: any, pos: any) {
-      return joinedClasses.indexOf(item) == pos;
-    });
-    return parsedClasses;
-  } else return "Classlist only on env ANALYZE";
+		const joinedClasses = allClasses.concat(previousClassList);
+		const parsedClasses = joinedClasses.filter(function (item: any, pos: any) {
+			return joinedClasses.indexOf(item) == pos;
+		});
+		return parsedClasses;
+	} else return "Classlist only on env ANALYZE";
 };
 
 export { classList };

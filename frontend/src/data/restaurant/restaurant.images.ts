@@ -7,23 +7,23 @@ import restaurantHeaderImgCropped from "@i/originals/restaurant/header-cropped.j
 import restaurantHeaderWebpCropped from "@i/originals/restaurant/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
 
 const restaurantHeaderImages: {
-  normal: IImage;
-  cropped: IImage;
-  author: { name: string; url: string };
+	normal: IImage;
+	cropped: IImage;
+	author: { name: string; url: string };
 } = {
-  normal: {
-    img: restaurantHeaderImg,
-    webp: restaurantHeaderWebp,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  cropped: {
-    img: restaurantHeaderImgCropped,
-    webp: restaurantHeaderWebpCropped,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  author: {
-    name: "KivaaTekemistä.fi",
-    url: "https://kivaatekemistä.fi/",
-  },
+	normal: {
+		img: restaurantHeaderImg,
+		webp: restaurantHeaderWebp,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	cropped: {
+		img: restaurantHeaderImgCropped,
+		webp: restaurantHeaderWebpCropped,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	author: {
+		name: "KivaaTekemistä.fi",
+		url: "https://kivaatekemistä.fi/",
+	},
 };
 export { restaurantHeaderImages };

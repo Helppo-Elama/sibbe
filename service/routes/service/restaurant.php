@@ -5,16 +5,12 @@ use App\Http\Controllers\Restaurant\LunchController;
 use Inertia\Inertia;
 
 // POST
-Route::post("/lunch/authorized", [LunchController::class, "post"]);
+Route::post("/lunch/authorized/lunch", [LunchController::class, "post_lunch"]);
+Route::post("/lunch/authorized/date", [LunchController::class, "post_date"]);
 
 // GET
 
 Route::get("/lunch/authorized", [LunchController::class, "get"]);
-
-Route::get("/", function () {
-    return Inertia::render("Restaurant");
-})
-    ->name("restaurant");
 
 Route::get("/lunch", function () {
     return Inertia::render("Restaurant/Lunch");

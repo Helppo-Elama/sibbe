@@ -30,31 +30,30 @@
 												class="inline-flex items-center border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
 											>
 												Ravintola
-
-												<svg
-													class="ml-2 -mr-0.5 h-4 w-4"
-													xmlns="http://www.w3.org/2000/svg"
-													viewBox="0 0 20 20"
-													fill="currentColor"
-												>
-													<path
-														fill-rule="evenodd"
-														d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-														clip-rule="evenodd"
-													/>
-												</svg>
+												<JetDropdownSVG />
 											</button>
 										</span>
 									</template>
 
 									<template #content>
-										<jet-dropdown-link :href="route('restaurant.lunch')">
+										<jet-dropdown-link
+											:href="route('restaurant.lunch')"
+											:active="route().current('restaurant.lunch')"
+										>
 											Lounas
 										</jet-dropdown-link>
 
-										<jet-dropdown-link :href="route('restaurant.menu')"> Menu </jet-dropdown-link>
+										<jet-dropdown-link
+											:href="route('restaurant.menu')"
+											:active="route().current('restaurant.menu')"
+										>
+											Menu
+										</jet-dropdown-link>
 
-										<jet-dropdown-link :href="route('restaurant.other')">
+										<jet-dropdown-link
+											:href="route('restaurant.other')"
+											:active="route().current('restaurant.other')"
+										>
 											Muut asiat
 										</jet-dropdown-link>
 
@@ -63,11 +62,8 @@
 								</jet-dropdown>
 							</div>
 							<div class="hidden space-x-8 sm:-my-px sm:flex">
-								<jet-nav-link
-									:href="route('restaurant.lunch')"
-									:active="route().current('restaurant.lunch')"
-								>
-									Ravintola
+								<jet-nav-link :href="route('cafe')" :active="route().current('cafe')">
+									Kahvila
 								</jet-nav-link>
 							</div>
 						</div>
@@ -95,18 +91,7 @@
 											>
 												{{ $page.props.user.name }}
 
-												<svg
-													class="ml-2 -mr-0.5 h-4 w-4"
-													xmlns="http://www.w3.org/2000/svg"
-													viewBox="0 0 20 20"
-													fill="currentColor"
-												>
-													<path
-														fill-rule="evenodd"
-														d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-														clip-rule="evenodd"
-													/>
-												</svg>
+												<JetDropdownSVG />
 											</button>
 										</span>
 									</template>
@@ -183,11 +168,34 @@
 						>
 							Hallintapaneeli
 						</jet-responsive-nav-link>
-						<jet-responsive-nav-link
-							:href="route('restaurant')"
-							:active="route().current('restaurant')"
+						<div
+							class="inline-flex items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium"
 						>
 							Ravintola
+							<JetDropdownSVG />
+						</div>
+						<div class="pl-3">
+							<jet-responsive-nav-link
+								:href="route('restaurant.lunch')"
+								:active="route().current('restaurant.lunch')"
+							>
+								Lounas
+							</jet-responsive-nav-link>
+							<jet-responsive-nav-link
+								:href="route('restaurant.menu')"
+								:active="route().current('restaurant.menu')"
+							>
+								Menu
+							</jet-responsive-nav-link>
+							<jet-responsive-nav-link
+								:href="route('restaurant.other')"
+								:active="route().current('restaurant.other')"
+							>
+								Muut asiat
+							</jet-responsive-nav-link>
+						</div>
+						<jet-responsive-nav-link :href="route('cafe')" :active="route().current('cafe')">
+							Kahvila
 						</jet-responsive-nav-link>
 					</div>
 
@@ -260,6 +268,7 @@ import JetApplicationMark from "@/Jetstream/ApplicationMark";
 import JetBanner from "@/Jetstream/Banner";
 import JetDropdown from "@/Jetstream/Dropdown";
 import JetDropdownLink from "@/Jetstream/DropdownLink";
+import JetDropdownSVG from "@/Jetstream/DropDownSVG";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 
@@ -269,6 +278,7 @@ export default {
 		JetBanner,
 		JetDropdown,
 		JetDropdownLink,
+		JetDropdownSVG,
 		JetNavLink,
 		JetResponsiveNavLink,
 	},

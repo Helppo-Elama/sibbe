@@ -20,49 +20,49 @@ import cafeCarouselCroppedImg3 from "@i/originals/cafe/carousel-3-cropped.jpg?si
 import cafeCarouselCroppedWebp3 from "@i/originals/cafe/carousel-3-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
 
 const cafeImages: {
-  one: IImage;
+	one: IImage;
 } = {
-  one: {
-    img: cafeImg1,
-    webp: cafeWebp1,
-    alt: "Cafe Sibbe koristelua",
-  },
+	one: {
+		img: cafeImg1,
+		webp: cafeWebp1,
+		alt: "Cafe Sibbe koristelua",
+	},
 };
 
 const cafeCarouselImages: { normal: Array<IImage>; cropped: Array<IImage> } = {
-  normal: [
-    {
-      img: cafeCarouselImg1,
-      webp: cafeCarouselWebp1,
-      alt: "Cafe Sibbestä ilmakuva",
-    },
-    {
-      img: cafeCarouselImg2,
-      webp: cafeCarouselWebp2,
-      alt: "Rantalentopalloa kahvilan lähellä",
-    },
-    {
-      img: cafeCarouselImg3,
-      webp: cafeCarouselWebp3,
-      alt: "Pitäiskös suppailla?",
-    },
-  ],
-  cropped: [
-    {
-      img: cafeCarouselCroppedImg1,
-      webp: cafeCarouselCroppedWebp1,
-      alt: "Villa Sibben julkisivu",
-    },
-    {
-      img: cafeCarouselCroppedImg2,
-      webp: cafeCarouselCroppedWebp2,
-      alt: "Villa Sibben etupihaa",
-    },
-    {
-      img: cafeCarouselCroppedImg3,
-      webp: cafeCarouselCroppedWebp3,
-      alt: "Hiekkaleikit kesken",
-    },
-  ],
+	normal: [
+		{
+			img: cafeCarouselImg1,
+			webp: cafeCarouselWebp1,
+			alt: "Cafe Sibbestä ilmakuva",
+		},
+		{
+			img: cafeCarouselImg2,
+			webp: cafeCarouselWebp2,
+			alt: "Rantalentopalloa kahvilan lähellä",
+		},
+		{
+			img: cafeCarouselImg3,
+			webp: cafeCarouselWebp3,
+			alt: "Pitäiskös suppailla?",
+		},
+	],
+	cropped: [
+		{
+			img: cafeCarouselCroppedImg1,
+			webp: cafeCarouselCroppedWebp1,
+			alt: "Villa Sibben julkisivu",
+		},
+		{
+			img: cafeCarouselCroppedImg2,
+			webp: cafeCarouselCroppedWebp2,
+			alt: "Villa Sibben etupihaa",
+		},
+		{
+			img: cafeCarouselCroppedImg3,
+			webp: cafeCarouselCroppedWebp3,
+			alt: "Hiekkaleikit kesken",
+		},
+	],
 };
 export { cafeImages, cafeCarouselImages };

@@ -13,8 +13,11 @@ class Lunch extends Model
 
 
     protected $table = "restaurant_lunches";
-    protected $fillable = ["date", "json"];
+    protected $fillable = ["date", "hours", "price", "type", "json"];
     protected $attributes = [
         "json" => null,
+        "hours" => null,
+        "type" => null,
+        "price" => null,
     ];
 }

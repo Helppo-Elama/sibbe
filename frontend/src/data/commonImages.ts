@@ -7,20 +7,20 @@ import headerImgCropped from "@i/originals/header-cropped.jpg?sizes[]=800,sizes[
 import headerWebpCropped from "@i/originals/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
 
 const headerImages: IHeaderImages = {
-  normal: {
-    img: headerImg,
-    webp: headerWebp,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  cropped: {
-    img: headerImgCropped,
-    webp: headerWebpCropped,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  author: {
-    name: "KivaaTekemistä.fi",
-    url: "https://kivaatekemistä.fi/",
-  },
+	normal: {
+		img: headerImg,
+		webp: headerWebp,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	cropped: {
+		img: headerImgCropped,
+		webp: headerWebpCropped,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	author: {
+		name: "KivaaTekemistä.fi",
+		url: "https://kivaatekemistä.fi/",
+	},
 };
 
 export { headerImages };

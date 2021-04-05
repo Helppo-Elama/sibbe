@@ -142,7 +142,7 @@ import { IBookingData, ISiteminder, isISiteminder } from "@d/interfaces/booking.
 
 import { IRoom, IRooms } from "@d/interfaces/rooms.interface";
 
-import { axiosGetBookingData } from "@in/axios";
+import { axiosGetBookingData as axios } from "@in/axios";
 
 import RoomCarousel from "@m/RoomCarousel.vue";
 import { format } from "date-fns";
@@ -410,26 +410,24 @@ const contact = Vue.extend({
 				end: end.addDays(29).toISOString().split("T")[0],
 			};
 			const request = { url: createApiURL(url) };
-			const result = await axiosGetBookingData(request);
-			const { siteminder } = result;
+			const siteminder = await axios(request);
 			if (isISiteminder(siteminder)) {
 				this.siteminderPush(siteminder);
 				this.bookingData.dateRange.end = end.addDays(29);
 				if (isISiteminder(this.siteminder)) {
 					return this.siteminder.room_types[0].room_type_dates.length;
-				} else return 0;
-			} else return 0;
+				} else return 0; //0 päivää!
+			} else return 0; //0 päivää!
 		},
 	},
 	async mounted(): Promise<void> {
 		this.setMaxDate();
 		this.setMinDate();
 		const { request } = this.bookingData;
-		const result = await axiosGetBookingData(request);
-		const { siteminder } = result;
+		const siteminder = await axios(request);
 		if (isISiteminder(siteminder)) {
 			this.siteminder = siteminder;
-			this.siteminderLoaded = result.siteminderLoaded;
+			this.siteminderLoaded = true;
 			this.selectRoomIndex = 0;
 			let days = 0;
 			let i = 0;

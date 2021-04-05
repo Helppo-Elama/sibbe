@@ -48,9 +48,6 @@
 								@change="datePicker.allowPastDate = !datePicker.allowPastDate"
 							/>
 						</div>
-						<div class="mt-6 text-green-600">
-							<h1>{{ datePicker.selectedDateRange }}</h1>
-						</div>
 					</div>
 					<DateIterator :data="lunches" />
 				</div>
@@ -68,9 +65,7 @@ import { correctOffset, addDays } from "@/Helpers/dateFunctions";
 
 import { axios } from "@/Helpers/axios";
 import { getRestaurantLunchApiUrl } from "@/Helpers/apiEndPoints";
-import DateIterator from "./Components/Lunch/DateIterator";
-
-import dummyData from "./dummyData.json";
+import DateIterator from "./Lunch/DateIterator";
 
 const now = new Date();
 export default {
@@ -90,13 +85,10 @@ export default {
 				disabledWhenSelecting: false,
 				disabledBeforeSelecting: true,
 			},
-			lunches: dummyData,
+			lunches: "",
 		};
 	},
 	watch: {
-		lunches() {
-			console.log(this.lunches);
-		},
 		// eslint-disable-next-line func-names
 		"datePicker.allowPastDate": function (val) {
 			if (val === false) {
@@ -115,7 +107,6 @@ export default {
 	methods: {
 		datePickerOnClick(val) {
 			const date = correctOffset(val.date);
-			console.log(date);
 			const {
 				removeRangeLimit,
 				allowPastDate,

@@ -14,16 +14,16 @@ import festivityWebp1 from "@i/originals/festivity/festivity-1.jpg?sizes[]=300,s
 */
 
 const festivityHeaderImages: { normal: IImage; cropped: IImage } = {
-  normal: {
-    img: festivityHeaderImg,
-    webp: festivityHeaderWebp,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
-  cropped: {
-    img: festivityHeaderImgCropped,
-    webp: festivityHeaderWebpCropped,
-    alt: "Tervetuloa Villa Sibbeen",
-  },
+	normal: {
+		img: festivityHeaderImg,
+		webp: festivityHeaderWebp,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
+	cropped: {
+		img: festivityHeaderImgCropped,
+		webp: festivityHeaderWebpCropped,
+		alt: "Tervetuloa Villa Sibbeen",
+	},
 };
 /*
 const festivityImages: Array<IImage> = [
@@ -35,6 +35,6 @@ const festivityImages: Array<IImage> = [
 ];
 */
 export {
-  //festivityImages,
-  festivityHeaderImages,
+	//festivityImages,
+	festivityHeaderImages,
 };

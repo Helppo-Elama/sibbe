@@ -5,10 +5,10 @@ import companyImg1 from "@i/originals/company/company-1.jpg?sizes[]=300,sizes[]=
 import companyWebp1 from "@i/originals/company/company-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp";
 
 const companyImages: Array<IImage> = [
-  {
-    img: companyImg1,
-    webp: companyWebp1,
-    alt: "Villa Sibbe auringossa",
-  },
+	{
+		img: companyImg1,
+		webp: companyWebp1,
+		alt: "Villa Sibbe auringossa",
+	},
 ];
 export { companyImages };

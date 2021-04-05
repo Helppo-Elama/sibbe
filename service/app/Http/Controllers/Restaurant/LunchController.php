@@ -14,13 +14,21 @@ use App\Http\Controllers\Controller;
 
 class LunchController extends Controller
 {
-    public function post(Request $request)
+    public function post_date(Request $request)
     {
-        Lunch::where(["date" => $request->input("date")])
+        Lunch::where(["date" => $request->date])
+            ->update(["hours" => $request->hours, "price" => $request->price, "type" => $request->type]);
+
+        return response()->json("Päivä päivitetty", 200);
+    } //end postLunch()
+
+    public function post_lunch(Request $request)
+    {
+        Lunch::where(["date" => $request->date])
             ->update(["json" => $request->json]);
 
-        return response()->json("Yes!", 200);
-    } //end post()
+        return response()->json("Lounas päivitetty", 200);
+    } //end postLunch()
 
     public function get(Request $request)
     {

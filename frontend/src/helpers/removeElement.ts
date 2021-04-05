@@ -1,5 +1,5 @@
 Element.prototype.remove = function () {
-  if (this.parentElement) {
-    this.parentElement.removeChild(this);
-  }
+	if (this.parentElement) {
+		this.parentElement.removeChild(this);
+	}
 };

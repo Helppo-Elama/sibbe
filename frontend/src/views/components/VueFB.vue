@@ -1,29 +1,29 @@
 <template>
-  <div class="text-center" data-aos="fade-up">
-    <h3 class="museo museo-heading pb-16">
-      <a class="animate" :href="fbUrl">Facebook</a>
-    </h3>
-    <div ref="fbContainer" class="d-flex justify-center">
-      <div id="fb-root">
-        <div
-          class="fb-page"
-          :data-href="fbUrl"
-          data-tabs="timeline, messages, events"
-          data-width="500"
-          data-height="500"
-          data-small-header="true"
-          data-adapt-container-width="false"
-          data-hide-cover="false"
-          data-show-facepile="true"
-          ref="fbFeed"
-        >
-          <blockquote :cite="fbUrl" class="fb-xfbml-parse-ignore">
-            <a :href="fbUrl">{{ fbUrl }}</a>
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="text-center" data-aos="fade-up">
+		<h3 class="museo museo-heading pb-16">
+			<a class="animate" :href="fbUrl">Facebook</a>
+		</h3>
+		<div ref="fbContainer" class="d-flex justify-center">
+			<div id="fb-root">
+				<div
+					class="fb-page"
+					:data-href="fbUrl"
+					data-tabs="timeline, messages, events"
+					data-width="500"
+					data-height="500"
+					data-small-header="true"
+					data-adapt-container-width="false"
+					data-hide-cover="false"
+					data-show-facepile="true"
+					ref="fbFeed"
+				>
+					<blockquote :cite="fbUrl" class="fb-xfbml-parse-ignore">
+						<a :href="fbUrl">{{ fbUrl }}</a>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="js">
@@ -107,11 +107,11 @@ export default VueFB;
 
 <style lang="scss" scoped>
 a {
-  color: $color4 !important;
+	color: $color4 !important;
 }
 a:hover,
 a:active {
-  color: $color5 !important;
-  text-shadow: 0.05rem 0.07rem $color2;
+	color: $color5 !important;
+	text-shadow: 0.05rem 0.07rem $color2;
 }
 </style>
