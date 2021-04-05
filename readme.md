@@ -9,12 +9,10 @@
 ## Villa Sibbe
 
 - [x] Basic frontend
-- [ ] Timezones?
 - [ ] Find a correct way to organize interfaces, classes and types
-- [ ] Karusellit automaattiseksi
-- [ ] Axios sibbe service fetcher
-- [ ] Service worker integration to axios data
-- [ ] Korjaa tyylit (karuselli, kalenteri)
+- [x] Karusellit automaattiseksi
+- [x] Axios sibbe service fetcher
+- [x] Korjaa tyylit (karuselli, kalenteri)
 
 ### Villa etusivu
 
@@ -23,7 +21,7 @@
 
 ### Ruokalista
 
-- [ ] Menu viikoittain - [ ] päivitettävissä etukäteen?
+- [x] Menu viikoittain - [ ] päivitettävissä etukäteen?
 
 ### Juhlasivut
 
@@ -32,15 +30,15 @@
 
 ## Varaussivu
 
-- [ ] Soita, varaa, kysy lisää!
-- [ ] Little hotellier (?)
-- [ ] Oma booking?
+- [x] Soita, varaa, kysy lisää!
+- [x] Little hotellier
+- [x] Oma booking
 
 ## Cafe
 
 - [ ] Tapahtumat
-- [ ] Facebook
-- [ ] Muokattavaa ruokalistaa?
+- [x] Facebook
+- [x] Muokattavaa ruokalistaa
 
 &nbsp;
 
@@ -59,12 +57,12 @@
 
 ### Api
 
-- [ ] Fetch API for frontend (axios)
-- [ ] Configure cross-origins properly
+- [x] Fetch API for frontend (axios)
+- [x] Configure cross-origins properly
 
 ### Backend
 
 - [ ] Lock management
-- [ ] SMS management <https://gatewayapi.com/>
-- [ ] A'la Carte / lunch menus calendar
+- [x] Lunch menus calendar
+- [ ] A'la Carte
 - [ ] Other fields for frontend axios
