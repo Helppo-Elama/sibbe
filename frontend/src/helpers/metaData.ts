@@ -122,9 +122,11 @@ const contact = parse(args);
 //CAFE
 const cafeUrl = homeUrl + "/cafe.html";
 args = {
-	title: "Café Sibbe: Makeaa, suolaista, kahvia ja virvokkeita rannalla.",
+	title: "Café Sibbe -kesän ystävän lempipaikka.",
 	description:
-		"Kotoisa rantakahvila Joensuun Tilan satamassa Sipoossa. Vieressä aktiviteetteja moneen makuun. Tule viihtymään kanssamme pidemmäksikin aikaa!",
+		//"Kotoisa rantakahvila Joensuun Tilan satamassa Sipoossa. Vieressä aktiviteetteja moneen makuun. Nouda ja nauti!",
+		"Joensuun Tilan sataman sydämessä sykkii kesäisin rantakahvila Café Sibbe. Kahvilassa voit istahtaa aivan veden ääreen.",
+	//, lipaista jäätelötötterön, siemaista kupillisen kahvia tai lasillisen kuohuvaa. Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat, motoristit, polkupyöräilijät, uimarit, veneilijät"
 	socialImage: "https://sibbe.fi/img/social/cafe-sibbe-social.jpg",
 	url: cafeUrl,
 };

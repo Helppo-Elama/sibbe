@@ -1,6 +1,7 @@
 import { bookingCarouselImages as images } from "./booking.images";
 import { IBookingData, IBookingApiUrl, IBookingUrl } from "../interfaces/booking.interface";
 import { IRooms } from "../interfaces/rooms.interface";
+import { addDays, correctOffset } from "@h/dateExtensions";
 
 const serviceUrl: string = process.env.VUE_APP_SERVICE_URL;
 
@@ -30,13 +31,13 @@ export const createBookingURL = (o: IBookingUrl): string => {
 	return url;
 };
 const bookingData = (): IBookingData => {
-	const now = new Date();
-	now.correctOffset(now.getTimezoneOffset());
+	let now = new Date();
+	now = correctOffset(now, now.getTimezoneOffset());
 	const request = {
 		start: now.toISOString().split("T")[0],
-		end: now.addDays(28).toISOString().split("T")[0],
+		end: addDays(now, 28).toISOString().split("T")[0],
 	};
-	const end = now.addDays(28);
+	const end = addDays(now, 28);
 	const dateRange = { start: now, end: end };
 	return {
 		request: {

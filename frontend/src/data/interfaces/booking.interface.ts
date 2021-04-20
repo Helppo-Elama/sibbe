@@ -16,8 +16,12 @@ export interface IBookingUrl {
 	moreToCome?: string;
 }
 
-export function isISiteminder(o: any): o is ISiteminder {
-	return o;
+export function isISiteminder(object: unknown): object is ISiteminder {
+	return (
+		Object.prototype.hasOwnProperty.call(object, "name") &&
+		Object.prototype.hasOwnProperty.call(object, "rates_including_fees") &&
+		Object.prototype.hasOwnProperty.call(object, "room_types")
+	);
 }
 
 export interface ISiteminder {

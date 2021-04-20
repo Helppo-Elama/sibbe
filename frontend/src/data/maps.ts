@@ -2,6 +2,7 @@ import { IPlaceIds, IRouteDestinations } from "./interfaces/maps.interface";
 const placeIds: IPlaceIds = {
 	villa: "ChIJl5iEI7kEkkYRMlFazWMlsIg",
 	cafe: "ChIJMbjOo7kEkkYRO2Hhkn_Tqj0",
+	//cafe: "ChIJtbbbu6UEkkYRqhXIZigwRD0", TARKISTUS
 };
 
 const markerOptions: google.maps.MarkerOptions = {

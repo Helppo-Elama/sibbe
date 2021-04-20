@@ -5,7 +5,7 @@ module.exports = {
 	assetsVersion: "",
 	manifestPath: "manifest.json",
 	workboxOptions: {
-		skipWaiting: true,
+		skipWaiting: false,
 		navigateFallback: "/index.html",
 		exclude: ["robots.txt", ".htaccess"],
 	},

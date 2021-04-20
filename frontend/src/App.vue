@@ -12,10 +12,12 @@
 <script lang="ts">
 import Vue from "vue";
 import Nav from "@c/Nav.vue";
+import update from "@mix/serviceWorkerUpdate";
 
 export default Vue.extend({
 	name: "App",
 	components: { Nav },
+	mixins: [update],
 	mounted(): void {
 		console.log("👏 App mounted");
 	},

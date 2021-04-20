@@ -29,6 +29,8 @@ import Vuelidate from "vuelidate";
 
 Vue.use(Vuelidate);
 
+Vue.$googleMapsLoaded = false;
+
 new Vue({
 	router,
 	//store,

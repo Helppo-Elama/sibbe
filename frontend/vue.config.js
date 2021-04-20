@@ -125,28 +125,12 @@ if (process.env.NODE_ENV === "production") {
 			}
 		},
 		pluginOptions: {
-			prerenderSpa: {
-				/*
-        staticDir: path.join(__dirname, "dist"),
-        registry: undefined,
-        renderRoutes: [
-          "/",
-          "/accommodation.html",
-          "/conference.html",
-          "/booking.html",
-          "/contact.html",
-          "/cafe.html",
-        ],
-        useRenderEvent: true,
-        headless: true,
-        onlyProduction: true,
-        */
-			},
+			//HAS TO BE HERE
+			prerenderSpa: {},
 		},
 	};
 } else {
 	//DEVELOPMENT
-
 	module.exports = {
 		configureWebpack: {
 			mode: "development",
@@ -174,7 +158,7 @@ if (process.env.NODE_ENV === "production") {
 					// eslint-disable-next-line @typescript-eslint/no-var-requires
 					adapter: require("responsive-loader/sharp"),
 					outputPath: "img/responsive/",
-					name: "[name]-[width].[hash:8].[ext]",
+					name: "[name]-[width].[hash].[ext]",
 				})
 				.end();
 			const fontRule = config.module.rule("fonts");

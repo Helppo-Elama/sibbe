@@ -59,7 +59,6 @@ const routes: Array<RouteConfig> = [
 		name: "Contact",
 		component: () => import(/* webpackChunkName: "contact" */ "@v/Contact.vue"),
 	},
-
 	{
 		path: "/mail",
 		beforeEnter() {

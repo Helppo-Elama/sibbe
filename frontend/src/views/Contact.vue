@@ -52,13 +52,11 @@
 					</p>
 				</v-col>
 			</v-row>
-			<v-lazy>
-				<v-row class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
-					<v-col data-aos="fade-up" cols="12">
-						<Maps />
-					</v-col>
-				</v-row>
-			</v-lazy>
+			<v-row class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
+				<v-col data-aos="fade-up" cols="12">
+					<GoogleMaps :googleMapsInit="googleMapsInit" />
+				</v-col>
+			</v-row>
 			<v-row class="ma-0 full-height dark-on-yellow full-height pt-16 pb-16">
 				<v-col cols="12">
 					<v-lazy>
@@ -73,29 +71,51 @@
 import Vue from "vue";
 import { contact as metaData } from "@h/metaData";
 
-import Maps from "@c/Maps.vue";
+import GoogleMaps from "@m/GoogleMaps.vue";
 import ContactForm from "@c/ContactForm.vue";
 
 import { companyData, images } from "@d/company/company.data";
 import { ICompanyData } from "../data/interfaces/company.interface";
 import { IImage } from "../data/interfaces/images.interface";
 
+import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
+import { IGoogleMapsInit } from "@d/interfaces/maps.interface";
+
+const { villa: placeId } = placeIds;
+const { villa } = routeDestination;
+
+const googleMapsInit: IGoogleMapsInit = {
+	apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
+	targetRef: "map",
+	language: "fi",
+	region: "FI",
+	libraries: ["places"],
+	version: "weekly",
+	mapOptions: mapOptions,
+	placeId: placeId,
+	markerOptions: markerOptions,
+	routeDestination: villa,
+	id: "map",
+};
+
 const contact = Vue.extend({
 	name: "Contact",
 	metaInfo: { ...metaData },
 	components: {
-		Maps,
+		GoogleMaps,
 		ContactForm,
 	},
 	data(): {
 		images: Array<IImage>;
 		companyData: ICompanyData;
+		googleMapsInit: IGoogleMapsInit;
 		senderForContactForm: string;
 	} {
 		return {
-			images: images,
-			companyData: companyData,
+			images,
+			companyData,
 			senderForContactForm: "contact",
+			googleMapsInit,
 		};
 	},
 	computed: {
@@ -107,6 +127,9 @@ const contact = Vue.extend({
 		},
 	},
 	mounted(): void {
+		if (process.env.VUE_APP_GOOGLE_API_KEY) {
+			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY;
+		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!");
 		console.log("📡 Contact mounted.");
 	},
 });

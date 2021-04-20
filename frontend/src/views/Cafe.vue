@@ -13,7 +13,7 @@
 							'display-3': $vuetify.breakpoint.mdAndUp,
 						}"
 					>
-						Makuja Mukaan!
+						Kesän ystävän lempipaikka
 					</h3>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
@@ -25,25 +25,29 @@
 					<div ref="closed" class="d-none">
 						<h2 class="museo">Valitettavasti olemme</h2>
 						<h1 class="museo closed">Suljettu juuri nyt.</h1>
-						<h2 class="bello pt-2">Tulkaa siis myöhemmin uudestaan!</h2>
+						<h2 v-if="nextOpenTime" class="bello pt-2">
+							Avaamme taas<br />
+							<span class="museo open">{{ nextOpenTime.day }}, kello {{ nextOpenTime.time }}.</span
+							><br />
+							Tulkaa silloin uudestaan!
+						</h2>
 					</div>
 				</v-col>
 			</v-row>
-			<v-row class="ma-0" justify="center" align="center">
-				<v-col cols="12" md="6" class="full-height light-on-red pb-16" data-aos="fade-up">
+			<v-row>
+				<v-col cols="12" md="6" class="light-on-red full-height pb-16" data-aos="fade-up">
 					<h3 class="museo museo-heading pt-16 pb-16">Cafe Sibbe</h3>
 					<p>
-						...on Kotoisa rantakahvila Joensuun Tilan satamassa Sipoossa. Vieressä aktiviteetteja
-						moneen makuun. Tule viihtymään kanssamme pidemmäksikin aikaa!
-					</p>
-					<p>
-						<strong>
-							Kahvilatuotteita<br />
-							Voileipiä<br />
-							Leivonnaisia<br />
-							Kahvia<br />
-							Virvokkeita
-						</strong>
+						Joensuun Tilan sataman sydämessä sykkii kesäisin rantakahvila Café Sibbe.
+						<br /><br />
+						Kahvilassa voit istahtaa aivan veden ääreen, lipaista jäätelötötterön, siemaista
+						kupillisen kahvia tai lasillisen kuohuvaa.
+						<br /><br />
+						Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café
+						Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat,
+						motoristit, polkupyöräilijät, uimarit, veneilijät…
+						<br /><br />
+						<b>Café Sibbe – kesän ystävän lempipaikka</b>
 					</p>
 					<img
 						class="pt-16 pb-10"
@@ -52,47 +56,19 @@
 						:style="lofbergsLogo.imageMaxWidth"
 					/>
 				</v-col>
-				<v-col cols="12" md="6" class="yellow-on-dark full-height pt-16 pb-16" data-aos="fade-up">
+				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 					<v-lazy>
 						<VueFB :fbUrl="fbUrl" />
 					</v-lazy>
 				</v-col>
 			</v-row>
-			<v-row class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
-				<v-col cols="12">
-					<h3 class="museo museo-heading pt-16 pb-16">Tarjoi&shy;lem&shy;me teille</h3>
-				</v-col>
-				<v-col v-for="(menuItem, i) in menu" :key="menuItem.type + i" cols="12" md="6" lg="4">
-					<div class="d-flex justify-center align-center mb-4">
-						<v-icon v-if="menuItem.icon" x-large class="color-light">{{
-							iconify(menuItem.icon)
-						}}</v-icon>
-						<h4 class="pl-4 display-1 museo">{{ menuItem.type }}</h4>
-					</div>
-					<hr class="mb-4" data-content="♡" />
-					<div v-for="(item, i) in menuItem.json" :key="item.title + i" class="pl-10 pr-10 pb-5">
-						<v-container fluid class="pa-0 ma-0">
-							<v-row class="text-left" no-gutters>
-								<v-col cols="8"
-									><b>{{ i + 1 }}. {{ item.title }}</b></v-col
-								>
-								<v-col cols="4" class="text-right"
-									><b>{{ item.price }} EUR</b></v-col
-								>
-								<v-col cols="12" class="pt-2 pl-5">{{ item.body }}</v-col>
-								<v-col cols="12" class="pt-2 pl-5">{{ item.ingredients }}</v-col>
-								<v-col cols="12" class="pt-2 pl-5"
-									><i>{{ item.allergenic }}</i></v-col
-								>
-							</v-row>
-						</v-container>
-					</div>
+			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
+				<v-col cols="12" class="pa-0 ma-0">
+					<MenuParser :menu="menu" />
 				</v-col>
 			</v-row>
 			<v-row class="pl-0 pr-0 ma-0 green-on-light full-height pt-16 pb-16">
-				<v-col cols="12">
-					<CafeMaps v-on:updateisopen="updateIsOpen" />
-				</v-col>
+				<v-col cols="12"> <GoogleMaps :googleMapsInit="googleMapsInit" /> </v-col>
 			</v-row>
 		</v-container>
 	</div>
@@ -100,7 +76,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import CafeMaps from "@c/CafeMaps.vue";
 import VueFB from "@c/VueFB.vue";
 import { cafe as metaData } from "@h/metaData";
 
@@ -108,38 +83,59 @@ import { axiosApi as axios } from "@in/axios";
 
 import Carousel from "@c/Carousel.vue";
 import { images, carouselImages, createURL } from "@d/cafe/cafe.data";
-import { ICafeData, isICafeData, ICafeMenu, isICafeMenu } from "@d/interfaces/cafe.interface";
+import { ICafeData, isICafeData } from "@d/interfaces/cafe.interface";
+import { IMenu, isIMenu } from "@d/interfaces/menu.interface";
 
 import { IImage } from "@d/interfaces/images.interface";
 import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg";
 import { socialUrls } from "@d/company/company.data";
 
+import MenuParser from "@m/MenuParser.vue";
+import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
 import {
-	mdiHamburger,
-	mdiFoodCroissant,
-	mdiFoodForkDrink,
-	mdiIceCream,
-	mdiCoffeeOutline,
-	mdiCandycane,
-	mdiGlassFlute,
-	mdiSilverwareForkKnife,
-	mdiGlassMugVariant,
-	mdiCupcake,
-	mdiBeerOutline,
-} from "@mdi/js";
+	IGoogleMapsInit,
+	IOpeningHours,
+	IOpeningHoursEvent,
+	isIOpeningHoursEvent,
+} from "@d/interfaces/maps.interface";
+import GoogleMaps from "@m/GoogleMaps.vue";
+import "@h/dateExtensions";
+
+const { cafe: placeId } = placeIds;
+
+const googleMapsInit: IGoogleMapsInit = {
+	apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
+	language: "fi",
+	region: "FI",
+	targetRef: "map",
+	libraries: ["places"],
+	version: "weekly",
+	mapOptions: mapOptions,
+	placeId: placeId,
+	markerOptions: markerOptions,
+	routeDestination: routeDestination.cafe,
+	id: "map",
+};
 
 const cafe = Vue.extend({
 	name: "Cafe",
 	metaInfo: { ...metaData },
-	components: { Carousel, VueFB, CafeMaps },
+	components: {
+		Carousel,
+		VueFB,
+		MenuParser,
+		GoogleMaps,
+	},
 	data(): {
 		fbUrl: string;
 		one: IImage;
 		lofbergsLogo: { image: string; imageMaxWidth: string; alt: string };
 		carouselImages: Record<string, IImage[]>;
-		icons: Record<string, string>;
 		data: boolean | ICafeData;
-		menu: boolean | ICafeMenu;
+		menu: boolean | IMenu;
+		googleMapsInit: IGoogleMapsInit;
+		openingHours: IOpeningHours | undefined;
+		nextOpenTime: { day: string; time: string } | undefined;
 	} {
 		return {
 			fbUrl: socialUrls.fbUrlCafe,
@@ -150,34 +146,83 @@ const cafe = Vue.extend({
 				alt: "Löfbergs logo",
 			},
 			carouselImages: carouselImages,
-			icons: {
-				mdiHamburger,
-				mdiFoodCroissant,
-				mdiFoodForkDrink,
-				mdiIceCream,
-				mdiCoffeeOutline,
-				mdiCandycane,
-				mdiGlassFlute,
-				mdiGlassMugVariant,
-				mdiSilverwareForkKnife,
-				mdiCupcake,
-				mdiBeerOutline,
-			},
 			data: false,
 			menu: false,
+			googleMapsInit,
+			openingHours: undefined,
+			nextOpenTime: undefined,
 		};
 	},
 	methods: {
-		updateIsOpen(isOpen: string): void {
-			this.$nextTick(() => {
-				if (isOpen === "Avoinna") {
-					(this.$refs["closed"] as HTMLElement).classList.add("d-none");
-					(this.$refs["open"] as HTMLElement).classList.remove("d-none");
-				} else {
-					(this.$refs["open"] as HTMLElement).classList.add("d-none");
-					(this.$refs["closed"] as HTMLElement).classList.remove("d-none");
-				}
-			});
+		setOpeningHours(event: IOpeningHoursEvent): void {
+			if (isIOpeningHoursEvent(event)) {
+				const isOpen = event.detail.isOpen();
+				const { periods, weekday_text } = event.detail;
+				this.$nextTick(() => {
+					if (isOpen) {
+						(this.$refs["closed"] as HTMLElement).classList.add("d-none");
+						(this.$refs["open"] as HTMLElement).classList.remove("d-none");
+					} else {
+						(this.$refs["open"] as HTMLElement).classList.add("d-none");
+						(this.$refs["closed"] as HTMLElement).classList.remove("d-none");
+
+						const open: Array<number> = [];
+						for (let [day] of periods.entries()) {
+							open.push(day);
+						}
+						const now = new Date().getDay();
+						let start: Array<number> = [];
+						let end: Array<number> = [];
+						for (let i = 0; i <= 6; i += 1) {
+							if (i >= now) {
+								start.push(i);
+							} else {
+								end.push(i);
+							}
+						}
+						const days = start.concat(end);
+
+						const findIndex = (days: Array<number>, open: Array<number>): number | boolean => {
+							for (let day of days) {
+								const index = open.findIndex((x) => x === day);
+								if (index >= 0) {
+									return index as number;
+								}
+							}
+							return false;
+						};
+
+						const getWeekDayAsText = (day: number): string | boolean => {
+							if (day === 0) {
+								return "Tänään";
+							} else {
+								const arrayOfWeekdays = [
+									"Sunnuntaina",
+									"Maanantaina",
+									"Tiistaina",
+									"Keskiviikkona",
+									"Torstaina",
+									"Perjantaina",
+									"Lauantaina",
+								];
+								return arrayOfWeekdays[day];
+							}
+						};
+
+						const index = findIndex(days, open);
+						if (index !== false) {
+							const openDay = periods[index as number].open;
+							const day = getWeekDayAsText(openDay.day);
+							if (day) {
+								this.nextOpenTime = {
+									day: day as string,
+									time: openDay.time.slice(0, 2) + ":" + openDay.time.slice(2),
+								};
+							}
+						}
+					}
+				});
+			}
 		},
 		fetchData(target: string): boolean | ICafeData {
 			const url = createURL(target);
@@ -186,21 +231,30 @@ const cafe = Vue.extend({
 				return response;
 			} else return false;
 		},
-		fetchMenu(target: string): boolean | ICafeMenu {
+		fetchMenu(target: string): boolean | IMenu {
 			const url = createURL(target);
 			const response = axios({ url });
-			if (response && isICafeMenu(response)) {
+			if (response && isIMenu(response)) {
 				return response;
 			} else return false;
 		},
-		iconify(icon: string): string | undefined {
-			return this.icons[icon];
-		},
 	},
 	async mounted(): Promise<void> {
-		console.log("☕ Cafe mounted!");
 		this.data = await this.fetchData("data");
 		this.menu = await this.fetchMenu("menu");
+
+		if (process.env.VUE_APP_GOOGLE_API_KEY) {
+			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY;
+		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!");
+	},
+	created(): void {
+		document.addEventListener(
+			"openinghours",
+			(event) => {
+				this.setOpeningHours(event as IOpeningHoursEvent);
+			},
+			{ once: true }
+		);
 	},
 });
 export default cafe;
@@ -212,35 +266,5 @@ export default cafe;
 }
 .open {
 	color: $color3;
-}
-
-hr {
-	line-height: 1em;
-	position: relative;
-	outline: 0;
-	border: 0;
-	color: $color5;
-	text-align: center;
-	height: 1.5em;
-	&:before {
-		content: "";
-		background: linear-gradient(to right, transparent, $color5, transparent);
-		position: absolute;
-		left: 0;
-		top: 50%;
-		width: 100%;
-		height: 1px;
-	}
-	&:after {
-		content: attr(data-content);
-		position: relative;
-		display: inline-block;
-		color: $color5;
-
-		padding: 0 0.5em;
-		line-height: 1.5em;
-		color: $color5;
-		background-color: $color3;
-	}
 }
 </style>

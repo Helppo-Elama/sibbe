@@ -1,58 +1,43 @@
-export {};
-
-declare global {
-	// to access the global type String
-	interface Date {
-		correctOffset(min: number): Date;
-		addDays(days: number): Date;
-		removeDays(days: number): Date;
-		toStringWithOffset(): string;
-		toISOStringWithOffset(): string;
-	}
-	interface String {
-		ISOStringToDateWithoutOffset(): Date;
-	}
+export function correctOffset(date: Date, min: number): Date {
+	const result = date;
+	result.setTime(result.getTime() - min * 60 * 1000);
+	return result;
 }
 
-Date.prototype.correctOffset = function (min: number) {
-	this.setTime(this.getTime() - min * 60 * 1000);
-	return this;
-};
-
-Date.prototype.addDays = function (days: number) {
-	const date = new Date(this.valueOf());
-	date.setDate(date.getDate() + days);
-	return date;
-};
-
-Date.prototype.removeDays = function (days: number) {
-	const date = new Date(this.valueOf());
-	date.setDate(date.getDate() - days);
-	return date;
-};
-
-Date.prototype.toStringWithOffset = function () {
-	const date = new Date(this.valueOf());
-	date.correctOffset(date.getTimezoneOffset());
-	const result = date.toISOString().split("T")[0];
+export function addDays(date: Date, days: number): Date {
+	const result = date;
+	result.setDate(result.getDate() + days);
 	return result;
-};
-
-Date.prototype.toISOStringWithOffset = function () {
-	const date = new Date(this.valueOf());
-	date.correctOffset(date.getTimezoneOffset());
-	const result = date.toISOString();
-	return result;
-};
-
-function parseISOString(string: string) {
-	const b: string[] | any[] = string.split(/\D+/);
-	return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
 }
 
-String.prototype.ISOStringToDateWithoutOffset = function (): Date {
-	const string = this.valueOf();
-	const date = parseISOString(string);
-	date.correctOffset(-date.getTimezoneOffset());
-	return date;
-};
+export function removeDays(date: Date, days: number): Date {
+	const result = date;
+	result.setDate(result.getDate() - days);
+	return result;
+}
+
+export function toStringWithOffset(date: Date): string {
+	const offset = correctOffset(date, date.getTimezoneOffset());
+	const result = offset.toISOString().split("T")[0];
+	return result;
+}
+
+export function toISOStringWithOffset(date: Date): string {
+	const offset = correctOffset(date, date.getTimezoneOffset());
+	const result = offset.toISOString();
+	return result;
+}
+
+export function ISOStringToDate(string: string): Date {
+	const b: Array<string | number> = string.split(/\D+/);
+	const result = new Date(
+		b[0] as number,
+		--(b[1] as number),
+		b[2] as number,
+		b[3] as number,
+		b[4] as number,
+		b[5] as number,
+		b[6] as number
+	);
+	return result;
+}

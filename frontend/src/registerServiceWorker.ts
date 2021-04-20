@@ -1,33 +1,37 @@
-/* eslint-disable no-console */
-
 import { register } from "register-service-worker";
 
 if (process.env.NODE_ENV === "production") {
 	register(`${process.env.BASE_URL}service-worker.js`, {
 		ready() {
-			console.log(
-				"App is being served from cache by a service worker.\n" +
-					"For more details, visit https://goo.gl/AFskqB"
-			);
+			console.info("💚 Sibbe served from cache.");
 		},
-		registered() {
-			console.log("Service worker has been registered.");
+		registered(registration) {
+			console.info("💚 Sibbe is registered....");
+			setInterval(() => {
+				registration.update();
+			}, 1000 * 60 * 60); // e.g. hourly checks
 		},
 		cached() {
-			console.log("Content has been cached for offline use.");
+			console.info("💛 Sibbe has been cached...");
+			//window.location.reload();
 		},
 		updatefound() {
-			console.log("New content is downloading.");
+			console.info("💙 Sibbe is fetching new content...");
 		},
-		updated() {
-			console.log("New content is available; please refresh.");
-			window.location.reload;
+		updated(registration) {
+			console.info("💙 Sibbe has new content. Trying to refresh...");
+			const event = new CustomEvent("serviceworkerupdated", {
+				detail: registration,
+			});
+			if (document.dispatchEvent(event)) {
+				console.log("🟢 Sibbe update event dispatched!");
+			}
 		},
 		offline() {
-			console.log("No internet connection found. App is running in offline mode.");
+			console.info("🤍 Sibbe served Offline");
 		},
 		error(error) {
-			console.error("Error during service worker registration:", error);
+			console.error("❗ Sibbe registration error:", error);
 		},
 	});
 }

@@ -70,7 +70,6 @@ const accommodationParser = Vue.extend({
 			return this.$props.additional.image;
 		},
 		data(): IRoomAdditionalData {
-			console.log(this.$props.additional.data[0].breakpoints);
 			return this.$props.additional.data;
 		},
 	},

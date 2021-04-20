@@ -134,8 +134,16 @@ import {
 } from "@d/booking/booking.data";
 
 import { currentMonth, getMonth } from "@h/dateArray";
+import {
+	ISOStringToDate,
+	toISOStringWithOffset,
+	toStringWithOffset,
+	removeDays,
+	addDays,
+} from "@h/dateExtensions";
 import { IErrors, bookingErrors as errors } from "@d/errors";
 
+import { isArray } from "lodash";
 import { companyData } from "@d/company/company.data";
 import { ICompanyData } from "@d/interfaces/company.interface";
 import { IBookingData, ISiteminder, isISiteminder } from "@d/interfaces/booking.interface";
@@ -176,6 +184,7 @@ const contact = Vue.extend({
 		selectRoomIndex: number | boolean;
 		errors: IErrors;
 		rooms: IRooms;
+		parsedSiteminder: boolean;
 	} {
 		return {
 			headerImages: headerImages,
@@ -195,22 +204,25 @@ const contact = Vue.extend({
 			errors: errors,
 			selectRoomIndex: false,
 			rooms: rooms,
+			parsedSiteminder: false,
 		};
 	},
 	computed: {
 		siteminderLink(): { show: boolean; url?: string } {
-			if (this.dates.selectedDates.length === 0) return { show: false };
+			const { selectedDates } = this.dates;
+			if (!isArray(selectedDates)) return { show: false };
 			else {
 				let url: string;
-				if (this.dates.selectedDates.length === 1) {
+				selectedDates.sort();
+				if (selectedDates.length === 1) {
 					url = createBookingURL({
-						start: this.dates.selectedDates[0],
-						end: this.dates.selectedDates[0],
+						start: selectedDates[0],
+						end: selectedDates[0],
 					});
 				} else {
 					url = createBookingURL({
-						start: this.dates.selectedDates[0],
-						end: this.dates.selectedDates[1],
+						start: selectedDates[0],
+						end: selectedDates[1],
 					});
 				}
 				return { show: true, url: url };
@@ -227,35 +239,31 @@ const contact = Vue.extend({
 		salesEmail(): string {
 			return companyData.getEmail("sales");
 		},
-		parsedSiteminder(): boolean {
-			if (isISiteminder(this.siteminder)) {
-				return true;
-			} else return false;
-		},
 		selectedMonth(): { year: number; month: number; data: Array<string> } {
-			const now = new Date().toStringWithOffset();
+			const now = toStringWithOffset(new Date());
 			const year = (now.split("-")[0] as unknown) as number;
 			const month = parseInt(now.split("-")[1], 10) - 1;
 			const data = currentMonth();
 			return { year, month, data };
 		},
 		dateRangeText(): string {
-			const now = new Date().toStringWithOffset();
-			if (this.dates.selectedDates.length === 1) {
-				if (this.dates.selectedDates[0] === now) {
+			const now = toStringWithOffset(new Date());
+			const { selectedDates } = this.dates;
+			if (selectedDates.length === 1) {
+				if (selectedDates[0] === now) {
 					this.setMaxDate(14);
 					this.setMinDate();
 				} else {
 					this.setMaxDate(14);
 					this.setMinDate(28);
 				}
-				return this.dates.selectedDates[0];
+				return selectedDates[0];
 			}
-			if (this.dates.selectedDates.length === 2) {
+			if (selectedDates.length === 2) {
 				this.setMinDate();
 				this.setMaxDate();
 				this.setDatePickerTitle();
-				return this.dates.selectedDates.join(" - ");
+				return selectedDates.join(" - ");
 			} else {
 				return "Valitse päivämäärät";
 			}
@@ -350,23 +358,23 @@ const contact = Vue.extend({
 			}
 			const now = new Date();
 			let minDate: Date;
-			let maxDate: Date = this.dates.maxDate.ISOStringToDateWithoutOffset();
+			let maxDate: Date = ISOStringToDate(this.dates.maxDate);
 			let diff = differenceInCalendarDays(maxDate, now);
 			if (diff < 14) {
 				arg = "default";
 			}
 			switch (arg) {
 				case 28:
-					minDate = maxDate.removeDays(28);
+					minDate = removeDays(maxDate, 28);
 					break;
 				case 14:
-					minDate = maxDate.removeDays(14);
+					minDate = removeDays(maxDate, 14);
 					break;
 				default:
 					minDate = now;
 					break;
 			}
-			this.dates.minDate = minDate.toISOStringWithOffset();
+			this.dates.minDate = toISOStringWithOffset(minDate);
 		},
 		setMaxDate(arg?: number | string) {
 			if (!arg) {
@@ -375,21 +383,21 @@ const contact = Vue.extend({
 			const now = new Date();
 			let maxDays = new Date();
 			if (this.dates.selectedDates[0] && arg !== "default") {
-				let max: string = this.dates.selectedDates[0] + "T12:00:00.000Z";
-				maxDays = max.ISOStringToDateWithoutOffset();
-				maxDays = maxDays.addDays(14);
+				let max: string = this.dates.selectedDates[0] + "T08:00:00.000Z";
+				maxDays = ISOStringToDate(max);
+				maxDays = addDays(maxDays, 14);
 				arg = "max";
 			}
 			switch (arg) {
 				case "max":
-					this.dates.maxDate = maxDays.toISOStringWithOffset();
+					this.dates.maxDate = toISOStringWithOffset(maxDays);
 					this.setMinDate(28);
 					break;
 				case 14:
-					this.dates.maxDate = now.addDays(14).toISOStringWithOffset();
+					this.dates.maxDate = toISOStringWithOffset(addDays(now, 14));
 					break;
 				default:
-					this.dates.maxDate = new Date(now.setMonth(now.getMonth() + 12)).toISOStringWithOffset();
+					this.dates.maxDate = toISOStringWithOffset(new Date(now.setMonth(now.getMonth() + 12)));
 					break;
 			}
 		},
@@ -406,14 +414,14 @@ const contact = Vue.extend({
 		async siteminderGetMore(): Promise<number> {
 			let { end } = this.bookingData.dateRange;
 			const url = {
-				start: end.addDays(1).toISOString().split("T")[0],
-				end: end.addDays(29).toISOString().split("T")[0],
+				start: addDays(end, 1).toISOString().split("T")[0],
+				end: addDays(end, 29).toISOString().split("T")[0],
 			};
 			const request = { url: createApiURL(url) };
 			const siteminder = await axios(request);
 			if (isISiteminder(siteminder)) {
 				this.siteminderPush(siteminder);
-				this.bookingData.dateRange.end = end.addDays(29);
+				this.bookingData.dateRange.end = addDays(end, 29);
 				if (isISiteminder(this.siteminder)) {
 					return this.siteminder.room_types[0].room_type_dates.length;
 				} else return 0; //0 päivää!
@@ -425,9 +433,10 @@ const contact = Vue.extend({
 		this.setMinDate();
 		const { request } = this.bookingData;
 		const siteminder = await axios(request);
+		this.siteminderLoaded = true;
 		if (isISiteminder(siteminder)) {
+			this.parsedSiteminder = true;
 			this.siteminder = siteminder;
-			this.siteminderLoaded = true;
 			this.selectRoomIndex = 0;
 			let days = 0;
 			let i = 0;
