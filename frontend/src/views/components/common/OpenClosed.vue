@@ -1,5 +1,5 @@
 <template>
-	<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
+	<div>
 		<div ref="open" class="d-none">
 			<h2 class="museo">Kyllä, olemme</h2>
 			<h1 class="museo open">avoinna!</h1>
@@ -14,7 +14,7 @@
 				Tulkaa silloin uudestaan!
 			</h2>
 		</div>
-	</v-col>
+	</div>
 </template>
 
 <script lang="ts">

@@ -48,7 +48,9 @@
 			</v-row>
 			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
 				<v-col cols="12" class="pa-0 ma-0">
-					<menu-parser :items="menu">Tarjoi&shy;lem&shy;me teille</menu-parser>
+					<menu-parser :items="menu" :color="'#eaeaea'" :classList="'light-on-green'"
+						>Tarjoi&shy;lem&shy;me teille</menu-parser
+					>
 				</v-col>
 			</v-row>
 			<v-row class="pl-0 pr-0 ma-0 green-on-light full-height pt-16 pb-16">

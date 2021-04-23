@@ -22,43 +22,93 @@
 						Villa Sibbe -menestyksekkäitä kohtaamisia
 					</h3>
 				</v-col>
-				<OpenClosed :openClosed="openClosed" />
+				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
+					<OpenClosed :openClosed="openClosed" />
+				</v-col>
 			</v-row>
-			<!--
+			<v-row v-if="menu" class="light-on-green full-height pt-16 pb-16">
+				<v-col cols="12">
+					<h3 class="museo museo-heading">Villa Sibben ravintola</h3>
+				</v-col>
+				<v-col cols="12" md="6" class="pa-0 ma-0 pb-2">
+					<p>
+						<b>Nyt on aika käynnistää ravintolatoiminta Villa Sibbessä</b>. <br /><br />
+						Ravintolapäälliköksi on palkattu erittäin kokenut ravintolapäällikkö Esa Paajolahti ja
+						hänelle työpariksi ravintola-alan moniottelija Jacek Piasecki. Yhdessä heidän kanssaan
+						olemme talven aikana suunnitelleet toimintaa ja nyt olemme valmiita starttaamaan. Esan
+						johdolla Villa Sibben keittiöstä alkaa kantautua tuoreen leivän tuoksu, lounaaksi
+						nautitaan päivän keittoa ja lounaslistan annoksia. Lisäksi meille tulee rentoja ja
+						mutkattomia Á la carte-annoksia.”
+					</p>
+					<picture>
+						<source :srcSet="two.webp.srcSet" type="image/webp" />
+						<img
+							class="pr-5 pl-5 pb-2"
+							:src="two.img.src"
+							:srcSet="two.img.srcSet"
+							:width="two.width"
+							:height="two.img.height"
+							:alt="two.alt"
+							loading="lazy"
+						/>
+					</picture>
+				</v-col>
+				<v-col cols="12" md="6" class="pa-0 ma-0">
+					<picture>
+						<source :srcSet="one.webp.srcSet" type="image/webp" />
+						<img
+							class="pr-5 pl-5"
+							:src="one.img.src"
+							:srcSet="one.img.srcSet"
+							:width="one.width"
+							:height="one.img.height"
+							:alt="one.alt"
+							loading="lazy"
+						/>
+					</picture>
+					<p>
+						<b
+							>Villa Sibben sijainti aktiivisen Joensuun Tilan vapaa-ajankeskuksen sydämessä ja
+							Sibbe Disc Golf frisbeegolfradan ympäröimänä on ihanteellinen menestyksekkäille
+							kohtaamisille.</b
+						>
+						<br /><br />
+						Rentoon ravintolaan ovat tervetulleita kaikki alueella liikkuvat ja sinne voi saapua
+						myös vesiteitse. Villa Sibben ravintolatila, Nobel-sali sekä laajat terassialueet
+						avataan kaikki asiakkaille kevään aikana ja mukaan otettavat annokset sekä eväät voidaan
+						nauttia vaikka Joensuun Tilan Satamassa, frisbee golf kierroksella tai Omenatarhassa
+						piknikillä.
+					</p>
+				</v-col>
+			</v-row>
+			<v-row v-if="menu" class="dark-on-yellow full-height pt-16 pb-16">
+				<v-col cols="12" class="pa-0 ma-0">
+					<lunch-parser :items="lunches" :color="'#424242'" :classList="'dark-on-yellow'"
+						>Lounaat ja brunssit</lunch-parser
+					>
+				</v-col>
+			</v-row>
+			<v-row v-if="menu" class="light-on-red full-height pt-16 pb-16">
+				<v-col cols="12" class="pa-0 ma-0">
+					<menu-parser :items="menu" :color="'#eaeaea'" :classList="'light-on-red'"
+						>A'la Carte lista</menu-parser
+					>
+				</v-col>
+			</v-row>
 			<v-row>
-				<v-col cols="12" class="yellow-on-dark full-height pt-16 pb-16 pl-5 pr-5">
-					<v-lazy>
-						<VueFB :fbUrl="fbUrl" />
-					</v-lazy>
-				</v-col>
-			</v-row>
-			-->
-			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
-				<v-col cols="12" class="pa-0 ma-0">
-					<MenuParser :items="menu" />
-				</v-col>
-			</v-row>
-			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
-				<v-col cols="12" class="pa-0 ma-0">
-					<LunchParser :items="lunches" />
-				</v-col>
-			</v-row>
-			<v-row class="pl-0 pr-0 ma-0 green-on-light full-height pt-16 pb-16">
-				<v-col cols="12"> <GoogleMaps :googleMapsInit="googleMapsInit" /> </v-col>
-			</v-row>
-			<v-row class="pl-0 pr-0 ma-0 green-on-light full-height pt-16 pb-16">
 				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 					<v-lazy>
 						<VueFB :fbUrl="fbUrl" />
 					</v-lazy>
 				</v-col>
-			</v-row>
-			<v-row>
-				<v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
+				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 dark-on-yellow full-height pt-16 pb-16">
 					<v-lazy>
 						<ContactForm :sender="'restaurant'" />
 					</v-lazy>
 				</v-col>
+			</v-row>
+			<v-row class="green-on-light full-height pt-16 pb-16">
+				<v-col cols="12"> <GoogleMaps :googleMapsInit="googleMapsInit" /> </v-col>
 			</v-row>
 		</v-container>
 	</div>
@@ -208,8 +258,4 @@ export default Vue.extend({
 	},
 });
 </script>
-<style lang="scss" scoped>
-.empty {
-	font-weight: 400;
-}
-</style>
+<style lang="scss" scoped></style>

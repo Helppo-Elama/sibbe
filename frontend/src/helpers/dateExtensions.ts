@@ -46,3 +46,8 @@ export function dateToStringYYYYMMDD(date: Date): string {
 	const result = new Date(date).toISOString().split("T")[0];
 	return result;
 }
+
+export function capitalizeFormattedDate(string: string): string {
+	const result = string.charAt(0).toUpperCase() + string.slice(1);
+	return result;
+}
