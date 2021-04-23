@@ -35,8 +35,8 @@
 					<div v-if="xhttp.success" class="color-green mb-5 display-1 font-weight-bold">
 						Viesti lähetetty!
 					</div>
-					<div v-if="!xhttp.success" class="color-green mb-5 display-1 font-weight-bold">
-						<br />
+					<div v-if="xhttp.errors" class="color-red mb-5 display-1 font-weight-bold">
+						Valitettavasti emme voineet lähettää viestiä :(
 					</div>
 					<v-btn class="mr-4 primary" @click="submit"> Lähetä </v-btn>
 					<v-btn class="warn" @click="clear"> Tyhjennä </v-btn>
@@ -50,7 +50,7 @@ import Vue from "vue";
 
 import { validationMixin } from "vuelidate";
 import { required, minLength, email } from "vuelidate/lib/validators";
-import { api as axios } from "@in/axios";
+import { axiosPostContactData as axios } from "@in/axios";
 import { IXHttp } from "@d/interfaces/xhttp.interface";
 import { createURL } from "@d/contact/contact.data";
 
@@ -83,7 +83,7 @@ const contactForm = Vue.extend({
 				url: createURL(),
 				success: false,
 				loaded: true,
-				errors: [],
+				errors: false,
 			},
 		};
 	},
@@ -111,39 +111,29 @@ const contactForm = Vue.extend({
 		},
 	},
 	methods: {
-		submit(): void {
-			let { loaded, url } = this.xhttp;
+		async submit(): Promise<void> {
+			let { loaded } = this.xhttp;
+			const request = this.xhttp;
 			this.$v.$touch();
 			if (loaded) {
 				this.xhttp.loaded = false;
 				this.xhttp.success = false;
-				const formData: {
-					name: string;
-					email: string;
-					message: string;
-					sender: string;
-				} = {
+				this.xhttp.errors = false;
+				request.data = {
 					name: this.name,
 					email: this.email,
 					message: this.message,
 					sender: this.sender,
 				};
-				axios
-					.post(url, formData)
-					.then((response) => {
-						if (response.status === 200) {
-							this.clear();
-							this.xhttp.loaded = true;
-							this.xhttp.success = true;
-						} else throw "😔 We didn't get 200 back...";
-					})
-					.catch((error) => {
-						this.xhttp.loaded = true;
-						if (error.response.status === 422) {
-							console.log("💔 Error with " + error.response.data.errors);
-							this.xhttp.errors = error.response.data.errors || {};
-						}
-					});
+				const response = await axios(request);
+				if (response) {
+					this.clear();
+					this.xhttp.loaded = true;
+					this.xhttp.success = true;
+				} else {
+					this.xhttp.loaded = true;
+					this.xhttp.errors = true;
+				}
 			}
 		},
 		clear() {

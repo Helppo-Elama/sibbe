@@ -65,7 +65,7 @@ import Vue from "vue";
 import { accommodation as metaData } from "@h/metaData";
 
 import Carousel from "@c/Carousel.vue";
-import AccommodationList from "@c/AccommodationList.vue";
+import AccommodationList from "@c/accommodation/AccommodationList.vue";
 import {
 	accommodationImages as images,
 	accommodationCarouselImages as carouselImages,
@@ -73,7 +73,7 @@ import {
 
 import { IImage } from "@d/interfaces/images.interface";
 
-const accommodation = Vue.extend({
+export default Vue.extend({
 	name: "Accommodation",
 	metaInfo: { ...metaData },
 	components: { Carousel, AccommodationList },
@@ -87,7 +87,6 @@ const accommodation = Vue.extend({
 		console.log("🎀 Accommodation mounted.");
 	},
 });
-export default accommodation;
 </script>
 <style lang="scss" scoped>
 .empty {

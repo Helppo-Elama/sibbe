@@ -20,7 +20,10 @@ export interface IGoogleMapsDetails {
 	map: google.maps.Map;
 	service: google.maps.places.PlacesService;
 }
+
 export type IOpeningHours = google.maps.places.OpeningHours;
+
+export type IOpeningPeriods = google.maps.places.OpeningPeriod[];
 
 export interface IOpeningHoursEvent extends Event {
 	detail: IOpeningHours;

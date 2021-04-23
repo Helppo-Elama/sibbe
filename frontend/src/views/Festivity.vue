@@ -41,7 +41,7 @@
 			<v-row>
 				<v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
 					<v-lazy>
-						<ContactForm :sender="senderForContactForm" />
+						<ContactForm :sender="'festivity'" />
 					</v-lazy>
 				</v-col>
 			</v-row>
@@ -59,10 +59,10 @@ import Header from "@c/Header.vue";
 import { festivityHeaderImages as headerImages } from "@d/festivity/festivity.images";
 import { IImage } from "@d/interfaces/images.interface";
 
-import Hero from "@c/Hero.vue";
+import Hero from "@c/home/Hero.vue";
 
 import VueFB from "@c/VueFB.vue";
-import Reviews from "@c/Reviews.vue";
+import Reviews from "@c/home/Reviews.vue";
 import ContactForm from "@c/ContactForm.vue";
 
 import { socialUrls } from "@d/company/company.data";
@@ -76,12 +76,10 @@ export default Vue.extend({
 	},
 	data(): {
 		fbUrl: string;
-		senderForContactForm: string;
 		headerImages: Record<string, IImage>;
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
-			senderForContactForm: "festivity",
 			headerImages: headerImages,
 		};
 	},

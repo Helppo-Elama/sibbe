@@ -20,7 +20,7 @@
 							<div class="justify-self-center"></div>
 						</div>
 					</div>
-					<MenuIterator :data="menu" @delete="deleteType" />
+					<MenuIterator :data="menu" :type="'cafe'" @delete="deleteType" />
 					<div class="flex justify-center w-100 py-6">
 						<jet-button class="px-24" @click.native="addType()" action="add">
 							Lisää uusi kategoria
@@ -37,7 +37,9 @@ import AppLayout from "@/Layouts/AppLayout";
 import JetButton from "@/Jetstream/Button";
 import { axiosPost, axiosDelete } from "@/Helpers/axios";
 import { postCafeTypeApiUrl } from "@/Helpers/apiEndPoints";
-import MenuIterator from "./Menu/MenuIterator";
+import MenuIterator from "@/Components/Common/Menu/MenuIterator";
+
+const url = postCafeTypeApiUrl();
 
 export default {
 	components: {
@@ -54,7 +56,13 @@ export default {
 				return val;
 			},
 			get() {
-				return this.data;
+				let result;
+				if (this.data) {
+					result = this.data;
+				} else {
+					result = [{ type: "", icon: "", json: "", id: null }];
+				}
+				return result;
 			},
 		},
 	},
@@ -62,7 +70,8 @@ export default {
 		async addType() {
 			const item = { type: "", icon: "", json: "", id: null };
 			const i = this.menu.push(item) - 1;
-			const request = { url: postCafeTypeApiUrl(), json: JSON.stringify(item) };
+			const json = JSON.stringify(item);
+			const request = { url, json };
 			const response = await axiosPost(request);
 			if (response) {
 				this.$message.success(response.message);
@@ -71,7 +80,7 @@ export default {
 		},
 		async deleteType(i) {
 			const { id } = this.menu[i];
-			const request = { url: postCafeTypeApiUrl(), id };
+			const request = { url, id };
 			const response = await axiosDelete(request);
 			if (response) {
 				this.$message.success(response);

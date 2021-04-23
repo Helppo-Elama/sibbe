@@ -31,10 +31,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        $name = $this->name;
-        $email = $this->email;
-        $message = $this->message;
-        $sender = $this->sender;
         if ($this->sender == "contact") {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -42,7 +38,8 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("body", $this->message)
+                ->with("reply_to", $this->reply_to);
         } elseif ($this->sender == "feedback") {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -50,7 +47,8 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("body", $this->message)
+                ->with("replyto", $this->reply_to);
         } elseif ($this->sender == "restaurant") {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -58,7 +56,8 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("body", $this->message)
+                ->with("reply_to", $this->reply_to);
         } elseif ($this->sender == "cafe") {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -66,7 +65,8 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("body", $this->message)
+                ->with("reply_to", $this->reply_to);
         } elseif ($this->sender == "festivity") {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -74,7 +74,7 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("reply_to", $this->reply_to);
         } else {
             return $this->from($this->email, $this->name)
                 ->replyTo($this->reply_to, $this->name)
@@ -86,7 +86,7 @@ class ContactMail extends Mailable
                 ->view("contact")
                 ->with("name", $this->name)
                 ->with("email", $this->email)
-                ->with("body", $this->message);
+                ->with("reply_to", $this->reply_to);
         } //end if
     } //end build()
 } //end class

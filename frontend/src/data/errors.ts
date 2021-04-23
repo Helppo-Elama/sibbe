@@ -15,10 +15,10 @@ export const axiosError = (
 ): { axiosError: number } | string | undefined => {
 	switch (type) {
 		case 200: {
-			console.log("💔 Axios did not get 200. " + e);
+			console.error("💔 Axios did not get 200. " + e);
 			return { axiosError: 200 };
 		}
 		default:
-			console.log("💔 Axios: " + e);
+			console.error("💔 Axios: " + e);
 	}
 };

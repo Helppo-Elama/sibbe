@@ -96,7 +96,7 @@ import resize from "vue-resize-directive";
 import { IImage } from "@d/interfaces/images.interface";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
-const cafeCarousel = Vue.extend({
+export default Vue.extend({
 	name: "CafeCarousel",
 	directives: {
 		resize,
@@ -137,7 +137,6 @@ const cafeCarousel = Vue.extend({
 		});
 	},
 });
-export default cafeCarousel;
 </script>
 
 <style lang="scss" scoped>
@@ -160,9 +159,9 @@ export default cafeCarousel;
 }
 .header-museo {
 	padding-top: 0.8em;
-	font-size: 8vw;
+	font-size: 7vw;
 }
 .header-bello {
-	font-size: 20vw;
+	font-size: 17vw;
 }
 </style>

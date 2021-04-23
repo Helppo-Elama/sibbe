@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Restaurant\LunchController;
+use App\Http\Controllers\Restaurant\MenuController;
 use App\Http\Controllers\Cafe\CafeController;
 use App\Http\Controllers\Mail\ContactController;
 
@@ -22,6 +23,10 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
 });
 
 Route::get("/restaurant/lunch", [LunchController::class, "get"]);
+Route::get("/restaurant/menu", [MenuController::class, "get"]);
+Route::get("/restaurant/data", [MenuController::class, "get"]);
+
+
 Route::get("/cafe/menu", [CafeController::class, "get"]);
 Route::get("/cafe/data", [CafeController::class, "get"]);
 

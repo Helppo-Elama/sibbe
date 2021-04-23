@@ -60,7 +60,7 @@
 			<v-row class="ma-0 full-height dark-on-yellow full-height pt-16 pb-16">
 				<v-col cols="12">
 					<v-lazy>
-						<ContactForm :sender="senderForContactForm" />
+						<ContactForm :sender="'contact'" />
 					</v-lazy>
 				</v-col>
 			</v-row>
@@ -71,7 +71,7 @@
 import Vue from "vue";
 import { contact as metaData } from "@h/metaData";
 
-import GoogleMaps from "@m/GoogleMaps.vue";
+import GoogleMaps from "@c/GoogleMaps.vue";
 import ContactForm from "@c/ContactForm.vue";
 
 import { companyData, images } from "@d/company/company.data";
@@ -98,7 +98,7 @@ const googleMapsInit: IGoogleMapsInit = {
 	id: "map",
 };
 
-const contact = Vue.extend({
+export default Vue.extend({
 	name: "Contact",
 	metaInfo: { ...metaData },
 	components: {
@@ -109,12 +109,10 @@ const contact = Vue.extend({
 		images: Array<IImage>;
 		companyData: ICompanyData;
 		googleMapsInit: IGoogleMapsInit;
-		senderForContactForm: string;
 	} {
 		return {
 			images,
 			companyData,
-			senderForContactForm: "contact",
 			googleMapsInit,
 		};
 	},
@@ -133,7 +131,6 @@ const contact = Vue.extend({
 		console.log("📡 Contact mounted.");
 	},
 });
-export default contact;
 </script>
 <style lang="scss" scoped>
 .empty {

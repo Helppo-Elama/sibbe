@@ -3,7 +3,7 @@ import Vue from "vue";
 import Vuetify from "vuetify/lib";
 import { light } from "./theme";
 import fi from "vuetify/src/locale/fi";
-import siteminder from "@m/SiteminderIcon.vue";
+import siteminder from "@c/SiteminderIcon.vue";
 
 Vue.use(Vuetify);
 

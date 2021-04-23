@@ -124,7 +124,7 @@ import Header from "@c/Header.vue";
 import { bookingHeaderImages as headerImages } from "@d/booking/booking.images";
 import { IHeaderImages } from "@d/interfaces/images.interface";
 
-import Loading from "@m/Loading.vue";
+import Loading from "@c/Loading.vue";
 
 import {
 	bookingData,
@@ -152,13 +152,13 @@ import { IRoom, IRooms } from "@d/interfaces/rooms.interface";
 
 import { axiosGetBookingData as axios } from "@in/axios";
 
-import RoomCarousel from "@m/RoomCarousel.vue";
+import RoomCarousel from "@c/common/RoomCarousel.vue";
 import { format } from "date-fns";
 import fi from "date-fns/locale/fi";
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 import clonedeep from "lodash.clonedeep";
 
-const contact = Vue.extend({
+export default Vue.extend({
 	name: "Booking",
 	metaInfo: { ...metaData },
 	components: {
@@ -170,8 +170,7 @@ const contact = Vue.extend({
 		headerImages: IHeaderImages;
 		bookingData: IBookingData;
 		companyData: ICompanyData;
-		senderForContactForm: string;
-		siteminder: ISiteminder | boolean;
+		siteminder: ISiteminder | undefined;
 		siteminderLoaded: boolean;
 		dates: {
 			selectedDates: Array<string>;
@@ -181,7 +180,7 @@ const contact = Vue.extend({
 			availableOne: Array<string>;
 			availableMore: Array<string>;
 		};
-		selectRoomIndex: number | boolean;
+		selectRoomIndex: number | undefined;
 		errors: IErrors;
 		rooms: IRooms;
 		parsedSiteminder: boolean;
@@ -190,8 +189,7 @@ const contact = Vue.extend({
 			headerImages: headerImages,
 			bookingData: bookingData(),
 			companyData: companyData,
-			senderForContactForm: "booking",
-			siteminder: false,
+			siteminder: undefined,
 			siteminderLoaded: false,
 			dates: {
 				selectedDates: [],
@@ -202,7 +200,7 @@ const contact = Vue.extend({
 				availableMore: [],
 			},
 			errors: errors,
-			selectRoomIndex: false,
+			selectRoomIndex: undefined,
 			rooms: rooms,
 			parsedSiteminder: false,
 		};
@@ -229,9 +227,11 @@ const contact = Vue.extend({
 			}
 		},
 		selectedRoom(): IRoom | boolean {
-			if (this.selectRoomIndex !== false) {
+			if (this.selectRoomIndex) {
 				return this.rooms.rooms[this.selectRoomIndex as number];
-			} else return false;
+			} else {
+				return false;
+			}
 		},
 		companyEmail(): string {
 			return companyData.getEmail("company");
@@ -314,7 +314,7 @@ const contact = Vue.extend({
 				return false;
 			}
 		},
-		getEventDates(date: string): Array<string> | string | boolean {
+		getEventDates(date: string): Array<string> | string {
 			if (this.dates.availableMore.length === 0 && this.dates.availableDates.indexOf(date) !== -1) {
 				return "#86ba90";
 			}
@@ -401,7 +401,7 @@ const contact = Vue.extend({
 					break;
 			}
 		},
-		siteminderPush(data: ISiteminder | boolean): void {
+		siteminderPush(data: ISiteminder | undefined): void {
 			if (isISiteminder(data) && isISiteminder(this.siteminder)) {
 				const { room_types } = data;
 				for (const i in room_types) {
@@ -446,8 +446,8 @@ const contact = Vue.extend({
 					days = await this.siteminderGetMore();
 					if (i > max) throw "💔 Can't add days to Siteminder";
 					i++;
-				} catch (err) {
-					console.log(err);
+				} catch (error) {
+					console.log(error);
 					break;
 				}
 			}
@@ -455,8 +455,6 @@ const contact = Vue.extend({
 		console.log("🏰 Booking mounted.");
 	},
 });
-
-export default contact;
 </script>
 <style lang="scss" scoped>
 a {

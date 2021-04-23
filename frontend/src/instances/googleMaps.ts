@@ -48,8 +48,8 @@ function parseDetails(details: IGoogleMapsDetails): void {
 		function (place, status) {
 			try {
 				getPlaceDetails(place, status);
-			} catch (err) {
-				console.error(err);
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	);
@@ -105,15 +105,15 @@ export function googleMapsInit(init: IGoogleMapsInit, loaded: boolean): boolean 
 			language,
 			region,
 		});
-		loader.loadCallback((err) => {
-			if (err) {
-				throw new Error("❌ Error at callback:" + err);
+		loader.loadCallback((error) => {
+			if (error) {
+				throw new Error("❌ Error at callback:" + error);
 			} else {
 				try {
 					const details = parseMap(init);
 					parseDetails(details);
-				} catch (err) {
-					throw new Error("❌ Error at parsing map:" + err);
+				} catch (error) {
+					throw new Error("❌ Error at parsing map:" + error);
 				}
 			}
 		});
@@ -121,8 +121,8 @@ export function googleMapsInit(init: IGoogleMapsInit, loaded: boolean): boolean 
 		try {
 			const details = parseMap(init);
 			parseDetails(details);
-		} catch (err) {
-			throw new Error("❌ Error at parsing map:" + err);
+		} catch (error) {
+			throw new Error("❌ Error at parsing map:" + error);
 		}
 	}
 	return true;

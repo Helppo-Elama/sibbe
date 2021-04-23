@@ -65,7 +65,7 @@ import Vue from "vue";
 import { accommodation as metaData } from "@h/metaData";
 
 import Carousel from "@c/Carousel.vue";
-import AccommodationList from "@c/AccommodationList.vue";
+import AccommodationList from "@c/accommodation/AccommodationList.vue";
 import {
 	accommodationImages as images,
 	accommodationCarouselImages as carouselImages,

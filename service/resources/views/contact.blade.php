@@ -48,7 +48,7 @@
                             </div>
                             <div class="ml-12">
                                 <div class="text-gray-600 dark:text-gray-400 text-sm">
-                                    {{ $email }}
+                                    {{ $reply_to }}
                                     <br />
                                     <br />
                                     <br />

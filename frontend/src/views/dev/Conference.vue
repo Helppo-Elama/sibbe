@@ -129,7 +129,7 @@ import Vue from "vue";
 import { conference as metaData } from "@h/metaData";
 
 import Header from "@c/Header.vue";
-import ConferenceList from "@c/ConferenceList.vue";
+import ConferenceList from "@c/conference/ConferenceList.vue";
 import { conferenceImages as images } from "@d/conference/conference.images";
 import { conferenceHeaderImages as headerImages } from "@d/conference/conference.images";
 

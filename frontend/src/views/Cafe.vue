@@ -16,23 +16,7 @@
 						Kesän ystävän lempipaikka
 					</h3>
 				</v-col>
-				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<div ref="open" class="d-none">
-						<h2 class="museo">Kyllä, olemme</h2>
-						<h1 class="museo open">avoinna!</h1>
-						<h2 class="bello pt-2">Tulkaapa siis herkuttelemaan.</h2>
-					</div>
-					<div ref="closed" class="d-none">
-						<h2 class="museo">Valitettavasti olemme</h2>
-						<h1 class="museo closed">Suljettu juuri nyt.</h1>
-						<h2 v-if="nextOpenTime" class="bello pt-2">
-							Avaamme taas<br />
-							<span class="museo open">{{ nextOpenTime.day }}, kello {{ nextOpenTime.time }}.</span
-							><br />
-							Tulkaa silloin uudestaan!
-						</h2>
-					</div>
-				</v-col>
+				<OpenClosed :openClosed="openClosed" />
 			</v-row>
 			<v-row>
 				<v-col cols="12" md="6" class="light-on-red full-height pb-16" data-aos="fade-up">
@@ -64,7 +48,7 @@
 			</v-row>
 			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
 				<v-col cols="12" class="pa-0 ma-0">
-					<MenuParser :menu="menu" />
+					<menu-parser :items="menu">Tarjoi&shy;lem&shy;me teille</menu-parser>
 				</v-col>
 			</v-row>
 			<v-row class="pl-0 pr-0 ma-0 green-on-light full-height pt-16 pb-16">
@@ -90,15 +74,16 @@ import { IImage } from "@d/interfaces/images.interface";
 import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg";
 import { socialUrls } from "@d/company/company.data";
 
-import MenuParser from "@m/MenuParser.vue";
+import MenuParser from "@c/common/MenuParser.vue";
+import OpenClosed from "@c/common/OpenClosed.vue";
 import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
 import {
 	IGoogleMapsInit,
-	IOpeningHours,
+	IOpeningPeriods,
 	IOpeningHoursEvent,
 	isIOpeningHoursEvent,
 } from "@d/interfaces/maps.interface";
-import GoogleMaps from "@m/GoogleMaps.vue";
+import GoogleMaps from "@c/GoogleMaps.vue";
 import "@h/dateExtensions";
 
 const { cafe: placeId } = placeIds;
@@ -117,11 +102,12 @@ const googleMapsInit: IGoogleMapsInit = {
 	id: "map",
 };
 
-const cafe = Vue.extend({
+export default Vue.extend({
 	name: "Cafe",
 	metaInfo: { ...metaData },
 	components: {
 		Carousel,
+		OpenClosed,
 		VueFB,
 		MenuParser,
 		GoogleMaps,
@@ -131,11 +117,10 @@ const cafe = Vue.extend({
 		one: IImage;
 		lofbergsLogo: { image: string; imageMaxWidth: string; alt: string };
 		carouselImages: Record<string, IImage[]>;
-		data: boolean | ICafeData;
-		menu: boolean | IMenu;
+		data: undefined | ICafeData;
+		menu: undefined | IMenu;
 		googleMapsInit: IGoogleMapsInit;
-		openingHours: IOpeningHours | undefined;
-		nextOpenTime: { day: string; time: string } | undefined;
+		openClosed: { isOpen: boolean; periods: IOpeningPeriods; weekday_text?: string };
 	} {
 		return {
 			fbUrl: socialUrls.fbUrlCafe,
@@ -146,102 +131,53 @@ const cafe = Vue.extend({
 				alt: "Löfbergs logo",
 			},
 			carouselImages: carouselImages,
-			data: false,
-			menu: false,
+			data: undefined,
+			menu: undefined,
 			googleMapsInit,
-			openingHours: undefined,
-			nextOpenTime: undefined,
+			openClosed: { isOpen: false, periods: [] },
 		};
 	},
 	methods: {
 		setOpeningHours(event: IOpeningHoursEvent): void {
 			if (isIOpeningHoursEvent(event)) {
-				const isOpen = event.detail.isOpen();
-				const { periods, weekday_text } = event.detail;
-				this.$nextTick(() => {
-					if (isOpen) {
-						(this.$refs["closed"] as HTMLElement).classList.add("d-none");
-						(this.$refs["open"] as HTMLElement).classList.remove("d-none");
-					} else {
-						(this.$refs["open"] as HTMLElement).classList.add("d-none");
-						(this.$refs["closed"] as HTMLElement).classList.remove("d-none");
-
-						const open: Array<number> = [];
-						for (let [day] of periods.entries()) {
-							open.push(day);
-						}
-						const now = new Date().getDay();
-						let start: Array<number> = [];
-						let end: Array<number> = [];
-						for (let i = 0; i <= 6; i += 1) {
-							if (i >= now) {
-								start.push(i);
-							} else {
-								end.push(i);
-							}
-						}
-						const days = start.concat(end);
-
-						const findIndex = (days: Array<number>, open: Array<number>): number | boolean => {
-							for (let day of days) {
-								const index = open.findIndex((x) => x === day);
-								if (index >= 0) {
-									return index as number;
-								}
-							}
-							return false;
-						};
-
-						const getWeekDayAsText = (day: number): string | boolean => {
-							if (day === 0) {
-								return "Tänään";
-							} else {
-								const arrayOfWeekdays = [
-									"Sunnuntaina",
-									"Maanantaina",
-									"Tiistaina",
-									"Keskiviikkona",
-									"Torstaina",
-									"Perjantaina",
-									"Lauantaina",
-								];
-								return arrayOfWeekdays[day];
-							}
-						};
-
-						const index = findIndex(days, open);
-						if (index !== false) {
-							const openDay = periods[index as number].open;
-							const day = getWeekDayAsText(openDay.day);
-							if (day) {
-								this.nextOpenTime = {
-									day: day as string,
-									time: openDay.time.slice(0, 2) + ":" + openDay.time.slice(2),
-								};
-							}
-						}
-					}
-				});
+				this.openClosed = {
+					isOpen: event.detail.isOpen(),
+					periods: event.detail.periods,
+				};
 			}
 		},
-		fetchData(target: string): boolean | ICafeData {
+		fetchData(target: string): undefined | ICafeData {
 			const url = createURL(target);
-			const response = axios({ url });
-			if (response && isICafeData(response)) {
-				return response;
-			} else return false;
+			if (url) {
+				const response = axios({ url });
+				if (response && isICafeData(response)) {
+					return response;
+				}
+			} else {
+				throw "❌ No URL for axios with target: " + target;
+			}
+			return;
 		},
-		fetchMenu(target: string): boolean | IMenu {
+		fetchMenu(target: string): undefined | IMenu {
 			const url = createURL(target);
-			const response = axios({ url });
-			if (response && isIMenu(response)) {
-				return response;
-			} else return false;
+			if (url) {
+				const response = axios({ url });
+				if (response && isIMenu(response)) {
+					return response;
+				}
+			} else {
+				throw "❌ No URL for axios with target: " + target;
+			}
+			return;
 		},
 	},
 	async mounted(): Promise<void> {
-		this.data = await this.fetchData("data");
-		this.menu = await this.fetchMenu("menu");
+		try {
+			this.data = await this.fetchData("data");
+			this.menu = await this.fetchMenu("menu");
+		} catch (error) {
+			console.error(error);
+		}
 
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY;
@@ -257,14 +193,10 @@ const cafe = Vue.extend({
 		);
 	},
 });
-export default cafe;
 </script>
 
 <style lang="scss" scoped>
-.closed {
-	color: $color2;
-}
-.open {
-	color: $color3;
+.empty {
+	font-weight: 400;
 }
 </style>

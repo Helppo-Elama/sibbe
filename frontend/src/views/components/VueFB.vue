@@ -29,7 +29,7 @@
 <script lang="js">
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-const VueFB = {
+export default {
   name: "VueFB",
   props: {
     fbUrl: { type: String },
@@ -102,7 +102,6 @@ const VueFB = {
     window.removeEventListener("resize", this.dedouncedFbResize);
   },
 }
-export default VueFB;
 </script>
 
 <style lang="scss" scoped>

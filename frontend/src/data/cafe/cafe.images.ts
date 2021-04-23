@@ -51,17 +51,17 @@ const cafeCarouselImages: { normal: Array<IImage>; cropped: Array<IImage> } = {
 		{
 			img: cafeCarouselCroppedImg1,
 			webp: cafeCarouselCroppedWebp1,
-			alt: "Villa Sibben julkisivu",
+			alt: "Cafe Sibbestä ilmakuva",
 		},
 		{
 			img: cafeCarouselCroppedImg2,
 			webp: cafeCarouselCroppedWebp2,
-			alt: "Villa Sibben etupihaa",
+			alt: "Rantalentopalloa kahvilan lähellä",
 		},
 		{
 			img: cafeCarouselCroppedImg3,
 			webp: cafeCarouselCroppedWebp3,
-			alt: "Hiekkaleikit kesken",
+			alt: "Pitäiskös suppailla?",
 		},
 	],
 };

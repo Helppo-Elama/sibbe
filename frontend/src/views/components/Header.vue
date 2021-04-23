@@ -43,7 +43,7 @@
 import Vue, { PropType } from "vue";
 import { IImage } from "@d/interfaces/images.interface";
 
-const Header = Vue.extend({
+export default Vue.extend({
 	name: "Header",
 	props: {
 		images: { type: Object as () => PropType<Record<string, IImage>> },
@@ -53,7 +53,6 @@ const Header = Vue.extend({
 		console.log("👍 Header mounted!");
 	},
 });
-export default Header;
 </script>
 
 <style lang="scss" scoped>

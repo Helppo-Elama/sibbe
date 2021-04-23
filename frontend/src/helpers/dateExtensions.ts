@@ -41,3 +41,8 @@ export function ISOStringToDate(string: string): Date {
 	);
 	return result;
 }
+
+export function dateToStringYYYYMMDD(date: Date): string {
+	const result = new Date(date).toISOString().split("T")[0];
+	return result;
+}

@@ -5,43 +5,60 @@ const url = process.env.MIX_APP_URL;
 
 // RESTAURANT
 const getRestaurantLunchApiUrl = (start, end) => {
-	const restaurantLunchApiUrl = `${url}/restaurant/lunch/authorized?start_date=${dateToStringYYYYMMDD(
+	const result = `${url}/restaurant/lunch/authorized?start_date=${dateToStringYYYYMMDD(
 		start
 	)}&end_date=${dateToStringYYYYMMDD(end)}`;
-	return restaurantLunchApiUrl;
+	return result;
 };
 
 const postRestaurantLunchDateApiUrl = () => {
-	const restaurantLunchDateApiUrl = `${url}/restaurant/lunch/authorized/date`;
-	return restaurantLunchDateApiUrl;
+	const result = `${url}/restaurant/lunch/authorized/date`;
+	return result;
 };
 
 const postRestaurantLunchApiUrl = () => {
-	const restaurantLunchApiUrl = `${url}/restaurant/lunch/authorized/lunch`;
-	return restaurantLunchApiUrl;
+	const result = `${url}/restaurant/lunch/authorized/lunch`;
+	return result;
+};
+
+const postRestaurantItemApiUrl = () => {
+	const result = `${url}/restaurant/menu/authorized/item`;
+	return result;
+};
+
+const postRestaurantTypeApiUrl = () => {
+	const result = `${url}/restaurant/menu/authorized/type`;
+	return result;
+};
+
+const postRestaurantDataApiUrl = () => {
+	const result = `${url}/restaurant/menu/authorized/data`;
+	return result;
 };
 
 // CAFE
-
 const postCafeItemApiUrl = () => {
-	const cafeApiUrl = `${url}/cafe/authorized/item`;
-	return cafeApiUrl;
+	const result = `${url}/cafe/authorized/item`;
+	return result;
 };
 
 const postCafeTypeApiUrl = () => {
-	const cafeApiUrl = `${url}/cafe/authorized/type`;
-	return cafeApiUrl;
+	const result = `${url}/cafe/authorized/type`;
+	return result;
 };
 
 const postCafeDataApiUrl = () => {
-	const cafeApiUrl = `${url}/cafe/authorized/data`;
-	return cafeApiUrl;
+	const result = `${url}/cafe/authorized/data`;
+	return result;
 };
 
 export {
 	getRestaurantLunchApiUrl,
 	postRestaurantLunchDateApiUrl,
 	postRestaurantLunchApiUrl,
+	postRestaurantItemApiUrl,
+	postRestaurantTypeApiUrl,
+	postRestaurantDataApiUrl,
 	postCafeItemApiUrl,
 	postCafeTypeApiUrl,
 	postCafeDataApiUrl,
