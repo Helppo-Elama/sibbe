@@ -23,7 +23,7 @@
 					</h3>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<OpenClosed :openClosed="openClosed" />
+					<OpenClosed :openClosed="openClosed" :classList="'color-dark'" />
 				</v-col>
 			</v-row>
 			<v-row v-if="menu" class="light-on-green full-height pt-16 pb-16">
@@ -38,7 +38,7 @@
 						olemme talven aikana suunnitelleet toimintaa ja nyt olemme valmiita starttaamaan. Esan
 						johdolla Villa Sibben keittiöstä alkaa kantautua tuoreen leivän tuoksu, lounaaksi
 						nautitaan päivän keittoa ja lounaslistan annoksia. Lisäksi meille tulee rentoja ja
-						mutkattomia Á la carte-annoksia.”
+						mutkattomia Á la carte-annoksia.
 					</p>
 					<picture>
 						<source :srcSet="two.webp.srcSet" type="image/webp" />
@@ -81,7 +81,7 @@
 					</p>
 				</v-col>
 			</v-row>
-			<v-row v-if="menu" class="dark-on-yellow full-height pt-16 pb-16">
+			<v-row v-if="haveLunches" class="dark-on-yellow full-height pt-16 pb-16">
 				<v-col cols="12" class="pa-0 ma-0">
 					<lunch-parser :items="lunches" :color="'#424242'" :classList="'dark-on-yellow'"
 						>Lounaat ja brunssit</lunch-parser
@@ -186,6 +186,7 @@ export default Vue.extend({
 		lunches: undefined | IMenu;
 		googleMapsInit: IGoogleMapsInit;
 		openClosed: { isOpen: boolean; periods: IOpeningPeriods; weekday_text?: string };
+		haveLunches: boolean;
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
@@ -197,6 +198,7 @@ export default Vue.extend({
 			lunches: undefined,
 			googleMapsInit,
 			openClosed: { isOpen: false, periods: [] },
+			haveLunches: false,
 		};
 	},
 	methods: {
@@ -208,10 +210,10 @@ export default Vue.extend({
 				};
 			}
 		},
-		fetchData(target: string): undefined | IRestaurantData {
+		async fetchData(target: string): Promise<undefined | IRestaurantData> {
 			const url = createURL(target);
 			if (url) {
-				const response = axios({ url });
+				const response = await axios({ url });
 				if (response && isIRestaurantData(response)) {
 					return response;
 				}
@@ -220,10 +222,10 @@ export default Vue.extend({
 			}
 			return;
 		},
-		fetchMenu(target: string): undefined | IMenu {
+		async fetchMenu(target: string): Promise<undefined | IMenu> {
 			const url = createURL(target);
 			if (url) {
-				const response = axios({ url });
+				const response = await axios({ url });
 				if (response && isIMenu(response)) {
 					return response;
 				}
@@ -238,6 +240,13 @@ export default Vue.extend({
 			//this.data = await this.fetchData("data");
 			this.menu = await this.fetchMenu("menu");
 			this.lunches = await this.fetchMenu("lunch");
+			if (isIMenu(this.lunches)) {
+				for (const lunch of this.lunches) {
+					if (Array.isArray(lunch.json)) {
+						if (lunch.json.length > 0) this.haveLunches = true;
+					}
+				}
+			}
 		} catch (error) {
 			console.error(error);
 		}

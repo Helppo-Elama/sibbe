@@ -21,7 +21,7 @@
 									Hallintapaneeli
 								</jet-nav-link>
 							</div>
-							<div class="hidden sm:flex sm:items-center sm:ml-6 mr-6">
+							<div class="hidden sm:flex sm:items-center sm:ml-6">
 								<jet-dropdown align="left" width="48">
 									<template #trigger>
 										<span class="inline-flex rounded-md">
@@ -51,8 +51,8 @@
 										</jet-dropdown-link>
 
 										<jet-dropdown-link
-											:href="route('restaurant.other')"
-											:active="route().current('restaurant.other')"
+											:href="route('restaurant.data')"
+											:active="route().current('restaurant.data')"
 										>
 											Muut asiat
 										</jet-dropdown-link>
@@ -61,9 +61,14 @@
 									</template>
 								</jet-dropdown>
 							</div>
-							<div class="hidden space-x-8 sm:-my-px sm:flex">
+							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
 								<jet-nav-link :href="route('cafe')" :active="route().current('cafe')">
 									Kahvila
+								</jet-nav-link>
+							</div>
+							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
+								<jet-nav-link :href="route('portions')" :active="route().current('portions')">
+									Annospohjat
 								</jet-nav-link>
 							</div>
 						</div>
@@ -188,14 +193,20 @@
 								Menu
 							</jet-responsive-nav-link>
 							<jet-responsive-nav-link
-								:href="route('restaurant.other')"
-								:active="route().current('restaurant.other')"
+								:href="route('restaurant.data')"
+								:active="route().current('restaurant.data')"
 							>
 								Muut asiat
 							</jet-responsive-nav-link>
 						</div>
 						<jet-responsive-nav-link :href="route('cafe')" :active="route().current('cafe')">
 							Kahvila
+						</jet-responsive-nav-link>
+						<jet-responsive-nav-link
+							:href="route('portions')"
+							:active="route().current('portions')"
+						>
+							Annospohjat
 						</jet-responsive-nav-link>
 					</div>
 

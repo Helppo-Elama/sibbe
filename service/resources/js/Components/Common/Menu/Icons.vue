@@ -1,20 +1,33 @@
 <template>
-	<div class="flex items-center justify-between">
-		<jet-dropdown align="left" width="48" class="pb-1 pl-1">
+	<div>
+		<span class="pt-4 pb-1 pl-1 text-2xl text-gray-700 block">Valitse kuvake</span>
+		<jet-dropdown align="left" width="48" class="mt-1">
 			<template #trigger>
-				<span class="inline-flex rounded-md">
-					<button
-						type="button"
-						class="inline-flex text-2xl items-center border border-transparent rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-					>
-						Valitse kuvake
-						<JetDropdownSVG />
-					</button>
-				</span>
+				<button
+					type="button"
+					class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+				>
+					<div class="inline-flex">
+						<svg
+							class="pr-3"
+							v-if="selectedIcon.svg"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							aria-hidden="true"
+							focusable="false"
+							height="1.6em"
+							viewBox="0 0 24 24"
+						>
+							<path :d="selectedIcon.svg" fill="#626262" />
+						</svg>
+						{{ selectedIcon.text }}
+					</div>
+					<JetDropdownSVG />
+				</button>
 			</template>
 			<template #content>
 				<jet-dropdown-item v-for="icon in icons" :key="icon.text">
-					<div @click="emit(icon, index)">
+					<div @click="emitIcon(icon, index)">
 						<div v-if="icon.icon === null" class="flex">
 							<div class="w-8 mr-3"><br /></div>
 							<div>
@@ -41,20 +54,6 @@
 				<div class="border-t border-gray-100"></div>
 			</template>
 		</jet-dropdown>
-		<div class="mr-3 pt-14">
-			<svg
-				v-if="getIconSVG()"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
-				aria-hidden="true"
-				focusable="false"
-				width="2em"
-				height="2em"
-				viewBox="0 0 24 24"
-			>
-				<path :d="getIconSVG()" fill="#626262" />
-			</svg>
-		</div>
 	</div>
 </template>
 <script>
@@ -85,85 +84,94 @@ export default {
 	},
 	data() {
 		return {
-			icons: [
-				{
+			icons: {
+				null: {
 					text: "Ei kuvaa",
-					name: "null",
 					icon: null,
+					name: null,
 				},
-				{
+				mdiHamburger: {
 					text: "Hampurilainen",
-					name: "mdiHamburger",
 					icon: mdiHamburger,
+					name: "mdiHamburger",
 				},
-				{
+				mdiFoodCroissant: {
 					text: "Croissant",
-					name: "mdiFoodCroissant",
 					icon: mdiFoodCroissant,
+					name: "mdiFoodCroissant",
 				},
-				{
+				mdiFoodForkDrink: {
 					text: "Ruoka-annos",
-					name: "mdiFoodForkDrink",
 					icon: mdiFoodForkDrink,
+					name: "mdiFoodForkDrink",
 				},
-				{
+				mdiIceCream: {
 					text: "Jäätelö",
-					name: "mdiIceCream",
 					icon: mdiIceCream,
+					name: "mdiIceCream",
 				},
-				{
+				mdiCoffeeOutline: {
 					text: "Kahvi",
-					name: "mdiCoffeeOutline",
 					icon: mdiCoffeeOutline,
+					name: "mdiCoffeeOutline",
 				},
-				{
+				mdiCandycane: {
 					text: "Karkki",
-					name: "mdiCandycane",
 					icon: mdiCandycane,
+					name: "mdiCandycane",
 				},
-				{
+				mdiGlassFlute: {
 					text: "Viini",
-					name: "mdiGlassFlute",
 					icon: mdiGlassFlute,
+					name: "mdiGlassFlute",
 				},
-				{
+				mdiGlassMugVariant: {
 					text: "Olut",
-					name: " mdiGlassMugVariant",
 					icon: mdiGlassMugVariant,
+					name: "mdiGlassMugVariant",
 				},
-				{
+				mdiSilverwareForkKnife: {
 					text: "Ruoka",
-					name: "mdiSilverwareForkKnife",
 					icon: mdiSilverwareForkKnife,
+					name: "mdiSilverwareForkKnife",
 				},
-				{
+				mdiCupcake: {
 					text: "Leivonnainen",
-					name: "mdiCupcake",
 					icon: mdiCupcake,
+					name: "mdiCupcake",
 				},
-				{
+
+				mdiBeerOutline: {
 					text: "Juoma",
-					name: "mdiBeerOutline",
 					icon: mdiBeerOutline,
+					name: "mdiBeerOutline",
 				},
-			],
+			},
+			selectedIcon: {
+				svg: undefined,
+				text: undefined,
+			},
 		};
 	},
-	methods: {
-		getIconSVG() {
-			const { icons, icon } = this;
-			for (let i = 0; i < icons.length; i += 1) {
-				if (icons[i].name === icon) {
-					return icons[i].icon;
+	watch: {
+		icon: {
+			immediate: true,
+			handler() {
+				const { icons, icon } = this;
+				if (!icon) {
+					this.selectedIcon = icons.null;
+					return;
 				}
-			}
-			return false;
+				const { icon: svg, text } = icons[icon];
+				this.selectedIcon = { svg, text };
+			},
 		},
-		emit(icon, index) {
+	},
+	methods: {
+		emitIcon(icon, index) {
 			const { name } = icon;
 			this.$emit("change", { name, index });
 		},
 	},
-	mounted() {},
 };
 </script>

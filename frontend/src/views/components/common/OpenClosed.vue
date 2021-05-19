@@ -1,17 +1,21 @@
 <template>
 	<div>
 		<div ref="open" class="d-none">
-			<h2 class="museo">Kyllä, olemme</h2>
+			<h2 class="museo" :class="classList">Kyllä, olemme</h2>
 			<h1 class="museo open">avoinna!</h1>
-			<h2 class="bello pt-2">Tulkaapa siis herkuttelemaan.</h2>
+			<h2 class="bello pt-2" :class="classList">Tulkaapa siis herkuttelemaan.</h2>
+			<h2 v-if="closingTime" class="museo pt-2" :class="classList">
+				Suljemme tänään <br />kello
+				<span class="closed">{{ closingTime.hours }}:{{ closingTime.minutes }}</span>
+			</h2>
 		</div>
 		<div ref="closed" class="d-none">
-			<h2 class="museo">Valitettavasti olemme</h2>
+			<h2 class="museo" :class="classList">Valitettavasti olemme</h2>
 			<h1 class="museo closed">Suljettu juuri nyt.</h1>
-			<h2 v-if="nextOpenTime" class="bello pt-2">
+			<h2 v-if="nextOpen" class="museo pt-2" :class="classList">
 				Avaamme taas<br />
-				<span class="museo open">{{ nextOpenTime.day }}, kello {{ nextOpenTime.time }}.</span><br />
-				Tulkaa silloin uudestaan!
+				<span class="open">{{ nextOpen.date }}, kello {{ nextOpen.time }}.</span><br />
+				<span class="bello">Tulkaa silloin uudestaan!</span>
 			</h2>
 		</div>
 	</div>
@@ -22,42 +26,20 @@ import Vue, { PropType } from "vue";
 
 import { IOpeningHours, IOpeningPeriods } from "@d/interfaces/maps.interface";
 
-import "@h/dateExtensions";
+import { capitalizeFormattedDate } from "@h/dateExtensions";
 
-const getIndex = (days: Array<number>, open: Array<number>): number | undefined => {
-	for (let day of days) {
-		const index = open.findIndex((x) => x === day);
-		if (index >= 0) {
-			return index as number;
-		}
-	}
-	return;
-};
-
-const getWeekDayAsText = (now: number, day: number): string | undefined => {
-	if (now === day) {
-		return "Tänään";
-	} else if (day >= 0 && day <= 6) {
-		const arrayOfWeekdays = [
-			"Sunnuntaina",
-			"Maanantaina",
-			"Tiistaina",
-			"Keskiviikkona",
-			"Torstaina",
-			"Perjantaina",
-			"Lauantaina",
-		];
-		return arrayOfWeekdays[day];
-	} else {
-		throw "❌ Day should be integer between 0-6 and is now: " + day;
-	}
-};
+import { format, compareAsc } from "date-fns";
+import { fi } from "date-fns/locale";
 
 export default Vue.extend({
 	name: "OpenClosed",
 	props: {
 		openClosed: {
 			type: Object as () => PropType<{ isOpen: boolean; periods: IOpeningPeriods }>,
+		},
+		classList: {
+			type: String,
+			default: "",
 		},
 	},
 	watch: {
@@ -67,45 +49,58 @@ export default Vue.extend({
 	},
 	data(): {
 		openingHours: IOpeningHours | undefined;
-		nextOpenTime: { day: string; time: string } | undefined;
+		nextOpen: { date: string; time: string } | undefined;
+		closingTime: { hours: string; minutes: string } | undefined;
 	} {
-		return { openingHours: undefined, nextOpenTime: undefined };
+		return { openingHours: undefined, nextOpen: undefined, closingTime: undefined };
 	},
 	methods: {
 		refresh() {
 			const { isOpen, periods } = this.$props.openClosed;
 			if (isOpen) {
+				//GET CLOSING TIME ARRAY WITH DAYS
+				const close: Array<number> = [];
+				for (let [day] of periods.entries()) {
+					close.push(periods[day].close.day);
+				}
+				const now = new Date().getDay();
+				//FIND INDEX FROM CLOSING TIME ARRAY
+				const index = close.findIndex((x) => x === now);
+				if (index >= 0) {
+					this.closingTime = {
+						hours: periods[index as number].close.time.slice(0, 2),
+						minutes: periods[index as number].close.time.slice(2),
+					};
+				}
+
 				(this.$refs["closed"] as HTMLElement).classList.add("d-none");
 				(this.$refs["open"] as HTMLElement).classList.remove("d-none");
 			} else {
 				(this.$refs["open"] as HTMLElement).classList.add("d-none");
 				(this.$refs["closed"] as HTMLElement).classList.remove("d-none");
 
-				const open: Array<number> = [];
-				for (let [day] of periods.entries()) {
-					open.push(periods[day].open.day);
+				// GET NEXT OPEN DATES
+				const openDays: Array<Date> = [];
+				for (const nextOpenDay of periods) {
+					openDays.push(new Date(nextOpenDay.open.nextDate));
 				}
-				const now = new Date().getDay();
-				let start: Array<number> = [];
-				let end: Array<number> = [];
-				for (let i = 0; i <= 6; i += 1) {
-					if (i >= now) {
-						start.push(i);
-					} else {
-						end.push(i);
-					}
+				openDays.sort(compareAsc);
+				// SHOW NEXT OPEN DATE
+				const nextOpenDay = openDays[0];
+				let now = new Date();
+				let nextOpen = {
+					date: "",
+					time: format(nextOpenDay, "HH:mm", { locale: fi }),
+				};
+				if (now.getDate() === nextOpenDay.getDate()) nextOpen.date = "Tänään";
+				else {
+					nextOpen.date = capitalizeFormattedDate(
+						format(nextOpenDay, "EEEE dd.MM.yyyy", {
+							locale: fi,
+						})
+					);
 				}
-				const days = start.concat(end);
-
-				const index = getIndex(days, open);
-				if (index) {
-					const openDay = periods[index as number].open;
-					const day = getWeekDayAsText(now, openDay.day);
-					this.nextOpenTime = {
-						day: day as string,
-						time: openDay.time.slice(0, 2) + ":" + openDay.time.slice(2),
-					};
-				}
+				this.nextOpen = nextOpen;
 			}
 		},
 	},

@@ -17,9 +17,19 @@ class LunchController extends Controller
     public function post_date(Request $request)
     {
         Lunch::where(["date" => $request->date])
-            ->update(["hours" => $request->hours, "price" => $request->price, "type" => $request->type]);
+            ->update(["price" => $request->price, "type" => $request->type, "serving_time" => $request->serving_time]);
 
         return response()->json("Päivä päivitetty", 200);
+    } //end postLunch()
+
+    public function post_serving_times(Request $request)
+    {
+        foreach ($request->toArray() as $data) {
+
+            Lunch::where(["date" => $data["date"]])
+                ->update(["serving_time" => $data["serving_time"], "price" => $data["price"], "type" => $data["type"]]);
+        }
+        return response()->json("Päivien oletusarvot päivitetty", 200);
     } //end postLunch()
 
     public function post_lunch(Request $request)
@@ -28,6 +38,14 @@ class LunchController extends Controller
             ->update(["json" => $request->json]);
 
         return response()->json("Lounas päivitetty", 200);
+    } //end postLunch()
+
+    public function delete_lunch(Request $request)
+    {
+        Lunch::where(["date" => $request->date])
+            ->update(["json" => $request->json]);
+
+        return response()->json("Annos poistettu", 200);
     } //end postLunch()
 
     public function get(Request $request)
@@ -49,7 +67,7 @@ class LunchController extends Controller
 
             foreach ($dates as $date) {
                 if ($lunches->contains("date", $date) === false) {
-                    $lunches->push((object)["date" => $date, "json" =>  ""]);
+                    $lunches->push((object)["date" => $date, "json" =>  "", "serving_time" => ""]);
                     array_push($dates_missing, $date);
                 }
             }
@@ -61,8 +79,8 @@ class LunchController extends Controller
                 }
             }
             $lunch->json = json_decode($lunch->json);
+            $lunch->serving_time = json_decode($lunch->serving_time);
         }
-        //        return response($request->user(), 200);
         return response($lunches, 200);
     } //end get()
 }//end class

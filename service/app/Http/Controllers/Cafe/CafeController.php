@@ -38,6 +38,13 @@ class CafeController extends Controller
         return response()->json("Lista päivitetty", 200);
     }
 
+    public function delete_item(Request $request)
+    {
+        Cafe::where(["type" => $request->type])
+            ->update(["json" => $request->json]);
+
+        return response()->json("Annos poistettu", 200);
+    }
 
     public function delete_type(Request $request)
     {

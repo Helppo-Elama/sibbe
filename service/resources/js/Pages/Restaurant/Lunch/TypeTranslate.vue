@@ -1,9 +1,7 @@
 <template>
-	<div
-		class="rounded-md block py-2 text-gray-600 m-0.5 w-full border rounded-md border-gray-300 shadow-sm"
-	>
+	<span>
 		{{ translated }}
-	</div>
+	</span>
 </template>
 <script>
 export default {

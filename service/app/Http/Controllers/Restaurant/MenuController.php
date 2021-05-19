@@ -37,6 +37,13 @@ class MenuController extends Controller
         return response()->json("Lista päivitetty", 200);
     }
 
+    public function delete_item(Request $request)
+    {
+        Menu::where(["type" => $request->type])
+            ->update(["json" => $request->json]);
+
+        return response()->json("Annos poistettu", 200);
+    } //end postLunch()
 
     public function delete_type(Request $request)
     {
@@ -54,7 +61,7 @@ class MenuController extends Controller
             $d->json = json_decode($d->json);
         }
         if ($request->user()) {
-            return Inertia::render('Restaurant/Menu', [
+            return Inertia::render("Restaurant/Menu", [
                 "data" => $data
             ]);
         } else {

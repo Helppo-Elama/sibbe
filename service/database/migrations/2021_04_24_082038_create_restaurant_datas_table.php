@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestaurantDataTable extends Migration
+class CreateRestaurantDatasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateRestaurantDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_data', function (Blueprint $table) {
+        Schema::create('restaurant_datas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("title")->unique();
+            $table->json("json")->nullable();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateRestaurantDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_data');
+        Schema::dropIfExists('restaurant_datas');
     }
 }

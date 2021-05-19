@@ -1,10 +1,13 @@
 <template>
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 frist:border-r-2">
-		<div v-for="(item, i) in data" :key="item + i">
+		<div v-for="(item, i) in portions" :key="item + i">
 			<div class="mr-4">
-				<div class="flex justify-between pb-3 text-2xl text-gray-700">
+				<div class="grid grid-cols-1 lg:grid-cols-2 pb-3 text-2xl text-gray-700">
 					<div class="break-all">{{ i + 1 }}. {{ item.title }}</div>
-					<div>
+					<div class="flex justify-end">
+						<jet-button class="px-6 ml-3" @click.native="handleSearch(i)" action="search">
+							Hae
+						</jet-button>
 						<jet-button
 							class="px-6 ml-3"
 							@click.native="$emit('delete', { index, i })"
@@ -18,7 +21,7 @@
 					<span class="pt-4 pb-1 pl-2 text-gray-700 block">Nimike</span>
 					<input
 						type="text"
-						class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="block mt-2 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 						:value="item.title"
 						@change="item.title = $event.target.value"
 					/>
@@ -26,7 +29,7 @@
 				<label>
 					<span class="pt-4 pb-1 pl-2 text-gray-700 block">Tarkempi kuvaus</span>
 					<textarea
-						class="block mt-1 w-full h-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="block mt-2 w-full h-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 						:value="item.body"
 						@change="item.body = $event.target.value"
 					/>
@@ -65,14 +68,17 @@
 				</label>
 			</div>
 		</div>
+		<Search :init="searchModal" @select="searchResult" @close="searchModal = false" />
 	</div>
 </template>
 <script>
 import JetButton from "@/Jetstream/Button";
+import Search from "./PortionSearch";
 
 export default {
 	components: {
 		JetButton,
+		Search,
 	},
 	props: {
 		data: {
@@ -83,8 +89,24 @@ export default {
 		},
 		index: { Type: Number },
 	},
+	data() {
+		return {
+			searchModal: false,
+			searchIndex: undefined,
+			portions: undefined,
+		};
+	},
 	watch: {
 		data: {
+			deep: true,
+			immediate: true,
+			handler() {
+				if (!this.portions) {
+					this.portions = window._.cloneDeep(this.data);
+				}
+			},
+		},
+		portions: {
 			deep: true,
 			handler() {
 				this.emitHandler();
@@ -93,7 +115,25 @@ export default {
 	},
 	methods: {
 		emitHandler() {
-			this.$emit("change", this.index);
+			const { index, portions } = this;
+			this.$emit("change", { index, portions });
+		},
+		searchResult(result) {
+			if (typeof this.searchIndex === "number" && this.searchIndex >= 0) {
+				const portion = window._.cloneDeep(result);
+				Object.keys(portion).forEach((key) => {
+					if (key in this.portions[this.searchIndex]) {
+						this.portions[this.searchIndex][key] = portion[key];
+					}
+				});
+				this.$message.success("Annos haettu");
+				this.emitHandler();
+			} else this.$message.warn("Annoksen lisääminen epäonnistui");
+			this.searchModal = false;
+		},
+		handleSearch(index) {
+			this.searchIndex = index;
+			this.searchModal = true;
 		},
 	},
 	created() {

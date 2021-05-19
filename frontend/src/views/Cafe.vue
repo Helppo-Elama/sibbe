@@ -16,7 +16,9 @@
 						Kesän ystävän lempipaikka
 					</h3>
 				</v-col>
-				<OpenClosed :openClosed="openClosed" />
+				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
+					<OpenClosed :openClosed="openClosed" />
+				</v-col>
 			</v-row>
 			<v-row>
 				<v-col cols="12" md="6" class="light-on-red full-height pb-16" data-aos="fade-up">
@@ -148,10 +150,10 @@ export default Vue.extend({
 				};
 			}
 		},
-		fetchData(target: string): undefined | ICafeData {
+		async fetchData(target: string): Promise<undefined | ICafeData> {
 			const url = createURL(target);
 			if (url) {
-				const response = axios({ url });
+				const response = await axios({ url });
 				if (response && isICafeData(response)) {
 					return response;
 				}
@@ -160,10 +162,10 @@ export default Vue.extend({
 			}
 			return;
 		},
-		fetchMenu(target: string): undefined | IMenu {
+		async fetchMenu(target: string): Promise<undefined | IMenu> {
 			const url = createURL(target);
 			if (url) {
-				const response = axios({ url });
+				const response = await axios({ url });
 				if (response && isIMenu(response)) {
 					return response;
 				}

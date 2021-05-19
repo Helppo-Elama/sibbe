@@ -1,8 +1,8 @@
 import axiosError from "./errors";
 
-const axios = async (request) => {
+export const axios = async (url) => {
 	try {
-		const response = await window.axios.get(request.url);
+		const response = await window.axios.get(url);
 		return response.data;
 	} catch (error) {
 		axiosError(200, error);
@@ -10,7 +10,7 @@ const axios = async (request) => {
 	}
 };
 
-const axiosPost = async (request) => {
+export const axiosPost = async (request) => {
 	try {
 		const response = await window.axios.post(request.url, request.json, {
 			headers: {
@@ -24,7 +24,7 @@ const axiosPost = async (request) => {
 	}
 };
 
-const axiosDelete = async (request) => {
+export const axiosDelete = async (request) => {
 	try {
 		const response = await window.axios.delete(
 			request.url,
@@ -41,5 +41,3 @@ const axiosDelete = async (request) => {
 		return false;
 	}
 };
-
-export { axios, axiosPost, axiosDelete };

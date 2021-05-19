@@ -30,10 +30,10 @@
 					</div>
 					<MenuItemIterator
 						:data="item.json"
-						:type="item.type"
 						:index="index"
 						@delete="deleteItem"
 						@change="updateItem"
+						:key="componentKey"
 					/>
 					<div class="flex justify-center w-100 py-6">
 						<jet-button class="px-12" @click.native="addItem(index)" action="add">
@@ -51,9 +51,11 @@ import JetButton from "@/Jetstream/Button";
 import { axiosPost } from "@/Helpers/axios";
 import {
 	postRestaurantItemApiUrl,
+	deleteRestaurantItemApiUrl,
 	postRestaurantTypeApiUrl,
 	// postRestaurantDataApiUrl
 	postCafeItemApiUrl,
+	deleteCafeItemApiUrl,
 	postCafeTypeApiUrl,
 	// postCafeDataApiUrl,
 } from "@/Helpers/apiEndPoints";
@@ -73,7 +75,8 @@ export default {
 	},
 	data() {
 		return {
-			items: "",
+			items: undefined,
+			componentKey: 0,
 		};
 	},
 	computed: {
@@ -82,12 +85,14 @@ export default {
 			if (this.type === "cafe") {
 				result = {
 					item: postCafeItemApiUrl(),
+					delete: deleteCafeItemApiUrl(),
 					type: postCafeTypeApiUrl(),
 					// data: postCafeDataApiUrl,
 				};
 			} else if (this.type === "restaurant") {
 				result = {
 					item: postRestaurantItemApiUrl(),
+					delete: deleteRestaurantItemApiUrl(),
 					type: postRestaurantTypeApiUrl(),
 					// data: postCafeDataApiUrl,
 				};
@@ -105,9 +110,19 @@ export default {
 		},
 	},
 	methods: {
-		deleteItem({ index, i }) {
+		async deleteItem({ index, i }) {
 			const item = this.items[index].json;
 			item.splice(i, 1);
+			const json = JSON.stringify(this.items[index]);
+			if (JSON.stringify(this.data[i]) === json) {
+				return;
+			}
+			const url = this.url.delete;
+			const response = await axiosPost({ url, json });
+			if (response) {
+				this.$message.warn(response);
+			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
+			this.forceRerender();
 		},
 		addItem(i) {
 			if (!this.items[i].json) {
@@ -120,20 +135,20 @@ export default {
 				allergenic: "",
 				price: "",
 			});
+			this.forceRerender();
 		},
-		async updateItem(i) {
-			let update = true;
+		async updateItem({ index, portions }) {
+			const i = index;
+			this.items[i].json = portions;
 			const json = JSON.stringify(this.items[i]);
 			if (JSON.stringify(this.data[i]) === json) {
-				update = false;
+				return;
 			}
-			if (update) {
-				const url = this.url.item;
-				const response = await axiosPost({ url, json });
-				if (response) {
-					this.$message.success(response);
-				} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
-			}
+			const url = this.url.item;
+			const response = await axiosPost({ url, json });
+			if (response) {
+				this.$message.success(response);
+			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
 		},
 		async updateType(i) {
 			const data = window._.omit(this.items[i], ["created_at", "json", "updated_at"]);
@@ -147,6 +162,9 @@ export default {
 		updateIcon({ name, index }) {
 			this.items[index].icon = name;
 			this.updateType(index);
+		},
+		forceRerender() {
+			this.componentKey += 1;
 		},
 	},
 	created() {

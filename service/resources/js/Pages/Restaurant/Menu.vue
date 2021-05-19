@@ -63,11 +63,9 @@ export default {
 		async addType() {
 			const item = { type: "", icon: "", json: "", id: null };
 			const i = this.menu.push(item) - 1;
-
 			const json = JSON.stringify(item);
 			const request = { url, json };
 			const response = await axiosPost(request);
-
 			if (response) {
 				this.$message.success(response.message);
 				this.menu[i].id = response.id;

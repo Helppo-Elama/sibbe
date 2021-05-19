@@ -154,7 +154,7 @@ import { axiosGetBookingData as axios } from "@in/axios";
 
 import RoomCarousel from "@c/common/RoomCarousel.vue";
 import { format } from "date-fns";
-import fi from "date-fns/locale/fi";
+import { fi } from "date-fns/locale";
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 import clonedeep from "lodash.clonedeep";
 

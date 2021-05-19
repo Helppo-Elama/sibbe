@@ -17,7 +17,7 @@ class ContactController extends Controller
             "message" => "required",
         ]);
         Mail::to(config("mail.to.address"))->send(
-            new ContactMail($request["name"], $validated["email"], $validated["message"], $request->sender, config("mail.from.address"))
+            new ContactMail($request["name"], $validated["email"], $validated["message"], $request["sender"], config("mail.from.address"))
         );
         return response()->json(null, 200);
     } //end submit()

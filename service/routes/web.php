@@ -17,6 +17,10 @@ Route::middleware(["auth:sanctum", "verified"])
     ->prefix("cafe")
     ->group(base_path("routes/service/cafe.php"));
 
+Route::middleware(["auth:sanctum", "verified"])
+    ->prefix("portions")
+    ->group(base_path("routes/service/portions.php"));
+
 Route::get("/", function () {
     return Inertia::render("Auth/Login", ["canResetPassword" => true]);
 });

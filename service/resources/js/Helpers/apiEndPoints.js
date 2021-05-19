@@ -4,62 +4,94 @@ const url = process.env.MIX_APP_URL;
 // const apiUrl = `${url}/api`;
 
 // RESTAURANT
-const getRestaurantLunchApiUrl = (start, end) => {
+export const getRestaurantLunchApiUrl = (start, end) => {
 	const result = `${url}/restaurant/lunch/authorized?start_date=${dateToStringYYYYMMDD(
 		start
 	)}&end_date=${dateToStringYYYYMMDD(end)}`;
 	return result;
 };
 
-const postRestaurantLunchDateApiUrl = () => {
+export const getRestaurantLunchDefaultsApiUrl = () => {
+	const result = `${url}/restaurant/lunch/authorized/defaults`;
+	return result;
+};
+
+export const postRestaurantLunchDateServingTimesApiUrl = () => {
+	const result = `${url}/restaurant/lunch/authorized/date/serving_times`;
+	return result;
+};
+
+export const postRestaurantLunchDateApiUrl = () => {
 	const result = `${url}/restaurant/lunch/authorized/date`;
 	return result;
 };
 
-const postRestaurantLunchApiUrl = () => {
+export const postRestaurantLunchApiUrl = () => {
 	const result = `${url}/restaurant/lunch/authorized/lunch`;
 	return result;
 };
-
-const postRestaurantItemApiUrl = () => {
-	const result = `${url}/restaurant/menu/authorized/item`;
+export const deleteRestaurantLunchApiUrl = () => {
+	const result = `${url}/restaurant/lunch/authorized/lunch/delete`;
+	return result;
+};
+export const postRestaurantLunchDefaultsApiUrl = () => {
+	const result = `${url}/restaurant/data/authorized/lunch`;
 	return result;
 };
 
-const postRestaurantTypeApiUrl = () => {
+export const postRestaurantItemApiUrl = () => {
+	const result = `${url}/restaurant/menu/authorized/item`;
+	return result;
+};
+export const deleteRestaurantItemApiUrl = () => {
+	const result = `${url}/restaurant/menu/authorized/item/delete`;
+	return result;
+};
+
+export const postRestaurantTypeApiUrl = () => {
 	const result = `${url}/restaurant/menu/authorized/type`;
 	return result;
 };
 
-const postRestaurantDataApiUrl = () => {
-	const result = `${url}/restaurant/menu/authorized/data`;
-	return result;
-};
-
 // CAFE
-const postCafeItemApiUrl = () => {
+export const postCafeItemApiUrl = () => {
 	const result = `${url}/cafe/authorized/item`;
 	return result;
 };
 
-const postCafeTypeApiUrl = () => {
+export const deleteCafeItemApiUrl = () => {
+	const result = `${url}/cafe/authorized/item/delete`;
+	return result;
+};
+
+export const postCafeTypeApiUrl = () => {
 	const result = `${url}/cafe/authorized/type`;
 	return result;
 };
 
-const postCafeDataApiUrl = () => {
+export const postCafeDataApiUrl = () => {
 	const result = `${url}/cafe/authorized/data`;
 	return result;
 };
 
-export {
-	getRestaurantLunchApiUrl,
-	postRestaurantLunchDateApiUrl,
-	postRestaurantLunchApiUrl,
-	postRestaurantItemApiUrl,
-	postRestaurantTypeApiUrl,
-	postRestaurantDataApiUrl,
-	postCafeItemApiUrl,
-	postCafeTypeApiUrl,
-	postCafeDataApiUrl,
+// PORTION
+export const getPortionsApiUrl = () => {
+	const result = `${url}/portions/authorized/`;
+	return result;
+};
+export const postPortionApiUrl = () => {
+	const result = `${url}/portions/authorized/portion`;
+	return result;
+};
+export const getPortionsSearchApiUrl = (title) => {
+	const result = `${url}/portions/authorized/search?title=${title}`;
+	return result;
+};
+export const checkPortionApiUrl = (title) => {
+	const result = `${url}/portions/authorized/check?title=${title}`;
+	return result;
+};
+export const deletePortionApiUrl = () => {
+	const result = `${url}/portions/authorized/portion`;
+	return result;
 };

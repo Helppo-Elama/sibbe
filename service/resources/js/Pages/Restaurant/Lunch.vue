@@ -49,7 +49,7 @@
 							/>
 						</div>
 					</div>
-					<DateIterator :data="lunches" />
+					<DateIterator :data="lunches" :defaults="defaults" />
 				</div>
 			</div>
 		</div>
@@ -64,8 +64,8 @@ import JetButton from "@/Jetstream/Button";
 import { correctOffset, addDays } from "@/Helpers/dateFunctions";
 
 import { axios } from "@/Helpers/axios";
-import { getRestaurantLunchApiUrl } from "@/Helpers/apiEndPoints";
-import DateIterator from "./Lunch/DateIterator";
+import { getRestaurantLunchApiUrl, getRestaurantLunchDefaultsApiUrl } from "@/Helpers/apiEndPoints";
+import DateIterator from "./Lunch/LunchDateIterator";
 
 const now = new Date();
 export default {
@@ -81,12 +81,21 @@ export default {
 				removeRangeLimit: false,
 				allowPastDate: false,
 				allowedDateRange: { start: now, end: null },
-				selectedDateRange: { start: null, end: null },
+				selectedDateRange: { start: now, end: now },
 				disabledWhenSelecting: false,
 				disabledBeforeSelecting: true,
 			},
-			lunches: "",
+			lunches: undefined,
+			defaults: {
+				serving_time: { start: undefined, end: undefined },
+				type: undefined,
+				price: undefined,
+			},
 		};
+	},
+	mounted() {
+		this.fetchData();
+		this.fetchDefaults();
 	},
 	watch: {
 		// eslint-disable-next-line func-names
@@ -138,10 +147,25 @@ export default {
 		async fetchData() {
 			const { start, end } = this.datePicker.selectedDateRange;
 			const url = getRestaurantLunchApiUrl(start, end);
-			const request = { url };
-			const response = await axios(request);
+			const response = await axios(url);
 			if (response) {
 				this.lunches = response;
+				const { length } = this.lunches;
+				for (let i = 0; i < length; i += 1) {
+					if (this.lunches[i].serving_time === null || undefined) {
+						this.$set(this.lunches[i], "serving_time", { start: undefined, end: undefined });
+					}
+				}
+			}
+		},
+		async fetchDefaults() {
+			const url = getRestaurantLunchDefaultsApiUrl();
+			const response = await axios(url);
+			if (response) {
+				const object = response[0];
+				if (Object.prototype.hasOwnProperty.call(object, "json")) {
+					this.defaults = object.json;
+				}
 			}
 		},
 	},

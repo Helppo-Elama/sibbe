@@ -12,9 +12,10 @@ class Data extends Model
     use HasFactory;
 
 
-    protected $table = "restaurant_data";
-    protected $fillable = ["json"];
+    protected $table = "restaurant_datas";
+    protected $fillable = ["title", "json"];
     protected $attributes = [
+        "title" => null,
         "json" => null,
     ];
 }

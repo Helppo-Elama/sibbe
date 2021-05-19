@@ -21,6 +21,13 @@
 		<slot></slot>
 	</button>
 	<button
+		v-else-if="!disabled && action === 'search'"
+		:type="type"
+		class="inline-flex items-center px-4 py-2 bg-white-800 border border-green-600 text-green-600 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-green-700 hover:text-white active:bg-darkgreen active:text-white-600 focus:outline-none focus:border-darkgreen focus:shadow-outline-green-300 focus:text-color-white transition ease-in-out duration-150"
+	>
+		<slot></slot>
+	</button>
+	<button
 		v-else
 		disabled
 		class="inline-flex items-center px-4 py-2 bg-white-800 border border-gray-900 rounded-md font-semibold text-xs text-grey-800 uppercase tracking-widest cursor-default"

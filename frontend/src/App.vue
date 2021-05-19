@@ -3,7 +3,9 @@
 		<Nav />
 		<v-main>
 			<v-container fluid class="pa-0 ma-0">
-				<router-view> </router-view>
+				<transition name="fade">
+					<router-view> </router-view>
+				</transition>
 			</v-container>
 		</v-main>
 	</v-app>
@@ -34,5 +36,13 @@ export default Vue.extend({
 	.v-main {
 		padding-top: 0 !important;
 	}
+}
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
 }
 </style>

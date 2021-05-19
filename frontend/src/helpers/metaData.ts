@@ -135,8 +135,8 @@ const cafe = parse(args);
 //RESTAURANT
 const restaurantUrl = homeUrl + "/restaurant.html";
 args = {
-	title: "Avaamme vuoden 2021 aikana ravintolatoimintaa",
-	description: "Villa Sibbe tulee tarjoamaan laadukasta lounasta sekä ruokaa listalta.",
+	title: "Villa Sibben rento ravintola A.I. Virtasen kotikartanossa",
+	description: "Lounas, Á la carte ja menestyksekkäitä kohtaamisia vehreässä Sipoossa.",
 	socialImage: "https://sibbe.fi/img/social/restaurant-sibbe-social.jpg",
 	url: restaurantUrl,
 };
