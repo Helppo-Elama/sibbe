@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<div v-for="(item, index) in items" :key="item + index" class="p-2">
+		<div v-for="(item, dateIndex) in items" :key="item + dateIndex" class="p-2">
 			<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300">
 				{{ parseDate(item.date) }}
 			</div>
 			<div
 				class="grid grid-cols-1 md:grid-cols-3 gap-4 place-content-evenly p-3 bg-gray-200"
-				@change="updateDate(index)"
+				@change="updateDate(dateIndex)"
 			>
 				<div>
 					<span class="pt-4 pb-1 pl-1 text-gray-700 block">Lounaan tyyppi</span>
@@ -16,15 +16,19 @@
 								type="button"
 								class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
 							>
-								{{ setDefaultType(index) }}
+								{{ setDefaultType(dateIndex) }}
 								<TypeTranslate :text="item.type" />
 								<JetDropdownSVG />
 							</button>
 						</template>
 						<template #content>
-							<jet-dropdown-item @clicked="updateType(null, index)"> (tyhjä) </jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('lunch', index)"> Lounas </jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('brunch', index)">
+							<jet-dropdown-item @clicked="updateType(null, dateIndex)">
+								(tyhjä)
+							</jet-dropdown-item>
+							<jet-dropdown-item @clicked="updateType('lunch', dateIndex)">
+								Lounas
+							</jet-dropdown-item>
+							<jet-dropdown-item @clicked="updateType('brunch', dateIndex)">
 								Brunssi
 							</jet-dropdown-item>
 							<div class="border-t border-gray-100"></div>
@@ -39,7 +43,7 @@
 							class="mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 							name="start"
 							step="300"
-							:value="getServingTime('start', index)"
+							:value="getServingTime('start', dateIndex)"
 							@change="item.serving_time.start = $event.target.value"
 						/>
 						<b>-</b>
@@ -48,7 +52,7 @@
 							class="mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 							name="end"
 							step="300"
-							:value="getServingTime('end', index)"
+							:value="getServingTime('end', dateIndex)"
 							@change="item.serving_time.end = $event.target.value"
 						/>
 					</label>
@@ -57,7 +61,7 @@
 					<label>
 						<span class="pt-4 pb-1 pl-1 text-gray-700 block">Päivän hinta</span>
 						<div class="flex mt-1">
-							{{ setDefaultPrice(index) }}
+							{{ setDefaultPrice(dateIndex) }}
 							<input
 								type="number"
 								class="block rounded-md w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -72,13 +76,13 @@
 			<LunchItemIterator
 				:data="item.json"
 				:date="item.date"
-				:index="index"
+				:dateIndex="dateIndex"
 				@delete="deleteItem"
 				@change="updateItem"
 				:key="componentKey"
 			/>
 			<div class="flex justify-center w-100 py-6">
-				<jet-button class="px-12" @click.native="addItem(index)" action="add">
+				<jet-button class="px-12" @click.native="addItem(dateIndex)" action="add">
 					Lisää uusi annos
 				</jet-button>
 			</div>
@@ -100,7 +104,7 @@ import { axiosPost } from "@/Helpers/axios";
 import {
 	postRestaurantLunchApiUrl,
 	postRestaurantLunchDateApiUrl,
-	postRestaurantLunchDateServingTimesApiUrl,
+	postRestaurantLunchDateDefaultsApiUrl,
 	deleteRestaurantLunchApiUrl,
 } from "@/Helpers/apiEndPoints";
 
@@ -170,14 +174,14 @@ export default {
 				key = "start";
 				if (start === undefined) {
 					result = defaultStart;
-					this.updateServingTimes();
+					this.updateDefaults();
 				} else result = start;
 			}
 			if (time === "end") {
 				key = "end";
 				if (end === undefined) {
 					result = defaultEnd;
-					this.updateServingTimes();
+					this.updateDefaults();
 				} else result = end;
 			}
 			if (key) {
@@ -186,13 +190,9 @@ export default {
 			return result;
 		},
 
-		async deleteItem({ index, i }) {
-			const item = this.items[index].json;
-			item.splice(i, 1);
-			const json = JSON.stringify(this.items[index]);
-			if (JSON.stringify(this.data[i]) === json) {
-				return;
-			}
+		async deleteItem({ dateIndex, i }) {
+			this.items[dateIndex].json.splice(i, 1);
+			const json = window._.pick(this.items[dateIndex], ["date", "json"]);
 			const url = deleteRestaurantLunchApiUrl();
 			const response = await axiosPost({ url, json });
 			if (response) {
@@ -200,7 +200,8 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
 			this.forceRerender();
 		},
-		addItem(i) {
+		addItem(dateIndex) {
+			const i = dateIndex;
 			if (!this.items[i].json) {
 				this.items[i].json = [];
 			}
@@ -211,15 +212,13 @@ export default {
 				allergenic: "",
 				price: "",
 			});
+			this.updateItem({ dateIndex, undefined });
 			this.forceRerender();
 		},
-		async updateItem({ index, portions }) {
-			const i = index;
-			this.items[i].json = portions;
+		async updateItem({ dateIndex, portions }) {
+			const i = dateIndex;
+			if (portions) this.items[i].json = portions;
 			const json = JSON.stringify(this.items[i]);
-			if (JSON.stringify(this.data[i]) === json) {
-				return;
-			}
 			const url = postRestaurantLunchApiUrl();
 			const response = await axiosPost({ url, json });
 			if (response) {
@@ -227,22 +226,23 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
 		},
 
-		setDefaultType(index) {
-			const i = index;
-			if (!this.items[i].type) this.items[i].type = this.defaults.type;
+		setDefaultType(dateIndex) {
+			const i = dateIndex;
+			if (this.items[i].type === undefined) this.items[i].type = this.defaults.type;
 		},
 
-		setDefaultPrice(index) {
-			const i = index;
-			if (!this.items[i].price) this.items[i].price = this.defaults.price;
+		setDefaultPrice(dateIndex) {
+			const i = dateIndex;
+			if (this.items[i].price === undefined) this.items[i].price = this.defaults.price;
 		},
 
-		updateType(type, index) {
-			this.items[index].type = type;
-			this.updateDate(index);
+		updateType(type, dateIndex) {
+			const i = dateIndex;
+			this.items[i].type = type;
+			this.updateDate(i);
 		},
-		async updateDate(index) {
-			const i = index;
+		async updateDate(dateIndex) {
+			const i = dateIndex;
 			const data = window._.pick(this.items[i], ["date", "price", "serving_time", "type"]);
 			const url = postRestaurantLunchDateApiUrl();
 			const json = JSON.stringify(data);
@@ -251,27 +251,26 @@ export default {
 				this.$message.success(response);
 			} else this.$message.error("Päivän tallentamisessa tapahtui virhe");
 		},
-		async updateServingTimes() {
+		async updateDefaults() {
 			// UPDATES OTHER DEFAULT VALUES TOO!
 			const data = [];
 			Object.keys(this.items).forEach((i) => {
 				data.push(window._.pick(this.items[i], ["date", "serving_time", "type", "price"]));
 			});
-			const url = postRestaurantLunchDateServingTimesApiUrl();
+			const url = postRestaurantLunchDateDefaultsApiUrl();
 			const json = JSON.stringify(data);
 			const response = await axiosPost({ url, json });
 			if (response) {
 				this.$message.success(response);
 			} else this.$message.error("Tarjoiluaikojen tallentamisessa tapahtui virhe");
 		},
-
 		forceRerender() {
 			this.componentKey += 1;
 		},
 	},
 	created() {
 		this.updateDate = window._.debounce(this.updateDate, 1000);
-		this.updateServingTimes = window._.debounce(this.updateServingTimes, 1000);
+		this.updateDefaults = window._.debounce(this.updateDefaults, 1000);
 	},
 };
 </script>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\Defaults;
 
 
 use Illuminate\Http\Request;
-use App\Models\Restaurant\Data;
+use App\Models\Defaults\RestaurantData as Data;
 use Inertia\Inertia;
 
 
@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 
 
-class DataController extends Controller
+class RestaurantController extends Controller
 {
     public function post(Request $request)
     {

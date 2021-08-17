@@ -24,11 +24,11 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
 
 Route::get("/restaurant/lunch", [LunchController::class, "get"]);
 Route::get("/restaurant/menu", [MenuController::class, "get"]);
-Route::get("/restaurant/data", [MenuController::class, "get"]);
+//Route::get("/restaurant/data", [MenuController::class, "get"]);
 
 
 Route::get("/cafe/menu", [CafeController::class, "get"]);
-Route::get("/cafe/data", [CafeController::class, "get"]);
+//Route::get("/cafe/data", [CafeController::class, "get"]);
 
 Route::post("/mail/contact", [ContactController::class, "submit"]);
 //middleware(["middleware" => "trusted_access"])->

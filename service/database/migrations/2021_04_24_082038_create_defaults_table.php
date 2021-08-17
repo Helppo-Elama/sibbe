@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestaurantDatasTable extends Migration
+class CreateDefaultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRestaurantDatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_datas', function (Blueprint $table) {
+        Schema::create('defaults', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string("title")->unique();
@@ -28,6 +28,6 @@ class CreateRestaurantDatasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_datas');
+        Schema::dropIfExists('defaults');
     }
 }

@@ -56,6 +56,7 @@ export default Vue.extend({
 	},
 	methods: {
 		refresh() {
+			console.log(this.$props.openClosed);
 			const { isOpen, periods } = this.$props.openClosed;
 			if (isOpen) {
 				//GET CLOSING TIME ARRAY WITH DAYS

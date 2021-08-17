@@ -12,12 +12,12 @@ export const getRestaurantLunchApiUrl = (start, end) => {
 };
 
 export const getRestaurantLunchDefaultsApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/defaults`;
+	const result = `${url}/restaurant/defaults/authorized/lunch`;
 	return result;
 };
 
-export const postRestaurantLunchDateServingTimesApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/date/serving_times`;
+export const postRestaurantLunchDateDefaultsApiUrl = () => {
+	const result = `${url}/restaurant/lunch/authorized/date/defaults`;
 	return result;
 };
 
@@ -27,15 +27,15 @@ export const postRestaurantLunchDateApiUrl = () => {
 };
 
 export const postRestaurantLunchApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/lunch`;
+	const result = `${url}/restaurant/lunch/authorized/post`;
 	return result;
 };
 export const deleteRestaurantLunchApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/lunch/delete`;
+	const result = `${url}/restaurant/lunch/authorized/delete`;
 	return result;
 };
 export const postRestaurantLunchDefaultsApiUrl = () => {
-	const result = `${url}/restaurant/data/authorized/lunch`;
+	const result = `${url}/defaults/authorized`;
 	return result;
 };
 

@@ -27,7 +27,7 @@
 			</template>
 			<template #content>
 				<jet-dropdown-item v-for="icon in icons" :key="icon.text">
-					<div @click="emitIcon(icon, index)">
+					<div @click="emitIcon(icon, category)">
 						<div v-if="icon.icon === null" class="flex">
 							<div class="w-8 mr-3"><br /></div>
 							<div>
@@ -76,7 +76,7 @@ import {
 } from "@mdi/js";
 
 export default {
-	props: { icon: { type: String }, index: { type: Number } },
+	props: { icon: { type: String }, category: { type: Number } },
 	components: {
 		JetDropdown,
 		JetDropdownItem,
@@ -168,9 +168,9 @@ export default {
 		},
 	},
 	methods: {
-		emitIcon(icon, index) {
+		emitIcon(icon, category) {
 			const { name } = icon;
-			this.$emit("change", { name, index });
+			this.$emit("change", { name, category });
 		},
 	},
 };

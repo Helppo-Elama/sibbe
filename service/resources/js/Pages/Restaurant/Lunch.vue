@@ -49,7 +49,7 @@
 							/>
 						</div>
 					</div>
-					<DateIterator :data="lunches" :defaults="defaults" />
+					<DateIterator :data="lunches" :defaults="defaults" :key="componentKey" />
 				</div>
 			</div>
 		</div>
@@ -86,6 +86,7 @@ export default {
 				disabledBeforeSelecting: true,
 			},
 			lunches: undefined,
+			componentKey: 0,
 			defaults: {
 				serving_time: { start: undefined, end: undefined },
 				type: undefined,
@@ -157,6 +158,7 @@ export default {
 					}
 				}
 			}
+			this.forceRerender();
 		},
 		async fetchDefaults() {
 			const url = getRestaurantLunchDefaultsApiUrl();
@@ -167,6 +169,9 @@ export default {
 					this.defaults = object.json;
 				}
 			}
+		},
+		forceRerender() {
+			this.componentKey += 1;
 		},
 	},
 };

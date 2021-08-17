@@ -139,7 +139,6 @@ export default {
 		async updatePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i];
 			const data = window._.omit(portion, ["created_at", "updated_at"]);
-			console.log(data);
 			const url = postPortionApiUrl();
 			const json = JSON.stringify(data);
 			const response = await axiosPost({ url, json });

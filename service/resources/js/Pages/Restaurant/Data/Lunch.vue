@@ -120,7 +120,7 @@ export default {
 		},
 	},
 	created() {
-		this.updateDate = window._.debounce(this.updateDefaults, 2000);
+		this.updateDefaults = window._.debounce(this.updateDefaults, 2000);
 	},
 };
 </script>

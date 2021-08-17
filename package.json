@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "sibbe",
+  "description": "Villa & Cafe Sibben palvelupaketti (frontend + backend)",
+  "version": "1.0.0",
+  "author": {
+    "name": "Manne Muoniovaara",
+    "email": "manne@helppoelama.net",
+    "url": "https://helppoelämä.fi"
+  }
+}

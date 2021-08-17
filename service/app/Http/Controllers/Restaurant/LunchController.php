@@ -22,10 +22,12 @@ class LunchController extends Controller
         return response()->json("Päivä päivitetty", 200);
     } //end postLunch()
 
-    public function post_serving_times(Request $request)
+    public function post_defaults(Request $request)
     {
         foreach ($request->toArray() as $data) {
-
+            if ($data["price"] == "null") {
+                $data["price"] = "";
+            }
             Lunch::where(["date" => $data["date"]])
                 ->update(["serving_time" => $data["serving_time"], "price" => $data["price"], "type" => $data["type"]]);
         }

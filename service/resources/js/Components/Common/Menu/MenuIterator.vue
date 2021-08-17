@@ -1,18 +1,18 @@
 <template>
 	<div class="bg-gray-200 bg-opacity-25">
 		<div class="p-4">
-			<div v-for="(item, index) in items" :key="item + index">
+			<div v-for="(item, category) in items" :key="item + category">
 				<div class="p-4 rounded-xl shadow-md">
 					<div class="flex w-100 justify-end">
-						<jet-button class="px-6 ml-3" @click.native="$emit('delete', index)" action="delete">
+						<jet-button class="px-6 ml-3" @click.native="$emit('delete', category)" action="delete">
 							Poista kategoria
 						</jet-button>
 					</div>
 					<div
 						class="pb-6 grid grid-cols-2 md:grid-cols-3 gap-4 place-content-evenly"
-						@change="updateType(index)"
+						@change="updateType(category)"
 					>
-						<Icons :icon="item.icon" :index="index" @change="updateIcon" />
+						<Icons :icon="item.icon" :category="category" @change="updateIcon" />
 						<div>
 							<label>
 								<span class="pt-4 pb-1 pl-1 text-gray-700 text-2xl block">Kategoria</span>
@@ -30,13 +30,13 @@
 					</div>
 					<MenuItemIterator
 						:data="item.json"
-						:index="index"
+						:category="category"
 						@delete="deleteItem"
 						@change="updateItem"
 						:key="componentKey"
 					/>
 					<div class="flex justify-center w-100 py-6">
-						<jet-button class="px-12" @click.native="addItem(index)" action="add">
+						<jet-button class="px-12" @click.native="addItem(category)" action="add">
 							Lisää uusi annos
 						</jet-button>
 					</div>
@@ -110,13 +110,9 @@ export default {
 		},
 	},
 	methods: {
-		async deleteItem({ index, i }) {
-			const item = this.items[index].json;
-			item.splice(i, 1);
-			const json = JSON.stringify(this.items[index]);
-			if (JSON.stringify(this.data[i]) === json) {
-				return;
-			}
+		async deleteItem({ category, i }) {
+			this.items[category].json.splice(i, 1);
+			const json = window._.pick(this.items[category], ["type", "json"]);
 			const url = this.url.delete;
 			const response = await axiosPost({ url, json });
 			if (response) {
@@ -124,7 +120,8 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
 			this.forceRerender();
 		},
-		addItem(i) {
+		addItem(category) {
+			const i = category;
 			if (!this.items[i].json) {
 				this.items[i].json = [];
 			}
@@ -135,15 +132,13 @@ export default {
 				allergenic: "",
 				price: "",
 			});
+			this.updateItem({ category, undefined });
 			this.forceRerender();
 		},
-		async updateItem({ index, portions }) {
-			const i = index;
-			this.items[i].json = portions;
+		async updateItem({ category, portions }) {
+			const i = category;
+			if (portions) this.items[i].json = portions;
 			const json = JSON.stringify(this.items[i]);
-			if (JSON.stringify(this.data[i]) === json) {
-				return;
-			}
 			const url = this.url.item;
 			const response = await axiosPost({ url, json });
 			if (response) {
@@ -151,7 +146,7 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
 		},
 		async updateType(i) {
-			const data = window._.omit(this.items[i], ["created_at", "json", "updated_at"]);
+			const data = window._.pick(this.items[i], ["type", "icon", "id"]);
 			const url = this.url.type;
 			const json = JSON.stringify(data);
 			const response = await axiosPost({ url, json });
@@ -159,9 +154,9 @@ export default {
 				this.$message.success(response);
 			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe");
 		},
-		updateIcon({ name, index }) {
-			this.items[index].icon = name;
-			this.updateType(index);
+		updateIcon({ name, category }) {
+			this.items[category].icon = name;
+			this.updateType(category);
 		},
 		forceRerender() {
 			this.componentKey += 1;

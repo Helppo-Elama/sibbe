@@ -5,7 +5,7 @@
 				<h3 class="museo museo-heading pt-16 pb-16"><slot></slot></h3>
 			</v-col>
 			<template v-for="(item, i) in items" cols="12" md="6" lg="4">
-				<template v-if="availableToday(item.date, i)">
+				<template v-if="availableToday(item.date, +i)">
 					<v-col v-if="item.json" :key="item.type + i" cols="12" md="6" lg="4">
 						<div class="align-center mb-4">
 							<h4 class="museo">{{ lunchDate(item.date) }}</h4>
@@ -51,7 +51,7 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 
-import { IMenu, IMenuItem } from "@d/interfaces/menu.interface";
+import { IMenu } from "@d/interfaces/menu.interface";
 import HorizontalLine from "@c/common/HorizontalLine.vue";
 
 import { dateToStringYYYYMMDD, capitalizeFormattedDate } from "@h/dateExtensions";
@@ -91,9 +91,10 @@ export default Vue.extend({
 			return result;
 		},
 		lunchType(type: string): string | undefined {
-			if (type === "lunch") return "Lounas";
-			if (type === "brunch") return "Brunssi";
-			return;
+			let result;
+			if (type === "lunch") result = "Lounas";
+			if (type === "brunch") result = "Brunssi";
+			return result;
 		},
 		lunchDate(date: string): string | undefined {
 			let result;

@@ -5,12 +5,12 @@
 				<div class="grid grid-cols-1 lg:grid-cols-2 pb-3 text-2xl text-gray-700">
 					<div class="break-all">{{ i + 1 }}. {{ item.title }}</div>
 					<div class="flex justify-end">
-						<jet-button class="px-6 ml-3" @click.native="handleSearch(i)" action="search">
+						<jet-button class="px-6 ml-3" @click.native="searchHandler(i)" action="search">
 							Hae
 						</jet-button>
 						<jet-button
 							class="px-6 ml-3"
-							@click.native="$emit('delete', { index, i })"
+							@click.native="deleteHandler(category, i)"
 							action="delete"
 						>
 							Poista
@@ -68,7 +68,7 @@
 				</label>
 			</div>
 		</div>
-		<Search :init="searchModal" @select="searchResult" @close="searchModal = false" />
+		<Search :show="searchModal" @select="searchResult" @close="searchModal = false" />
 	</div>
 </template>
 <script>
@@ -87,7 +87,7 @@ export default {
 		date: {
 			Type: String,
 		},
-		index: { Type: Number },
+		category: { Type: Number },
 	},
 	data() {
 		return {
@@ -109,35 +109,39 @@ export default {
 		portions: {
 			deep: true,
 			handler() {
-				this.emitHandler();
+				this.changeHandler();
 			},
 		},
 	},
 	methods: {
-		emitHandler() {
-			const { index, portions } = this;
-			this.$emit("change", { index, portions });
+		changeHandler() {
+			const { category, portions } = this;
+			this.$emit("change", { category, portions });
 		},
-		searchResult(result) {
+		deleteHandler(category, i) {
+			this.$emit("delete", { category, i });
+		},
+		searchHandler(i) {
+			this.searchIndex = i;
+			this.searchModal = true;
+		},
+		searchResult(portion) {
+			this.searchModal = false;
 			if (typeof this.searchIndex === "number" && this.searchIndex >= 0) {
-				const portion = window._.cloneDeep(result);
-				Object.keys(portion).forEach((key) => {
-					if (key in this.portions[this.searchIndex]) {
-						this.portions[this.searchIndex][key] = portion[key];
-					}
-				});
-				this.$message.success("Annos haettu");
-				this.emitHandler();
+				this.portions[this.searchIndex] = window._.pick(portion, [
+					"title",
+					"body",
+					"allergenic",
+					"ingredients",
+					"price",
+				]);
+				this.changeHandler();
 			} else this.$message.warn("Annoksen lisääminen epäonnistui");
 			this.searchModal = false;
 		},
-		handleSearch(index) {
-			this.searchIndex = index;
-			this.searchModal = true;
-		},
 	},
 	created() {
-		this.emitHandler = window._.debounce(this.emitHandler, 2000);
+		this.emitHandler = window._.debounce(this.changeHandler, 2000);
 	},
 };
 </script>

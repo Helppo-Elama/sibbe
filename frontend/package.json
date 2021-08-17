@@ -5,10 +5,10 @@
   "description": "Villa Sibbe Majoitu, kokousta ja viihdy tammipuiden suojassa",
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
-    "build": "cross-env vue-cli-service build --mode production",
+    "build-fast": "cross-env vue-cli-service build --mode production",
+    "build-final": "cross-env REMOVECONSOLE='true' vue-cli-service build --modern --mode production",
     "lint": "vue-cli-service lint",
-    "analyze-serve": "cross-env ANALYZE='true' vue-cli-service serve --mode development",
-    "build-modern": "cross-env REMOVECONSOLE='true' vue-cli-service build --modern --mode production"
+    "analyze-serve": "cross-env ANALYZE='true' vue-cli-service serve --mode development"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

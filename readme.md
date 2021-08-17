@@ -16,8 +16,8 @@
 
 ### Villa etusivu
 
-- [ ] Aukioloajat
-- [ ] Kevätravintola tulossa
+- [ ] Aukioloajat -> vie backend, etsi ratkaisu FaceBook
+- [x] Kevätravintola tulossa
 
 ### Ruokalista
 
@@ -39,6 +39,7 @@
 - [ ] Tapahtumat
 - [x] Facebook
 - [x] Muokattavaa ruokalistaa
+- [ ] Aukioloajat -> vie backend, etsi ratkaisu FaceBook
 
 &nbsp;
 
