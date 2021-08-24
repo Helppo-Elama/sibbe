@@ -18,25 +18,25 @@
 							<h5 v-if="item.price" class="pt-5">Päivän hinta: {{ item.price }} EUR</h5>
 							<h5 v-else class="dislpay-1 museo pt-5"><br /></h5>
 						</div>
-						<HorizontalLine :classList="classList" />
-						<div v-for="(item, i) in item.json" :key="item.title + i" class="pl-10 pr-10 pb-5">
+						<HorizontalLine :class-list="classList" />
+						<div v-for="(it, x) in item.json" :key="it.title + x" class="pl-10 pr-10 pb-5">
 							<v-container fluid class="pa-0 ma-0">
 								<v-row class="text-left pb-5" no-gutters>
 									<v-col cols="8"
-										><b v-if="item.title">{{ i + 1 }}. {{ item.title }}</b>
+										><b v-if="it.title">{{ x + 1 }}. {{ it.title }}</b>
 										<b v-else>
 											<br />
 										</b>
 									</v-col>
-									<v-col v-if="item.price" cols="4" class="text-right"
-										><b>{{ item.price }} EUR</b></v-col
+									<v-col v-if="it.price" cols="4" class="text-right"
+										><b>{{ it.price }} EUR</b></v-col
 									>
-									<v-col v-if="item.body" cols="12" class="pt-2 pl-5">{{ item.body }}</v-col>
-									<v-col v-if="item.ingredients" cols="12" class="pt-2 pl-5">{{
+									<v-col v-if="it.body" cols="12" class="pt-2 pl-5">{{ item.body }}</v-col>
+									<v-col v-if="it.ingredients" cols="12" class="pt-2 pl-5">{{
 										item.ingredients
 									}}</v-col>
-									<v-col v-if="item.allergenic" cols="12" class="pt-2 pl-5"
-										><i>{{ item.allergenic }}</i></v-col
+									<v-col v-if="it.allergenic" cols="12" class="pt-2 pl-5"
+										><i>{{ it.allergenic }}</i></v-col
 									>
 								</v-row>
 							</v-container>
@@ -49,70 +49,81 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { PropType } from "vue"
 
-import { IMenu } from "@d/interfaces/menu.interface";
-import HorizontalLine from "@c/common/HorizontalLine.vue";
+import { IMenu } from "@d/interfaces/menu.interface"
+import HorizontalLine from "@c/common/HorizontalLine.vue"
 
-import { dateToStringYYYYMMDD, capitalizeFormattedDate } from "@h/dateExtensions";
+import { dateToStringYYYYMMDD } from "@h/dateExtensions"
+import { capitalize } from "@h/common"
 
-import { format, compareAsc } from "date-fns";
-import { fi } from "date-fns/locale";
+import { format, compareAsc } from "date-fns"
+import { fi } from "date-fns/locale"
 
-const now = dateToStringYYYYMMDD(new Date());
-const nowDate = new Date();
+const now = dateToStringYYYYMMDD(new Date())
+const nowDate = new Date()
 
 export default Vue.extend({
 	props: {
-		items: { type: Array as () => PropType<IMenu> },
-		color: { type: String },
-		classList: { type: String },
+		items: { type: Array as () => PropType<IMenu>, required: true },
+		color: {
+			type: String,
+			default() {
+				return undefined
+			}
+		},
+		classList: {
+			type: String,
+			default() {
+				return undefined
+			}
+		}
 	},
 	components: { HorizontalLine },
 	methods: {
 		availableToday(date: string, index: number): boolean {
-			const i = index;
-			let result = true;
-			console.log(this.$props.items[0].serving_time);
+			const i = index
+			let result = true
+			console.log(this.$props.items[0].serving_time)
 			if (date === now) {
 				if (this.$props.items[i].serving_time) {
-					const { end } = this.$props.items[i].serving_time;
+					const { end } = this.$props.items[i].serving_time
 					if (end) {
-						const endDate = new Date();
-						endDate.setHours(end.slice(0, 2));
-						endDate.setMinutes(end.slice(-2));
-						endDate.setSeconds(0);
+						const endDate = new Date()
+						endDate.setHours(end.slice(0, 2))
+						endDate.setMinutes(end.slice(-2))
+						endDate.setSeconds(0)
 						if (compareAsc(endDate, nowDate) === -1) {
-							result = false;
+							result = false
 						}
 					}
 				}
 			}
-			return result;
+			return result
 		},
 		lunchType(type: string): string | undefined {
-			let result;
-			if (type === "lunch") result = "Lounas";
-			if (type === "brunch") result = "Brunssi";
-			return result;
+			let result
+			if (type === "lunch") result = "Lounas"
+			if (type === "brunch") result = "Brunssi"
+			return result
 		},
 		lunchDate(date: string): string | undefined {
-			let result;
-			if (date === now) result = "Tänään";
+			let result
+			if (date === now) result = "Tänään"
 			else {
-				result = capitalizeFormattedDate(
+				result = capitalize(
 					format(Date.parse(date), "EEEE dd.MM.yyyy", {
-						locale: fi,
+						locale: fi
 					})
-				);
+				)
 			}
-			return result;
-		},
+			return result
+		}
 	},
 	mounted(): void {
-		console.log("😀 Lunch parser mounted!");
-	},
-});
+		console.log("😀 Lunch parser mounted!")
+	}
+})
 </script>
 
 <style lang="scss" scoped>

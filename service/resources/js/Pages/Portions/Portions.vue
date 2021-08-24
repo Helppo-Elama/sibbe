@@ -6,15 +6,15 @@
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
 						<div class="grid justify-items-stretch">
 							<div class="justify-self-center">
 								<div class="mt-8 mb-6 text-2xl text-center">Uudet annokset</div>
 								<div class="flex justify-center w-100 py-6 px-24">
-									<jet-button class="mr-3" @click.native="addPortion()" action="add">
+									<jet-button class="mr-3" action="add" @click.native="addPortion()">
 										Lisää uusi
 									</jet-button>
-									<jet-button class="ml-3" @click.native="clearAddPortions()" action="delete">
+									<jet-button class="ml-3" action="delete" @click.native="clearAddPortions()">
 										Tyhjennä tämä näkymä
 									</jet-button>
 								</div>
@@ -24,9 +24,9 @@
 					<PortionIterator
 						:data="newPortions"
 						:target="'newPortions'"
+						class="pb-12"
 						@delete="deletePortion"
 						@change="updatePortion"
-						class="pb-12"
 					/>
 				</div>
 			</div>
@@ -34,13 +34,21 @@
 		<div class="pb-6">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
 						<div class="mt-8 mb-6 text-2xl text-center">Hae ja muokkaa vanhoja annoksia</div>
 						<label>
 							<span class="pt-4 pb-1 pl-2 text-gray-700 block">Nimike</span>
 							<input
 								type="text"
-								class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+								class="
+									block
+									mt-1
+									w-full
+									rounded-md
+									border-gray-300
+									shadow-sm
+									focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+								"
 								placeholder="Etsi nimikettä..."
 								@keyup="search = $event.target.value"
 							/>
@@ -49,10 +57,10 @@
 							<b>Valitettavasti emme löytäneet yhtään hakuun sopivaa tulosta...</b>
 						</div>
 						<div class="flex justify-center w-100 py-6 px-24">
-							<jet-button class="mr-3" @click.native="fetchAllPortions()" action="add">
+							<jet-button class="mr-3" action="add" @click.native="fetchAllPortions()">
 								Hae kaikki annokset
 							</jet-button>
-							<jet-button class="ml-3" @click.native="clearSearchPortions()" action="delete">
+							<jet-button class="ml-3" action="delete" @click.native="clearSearchPortions()">
 								Tyhjennä tämä näkymä
 							</jet-button>
 						</div>
@@ -60,9 +68,9 @@
 					<PortionIterator
 						:data="portions"
 						:target="'portions'"
+						class="pb-12"
 						@delete="deletePortion"
 						@change="updatePortion"
-						class="pb-12"
 					/>
 				</div>
 			</div>
@@ -81,7 +89,7 @@ import {
 } from "@/Helpers/apiEndPoints";
 import { axios, axiosPost, axiosDelete } from "@/Helpers/axios";
 import JetButton from "@/Jetstream/Button";
-import PortionIterator from "./Portions/PortionIterator";
+import PortionIterator from "./PortionIterator";
 
 export default {
 	components: {

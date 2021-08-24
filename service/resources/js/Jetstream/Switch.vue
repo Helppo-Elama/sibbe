@@ -9,11 +9,21 @@
 				:class="{ 'translate-x-2': proxyChecked }"
 			></div>
 		</div>
-		<span class="ml-2" ref="switchLabel">{{ label }}</span>
+		<span class="mx-2" ref="switchLabel">{{ label }}</span>
+		<slot></slot>
 	</div>
 	<div v-else class="flex tooltip relative cursor-not-allowed">
 		<span
-			class="tooltip-text bg-red-100 text-center rounded-full px-3 transition duration-500 ease-in-out"
+			class="
+				tooltip-text
+				bg-red-100
+				text-center
+				rounded-full
+				px-3
+				transition
+				duration-500
+				ease-in-out
+			"
 			>Pois päältä. Viimeistele ensin nykyiset valinnat...</span
 		>
 		<div

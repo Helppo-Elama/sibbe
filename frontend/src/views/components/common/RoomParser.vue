@@ -48,34 +48,39 @@
 	</v-container>
 </template>
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import RoomCarousel from "@c/common/RoomCarousel.vue";
+import Vue, { PropType } from "vue"
+import RoomCarousel from "@c/common/RoomCarousel.vue"
 
-import AccommodationRoomAdditionalParser from "@c/accommodation/AccommodationRoomAdditionalParser.vue";
-import ConferenceRoomAdditionalParser from "@c/conference/ConferenceRoomAdditionalParser.vue";
+import AccommodationRoomAdditionalParser from "@c/accommodation/AccommodationRoomAdditionalParser.vue"
+import ConferenceRoomAdditionalParser from "@c/conference/ConferenceRoomAdditionalParser.vue"
 
-import { IRoomAdditionalData, IRooms } from "@d/interfaces/rooms.interface";
+import { IRoomAdditionalData, IRooms } from "@d/interfaces/rooms.interface"
 
 export default Vue.extend({
 	name: "RoomParser",
 	components: {
 		RoomCarousel,
 		AccommodationRoomAdditionalParser,
-		ConferenceRoomAdditionalParser,
+		ConferenceRoomAdditionalParser
 	},
 	props: {
-		roomsData: { type: Object as () => PropType<IRooms> },
-		roomType: { type: String },
+		roomsData: { type: Object as () => PropType<IRooms>, required: true },
+		roomType: {
+			type: String,
+			default() {
+				return undefined
+			}
+		}
 	},
 	computed: {
 		additional(): IRoomAdditionalData {
-			return this.$props.roomsData.additional;
-		},
+			return this.$props.roomsData.additional
+		}
 	},
 	mounted(): void {
-		console.log("👯‍♂️ Room parser mounted.");
-	},
-});
+		console.log("👯‍♂️ Room parser mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 ul {

@@ -12,18 +12,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Nav from "@c/Nav.vue";
-import update from "@mix/serviceWorkerUpdate";
+import Vue from "vue"
+import Nav from "@c/Nav.vue"
+import update from "@mix/serviceWorkerUpdate"
 
 export default Vue.extend({
 	name: "App",
 	components: { Nav },
 	mixins: [update],
 	mounted(): void {
-		console.log("👏 App mounted");
-	},
-});
+		console.log("👏 App mounted")
+	}
+})
 </script>
 <style lang="scss">
 @media #{map-get($display-breakpoints, 'md-and-down')} {

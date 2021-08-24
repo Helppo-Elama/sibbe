@@ -29,12 +29,14 @@
 <script lang="js">
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable func-names */
+
 export default {
   name: "VueFB",
   props: {
-    fbUrl: { type: String },
+    fbUrl: { type: String, required: true },
   },
-  data: function () {
+  data () {
     return {
     };
   },
@@ -64,20 +66,19 @@ export default {
         FB.AppEvents.logPageView();
       };
       (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
+          const fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
           return;
         }
-        js = d.createElement(s);
+        const js = d.createElement(s);
         js.id = id;
         js.src = "//connect.facebook.net/fi_FI/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
     },
     fbMaxWidth() {
-      let el = this.$refs["fbFeed"];
-      let c = this.$refs["fbContainer"].clientWidth;
+      const el = this.$refs.fbFeed;
+      const c = this.$refs.fbContainer.clientWidth;
       if (c > 500) {
         el.setAttribute("data-width", 500);
       } else {
@@ -86,8 +87,8 @@ export default {
       console.log("🎢 FB Pre sized.");
     },
     fbResize() {
-      let el = this.$refs.fbFeed;
-      let c = this.$refs.fbContainer.clientWidth;
+      const el = this.$refs.fbFeed;
+      const c = this.$refs.fbContainer.clientWidth;
       if (c > 500) {
         el.setAttribute("data-width", 500);
         FB.XFBML.parse();
@@ -98,7 +99,7 @@ export default {
       console.log("✨ FB Resized.");
     },
   },
-  beforeDestroy: function () {
+  beforeDestroy () {
     window.removeEventListener("resize", this.dedouncedFbResize);
   },
 }

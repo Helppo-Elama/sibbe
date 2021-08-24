@@ -20,5 +20,6 @@
       "cwd": "${fileDirname}",
       "port": 9003
     }
-  ]
+  ],
+  "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
 }

@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const mix = require("laravel-mix");
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -19,6 +20,7 @@ mix
 		require("tailwindcss"),
 		require("autoprefixer"),
 	])
+	.sourceMaps()
 	.webpackConfig(require("./webpack.config"));
 
 if (mix.inProduction()) {

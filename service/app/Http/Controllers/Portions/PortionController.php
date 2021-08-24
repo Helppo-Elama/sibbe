@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\Portions;
 
 
 use Illuminate\Http\Request;
 use App\Models\Portions\Portion;
-use Inertia\Inertia;
-
 
 use App\Http\Controllers\Controller;
 

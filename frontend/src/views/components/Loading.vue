@@ -1,32 +1,37 @@
 <template>
-	<div class="loading d-inline-flex">
-		{{ loading }}
+	<div class="loading d-inline-flex pl-3">
+		{{ text }}
 		<div class="three-dots d-inline-flex">{{ threeDots }}</div>
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
+
 export default Vue.extend({
 	name: "Loading",
-	data: function () {
+	props: {
+		text: {
+			type: String,
+			required: true
+		}
+	},
+	data() {
 		return {
-			// declare message with an empty value
-			loading: "Haetaan tietoja",
-			threeDots: "",
-		};
+			threeDots: ""
+		}
 	},
 	mounted(): void {
 		setInterval(
 			() => {
 				if (this.threeDots.length < 3) {
-					this.threeDots += ".";
-				} else this.threeDots = "";
+					this.threeDots += "."
+				} else this.threeDots = ""
 			},
 			500,
 			this
-		);
-	},
-});
+		)
+	}
+})
 </script>
 
 <style lang="scss">

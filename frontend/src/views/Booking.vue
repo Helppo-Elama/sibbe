@@ -9,7 +9,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Varaa huone tai tarkista saatavuus
@@ -48,7 +48,7 @@
 			</v-row>
 			<v-row class="pl-0 pr-0 ma-0 dark-on-light full-height pt-16 pb-16">
 				<v-col cols="12">
-					<div v-if="!siteminderLoaded"><Loading /></div>
+					<div v-if="!siteminderLoaded.first"><Loading :text="'Haetaan tietoja'" /></div>
 					<div v-else-if="!parsedSiteminder" v-html="errors.parseData"></div>
 					<div v-else>
 						<v-container>
@@ -70,6 +70,15 @@
 									<RoomCarousel :images="selectedRoom.images" />
 								</v-col>
 								<v-col cols="12" md="6">
+									<p v-html="selectedRoom.body"></p>
+									<ul class="equipment">
+										<u class="museo pb-2">Huoneen lisätiedot</u>
+										<li v-for="e in selectedRoom.equipments" :key="e.title" :title="e.title">
+											{{ e.title }}
+										</li>
+									</ul>
+								</v-col>
+								<v-col cols="12" md="6" offset-md="3">
 									<h2 v-if="selectRoomIndex === false"></h2>
 									<div v-else>
 										<v-date-picker
@@ -79,34 +88,22 @@
 											full-width
 											@click:month="monthClick"
 											:first-day-of-week="1"
-											selectedItemsText=""
+											selected-items-text=""
 											:min="dates.minDate"
 											:max="dates.maxDate"
 											:allowed-dates="getAvailableDates"
 											:events="getEventDates"
-											selectedItemText=""
+											selected-item-text=""
 											ref="datePicker"
 										></v-date-picker>
-										<v-text-field
-											class="d-none"
-											v-model="dateRangeText"
-											label="Aikaväli"
-											readonly
-										></v-text-field>
+										<div class="text-center pt-2" v-if="!siteminderLoaded.more">
+											<Loading :text="'Haetaan lisää kuukausia'" />
+										</div>
 										<v-btn :disabled="!siteminderLink.show" class="thertiary mt-10">
 											<a v-if="!siteminderLink.show" :href="siteminderLink.url">Valitse päivät</a>
 											<a v-else :href="siteminderLink.url">Siirry varaamaan</a>
 										</v-btn>
 									</div>
-								</v-col>
-								<v-col cols="12" md="6">
-									<p v-html="selectedRoom.body"></p>
-									<ul class="equipment">
-										<u class="museo pb-2">Huoneen lisätiedot</u>
-										<li v-for="e in selectedRoom.equipments" :key="e.title" :title="e.title">
-											{{ e.title }}
-										</li>
-									</ul>
 								</v-col>
 							</v-row>
 						</v-container>
@@ -117,46 +114,41 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { booking as metaData } from "@h/metaData";
-import Header from "@c/Header.vue";
+/* eslint-disable camelcase */
+/* eslint-disable prefer-destructuring */
+import Vue from "vue"
+import { booking as metaData } from "@h/metaData"
+import Header from "@c/Header.vue"
 
-import { bookingHeaderImages as headerImages } from "@d/booking/booking.images";
-import { IHeaderImages } from "@d/interfaces/images.interface";
+import { bookingHeaderImages as headerImages } from "@d/booking/booking.images"
+import { IHeaderImages } from "@d/interfaces/images.interface"
 
-import Loading from "@c/Loading.vue";
+import Loading from "@c/Loading.vue"
 
 import {
 	bookingData,
 	createApiURL,
 	createBookingURL,
-	bookingRooms as rooms,
-} from "@d/booking/booking.data";
+	bookingRooms as rooms
+} from "@d/booking/booking.data"
 
-import { currentMonth, getMonth } from "@h/dateArray";
-import {
-	ISOStringToDate,
-	toISOStringWithOffset,
-	toStringWithOffset,
-	removeDays,
-	addDays,
-} from "@h/dateExtensions";
-import { IErrors, bookingErrors as errors } from "@d/errors";
+import { currentMonth, getMonth } from "@h/dateArray"
+import { ISOStringToDate, removeDays, addDays } from "@h/dateExtensions"
+import { IErrors, bookingErrors as errors } from "@d/errors"
 
-import { isArray } from "lodash";
-import { companyData } from "@d/company/company.data";
-import { ICompanyData } from "@d/interfaces/company.interface";
-import { IBookingData, ISiteminder, isISiteminder } from "@d/interfaces/booking.interface";
+import { companyData } from "@d/company/company.data"
+import { ICompanyData } from "@d/interfaces/company.interface"
+import { IBookingData, ISiteminder, isISiteminder } from "@d/interfaces/booking.interface"
 
-import { IRoom, IRooms } from "@d/interfaces/rooms.interface";
+import { IRoom, IRooms } from "@d/interfaces/rooms.interface"
 
-import { axiosGetBookingData as axios } from "@in/axios";
+import { axiosGetBookingData as axios, axiosGetBookingDatas as axiosAll } from "@in/axios"
 
-import RoomCarousel from "@c/common/RoomCarousel.vue";
-import { format } from "date-fns";
-import { fi } from "date-fns/locale";
-import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
-import clonedeep from "lodash.clonedeep";
+import RoomCarousel from "@c/common/RoomCarousel.vue"
+import { format } from "date-fns"
+import { fi } from "date-fns/locale"
+import differenceInCalendarDays from "date-fns/differenceInCalendarDays"
+import clonedeep from "lodash.clonedeep"
 
 export default Vue.extend({
 	name: "Booking",
@@ -164,297 +156,301 @@ export default Vue.extend({
 	components: {
 		Header,
 		Loading,
-		RoomCarousel,
+		RoomCarousel
 	},
 	data(): {
-		headerImages: IHeaderImages;
-		bookingData: IBookingData;
-		companyData: ICompanyData;
-		siteminder: ISiteminder | undefined;
-		siteminderLoaded: boolean;
+		headerImages: IHeaderImages
+		bookingData: IBookingData
+		companyData: ICompanyData
+		siteminder: ISiteminder | undefined
+		siteminderLoaded: { first: boolean; more: boolean }
 		dates: {
-			selectedDates: Array<string>;
-			maxDate: string;
-			minDate: string;
-			availableDates: Array<string>;
-			availableOne: Array<string>;
-			availableMore: Array<string>;
-		};
-		selectRoomIndex: number | undefined;
-		errors: IErrors;
-		rooms: IRooms;
-		parsedSiteminder: boolean;
+			selectedDates: Array<string>
+			maxDate: string
+			minDate: string
+			availableDates: Array<string>
+			availableOne: Array<string>
+			availableMore: Array<string>
+		}
+		selectRoomIndex: number
+		errors: IErrors
+		rooms: IRooms
+		parsedSiteminder: boolean
 	} {
 		return {
-			headerImages: headerImages,
+			headerImages,
 			bookingData: bookingData(),
-			companyData: companyData,
+			companyData,
 			siteminder: undefined,
-			siteminderLoaded: false,
+			siteminderLoaded: { first: false, more: false },
 			dates: {
 				selectedDates: [],
 				maxDate: "",
 				minDate: "",
 				availableDates: [],
 				availableOne: [],
-				availableMore: [],
+				availableMore: []
 			},
-			errors: errors,
-			selectRoomIndex: undefined,
-			rooms: rooms,
-			parsedSiteminder: false,
-		};
+			errors,
+			selectRoomIndex: 1,
+			rooms,
+			parsedSiteminder: false
+		}
 	},
 	computed: {
 		siteminderLink(): { show: boolean; url?: string } {
-			const { selectedDates } = this.dates;
-			if (!isArray(selectedDates)) return { show: false };
-			else {
-				let url: string;
-				selectedDates.sort();
-				if (selectedDates.length === 1) {
-					url = createBookingURL({
-						start: selectedDates[0],
-						end: selectedDates[0],
-					});
-				} else {
-					url = createBookingURL({
-						start: selectedDates[0],
-						end: selectedDates[1],
-					});
-				}
-				return { show: true, url: url };
-			}
-		},
-		selectedRoom(): IRoom | boolean {
-			if (this.selectRoomIndex) {
-				return this.rooms.rooms[this.selectRoomIndex as number];
+			const { selectedDates } = this.dates
+			if (!Array.isArray(selectedDates)) return { show: false }
+
+			let url: string
+			selectedDates.sort()
+			if (selectedDates.length === 1) {
+				url = createBookingURL({
+					start: selectedDates[0],
+					end: selectedDates[0],
+					id: this.siteminder?.room_types[this.selectRoomIndex].id
+				})
 			} else {
-				return false;
+				url = createBookingURL({
+					start: selectedDates[0],
+					end: selectedDates[1],
+					id: this.siteminder?.room_types[this.selectRoomIndex].id
+				})
 			}
+			return { show: true, url }
+		},
+		selectedRoom(): IRoom | undefined {
+			if (this.selectRoomIndex !== undefined) {
+				return this.rooms.rooms[this.selectRoomIndex as number]
+			}
+			return undefined
 		},
 		companyEmail(): string {
-			return companyData.getEmail("company");
+			return companyData.getEmail("company")
 		},
 		salesEmail(): string {
-			return companyData.getEmail("sales");
+			return companyData.getEmail("sales")
 		},
 		selectedMonth(): { year: number; month: number; data: Array<string> } {
-			const now = toStringWithOffset(new Date());
-			const year = (now.split("-")[0] as unknown) as number;
-			const month = parseInt(now.split("-")[1], 10) - 1;
-			const data = currentMonth();
-			return { year, month, data };
+			const now = new Date().toISOString()
+			const year = now.split("-")[0] as unknown as number
+			const month = parseInt(now.split("-")[1], 10) - 1
+			const data = currentMonth()
+			return { year, month, data }
 		},
 		dateRangeText(): string {
-			const now = toStringWithOffset(new Date());
-			const { selectedDates } = this.dates;
+			const now = new Date().toISOString()
+			const { selectedDates } = this.dates
 			if (selectedDates.length === 1) {
 				if (selectedDates[0] === now) {
-					this.setMaxDate(14);
-					this.setMinDate();
+					this.setMaxDate(14)
+					this.setMinDate()
 				} else {
-					this.setMaxDate(14);
-					this.setMinDate(28);
+					this.setMaxDate(14)
+					this.setMinDate(28)
 				}
-				return selectedDates[0];
+				return selectedDates[0]
 			}
 			if (selectedDates.length === 2) {
-				this.setMinDate();
-				this.setMaxDate();
-				this.setDatePickerTitle();
-				return selectedDates.join(" - ");
-			} else {
-				return "Valitse päivämäärät";
+				this.setMinDate()
+				this.setMaxDate()
+				this.setDatePickerTitle()
+				return selectedDates.join(" - ")
 			}
+			return "Valitse päivämäärät"
 		},
 		selectOptionsRooms(): Array<{ i: number; name: string }> {
-			const rooms: Array<{ i: number; name: string }> = [];
+			const selectOptionsRooms: Array<{ i: number; name: string }> = []
 			if (isISiteminder(this.siteminder)) {
-				const room_types = this.siteminder.room_types;
-				const len = room_types.length;
-				for (let i = 0; i < len; i++) {
-					rooms.push({ i: i, name: this.roomNameShort(room_types[i].name) });
-				}
+				const { room_types } = this.siteminder
+				room_types.forEach((room_type, i) => {
+					selectOptionsRooms.push({ i, name: this.roomNameShort(this.rooms.rooms[i].title) })
+				})
 			}
-			return rooms;
-		},
+			return selectOptionsRooms
+		}
 	},
 	watch: {
-		selectRoomIndex: function (val, old) {
+		selectRoomIndex(val, old) {
 			if (val !== old) {
-				this.roomDateParse(val);
+				this.roomDateParse(val)
 			}
-		},
+		}
 	},
 	methods: {
 		roomDateParse(i: number): void {
-			this.dates.availableDates = [];
-			this.dates.availableMore = [];
+			this.dates.availableDates = []
+			this.dates.availableMore = []
 			if (isISiteminder(this.siteminder)) {
-				const room = this.siteminder.room_types[i];
-				for (const date of room.room_type_dates) {
+				const room = this.siteminder.room_types[i]
+				room.room_type_dates.forEach((date) => {
 					if (date.available !== 0) {
-						this.dates.availableDates.push(date.date);
+						this.dates.availableDates.push(date.date)
 					}
 					if (date.available === 2) {
-						this.dates.availableMore.push(date.date);
+						this.dates.availableMore.push(date.date)
 					}
-				}
+				})
 			}
 		},
 		roomNameShort(roomName: string): string {
-			const short = roomName.split(" -")[0];
-			return short;
+			const short = roomName.split(" -")[0]
+			return short
 		},
 		getAvailableDates(date: string): boolean {
 			if (this.dates.availableDates.indexOf(date) !== -1) {
-				return true;
-			} else {
-				return false;
+				return true
 			}
+			return false
 		},
 		getEventDates(date: string): Array<string> | string {
 			if (this.dates.availableMore.length === 0 && this.dates.availableDates.indexOf(date) !== -1) {
-				return "#86ba90";
+				return "#86ba90"
 			}
 			if (
 				this.dates.availableMore.length !== 0 &&
 				this.dates.availableDates.indexOf(date) !== -1 &&
 				this.dates.availableMore.indexOf(date) === -1
 			) {
-				return "#f5f3bb";
+				return "#f5f3bb"
 			}
 			if (this.dates.availableMore.indexOf(date) !== -1) {
-				return ["#86ba90", "#f5f3bb"];
-			} else return "#cb2631";
+				return ["#86ba90", "#f5f3bb"]
+			}
+			return "#cb2631"
 		},
 		setDatePickerTitle() {
-			const dates = clonedeep(this.dates.selectedDates);
+			const dates = clonedeep(this.dates.selectedDates)
 			if (dates.length === 2) {
-				const dateTitle = (this.$refs
-					.datePicker as Vue).$children[0].$children[0].$el.getElementsByClassName(
+				const dateTitle = (
+					this.$refs.datePicker as Vue
+				).$children[0].$children[0].$el.getElementsByClassName(
 					"v-picker__title__btn v-date-picker-title__date"
-				)[0];
+				)[0]
 				dates.forEach((date: string, i: number) => {
 					dates[i] = format(Date.parse(date), "EEEEEE dd.MM.yyyy", {
-						locale: fi,
-					});
-				});
-				dateTitle.innerHTML = "<div>" + dates.join(" - ") + "</div>";
+						locale: fi
+					})
+				})
+				dateTitle.innerHTML = `<div>${dates.join(" - ")}</div>`
 			}
 		},
 		monthClick(yearAndMonth: string) {
-			this.selectedMonth.year = (yearAndMonth?.split("-")[0] as unknown) as number;
-			this.selectedMonth.month = parseInt(yearAndMonth.split("-")[1], 10) - 1;
+			this.selectedMonth.year = +yearAndMonth?.split("-")[0]
+			this.selectedMonth.month = parseInt(yearAndMonth.split("-")[1], 10) - 1
 			this.selectedMonth.data = getMonth({
 				year: this.selectedMonth.year,
-				month: this.selectedMonth.month,
-			});
+				month: this.selectedMonth.month
+			})
 		},
 		setMinDate(arg?: number | string) {
+			let switchArg = arg
 			if (!arg) {
-				arg = "default";
+				switchArg = "default"
 			}
-			const now = new Date();
-			let minDate: Date;
-			let maxDate: Date = ISOStringToDate(this.dates.maxDate);
-			let diff = differenceInCalendarDays(maxDate, now);
+			const now = new Date()
+			let minDate: Date
+			const maxDate: Date = ISOStringToDate(this.dates.maxDate)
+			const diff = differenceInCalendarDays(maxDate, now)
 			if (diff < 14) {
-				arg = "default";
+				switchArg = "default"
 			}
-			switch (arg) {
+			switch (switchArg) {
 				case 28:
-					minDate = removeDays(maxDate, 28);
-					break;
+					minDate = removeDays(maxDate, 28)
+					break
 				case 14:
-					minDate = removeDays(maxDate, 14);
-					break;
+					minDate = removeDays(maxDate, 14)
+					break
 				default:
-					minDate = now;
-					break;
+					minDate = now
+					break
 			}
-			this.dates.minDate = toISOStringWithOffset(minDate);
+			this.dates.minDate = minDate.toISOString().split("T")[0]
 		},
 		setMaxDate(arg?: number | string) {
+			let switchArg = arg
 			if (!arg) {
-				arg = "default";
+				switchArg = "default"
 			}
-			const now = new Date();
-			let maxDays = new Date();
+			const now = new Date()
+			let maxDays = new Date()
 			if (this.dates.selectedDates[0] && arg !== "default") {
-				let max: string = this.dates.selectedDates[0] + "T08:00:00.000Z";
-				maxDays = ISOStringToDate(max);
-				maxDays = addDays(maxDays, 14);
-				arg = "max";
+				const max = `${this.dates.selectedDates[0]}T08:00:00.000Z`
+				maxDays = ISOStringToDate(max)
+				maxDays = addDays(maxDays, 14)
+				switchArg = "max"
 			}
-			switch (arg) {
+			switch (switchArg) {
 				case "max":
-					this.dates.maxDate = toISOStringWithOffset(maxDays);
-					this.setMinDate(28);
-					break;
+					this.dates.maxDate = maxDays.toISOString().split("T")[0]
+					this.setMinDate(28)
+					break
 				case 14:
-					this.dates.maxDate = toISOStringWithOffset(addDays(now, 14));
-					break;
+					this.dates.maxDate = addDays(now, 14).toISOString().split("T")[0]
+					break
 				default:
-					this.dates.maxDate = toISOStringWithOffset(new Date(now.setMonth(now.getMonth() + 12)));
-					break;
+					this.dates.maxDate = new Date(now.setMonth(now.getMonth() + 12))
+						.toISOString()
+						.split("T")[0]
+					break
 			}
 		},
 		siteminderPush(data: ISiteminder | undefined): void {
 			if (isISiteminder(data) && isISiteminder(this.siteminder)) {
-				const { room_types } = data;
-				for (const i in room_types) {
-					for (const x in room_types[i].room_type_dates) {
-						this.siteminder.room_types[i].room_type_dates.push(room_types[i].room_type_dates[x]);
+				const { room_types } = data
+				room_types.forEach((room_type, i) => {
+					for (let x = 0; x < room_type.room_type_dates.length; x += 1) {
+						this.siteminder?.room_types[i].room_type_dates.push(room_types[i].room_type_dates[x])
 					}
-				}
+				})
 			}
 		},
-		async siteminderGetMore(): Promise<number> {
-			let { end } = this.bookingData.dateRange;
-			const url = {
-				start: addDays(end, 1).toISOString().split("T")[0],
-				end: addDays(end, 29).toISOString().split("T")[0],
-			};
-			const request = { url: createApiURL(url) };
-			const siteminder = await axios(request);
-			if (isISiteminder(siteminder)) {
-				this.siteminderPush(siteminder);
-				this.bookingData.dateRange.end = addDays(end, 29);
-				if (isISiteminder(this.siteminder)) {
-					return this.siteminder.room_types[0].room_type_dates.length;
-				} else return 0; //0 päivää!
-			} else return 0; //0 päivää!
+		createRequestsForSiteminder() {
+			const requests = []
+			const daysToAdd = 29
+			let { end } = this.bookingData.dateRange
+			for (let days = 0; days <= 366; days += daysToAdd) {
+				const newStart = addDays(end, 1)
+				const newEnd = addDays(newStart, daysToAdd)
+				const startString = newStart.toISOString().split("T")[0]
+				const endString = newEnd.toISOString().split("T")[0]
+				const url = {
+					start: startString,
+					end: endString
+				}
+				requests.push({ url: createApiURL(url) })
+				end = newEnd
+			}
+			this.bookingData.dateRange.end = end
+			return requests
 		},
+		async siteminderMore() {
+			const requests = this.createRequestsForSiteminder()
+			const siteminderMore = await axiosAll(requests)
+			siteminderMore?.forEach((s) => {
+				if (isISiteminder(s)) {
+					this.siteminderPush(s)
+				}
+			})
+			this.siteminderLoaded.more = true
+		}
 	},
 	async mounted(): Promise<void> {
-		this.setMaxDate();
-		this.setMinDate();
-		const { request } = this.bookingData;
-		const siteminder = await axios(request);
-		this.siteminderLoaded = true;
+		this.setMaxDate()
+		this.setMinDate()
+		const { request } = this.bookingData
+		const siteminder = await axios(request)
+		this.siteminderLoaded.first = true
 		if (isISiteminder(siteminder)) {
-			this.parsedSiteminder = true;
-			this.siteminder = siteminder;
-			this.selectRoomIndex = 0;
-			let days = 0;
-			let i = 0;
-			let max = Math.ceil(366 / 28);
-			while (days <= 366) {
-				try {
-					days = await this.siteminderGetMore();
-					if (i > max) throw "💔 Can't add days to Siteminder";
-					i++;
-				} catch (error) {
-					console.log(error);
-					break;
-				}
-			}
+			this.parsedSiteminder = true
+			this.siteminder = siteminder
+			this.selectRoomIndex = 0
+			this.siteminderMore()
 		}
-		console.log("🏰 Booking mounted.");
-	},
-});
+		console.log("🏰 Booking mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 a {

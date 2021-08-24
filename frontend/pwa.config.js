@@ -7,7 +7,7 @@ module.exports = {
 	workboxOptions: {
 		skipWaiting: false,
 		navigateFallback: "/index.html",
-		exclude: ["robots.txt", ".htaccess"],
+		exclude: ["robots.txt", ".htaccess"]
 	},
 	manifestCrossorigin: undefined,
 	appleMobileWebAppCapable: "no",
@@ -18,7 +18,7 @@ module.exports = {
 		msTileImage: "img/icons/msapplication-icon-144x144.png",
 		favicon32: null,
 		favicon16: null,
-		appleTouchIcon: null,
+		appleTouchIcon: null
 	},
 	manifestOptions: {
 		default_locale: process.env.LOCALE,
@@ -35,14 +35,14 @@ module.exports = {
 				src: "./img/icons/android-chrome-192x192.png",
 				sizes: "192x192",
 				type: "image/png",
-				purpose: "any maskable",
+				purpose: "any maskable"
 			},
 			{
 				src: "./img/icons/android-chrome-512x512.png",
 				sizes: "512x512",
 				type: "image/png",
-				purpose: "any maskable",
-			},
-		],
-	},
-};
+				purpose: "any maskable"
+			}
+		]
+	}
+}

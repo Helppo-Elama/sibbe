@@ -131,6 +131,9 @@
     "editor.gotoLocation.multipleDefinitions": "goto",
     "editor.snippetSuggestions": "bottom",
     "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "vetur.experimental.templateInterpolationService": false,
+    "javascript.suggestionActions.enabled": false,
+    "vetur.validation.template": false
   }
 }

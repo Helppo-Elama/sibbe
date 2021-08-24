@@ -1,24 +1,22 @@
-import { reservationUrl } from "@d/company/company.data";
+import { reservationUrl } from "@d/company/company.data"
 
-export type IErrors = Record<string, string | number>;
+export type IErrors = Record<string, string | number>
 
 export const bookingErrors: IErrors = {
-	parseData:
-		"Sivusto ei valitettavasti saa yhteyttä varauspalveluun. Voit yrittää mennä itse palveluun <a href=" +
-		reservationUrl +
-		">täältä</a>.",
-};
+	parseData: `Sivusto ei valitettavasti saa yhteyttä varauspalveluun. Voit yrittää mennä itse palveluun <a href=${reservationUrl}>täältä</a>.`
+}
 
 export const axiosError = (
 	type: string | number,
-	e: number | string
+	e: number | string | unknown
 ): { axiosError: number } | string | undefined => {
 	switch (type) {
 		case 200: {
-			console.error("💔 Axios did not get 200. " + e);
-			return { axiosError: 200 };
+			console.error(`💔 Axios did not get 200. ${e}`)
+			return { axiosError: 200 }
 		}
 		default:
-			console.error("💔 Axios: " + e);
+			console.error(`💔 Axios: ${e}`)
+			return undefined
 	}
-};
+}

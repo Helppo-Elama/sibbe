@@ -22,6 +22,10 @@ Route::middleware(["auth:sanctum", "verified"])
     ->group(base_path("routes/service/portions.php"));
 
 Route::middleware(["auth:sanctum", "verified"])
+    ->prefix("servicehours")
+    ->group(base_path("routes/service/servicehours.php"));
+
+Route::middleware(["auth:sanctum", "verified"])
     ->prefix("defaults")
     ->group(base_path("routes/service/defaults.php"));
 

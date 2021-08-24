@@ -14879,7 +14879,7 @@
                     /**
          * 
          *
-         * @return \Jenssegers\Agent\CrawlerDetect 
+         * @return \Jaybizzle\CrawlerDetect\CrawlerDetect 
          * @static 
          */ 
         public static function getCrawlerDetect()

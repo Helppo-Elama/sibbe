@@ -14,7 +14,7 @@
 					<source :srcSet="image.webp.srcSet" type="image/webp" />
 					<img
 						class="accommodation-carousel-image zoom-in"
-						v-on:click="showDialog(image)"
+						@click="showDialog(image)"
 						:ref="image.img.src"
 						:data-v="image.img.src"
 						:srcSet="image.img.srcSet"
@@ -52,25 +52,32 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import resize from "vue-resize-directive";
-import { IRoom } from "@d/interfaces/rooms.interface";
-import { IImage } from "@d/interfaces/images.interface";
+import Vue from "vue"
+import resize from "vue-resize-directive"
+import { IRoom } from "@d/interfaces/rooms.interface"
+import { IImage } from "@d/interfaces/images.interface"
 
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 
 export default Vue.extend({
 	name: "RoomCarousel",
 	directives: {
-		resize,
+		resize
 	},
-	props: { images: { type: Array as () => Array<IRoom> } },
+	props: {
+		images: {
+			type: Array as () => Array<IRoom>,
+			default() {
+				return undefined
+			}
+		}
+	},
 	data(): {
-		dialogVisible: boolean;
-		dialogImage: IImage;
-		carouselHeight: string;
-		mdiChevronLeft: string;
-		mdiChevronRight: string;
+		dialogVisible: boolean
+		dialogImage: IImage
+		carouselHeight: string
+		mdiChevronLeft: string
+		mdiChevronRight: string
 	} {
 		return {
 			dialogVisible: false,
@@ -78,32 +85,32 @@ export default Vue.extend({
 				img: "",
 				webp: "",
 				alt: "",
-				sizes: [],
+				sizes: []
 			},
 			carouselHeight: "",
-			mdiChevronLeft: mdiChevronLeft,
-			mdiChevronRight: mdiChevronRight,
-		};
+			mdiChevronLeft,
+			mdiChevronRight
+		}
 	},
 	methods: {
 		showDialog(image: IImage): void {
-			this.dialogVisible = true;
-			this.dialogImage = image;
+			this.dialogVisible = true
+			this.dialogImage = image
 		},
 		getCarouselHeight() {
-			const el = document.getElementsByClassName("accommodation-carousel-image")[0];
+			const el = document.getElementsByClassName("accommodation-carousel-image")[0]
 			if (el) {
-				this.carouselHeight = el.clientHeight + "px !important";
+				this.carouselHeight = `${el.clientHeight}px !important`
 			}
-		},
+		}
 	},
 	mounted(): void {
-		console.log("🎠 Room Carousel mounted.");
+		console.log("🎠 Room Carousel mounted.")
 		this.$nextTick(() => {
-			this.getCarouselHeight();
-		});
-	},
-});
+			this.getCarouselHeight()
+		})
+	}
+})
 </script>
 <style lang="scss" scoped>
 .body {

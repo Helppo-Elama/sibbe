@@ -1,21 +1,30 @@
 module.exports = {
 	root: true,
 	env: {
-		node: true,
+		node: true
 	},
 	extends: [
-		"plugin:vue/essential",
-		"eslint:recommended",
+		"plugin:vue/strongly-recommended",
+		"plugin:prettier/recommended",
+		"@vue/airbnb",
 		"@vue/typescript/recommended",
-		"@vue/prettier",
-		"@vue/prettier/@typescript-eslint",
+		"prettier"
 	],
 	parserOptions: {
-		ecmaVersion: 2020,
+		ecmaVersion: 2021
 	},
 	rules: {
 		"no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-		quotes: [2, "double", { avoidEscape: true }],
-	},
-};
+		"prettier/prettier": [
+			"warn",
+			{
+				doubleQuote: true,
+				semi: false,
+				trailingComma: "none",
+				includeExports: false
+			}
+		]
+		// "import/no-duplicates": ["warn", { considerQueryString: true }]
+	}
+}

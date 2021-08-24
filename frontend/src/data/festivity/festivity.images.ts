@@ -1,12 +1,12 @@
-import { IImage } from "../interfaces/images.interface";
-
+/* eslint-disable import/no-duplicates */
 // Header
-import festivityHeaderImg from "@i/originals/festivity/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600";
-import festivityHeaderWebp from "@i/originals/festivity/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp";
-import festivityHeaderImgCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048";
-import festivityHeaderWebpCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp";
+import festivityHeaderImg from "@i/originals/festivity/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600"
+import festivityHeaderWebp from "@i/originals/festivity/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp"
+import festivityHeaderImgCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
+import festivityHeaderWebpCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+import { IImage } from "../interfaces/images.interface"
 
-//festivity
+// festivity
 
 /*
 import festivityImg1 from "@i/originals/festivity/festivity-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900";
@@ -17,14 +17,14 @@ const festivityHeaderImages: { normal: IImage; cropped: IImage } = {
 	normal: {
 		img: festivityHeaderImg,
 		webp: festivityHeaderWebp,
-		alt: "Tervetuloa Villa Sibbeen",
+		alt: "Tervetuloa Villa Sibbeen"
 	},
 	cropped: {
 		img: festivityHeaderImgCropped,
 		webp: festivityHeaderWebpCropped,
-		alt: "Tervetuloa Villa Sibbeen",
-	},
-};
+		alt: "Tervetuloa Villa Sibbeen"
+	}
+}
 /*
 const festivityImages: Array<IImage> = [
   {
@@ -34,7 +34,4 @@ const festivityImages: Array<IImage> = [
   },
 ];
 */
-export {
-	//festivityImages,
-	festivityHeaderImages,
-};
+export default festivityHeaderImages

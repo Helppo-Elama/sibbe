@@ -28,8 +28,3 @@ Route::post("/menu/authorized/item", [MenuController::class, "post_item"]);
 Route::post("/menu/authorized/item/delete", [MenuController::class, "delete_item"]);
 
 Route::delete("/menu/authorized/type", [MenuController::class, "delete_type"]);
-
-//DEFAULTS
-Route::middleware(["auth:sanctum", "verified"])
-    ->prefix("data")
-    ->group(base_path("routes/service/defaults.php"));

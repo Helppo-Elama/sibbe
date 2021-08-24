@@ -1,167 +1,167 @@
-import { MetaInfo, MetaPropertyName, MetaPropertyProperty } from "vue-meta";
+import { MetaInfo, MetaPropertyName, MetaPropertyProperty } from "vue-meta"
 
 const ogType: MetaPropertyProperty = {
 	property: "og:type",
-	content: "website",
-};
+	content: "website"
+}
 
 const twitterCard: MetaPropertyProperty = {
 	property: "twitter:card",
-	content: "summary_large_image",
-};
+	content: "summary_large_image"
+}
 
-let args = {};
+let args = {}
 
-//PARSER
-function parse(args: Record<string, string>): MetaInfo {
-	const { title, description, socialImage, url } = args;
+// PARSER
+function parse(argsIn: Record<string, string>): MetaInfo {
+	const { title, description, socialImage, url: twitterUrl } = argsIn
 	return {
-		//MAIN
-		title: title,
+		// MAIN
+		title,
 		meta: [
 			{
 				name: "description",
-				content: description,
+				content: description
 			} as MetaPropertyName,
 
-			//FACEBOOK
+			// FACEBOOK
 			ogType,
 			{
 				property: "og:url",
-				content: url,
+				content: twitterUrl
 			},
 			{
 				property: "og:title",
-				content: title,
+				content: title
 			},
 			{
 				property: "og:descrtiption",
-				content: description,
+				content: description
 			},
 			{
 				property: "og:image",
-				content: socialImage,
+				content: socialImage
 			},
 
-			//TWITTER
+			// TWITTER
 			twitterCard,
 
 			{
 				property: "twitter:url",
-				content: homeUrl,
+				content: twitterUrl
 			},
 			{
 				property: "twitter:title",
-				content: title,
+				content: title
 			},
 			{
 				property: "twitter:description",
-				content: description,
+				content: description
 			},
 			{
 				property: "twitter:image",
-				content: socialImage,
-			},
-		],
-	};
+				content: socialImage
+			}
+		]
+	}
 }
 
-//HOME
-const homeUrl = "https://sibbe.fi";
+// HOME
+const homeUrl = "https://sibbe.fi"
 args = {
 	title: "Villa Sibbe Majoitu, kokousta ja viihdy tammipuiden suojassa",
 	description:
 		"Tarjoamme hienot puitteet rauhallisen vehreän ympäristön keskeltä. Tule yöpymään, kokoustamaan tai muuten vaan viihtymään kanssamme.",
 	socialImage: "https://sibbe.fi/img/social/villa-sibbe-social.jpg",
-	url: homeUrl,
-};
-const home = parse(args);
+	url: homeUrl
+}
+const home = parse(args)
 
-//ACCOMMODATION
-const accommodationUrl = homeUrl + "/accommodation.html";
+// ACCOMMODATION
+const accommodationUrl = `${homeUrl}/accommodation.html`
 args = {
 	title: "Villa Sibbe Majoitu tammipuiden suojassa kauniissa huoneissa",
 	description:
 		"Kauniit hotellitasoiset huoneemme, laadukkaat sängyt, rauhallinen vehreä ympäristö sekä vanhan kartanon henki takaavat mukavat ja pitkät yöunet.",
 	socialImage: "https://sibbe.fi/img/social/accommodation-sibbe-social.jpg",
-	url: accommodationUrl,
-};
-const accommodation = parse(args);
+	url: accommodationUrl
+}
+const accommodation = parse(args)
 
-//CONFERENCE
-const conferenceUrl = homeUrl + "/conference.html";
+// CONFERENCE
+const conferenceUrl = `${homeUrl}/conference.html`
 args = {
 	title: "Villa Sibbe Kokousta ja viihdy tammipuiden suojassa",
 	description:
 		"Intiimiin ja te­hok­kaa­seen ko­kous­ta­mi­seen No­bel -pal­ki­tun kek­si­jän ta­paan.",
 	socialImage: "https://sibbe.fi/img/social/conference-sibbe-social.jpg",
-	url: conferenceUrl,
-};
-const conference = parse(args);
+	url: conferenceUrl
+}
+const conference = parse(args)
 
-//BOOKING
-const bookingUrl = homeUrl + "/booking.html";
+// BOOKING
+const bookingUrl = `${homeUrl}/booking.html`
 args = {
 	title: "Villa Sibbe Majoitus, tarkista saatavuus ja varaa huone",
 	description: "Joensuun raitti 58 01150, Söderkulla, +358 50 4391925",
 	socialImage: "https://sibbe.fi/img/social/accommodation-villa-sibbe-social.jpg",
-	url: bookingUrl,
-};
-const booking = parse(args);
+	url: bookingUrl
+}
+const booking = parse(args)
 
-//CONTACT
-const contactUrl = homeUrl + "/contact.html";
+// CONTACT
+const contactUrl = `${homeUrl}/contact.html`
 args = {
 	title: "Villa Sibbe yritystiedot, kartta sekä yhteydenottolomake",
 	description: "Joensuun raitti 58 01150, Söderkulla, +358 50 4391925",
 	socialImage: "https://sibbe.fi/img/social/villa-sibbe-social.jpg",
-	url: contactUrl,
-};
-const contact = parse(args);
+	url: contactUrl
+}
+const contact = parse(args)
 
-//CAFE
-const cafeUrl = homeUrl + "/cafe.html";
+// CAFE
+const cafeUrl = `${homeUrl}/cafe.html`
 args = {
 	title: "Café Sibbe -kesän ystävän lempipaikka.",
 	description:
-		//"Kotoisa rantakahvila Joensuun Tilan satamassa Sipoossa. Vieressä aktiviteetteja moneen makuun. Nouda ja nauti!",
+		// "Kotoisa rantakahvila Joensuun Tilan satamassa Sipoossa. Vieressä aktiviteetteja moneen makuun. Nouda ja nauti!",
 		"Joensuun Tilan sataman sydämessä sykkii kesäisin rantakahvila Café Sibbe. Kahvilassa voit istahtaa aivan veden ääreen.",
-	//, lipaista jäätelötötterön, siemaista kupillisen kahvia tai lasillisen kuohuvaa. Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat, motoristit, polkupyöräilijät, uimarit, veneilijät"
+	// , lipaista jäätelötötterön, siemaista kupillisen kahvia tai lasillisen kuohuvaa. Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat, motoristit, polkupyöräilijät, uimarit, veneilijät"
 	socialImage: "https://sibbe.fi/img/social/cafe-sibbe-social.jpg",
-	url: cafeUrl,
-};
-const cafe = parse(args);
+	url: cafeUrl
+}
+const cafe = parse(args)
 
-//RESTAURANT
-const restaurantUrl = homeUrl + "/restaurant.html";
+// RESTAURANT
+const restaurantUrl = `${homeUrl}/restaurant.html`
 args = {
 	title: "Villa Sibben rento ravintola A.I. Virtasen kotikartanossa",
 	description: "Lounas, Á la carte ja menestyksekkäitä kohtaamisia vehreässä Sipoossa.",
 	socialImage: "https://sibbe.fi/img/social/restaurant-sibbe-social.jpg",
-	url: restaurantUrl,
-};
-const restaurant = parse(args);
+	url: restaurantUrl
+}
+const restaurant = parse(args)
 
-//FESTIVITY
-const festivityUrl = homeUrl + "/festivity.html";
+// FESTIVITY
+const festivityUrl = `${homeUrl}/festivity.html`
 args = {
 	title: "",
 	description: "",
 	socialImage: "https://sibbe.fi/img/social/festivity-sibbe-social.jpg",
-	url: festivityUrl,
-};
-const festivity = parse(args);
+	url: festivityUrl
+}
+const festivity = parse(args)
 
-//RECREATION
-const recreationUrl = homeUrl + "/recreation.html";
+// RECREATION
+const recreationUrl = `${homeUrl}/recreation.html`
 args = {
 	title: "Villa Sibbe Luonto, meri, frisbeegolf, uinti sekä lähimatkailu",
 	description:
 		"Hyvät puitteet harrastamiseen sekä lähimatkailuun. Koe Sipoon saaristo ja luonto tai rentoudu harrastusten parissa",
 	socialImage: "https://sibbe.fi/img/social/recreation-sibbe-social.jpg",
-	url: recreationUrl,
-};
-const recreation = parse(args);
+	url: recreationUrl
+}
+const recreation = parse(args)
 
 export {
 	home,
@@ -172,5 +172,5 @@ export {
 	cafe,
 	restaurant,
 	festivity,
-	recreation,
-};
+	recreation
+}

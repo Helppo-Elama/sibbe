@@ -1,8 +1,8 @@
-const IN_PRODUCTION = process.env.NODE_ENV === "production";
+const IN_PRODUCTION = process.env.NODE_ENV === "production"
 if (process.env.NODE_ENV === "development") {
 	module.exports = {
-		plugins: [],
-	};
+		plugins: []
+	}
 } else {
 	module.exports = {
 		plugins: [
@@ -11,8 +11,8 @@ if (process.env.NODE_ENV === "development") {
 				require("@fullhuman/postcss-purgecss")({
 					content: ["./public/**/*.html", "./src/**/*.vue", "./src/**/*.ts", "./src/**/*.js"],
 					defaultExtractor(content) {
-						const contentWithoutStyleBlocks = content.replace(/<style[^]+?<\/style>/gi, "");
-						return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || [];
+						const contentWithoutStyleBlocks = content.replace(/<style[^]+?<\/style>/gi, "")
+						return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || []
 					},
 					safelist: [
 						/-(leave|enter|appear)(|-(to|from|active))$/,
@@ -290,9 +290,9 @@ if (process.env.NODE_ENV === "development") {
 						"v-select__selections",
 						"v-select__slot",
 						"v-text-field--is-booted",
-						"zoom-in",
-					],
-				}),
-		],
-	};
+						"zoom-in"
+					]
+				})
+		]
+	}
 }

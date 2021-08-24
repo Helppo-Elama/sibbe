@@ -1,114 +1,109 @@
 <template>
 	<div>
-		<div ref="open" class="d-none">
-			<h2 class="museo" :class="classList">Kyllä, olemme</h2>
-			<h1 class="museo open">avoinna!</h1>
-			<h2 class="bello pt-2" :class="classList">Tulkaapa siis herkuttelemaan.</h2>
-			<h2 v-if="closingTime" class="museo pt-2" :class="classList">
-				Suljemme tänään <br />kello
-				<span class="closed">{{ closingTime.hours }}:{{ closingTime.minutes }}</span>
-			</h2>
-		</div>
-		<div ref="closed" class="d-none">
-			<h2 class="museo" :class="classList">Valitettavasti olemme</h2>
-			<h1 class="museo closed">Suljettu juuri nyt.</h1>
-			<h2 v-if="nextOpen" class="museo pt-2" :class="classList">
-				Avaamme taas<br />
-				<span class="open">{{ nextOpen.date }}, kello {{ nextOpen.time }}.</span><br />
-				<span class="bello">Tulkaa silloin uudestaan!</span>
-			</h2>
+		<h1>Aukioloajat:</h1>
+		<div v-for="(openClosed, i) in computedServiceHours" :key="i">
+			<div v-if="openClosed.open">
+				<div v-if="openClosed.open.start === openClosed.open.end">
+					<p>{{ capitalize(openClosed.open.start) }}na avoinna kello {{ openClosed.open.hours }}</p>
+				</div>
+				<div v-if="openClosed.open.start !== openClosed.open.end">
+					<p>
+						{{ capitalize(openClosed.open.start) }} - {{ openClosed.open.end }} avoinna kello
+						{{ openClosed.open.hours }}
+					</p>
+				</div>
+			</div>
+
+			<div v-if="openClosed.closed">
+				<div v-if="openClosed.closed.start === openClosed.closed.end">
+					<p>{{ capitalize(openClosed.closed.start) }}na suljettu</p>
+				</div>
+				<div v-if="openClosed.closed.start !== openClosed.closed.end">
+					<p>{{ capitalize(openClosed.closed.start) }} - {{ openClosed.closed.end }} suljettu</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-
-import { IOpeningHours, IOpeningPeriods } from "@d/interfaces/maps.interface";
-
-import { capitalizeFormattedDate } from "@h/dateExtensions";
-
-import { format, compareAsc } from "date-fns";
-import { fi } from "date-fns/locale";
+import Vue, { PropType } from "vue"
+import { IServiceHours, IWeekDays } from "@d/interfaces/servicehours.interface"
+import clonedeep from "lodash.clonedeep"
+import { capitalize } from "@h/common"
 
 export default Vue.extend({
 	name: "OpenClosed",
+	components: {},
 	props: {
-		openClosed: {
-			type: Object as () => PropType<{ isOpen: boolean; periods: IOpeningPeriods }>,
+		serviceHours: {
+			type: Array as () => PropType<IServiceHours>,
+			required: true
 		},
 		classList: {
 			type: String,
-			default: "",
-		},
+			default: ""
+		}
 	},
-	watch: {
-		openClosed: function () {
-			this.refresh();
-		},
+	computed: {
+		computedServiceHours() {
+			const serviceHours: IServiceHours = clonedeep(this.$props.serviceHours)
+			const days: IServiceHours = []
+			let first
+			serviceHours.forEach((day, i) => {
+				if (i === 0) {
+					first = day
+				} else days[i - 1] = day
+			})
+			if (first) {
+				days.push(first)
+			}
+
+			const openClosed: Array<
+				Record<
+					string,
+					| { start: IWeekDays; end: IWeekDays | undefined; hours?: string }
+					| { start: IWeekDays; end: IWeekDays | undefined }
+				>
+			> = []
+			days.forEach((day, i) => {
+				const len = +openClosed.length
+				if (day.isOpen) {
+					if (
+						len !== 0 &&
+						day.open === days[i - 1].open &&
+						day.close === days[i - 1].close &&
+						Object.prototype.hasOwnProperty.call(openClosed[len - 1], "open")
+					) {
+						openClosed[len - 1].open.end = day.day
+					} else
+						openClosed.push({
+							open: { start: day.day, end: day.day, hours: `${day.open} - ${day.close}` }
+						})
+				} else if (
+					len !== 0 &&
+					day.close === days[i - 1].close &&
+					Object.prototype.hasOwnProperty.call(openClosed[len - 1], "closed")
+				) {
+					openClosed[len - 1].closed.end = day.day
+				} else {
+					openClosed.push({
+						closed: { start: day.day, end: day.day }
+					})
+				}
+			})
+			return openClosed
+		}
 	},
-	data(): {
-		openingHours: IOpeningHours | undefined;
-		nextOpen: { date: string; time: string } | undefined;
-		closingTime: { hours: string; minutes: string } | undefined;
-	} {
-		return { openingHours: undefined, nextOpen: undefined, closingTime: undefined };
+	mounted() {
+		console.log(this.computedServiceHours)
 	},
 	methods: {
-		refresh() {
-			console.log(this.$props.openClosed);
-			const { isOpen, periods } = this.$props.openClosed;
-			if (isOpen) {
-				//GET CLOSING TIME ARRAY WITH DAYS
-				const close: Array<number> = [];
-				for (let [day] of periods.entries()) {
-					close.push(periods[day].close.day);
-				}
-				const now = new Date().getDay();
-				//FIND INDEX FROM CLOSING TIME ARRAY
-				const index = close.findIndex((x) => x === now);
-				if (index >= 0) {
-					this.closingTime = {
-						hours: periods[index as number].close.time.slice(0, 2),
-						minutes: periods[index as number].close.time.slice(2),
-					};
-				}
-
-				(this.$refs["closed"] as HTMLElement).classList.add("d-none");
-				(this.$refs["open"] as HTMLElement).classList.remove("d-none");
-			} else {
-				(this.$refs["open"] as HTMLElement).classList.add("d-none");
-				(this.$refs["closed"] as HTMLElement).classList.remove("d-none");
-
-				// GET NEXT OPEN DATES
-				const openDays: Array<Date> = [];
-				for (const nextOpenDay of periods) {
-					openDays.push(new Date(nextOpenDay.open.nextDate));
-				}
-				openDays.sort(compareAsc);
-				// SHOW NEXT OPEN DATE
-				const nextOpenDay = openDays[0];
-				let now = new Date();
-				let nextOpen = {
-					date: "",
-					time: format(nextOpenDay, "HH:mm", { locale: fi }),
-				};
-				if (now.getDate() === nextOpenDay.getDate()) nextOpen.date = "Tänään";
-				else {
-					nextOpen.date = capitalizeFormattedDate(
-						format(nextOpenDay, "EEEE dd.MM.yyyy", {
-							locale: fi,
-						})
-					);
-				}
-				this.nextOpen = nextOpen;
-			}
-		},
-	},
-	mounted(): void {
-		console.log("🎇 Open/Closed mounted!");
-	},
-});
+		capitalize(string: string): string {
+			return capitalize(string)
+		}
+	}
+})
 </script>
 <style lang="scss" scoped>
 .closed {

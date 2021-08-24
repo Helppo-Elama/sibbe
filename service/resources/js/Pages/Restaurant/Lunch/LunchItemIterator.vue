@@ -21,7 +21,15 @@
 					<span class="pt-4 pb-1 pl-2 text-gray-700 block">Nimike</span>
 					<input
 						type="text"
-						class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="
+							block
+							mt-1
+							w-full
+							rounded-md
+							border-gray-300
+							shadow-sm
+							focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+						"
 						:value="item.title"
 						@change="item.title = $event.target.value"
 					/>
@@ -29,7 +37,16 @@
 				<label>
 					<span class="pt-4 pb-1 pl-2 text-gray-700 block">Tarkempi kuvaus</span>
 					<textarea
-						class="block mt-1 w-full h-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="
+							block
+							mt-1
+							w-full
+							h-16
+							rounded-md
+							border-gray-300
+							shadow-sm
+							focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+						"
 						:value="item.body"
 						@change="item.body = $event.target.value"
 					/>
@@ -38,7 +55,15 @@
 					<span class="pt-4 pb-1 pl-1 text-gray-700 block">Ainesosat</span>
 					<input
 						type="text"
-						class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="
+							block
+							mt-1
+							w-full
+							rounded-md
+							border-gray-300
+							shadow-sm
+							focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+						"
 						:value="item.ingredients"
 						@change="item.ingredients = $event.target.value"
 					/>
@@ -50,7 +75,14 @@
 						<input
 							type="number"
 							step=".01"
-							class="block rounded-md w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+							class="
+								block
+								rounded-md
+								w-full
+								border-gray-300
+								shadow-sm
+								focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+							"
 							:value="item.price"
 							@change="item.price = $event.target.value"
 						/>
@@ -61,7 +93,15 @@
 					<span class="pt-4 pb-1 pl-2 text-gray-700 block">Allergiatiedot</span>
 					<input
 						type="text"
-						class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						class="
+							block
+							mt-1
+							w-full
+							rounded-md
+							border-gray-300
+							shadow-sm
+							focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+						"
 						:value="item.allergenic"
 						@change="item.allergenic = $event.target.value"
 					/>

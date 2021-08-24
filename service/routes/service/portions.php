@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Restaurant\PortionController;
+use App\Http\Controllers\Portions\PortionController;
 use Inertia\Inertia;
 
 // PORTIONS
@@ -14,6 +14,6 @@ Route::get("/authorized/check", [PortionController::class, "check"]);
 Route::get("/authorized", [PortionController::class, "get"]);
 
 Route::get("/", function () {
-    return Inertia::render("Portions");
+    return Inertia::render("Portions/Portions");
 })
     ->name("portions");

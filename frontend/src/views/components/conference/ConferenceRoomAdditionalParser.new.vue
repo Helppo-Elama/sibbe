@@ -136,36 +136,35 @@
 	</v-container>
 </template>
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { IRoomsAdditional } from "@d/interfaces/rooms.interface";
-import { mdiEmailOutline } from "@mdi/js";
-import { IImage } from "@d/interfaces/images.interface";
-import { IRoomAdditionalData } from "../../../data/interfaces/rooms.interface";
+import Vue, { PropType } from "vue"
+import { IRoomsAdditional, IRoomAdditionalData } from "@d/interfaces/rooms.interface"
+import { mdiEmailOutline } from "@mdi/js"
+import { IImage } from "@d/interfaces/images.interface"
 
 export default Vue.extend({
 	name: "ConferenceRoomAdditionalParser",
 	props: {
-		additional: { type: Object as () => PropType<IRoomsAdditional> },
+		additional: { type: Object as () => PropType<IRoomsAdditional> }
 	},
 	data(): {
-		emailIcon: string;
+		emailIcon: string
 	} {
 		return {
-			emailIcon: mdiEmailOutline,
-		};
+			emailIcon: mdiEmailOutline
+		}
 	},
 	computed: {
 		image(): IImage {
-			return this.$props.additional.image;
+			return this.$props.additional.image
 		},
 		data(): IRoomAdditionalData {
-			return this.$props.additional.data;
-		},
+			return this.$props.additional.data
+		}
 	},
 	mounted(): void {
-		console.log("👓 Conference additional data parser mounted.");
-	},
-});
+		console.log("👓 Conference additional data parser mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 ul {

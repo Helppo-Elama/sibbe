@@ -12,7 +12,26 @@
 						<template #trigger>
 							<button
 								type="button"
-								class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+								class="
+									inline-flex
+									justify-between
+									w-full
+									rounded-md
+									border border-gray-300
+									shadow-sm
+									px-4
+									py-2
+									bg-white
+									text-sm
+									font-medium
+									text-gray-700
+									hover:bg-gray-50
+									focus:outline-none
+									focus:ring-2
+									focus:ring-offset-2
+									focus:ring-offset-gray-100
+									focus:ring-indigo-500
+								"
 							>
 								<TypeTranslate :text="defaults.json.type" />
 								<JetDropdownSVG />
@@ -33,7 +52,13 @@
 						<span class="pt-4 pb-1 pl-1 text-gray-700 block">Tarjoiluaika</span>
 						<input
 							type="time"
-							class="mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+							class="
+								mt-1
+								rounded-md
+								border-gray-300
+								shadow-sm
+								focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+							"
 							name="start"
 							step="300"
 							:value="defaults.json.serving_time.start"
@@ -42,7 +67,13 @@
 						<b>-</b>
 						<input
 							type="time"
-							class="mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+							class="
+								mt-1
+								rounded-md
+								border-gray-300
+								shadow-sm
+								focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+							"
 							name="end"
 							step="300"
 							:value="defaults.json.serving_time.end"
@@ -56,7 +87,14 @@
 						<div class="flex mt-1">
 							<input
 								type="number"
-								class="block rounded-md w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+								class="
+									block
+									rounded-md
+									w-full
+									border-gray-300
+									shadow-sm
+									focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+								"
 								:value="defaults.json.price"
 								@change="defaults.json.price = $event.target.value"
 							/>

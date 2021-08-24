@@ -8,7 +8,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Yhteystiedot ja reittiohjeet
@@ -54,7 +54,7 @@
 			</v-row>
 			<v-row class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 				<v-col data-aos="fade-up" cols="12">
-					<GoogleMaps :googleMapsInit="googleMapsInit" />
+					<GoogleMaps :google-maps-init="googleMapsInit" />
 				</v-col>
 			</v-row>
 			<v-row class="ma-0 full-height dark-on-yellow full-height pt-16 pb-16">
@@ -68,21 +68,20 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { contact as metaData } from "@h/metaData";
+import Vue from "vue"
+import { contact as metaData } from "@h/metaData"
 
-import GoogleMaps from "@c/GoogleMaps.vue";
-import ContactForm from "@c/ContactForm.vue";
+import GoogleMaps from "@c/GoogleMaps.vue"
+import ContactForm from "@c/ContactForm.vue"
 
-import { companyData, images } from "@d/company/company.data";
-import { ICompanyData } from "../data/interfaces/company.interface";
-import { IImage } from "../data/interfaces/images.interface";
+import { companyData, images } from "@d/company/company.data"
+import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps"
+import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
+import { ICompanyData } from "../data/interfaces/company.interface"
+import { IImage } from "../data/interfaces/images.interface"
 
-import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps";
-import { IGoogleMapsInit } from "@d/interfaces/maps.interface";
-
-const { villa: placeId } = placeIds;
-const { villa } = routeDestination;
+const { villa: placeId } = placeIds
+const { villa } = routeDestination
 
 const googleMapsInit: IGoogleMapsInit = {
 	apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
@@ -91,46 +90,46 @@ const googleMapsInit: IGoogleMapsInit = {
 	region: "FI",
 	libraries: ["places"],
 	version: "weekly",
-	mapOptions: mapOptions,
-	placeId: placeId,
-	markerOptions: markerOptions,
+	mapOptions,
+	placeId,
+	markerOptions,
 	routeDestination: villa,
-	id: "map",
-};
+	id: "map"
+}
 
 export default Vue.extend({
 	name: "Contact",
 	metaInfo: { ...metaData },
 	components: {
 		GoogleMaps,
-		ContactForm,
+		ContactForm
 	},
 	data(): {
-		images: Array<IImage>;
-		companyData: ICompanyData;
-		googleMapsInit: IGoogleMapsInit;
+		images: Array<IImage>
+		companyData: ICompanyData
+		googleMapsInit: IGoogleMapsInit
 	} {
 		return {
 			images,
 			companyData,
-			googleMapsInit,
-		};
+			googleMapsInit
+		}
 	},
 	computed: {
 		companyEmail(): string {
-			return companyData.getEmail("company");
+			return companyData.getEmail("company")
 		},
 		salesEmail(): string {
-			return companyData.getEmail("sales");
-		},
+			return companyData.getEmail("sales")
+		}
 	},
 	mounted(): void {
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
-			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY;
-		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!");
-		console.log("📡 Contact mounted.");
-	},
-});
+			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY
+		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!")
+		console.log("📡 Contact mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 .empty {

@@ -1,6 +1,11 @@
 .v-date-picker-table .v-btn {
-  font-weight: 600 !important;
+    font-weight: 600 !important;
 }
 .theme--light.v-picker__body {
-  background-color: $color5;
+    background-color: $color5;
+}
+
+.v-date-picker-table.v-date-picker-table--date {
+    height: auto;
+    margin-bottom: 1em;
 }

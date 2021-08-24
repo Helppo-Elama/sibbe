@@ -37,7 +37,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
 
 import {
 	mdiMenu,
@@ -46,15 +46,16 @@ import {
 	mdiAccountGroupOutline,
 	mdiHeartCircleOutline,
 	mdiMapSearchOutline,
-	//mdiPartyPopper,
+	// mdiPartyPopper,
 	mdiFoodForkDrink,
 	mdiCoffeeOutline,
-	mdiCalendarArrowRight,
-} from "@mdi/js";
+	mdiCalendarArrowRight
+} from "@mdi/js"
+
 interface AppBarItem {
-	title: string;
-	path: string;
-	icon?: string;
+	title: string
+	path: string
+	icon?: string
 }
 const appBar: Array<AppBarItem> = [
 	{ title: "Etusivu", path: "/", icon: mdiHomeCircleOutline },
@@ -62,12 +63,12 @@ const appBar: Array<AppBarItem> = [
 	{
 		title: "Varaa huone",
 		path: "/booking.html",
-		icon: mdiCalendarArrowRight,
+		icon: mdiCalendarArrowRight
 	},
 	{
 		title: "Kokoukset",
 		path: "/conference.html",
-		icon: mdiAccountGroupOutline,
+		icon: mdiAccountGroupOutline
 	},
 	/*
   {
@@ -79,18 +80,18 @@ const appBar: Array<AppBarItem> = [
 	{
 		title: "Ravintola",
 		path: "/restaurant.html",
-		icon: mdiFoodForkDrink,
+		icon: mdiFoodForkDrink
 	},
 
 	{ title: "Kahvila", path: "/cafe.html", icon: mdiCoffeeOutline },
 	{
 		title: "Virkisty",
 		path: "/recreation.html",
-		icon: mdiHeartCircleOutline,
+		icon: mdiHeartCircleOutline
 	},
 
-	{ title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline },
-];
+	{ title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline }
+]
 const nav = Vue.extend({
 	name: "Nav",
 	data() {
@@ -98,16 +99,16 @@ const nav = Vue.extend({
 			appBar,
 			appTitle: "Villa Sibbe",
 			sidebar: false,
-			mdiMenu: mdiMenu,
-		};
+			mdiMenu
+		}
 	},
 	mounted() {
-		if (this.$vuetify.breakpoint.xlOnly) this.sidebar = true;
+		if (this.$vuetify.breakpoint.xlOnly) this.sidebar = true
 
-		console.log("🥽 Nav mounted.");
-	},
-});
-export default nav;
+		console.log("🥽 Nav mounted.")
+	}
+})
+export default nav
 </script>
 <style lang="scss" scoped>
 nav {

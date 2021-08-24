@@ -1,4 +1,6 @@
 module.exports = {
-	trailingComma: "es5",
-	endOfLine: "auto",
-};
+	trailingComma: "none",
+	semi: false,
+	singleQuote: false,
+	quoteProps: "as-needed"
+}

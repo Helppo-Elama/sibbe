@@ -9,7 +9,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Majoitu Nobelisti A.I Virtasen tilan pää&shy;rak&shy;en&shy;nuk&shy;ses&shy;sa.
@@ -61,17 +61,17 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { accommodation as metaData } from "@h/metaData";
+import Vue from "vue"
+import { accommodation as metaData } from "@h/metaData"
 
-import Carousel from "@c/Carousel.vue";
-import AccommodationList from "@c/accommodation/AccommodationList.vue";
+import Carousel from "@c/Carousel.vue"
+import AccommodationList from "@c/accommodation/AccommodationList.vue"
 import {
 	accommodationImages as images,
-	accommodationCarouselImages as carouselImages,
-} from "@d/accommodation/accommodation.images";
+	accommodationCarouselImages as carouselImages
+} from "@d/accommodation/accommodation.images"
 
-import { IImage } from "@d/interfaces/images.interface";
+import { IImage } from "@d/interfaces/images.interface"
 
 const accommodation = Vue.extend({
 	name: "Accommodation",
@@ -80,14 +80,14 @@ const accommodation = Vue.extend({
 	data(): { one: IImage; carouselImages: Record<string, IImage[]> } {
 		return {
 			one: images.one,
-			carouselImages: carouselImages,
-		};
+			carouselImages
+		}
 	},
 	mounted(): void {
-		console.log("🎀 Accommodation mounted.");
-	},
-});
-export default accommodation;
+		console.log("🎀 Accommodation mounted.")
+	}
+})
+export default accommodation
 </script>
 <style lang="scss" scoped>
 .empty {

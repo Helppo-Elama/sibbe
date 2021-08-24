@@ -5,26 +5,26 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { PropType } from "vue"
 
-import { IGoogleMapsInit } from "@d/interfaces/maps.interface";
-import { googleMapsInit } from "@in/googleMaps";
+import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
+import googleMapsInitFunction from "@in/googleMaps"
 
 export default Vue.extend({
 	name: "GoogleMaps",
 	props: {
-		googleMapsInit: { type: Object as () => PropType<IGoogleMapsInit> },
+		googleMapsInit: { type: Object as () => PropType<IGoogleMapsInit>, required: true }
 	},
 	mounted() {
 		try {
-			const loaded = Vue.$googleMapsLoaded;
-			Vue.$googleMapsLoaded = googleMapsInit(this.$props.googleMapsInit, loaded);
+			const loaded = Vue.$googleMapsLoaded
+			Vue.$googleMapsLoaded = googleMapsInitFunction(this.$props.googleMapsInit, loaded)
 		} catch (error) {
-			console.error(error);
+			console.error(error)
 		}
-		console.log("🗺 Maps mounted.");
-	},
-});
+		console.log("🗺 Maps mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 .map-responsive {

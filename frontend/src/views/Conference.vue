@@ -9,7 +9,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Intiimiin ja te&shy;hok&shy;kaa&shy;seen ko&shy;kous&shy;ta&shy;mi&shy;seen No&shy;bel
@@ -125,15 +125,17 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { conference as metaData } from "@h/metaData";
+import Vue from "vue"
+import { conference as metaData } from "@h/metaData"
 
-import Header from "@c/Header.vue";
-import ConferenceList from "@c/conference/ConferenceList.vue";
-import { conferenceImages as images } from "@d/conference/conference.images";
-import { conferenceHeaderImages as headerImages } from "@d/conference/conference.images";
+import Header from "@c/Header.vue"
+import ConferenceList from "@c/conference/ConferenceList.vue"
+import {
+	conferenceImages as images,
+	conferenceHeaderImages as headerImages
+} from "@d/conference/conference.images"
 
-import { IImage, IHeaderImages } from "@d/interfaces/images.interface";
+import { IImage, IHeaderImages } from "@d/interfaces/images.interface"
 
 export default Vue.extend({
 	name: "Conference",
@@ -143,13 +145,13 @@ export default Vue.extend({
 		return {
 			one: images.one,
 			two: images.two,
-			headerImages: headerImages,
-		};
+			headerImages
+		}
 	},
 	mounted(): void {
-		console.log("🎀 Conference mounted.");
-	},
-});
+		console.log("🎀 Conference mounted.")
+	}
+})
 </script>
 <style lang="scss" scoped>
 img {

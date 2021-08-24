@@ -91,52 +91,62 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import resize from "vue-resize-directive";
-import { IImage } from "@d/interfaces/images.interface";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import Vue, { PropType } from "vue"
+import resize from "vue-resize-directive"
+import { IImage } from "@d/interfaces/images.interface"
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 
 export default Vue.extend({
 	name: "CafeCarousel",
 	directives: {
-		resize,
+		resize
 	},
 	props: {
-		images: { type: Object as () => PropType<IImage[]> },
-		textOverlay: { type: Array as () => PropType<string> },
-		logoOverlay: { type: Object as () => PropType<Record<string, string>> },
+		images: { type: Object as () => PropType<IImage[]>, required: true },
+		textOverlay: {
+			type: Array as () => PropType<string>,
+			default() {
+				return undefined
+			}
+		},
+		logoOverlay: {
+			type: Object as () => PropType<Record<string, string>>,
+			default() {
+				return undefined
+			}
+		}
 	},
 	data(): {
-		carouselHeight: string;
-		carouselPrevHeight: number | undefined;
-		mdiChevronLeft: string;
-		mdiChevronRight: string;
+		carouselHeight: string
+		carouselPrevHeight: number | undefined
+		mdiChevronLeft: string
+		mdiChevronRight: string
 	} {
 		return {
 			carouselHeight: "",
 			carouselPrevHeight: 0,
-			mdiChevronLeft: mdiChevronLeft,
-			mdiChevronRight: mdiChevronRight,
-		};
+			mdiChevronLeft,
+			mdiChevronRight
+		}
 	},
 	methods: {
 		getCarouselHeight() {
-			const elements = document.getElementsByClassName("header-carousel-image");
-			let heightArray: Array<number> = [];
-			for (let i = 0; i < elements.length; i++) {
-				heightArray.push(elements[i].clientHeight);
+			const elements = document.getElementsByClassName("header-carousel-image")
+			const heightArray: Array<number> = []
+			for (let i = 0; i < elements.length; i += 1) {
+				heightArray.push(elements[i].clientHeight)
 			}
-			const height = Math.max(...heightArray);
-			this.carouselHeight = height + "px !important";
-		},
+			const height = Math.max(...heightArray)
+			this.carouselHeight = `${height}px !important`
+		}
 	},
 	mounted(): void {
-		console.log("🎭 Carousel mounted.");
+		console.log("🎭 Carousel mounted.")
 		this.$nextTick(() => {
-			this.getCarouselHeight();
-		});
-	},
-});
+			this.getCarouselHeight()
+		})
+	}
+})
 </script>
 
 <style lang="scss" scoped>

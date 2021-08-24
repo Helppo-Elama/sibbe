@@ -54,10 +54,11 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
+
 export default Vue.extend({
-	name: "Sitemindericon",
-});
+	name: "Sitemindericon"
+})
 </script>
 <style scoped>
 .st0 {

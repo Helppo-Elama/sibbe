@@ -40,19 +40,19 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { IImage } from "@d/interfaces/images.interface";
+import Vue, { PropType } from "vue"
+import { IImage } from "@d/interfaces/images.interface"
 
 export default Vue.extend({
 	name: "Header",
 	props: {
-		images: { type: Object as () => PropType<Record<string, IImage>> },
+		images: { type: Object as () => PropType<Record<string, IImage>>, required: true }
 	},
 
 	mounted() {
-		console.log("👍 Header mounted!");
-	},
-});
+		console.log("👍 Header mounted!")
+	}
+})
 </script>
 
 <style lang="scss" scoped>

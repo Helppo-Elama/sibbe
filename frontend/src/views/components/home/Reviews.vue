@@ -18,30 +18,30 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Booking from "@i/stars/booking.com-logo.svg";
-import Hotels from "@i/stars/hotels.com-logo.svg";
-import Google from "@i/stars/google-logo.svg";
-import Tripadvisor from "@i/stars/tripadvisor-logo.svg";
+import Vue from "vue"
+import Booking from "@i/stars/booking.com-logo.svg"
+import Hotels from "@i/stars/hotels.com-logo.svg"
+import Google from "@i/stars/google-logo.svg"
+import Tripadvisor from "@i/stars/tripadvisor-logo.svg"
 
 export default Vue.extend({
 	name: "Reviews",
 	data(): {
-		starsInterval: number;
-		increment: number;
+		starsInterval: number
+		increment: number
 		logo: {
-			image: string;
-			imageMaxWidth: string;
-			alt: string;
-		};
+			image: string
+			imageMaxWidth: string
+			alt: string
+		}
 		stars: {
-			site: string;
-			href: string;
-			image: string;
-			imageMaxWidth: string;
-			initLevel: number;
-			level: number;
-		}[];
+			site: string
+			href: string
+			image: string
+			imageMaxWidth: string
+			initLevel: number
+			level: number
+		}[]
 	} {
 		return {
 			starsInterval: 0,
@@ -49,7 +49,7 @@ export default Vue.extend({
 			logo: {
 				image: "/img/villa-sibbe-small.png",
 				imageMaxWidth: "width: 256px;",
-				alt: "Villa Sibbe logo",
+				alt: "Villa Sibbe logo"
 			},
 			stars: [
 				{
@@ -58,7 +58,7 @@ export default Vue.extend({
 					image: Booking,
 					imageMaxWidth: "width: 150px;",
 					initLevel: 0,
-					level: 92,
+					level: 92
 				},
 				{
 					site: "Hotels",
@@ -66,7 +66,7 @@ export default Vue.extend({
 					image: Hotels,
 					imageMaxWidth: "width: 160px;",
 					initLevel: 0,
-					level: 86,
+					level: 86
 				},
 				{
 					site: "Google",
@@ -74,48 +74,46 @@ export default Vue.extend({
 					image: Google,
 					imageMaxWidth: "width: 140px;",
 					initLevel: 0,
-					level: 94,
+					level: 94
 				},
 				{
 					site: "Tripadvisor",
-					href:
-						"https://www.tripadvisor.com/Hotel_Review-g8391316-d11764831-Reviews-Villa_Sibbe-Soderkulla_Uusimaa.html",
+					href: "https://www.tripadvisor.com/Hotel_Review-g8391316-d11764831-Reviews-Villa_Sibbe-Soderkulla_Uusimaa.html",
 					image: Tripadvisor,
 					imageMaxWidth: "width: 140px;",
 					initLevel: 0,
-					level: 80,
-				},
-			],
-		};
+					level: 80
+				}
+			]
+		}
 	},
 	mounted(): void {
-		console.log("🎈 Reviews mounted.");
-		let max: number;
+		console.log("🎈 Reviews mounted.")
+		let max: number
 		this.stars.forEach((data) => {
-			if (max < data.level) max = data.level;
-		});
+			if (max < data.level) max = data.level
+		})
 		this.starsInterval = window.setInterval(() => {
-			this.starsGetLevelProgress(this.increment, max);
-		}, 30);
+			this.starsGetLevelProgress(this.increment, max)
+		}, 30)
 	},
 	methods: {
-		starsGetLevelProgress: function (value: number, max: number) {
-			this.stars.forEach((data) => {
-				data.initLevel = Math.min(Math.floor(data.initLevel + value), data.level);
-				if (data.initLevel === max) {
-					clearInterval(this.starsInterval);
+		starsGetLevelProgress(value: number, max: number) {
+			this.stars.forEach((d, i) => {
+				this.stars[i].initLevel = Math.min(Math.floor(d.initLevel + value), d.level)
+				if (d.initLevel === max) {
+					clearInterval(this.starsInterval)
 				}
-			});
+			})
 		},
 		starsStyles(stars: number) {
-			stars = (stars / 100) * 5;
-			return "--rating: " + stars;
-		},
+			return `--rating: ${(stars / 100) * 5}`
+		}
 	},
-	beforeDestroy: function () {
-		clearInterval(this.starsInterval);
-	},
-});
+	beforeDestroy() {
+		clearInterval(this.starsInterval)
+	}
+})
 </script>
 
 <style lang="scss" scoped>

@@ -5,7 +5,7 @@
 			<v-row
 				class="half-quart-height"
 				:class="{
-					'mb-16': $vuetify.breakpoint.xsOnly,
+					'mb-16': $vuetify.breakpoint.xsOnly
 				}"
 				align="center"
 				justify="center"
@@ -16,7 +16,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Majoitu, kokousta ja viihdy tammipuiden suojassa.
@@ -34,7 +34,7 @@
 				</v-col>
 				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 					<v-lazy>
-						<VueFB :fbUrl="fbUrl" />
+						<VueFB :fb-url="fbUrl" />
 					</v-lazy>
 				</v-col>
 			</v-row>
@@ -50,40 +50,40 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
 
-import { festivity as metaData } from "@h/metaData";
+import { festivity as metaData } from "@h/metaData"
 
-import Header from "@c/Header.vue";
+import Header from "@c/Header.vue"
 
-import { festivityHeaderImages as headerImages } from "@d/festivity/festivity.images";
-import { IImage } from "@d/interfaces/images.interface";
+import festivityHeaderImages from "@d/festivity/festivity.images"
+import { IImage } from "@d/interfaces/images.interface"
 
-import Hero from "@c/home/Hero.vue";
+import Hero from "@c/home/Hero.vue"
 
-import VueFB from "@c/VueFB.vue";
-import Reviews from "@c/home/Reviews.vue";
-import ContactForm from "@c/ContactForm.vue";
+import VueFB from "@c/VueFB.vue"
+import Reviews from "@c/home/Reviews.vue"
+import ContactForm from "@c/ContactForm.vue"
 
-import { socialUrls } from "@d/company/company.data";
+import { socialUrls } from "@d/company/company.data"
 
 export default Vue.extend({
 	name: "Festivity",
 	metaInfo: { ...metaData },
 	components: { Header, Hero, VueFB, Reviews, ContactForm },
 	mounted(): void {
-		console.log("👽 Recreation mounted!");
+		console.log("👽 Recreation mounted!")
 	},
 	data(): {
-		fbUrl: string;
-		headerImages: Record<string, IImage>;
+		fbUrl: string
+		headerImages: Record<string, IImage>
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
-			headerImages: headerImages,
-		};
-	},
-});
+			headerImages: festivityHeaderImages
+		}
+	}
+})
 </script>
 <style lang="scss" scoped>
 .f-w-400 {

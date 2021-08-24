@@ -12,22 +12,22 @@
 						}}</v-icon>
 						<h4 class="pl-4 display-1 museo">{{ menuItem.type }}</h4>
 					</div>
-					<HorizontalLine :classList="classList" />
-					<div v-for="(item, i) in menuItem.json" :key="item.title + i" class="pl-10 pr-10 pb-5">
+					<HorizontalLine :class-list="classList" />
+					<div v-for="(it, x) in menuItem.json" :key="it.title + x" class="pl-10 pr-10 pb-5">
 						<v-container fluid class="pa-0 ma-0">
 							<v-row class="text-left pb-5" no-gutters>
 								<v-col cols="8"
-									><b>{{ i + 1 }}. {{ item.title }}</b></v-col
+									><b>{{ x + 1 }}. {{ it.title }}</b></v-col
 								>
 								<v-col cols="4" class="text-right"
-									><b>{{ item.price }} EUR</b></v-col
+									><b>{{ it.price }} EUR</b></v-col
 								>
-								<v-col v-if="item.body" cols="12" class="pt-2 pl-5">{{ item.body }}</v-col>
-								<v-col v-if="item.ingredients" cols="12" class="pt-2 pl-5">{{
-									item.ingredients
+								<v-col v-if="it.body" cols="12" class="pt-2 pl-5">{{ it.body }}</v-col>
+								<v-col v-if="it.ingredients" cols="12" class="pt-2 pl-5">{{
+									it.ingredients
 								}}</v-col>
-								<v-col v-if="item.allergenic" cols="12" class="pt-2 pl-5"
-									><i>{{ item.allergenic }}</i></v-col
+								<v-col v-if="it.allergenic" cols="12" class="pt-2 pl-5"
+									><i>{{ it.allergenic }}</i></v-col
 								>
 							</v-row>
 						</v-container>
@@ -39,11 +39,9 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { PropType } from "vue"
 
-import { IMenu } from "@d/interfaces/menu.interface";
-import HorizontalLine from "./HorizontalLine.vue";
-
+import { IMenu } from "@d/interfaces/menu.interface"
 import {
 	mdiHamburger,
 	mdiFoodCroissant,
@@ -55,18 +53,29 @@ import {
 	mdiSilverwareForkKnife,
 	mdiGlassMugVariant,
 	mdiCupcake,
-	mdiBeerOutline,
-} from "@mdi/js";
+	mdiBeerOutline
+} from "@mdi/js"
+import HorizontalLine from "./HorizontalLine.vue"
 
 export default Vue.extend({
 	props: {
-		items: { type: Array as () => PropType<IMenu> },
-		color: { type: String },
-		classList: { type: String },
+		items: { type: Array as () => PropType<IMenu>, required: true },
+		color: {
+			type: String,
+			default() {
+				return undefined
+			}
+		},
+		classList: {
+			type: String,
+			default() {
+				return undefined
+			}
+		}
 	},
 	components: { HorizontalLine },
 	data(): {
-		icons: Record<string, string>;
+		icons: Record<string, string>
 	} {
 		return {
 			icons: {
@@ -80,19 +89,19 @@ export default Vue.extend({
 				mdiGlassMugVariant,
 				mdiSilverwareForkKnife,
 				mdiCupcake,
-				mdiBeerOutline,
-			},
-		};
+				mdiBeerOutline
+			}
+		}
 	},
 	methods: {
 		iconify(icon: string): string | undefined {
-			return this.icons[icon];
-		},
+			return this.icons[icon]
+		}
 	},
 	mounted(): void {
-		console.log("😀 Menu parser mounted!");
-	},
-});
+		console.log("😀 Menu parser mounted!")
+	}
+})
 </script>
 
 <style lang="scss" scoped>

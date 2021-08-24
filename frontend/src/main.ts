@@ -1,47 +1,44 @@
-import debounce from "lodash.debounce";
+import debounce from "lodash.debounce"
+
+import Vue from "vue"
+
+import "./registerServiceWorker"
+import { FontAwesomeIcon, FontAwesomeLayers } from "@fortawesome/vue-fontawesome"
+import AOS from "aos"
+import Vuelidate from "vuelidate"
+import router from "./router"
+// import store from "./store";
+import vuetify from "./vuetify/vuetify"
+
+import App from "./App.vue"
 
 interface IWindow extends Window {
-	debounce?: typeof debounce;
+	debounce?: typeof debounce
 }
 
-const w: IWindow = window;
-w.debounce = debounce;
+const w: IWindow = window
+w.debounce = debounce
 
-import Vue from "vue";
+Vue.component("FontAwesomeIcon", FontAwesomeIcon)
+Vue.component("FontAwesomeLayers", FontAwesomeLayers)
 
-import "./registerServiceWorker";
-import router from "./router";
-//import store from "./store";
-import vuetify from "./vuetify/vuetify";
+Vue.config.productionTip = false
 
-import { FontAwesomeIcon, FontAwesomeLayers } from "@fortawesome/vue-fontawesome";
+Vue.use(Vuelidate)
 
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-Vue.component("font-awesome-layers", FontAwesomeLayers);
-
-import AOS from "aos";
-
-import App from "./App.vue";
-
-Vue.config.productionTip = false;
-
-import Vuelidate from "vuelidate";
-
-Vue.use(Vuelidate);
-
-Vue.$googleMapsLoaded = false;
+Vue.$googleMapsLoaded = false
 
 new Vue({
 	router,
-	//store,
+	// store,
 	vuetify,
 	render: (h) => h(App),
 	mounted: () => {
-		document.dispatchEvent(new Event("x-app-rendered"));
+		document.dispatchEvent(new Event("x-app-rendered"))
 		AOS.init({
 			delay: 0,
 			duration: 400,
-			easing: "ease-in-out",
-		});
-	},
-}).$mount("#app");
+			easing: "ease-in-out"
+		})
+	}
+}).$mount("#app")

@@ -27,7 +27,22 @@
 										<span class="inline-flex rounded-md">
 											<button
 												type="button"
-												class="inline-flex items-center border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+												class="
+													inline-flex
+													items-center
+													border border-transparent
+													text-sm
+													leading-4
+													font-medium
+													rounded-md
+													text-gray-500
+													bg-white
+													hover:text-gray-700
+													focus:outline-none
+													transition
+													ease-in-out
+													duration-150
+												"
 											>
 												Ravintola
 												<JetDropdownSVG />
@@ -67,6 +82,14 @@
 								</jet-nav-link>
 							</div>
 							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
+								<jet-nav-link
+									:href="route('servicehours')"
+									:active="route().current('servicehours')"
+								>
+									Aukioloajat
+								</jet-nav-link>
+							</div>
+							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
 								<jet-nav-link :href="route('portions')" :active="route().current('portions')">
 									Annospohjat
 								</jet-nav-link>
@@ -80,7 +103,16 @@
 									<template #trigger>
 										<button
 											v-if="$page.props.jetstream.managesProfilePhotos"
-											class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+											class="
+												flex
+												text-sm
+												border-2 border-transparent
+												rounded-full
+												focus:outline-none focus:border-gray-300
+												transition
+												duration-150
+												ease-in-out
+											"
 										>
 											<img
 												class="h-8 w-8 rounded-full object-cover"
@@ -92,7 +124,24 @@
 										<span v-else class="inline-flex rounded-md">
 											<button
 												type="button"
-												class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+												class="
+													inline-flex
+													items-center
+													px-3
+													py-2
+													border border-transparent
+													text-sm
+													leading-4
+													font-medium
+													rounded-md
+													text-gray-500
+													bg-white
+													hover:text-gray-700
+													focus:outline-none
+													transition
+													ease-in-out
+													duration-150
+												"
 											>
 												{{ $page.props.user.name }}
 
@@ -108,8 +157,8 @@
 										<jet-dropdown-link :href="route('profile.show')"> Profiili </jet-dropdown-link>
 
 										<jet-dropdown-link
-											:href="route('api-tokens.index')"
 											v-if="$page.props.jetstream.hasApiFeatures"
+											:href="route('api-tokens.index')"
 										>
 											API avaimet
 										</jet-dropdown-link>
@@ -128,8 +177,20 @@
 						<!-- Hamburger -->
 						<div class="-mr-2 flex items-center sm:hidden">
 							<button
+								class="
+									inline-flex
+									items-center
+									justify-center
+									p-2
+									rounded-md
+									text-gray-400
+									hover:text-gray-500 hover:bg-gray-100
+									focus:outline-none focus:bg-gray-100 focus:text-gray-500
+									transition
+									duration-150
+									ease-in-out
+								"
 								@click="showingNavigationDropdown = !showingNavigationDropdown"
-								class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
 							>
 								<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
 									<path
@@ -174,7 +235,16 @@
 							Hallintapaneeli
 						</jet-responsive-nav-link>
 						<div
-							class="inline-flex items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium"
+							class="
+								inline-flex
+								items-center
+								pl-3
+								pr-4
+								py-2
+								border-l-4 border-transparent
+								text-base
+								font-medium
+							"
 						>
 							Ravintola
 							<JetDropdownSVG />
@@ -201,6 +271,12 @@
 						</div>
 						<jet-responsive-nav-link :href="route('cafe')" :active="route().current('cafe')">
 							Kahvila
+						</jet-responsive-nav-link>
+						<jet-responsive-nav-link
+							:href="route('servicehours')"
+							:active="route().current('servicehours')"
+						>
+							Aukioloajat
 						</jet-responsive-nav-link>
 						<jet-responsive-nav-link
 							:href="route('portions')"
@@ -240,9 +316,9 @@
 							</jet-responsive-nav-link>
 
 							<jet-responsive-nav-link
+								v-if="$page.props.jetstream.hasApiFeatures"
 								:href="route('api-tokens.index')"
 								:active="route().current('api-tokens.index')"
-								v-if="$page.props.jetstream.hasApiFeatures"
 							>
 								API Avaimet
 							</jet-responsive-nav-link>
@@ -257,7 +333,7 @@
 			</nav>
 
 			<!-- Page Heading -->
-			<header class="bg-white shadow" v-if="$slots.header">
+			<header v-if="$slots.header" class="bg-white shadow">
 				<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 					<slot name="header"></slot>
 				</div>
@@ -274,7 +350,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="js">
 import JetApplicationMark from "@/Jetstream/ApplicationMark";
 import JetBanner from "@/Jetstream/Banner";
 import JetDropdown from "@/Jetstream/Dropdown";
@@ -299,7 +375,6 @@ export default {
 			showingNavigationDropdown: false,
 		};
 	},
-
 	methods: {
 		logout() {
 			// eslint-disable-next-line no-undef

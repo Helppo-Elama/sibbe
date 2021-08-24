@@ -1,8 +1,8 @@
 import {
 	conferenceRoomsCarouselImages as images,
-	conferenceAdditionalImage as additionalImage,
-} from "./conference.images";
-import { IRooms } from "../interfaces/rooms.interface";
+	conferenceAdditionalImage as additionalImage
+} from "./conference.images"
+import { IRooms } from "../interfaces/rooms.interface"
 
 const conference: IRooms = {
 	rooms: [
@@ -11,38 +11,36 @@ const conference: IRooms = {
 			htmlClass: "yellow-on-dark",
 			breakpoints: { md: 6 },
 			title: "Nobel sali",
-			body:
-				"Alakerran Nobel -sali aina 20 hengen kokouksiin asti, huokuu A.I. Virtasen ajan henkeä. Istu saman autenttisen pöydän ääressä jossa A.I.V. vietti Nobel -illallista ja kehitä teidän yrityksenne seuraava maailmaa mullistava idea.",
+			body: "Alakerran Nobel -sali aina 20 hengen kokouksiin asti, huokuu A.I. Virtasen ajan henkeä. Istu saman autenttisen pöydän ääressä jossa A.I.V. vietti Nobel -illallista ja kehitä teidän yrityksenne seuraava maailmaa mullistava idea.",
 			equipments: [
 				{
-					title: "WIFI",
+					title: "WIFI"
 				},
 				{
-					title: "46″ TV",
+					title: "46″ TV"
 				},
 				{
-					title: "2 erillistä massiivipuupöytää, noin 10 hlöä/pöytä.",
-				},
+					title: "2 erillistä massiivipuupöytää, noin 10 hlöä/pöytä."
+				}
 			],
-			images: images.nobel,
+			images: images.nobel
 		},
 		{
 			id: 1,
 			htmlClass: "green-on-light",
 			breakpoints: { md: 6 },
 			title: "Labra",
-			body:
-				"Pienempi kokoustila ”Labra” Villan yläkerrassa. Muutaman hengen kokouksiin tai isomman porukan ryhmätyötilaksi.",
+			body: "Pienempi kokoustila ”Labra” Villan yläkerrassa. Muutaman hengen kokouksiin tai isomman porukan ryhmätyötilaksi.",
 			equipments: [
 				{
-					title: "WIFI",
+					title: "WIFI"
 				},
 				{
-					title: "46″ TV",
-				},
+					title: "46″ TV"
+				}
 			],
-			images: images.labra,
-		},
+			images: images.labra
+		}
 	],
 	additional: {
 		data: [
@@ -54,9 +52,9 @@ const conference: IRooms = {
 				body: [
 					{
 						type: "text",
-						content: "",
-					},
-				],
+						content: ""
+					}
+				]
 			},
 			{
 				id: 1,
@@ -66,12 +64,12 @@ const conference: IRooms = {
 				body: [
 					{
 						type: "text",
-						content: "",
-					},
-				],
-			},
+						content: ""
+					}
+				]
+			}
 		],
-		image: additionalImage,
-	},
-};
-export { conference };
+		image: additionalImage
+	}
+}
+export default conference

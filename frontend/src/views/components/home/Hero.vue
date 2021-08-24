@@ -113,30 +113,30 @@
 	</v-row>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import Vue from "vue"
+import { library } from "@fortawesome/fontawesome-svg-core"
 
-import { faUsers, faBed, faHeart, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUsers, faBed, faHeart, faCircle } from "@fortawesome/free-solid-svg-icons"
 
-library.add(faUsers, faBed, faHeart, faCircle);
+library.add(faUsers, faBed, faHeart, faCircle)
 
 export default Vue.extend({
 	name: "Hero",
 	mounted(): void {
-		console.log("🦺 Hero mounted!");
+		console.log("🦺 Hero mounted!")
 	},
 	methods: {
 		faHoverStyle(el: string) {
-			(this.$refs[el] as SVGElement).classList.add(el + "-circle-hover");
+			;(this.$refs[el] as SVGElement).classList.add(`${el}-circle-hover`)
 		},
 		faNormalStyle(el: string) {
-			(this.$refs[el] as SVGElement).classList.remove(el + "-circle-hover");
+			;(this.$refs[el] as SVGElement).classList.remove(`${el}-circle-hover`)
 		},
 		faClickStyle(el: string) {
-			(this.$refs[el] as SVGElement).classList.add(el + "-circle-clicked");
-		},
-	},
-});
+			;(this.$refs[el] as SVGElement).classList.add(`${el}-circle-clicked`)
+		}
+	}
+})
 </script>
 <style lang="scss" scoped>
 .fa-bed:hover,

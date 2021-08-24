@@ -5,7 +5,7 @@
 			<v-row
 				class="half-quart-height"
 				:class="{
-					'mb-16': $vuetify.breakpoint.xsOnly,
+					'mb-16': $vuetify.breakpoint.xsOnly
 				}"
 				align="center"
 				justify="center"
@@ -16,7 +16,7 @@
 						:class="{
 							'display-1': $vuetify.breakpoint.xs,
 							'display-2': $vuetify.breakpoint.sm,
-							'display-3': $vuetify.breakpoint.mdAndUp,
+							'display-3': $vuetify.breakpoint.mdAndUp
 						}"
 					>
 						Luonto, meri, lähimatkailu, frisbeegolf, uinti sekä suppailu.
@@ -439,75 +439,68 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
 
-import Carousel from "@c/Carousel.vue";
+import Carousel from "@c/Carousel.vue"
 
-import { recreation as metaData } from "@h/metaData";
+import { recreation as metaData } from "@h/metaData"
 
-import Header from "@c/Header.vue";
+import Header from "@c/Header.vue"
 import {
 	recreationHeaderImages as headerImages,
 	recreationImages as images,
-	recreationCarouselImages as carouselImages,
-} from "@d/recreation/recreation.images";
+	recreationCarouselImages as carouselImages
+} from "@d/recreation/recreation.images"
 
-import sipooLogo from "@i/originals/recreation/sipoo-logo.svg";
+import sipooLogo from "@i/originals/recreation/sipoo-logo.svg"
 
-import { IImage } from "@d/interfaces/images.interface";
+import { IImage } from "@d/interfaces/images.interface"
 
-const {
-	joensuuntila,
-	sipoonkorpi,
-	norrkulla,
-	suppailu,
-	beachvolley,
-	uimajarvi,
-	venevuokraus,
-} = images;
+const { joensuuntila, sipoonkorpi, norrkulla, suppailu, beachvolley, uimajarvi, venevuokraus } =
+	images
 export default Vue.extend({
 	name: "Recreation",
 	metaInfo: { ...metaData },
 	components: { Header, Carousel },
 	data(): {
-		headerImages: Record<string, IImage>;
-		carouselImages: Record<string, Array<IImage>>;
-		joensuuntila: IImage;
-		sipoonkorpi: IImage;
-		norrkulla: IImage;
-		sipooLogo: { image: string; imageMaxWidth: string; alt: string };
-		discgolfLogo: { image: string; imageMaxWidth: string; alt: string };
-		suppailu: IImage;
-		beachvolley: IImage;
-		uimajarvi: IImage;
-		venevuokraus: IImage;
+		headerImages: Record<string, IImage>
+		carouselImages: Record<string, Array<IImage>>
+		joensuuntila: IImage
+		sipoonkorpi: IImage
+		norrkulla: IImage
+		sipooLogo: { image: string; imageMaxWidth: string; alt: string }
+		discgolfLogo: { image: string; imageMaxWidth: string; alt: string }
+		suppailu: IImage
+		beachvolley: IImage
+		uimajarvi: IImage
+		venevuokraus: IImage
 	} {
 		return {
-			headerImages: headerImages,
-			carouselImages: carouselImages,
-			joensuuntila: joensuuntila,
-			sipoonkorpi: sipoonkorpi,
-			norrkulla: norrkulla,
+			headerImages,
+			carouselImages,
+			joensuuntila,
+			sipoonkorpi,
+			norrkulla,
 			sipooLogo: {
 				image: sipooLogo,
 				imageMaxWidth: "width: 10em;",
-				alt: "Löfbergs logo",
+				alt: "Löfbergs logo"
 			},
 			discgolfLogo: {
 				image: "/img/recreation/sibbe-disc-golf-logo.png",
 				imageMaxWidth: "width: 5em;",
-				alt: "Sibbe Disc Golf",
+				alt: "Sibbe Disc Golf"
 			},
-			suppailu: suppailu,
-			beachvolley: beachvolley,
-			uimajarvi: uimajarvi,
-			venevuokraus: venevuokraus,
-		};
+			suppailu,
+			beachvolley,
+			uimajarvi,
+			venevuokraus
+		}
 	},
 	mounted(): void {
-		console.log("👽 Recreation mounted!");
-	},
-});
+		console.log("👽 Recreation mounted!")
+	}
+})
 </script>
 <style lang="scss" scoped>
 .image-with-author {

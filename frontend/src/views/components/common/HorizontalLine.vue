@@ -3,15 +3,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
+
 export default Vue.extend({
 	props: {
-		classList: { type: String },
+		classList: {
+			type: String,
+			default() {
+				return undefined
+			}
+		}
 	},
 	mounted(): void {
-		console.log("🤭 Horizontal line mounted!");
-	},
-});
+		console.log("🤭 Horizontal line mounted!")
+	}
+})
 </script>
 
 <style lang="scss" scoped>

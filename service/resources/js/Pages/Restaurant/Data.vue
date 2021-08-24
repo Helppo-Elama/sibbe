@@ -8,7 +8,7 @@
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
 						<div class="mt-8 text-2xl text-center">Lounas</div>
 						<div class="mt-6"></div>
 						<div class="grid justify-items-stretch">

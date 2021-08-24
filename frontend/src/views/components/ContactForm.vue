@@ -46,13 +46,13 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
 
-import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
-import { axiosPostContactData as axios } from "@in/axios";
-import { IXHttp } from "@d/interfaces/xhttp.interface";
-import { createURL } from "@d/contact/contact.data";
+import { validationMixin } from "vuelidate"
+import { required, minLength, email } from "vuelidate/lib/validators"
+import { axiosPostContactData as axios } from "@in/axios"
+import { IXHttp } from "@d/interfaces/xhttp.interface"
+import createURL from "@d/contact/contact.data"
 
 const contactForm = Vue.extend({
 	name: "ContactForm",
@@ -61,19 +61,19 @@ const contactForm = Vue.extend({
 	validations: {
 		name: { required, minLength: minLength(3) },
 		email: { required, email },
-		message: { required, minLength: minLength(10) },
+		message: { required, minLength: minLength(10) }
 	},
 	mounted(): void {
-		console.log("📞 Contact form mounted.");
+		console.log("📞 Contact form mounted.")
 	},
 	props: {
-		sender: { type: String },
+		sender: { type: String, required: true }
 	},
 	data(): {
-		name: string;
-		email: string;
-		message: string;
-		xhttp: IXHttp;
+		name: string
+		email: string
+		message: string
+		xhttp: IXHttp
 	} {
 		return {
 			name: "",
@@ -83,68 +83,68 @@ const contactForm = Vue.extend({
 				url: createURL(),
 				success: false,
 				loaded: true,
-				errors: false,
-			},
-		};
+				errors: false
+			}
+		}
 	},
 	computed: {
 		nameErrors() {
-			const errors: Array<string> = [];
-			if (!this.$v.name.$dirty) return errors;
-			!this.$v.name.minLength && errors.push("Nimen pitää olla yli 3 merkkiä");
-			!this.$v.name.required && errors.push("Nimi tarvitaan...");
-			return errors;
+			const errors: Array<string> = []
+			if (!this.$v.name.$dirty) return errors
+			if (!this.$v.name.minLength) errors.push("Nimen pitää olla yli 3 merkkiä")
+			if (!this.$v.name.required) errors.push("Nimi tarvitaan...")
+			return errors
 		},
 		emailErrors() {
-			const errors: Array<string> = [];
-			if (!this.$v.email.$dirty) return errors;
-			!this.$v.email.email && errors.push("Sähköpostiosoitteen täytyy olla oikein");
-			!this.$v.email.required && errors.push("Sähköposti tarvitaan...");
-			return errors;
+			const errors: Array<string> = []
+			if (!this.$v.email.$dirty) return errors
+			if (!this.$v.email.email) errors.push("Sähköpostiosoitteen täytyy olla oikein")
+			if (!this.$v.email.required) errors.push("Sähköposti tarvitaan...")
+			return errors
 		},
 		messageErrors() {
-			const errors: Array<string> = [];
-			if (!this.$v.message.$dirty) return errors;
-			!this.$v.message.minLength && errors.push("Viestin täytyy olla yli 10 merkkiä");
-			!this.$v.message.required && errors.push("Viesti tarvitaan...");
-			return errors;
-		},
+			const errors: Array<string> = []
+			if (!this.$v.message.$dirty) return errors
+			if (!this.$v.message.minLength) errors.push("Viestin täytyy olla yli 10 merkkiä")
+			if (!this.$v.message.required) errors.push("Viesti tarvitaan...")
+			return errors
+		}
 	},
 	methods: {
 		async submit(): Promise<void> {
-			let { loaded } = this.xhttp;
-			const request = this.xhttp;
-			this.$v.$touch();
+			const { loaded } = this.xhttp
+			const request = this.xhttp
+			this.$v.$touch()
 			if (loaded) {
-				this.xhttp.loaded = false;
-				this.xhttp.success = false;
-				this.xhttp.errors = false;
+				this.xhttp.loaded = false
+				this.xhttp.success = false
+				this.xhttp.errors = false
 				request.data = {
 					name: this.name,
 					email: this.email,
 					message: this.message,
-					sender: this.sender,
-				};
-				const response = await axios(request);
+					sender: this.sender
+				}
+				const response = await axios(request)
 				if (response) {
-					this.clear();
-					this.xhttp.loaded = true;
-					this.xhttp.success = true;
+					this.clear()
+					this.xhttp.loaded = true
+					this.xhttp.success = true
 				} else {
-					this.xhttp.loaded = true;
-					this.xhttp.errors = true;
+					this.xhttp.loaded = true
+					this.xhttp.errors = true
 				}
 			}
 		},
 		clear() {
-			this.$v.$reset();
-			this.name = "";
-			this.email = "";
-			this.message = "";
-		},
-	},
-});
-export default contactForm;
+			this.$v.$reset()
+			this.name = ""
+			this.email = ""
+			this.message = ""
+		}
+	}
+})
+export default contactForm
 </script>
 <style lang="scss">
 h3 {
