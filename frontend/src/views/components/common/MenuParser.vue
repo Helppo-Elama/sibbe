@@ -10,7 +10,7 @@
 						<v-icon v-if="menuItem.icon" x-large :style="'color: ' + color">{{
 							iconify(menuItem.icon)
 						}}</v-icon>
-						<h4 class="pl-4 display-1 museo">{{ menuItem.type }}</h4>
+						<h4 class="pl-4 display-1 museo text-wrap">{{ menuItem.type }}</h4>
 					</div>
 					<HorizontalLine :class-list="classList" />
 					<div v-for="(it, x) in menuItem.json" :key="it.title + x" class="pl-10 pr-10 pb-5">

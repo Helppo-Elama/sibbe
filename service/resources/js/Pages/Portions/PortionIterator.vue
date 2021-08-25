@@ -29,8 +29,8 @@
 						"
 						:value="portion.title"
 						@change="
-							portion.title = $event.target.value;
-							updateHandler(i);
+							portion.title = $event.target.value
+							updateHandler(i)
 						"
 					/>
 				</label>
@@ -49,8 +49,8 @@
 						"
 						:value="portion.body"
 						@change="
-							portion.body = $event.target.value;
-							updateHandler(i);
+							portion.body = $event.target.value
+							updateHandler(i)
 						"
 					/>
 				</label>
@@ -69,8 +69,8 @@
 						"
 						:value="portion.ingredients"
 						@change="
-							portion.ingredients = $event.target.value;
-							updateHandler(i);
+							portion.ingredients = $event.target.value
+							updateHandler(i)
 						"
 					/>
 				</label>
@@ -91,8 +91,8 @@
 							"
 							:value="portion.price"
 							@change="
-								portion.price = $event.target.value;
-								updateHandler(i);
+								portion.price = $event.target.value
+								updateHandler(i)
 							"
 						/>
 						<div class="pl-4 flex items-center">EUR</div>
@@ -113,8 +113,8 @@
 						"
 						:value="portion.allergenic"
 						@change="
-							portion.allergenic = $event.target.value;
-							updateHandler(i);
+							portion.allergenic = $event.target.value
+							updateHandler(i)
 						"
 					/>
 				</label>
@@ -123,42 +123,42 @@
 	</div>
 </template>
 <script>
-import JetButton from "@/Jetstream/Button";
+import JetButton from "@/Jetstream/Button"
 
 export default {
 	components: {
-		JetButton,
+		JetButton
 	},
 	props: {
 		data: {
 			type: Object,
-			required: true,
+			required: true
 		},
 		target: {
 			type: String,
-			default: "",
-		},
+			default: ""
+		}
 	},
 	data() {
 		return {
-			emitTarget: undefined,
-		};
+			emitTarget: undefined
+		}
 	},
 	watch: {
 		target: {
 			handler() {
-				this.emitTarget = this.target;
-			},
-		},
+				this.emitTarget = this.target
+			}
+		}
 	},
 	methods: {
 		updateHandler(i) {
-			const { target } = this;
-			this.$emit("change", { target, i });
-		},
+			const { target } = this
+			this.$emit("change", { target, i })
+		}
 	},
 	created() {
-		this.updateHandler = window._.debounce(this.updateHandler, 2000);
-	},
-};
+		this.updateHandler = window._.debounce(this.updateHandler, 2000)
+	}
+}
 </script>

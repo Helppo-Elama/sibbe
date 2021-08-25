@@ -95,3 +95,9 @@ export const deletePortionApiUrl = () => {
 	const result = `${url}/portions/authorized/portion`;
 	return result;
 };
+
+// SERVICE HOURS
+export const postServiceHourApiUrl = () => {
+	const result = `${url}/servicehours/authorized/servicehour`;
+	return result;
+};

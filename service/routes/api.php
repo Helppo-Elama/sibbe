@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Restaurant\LunchController;
 use App\Http\Controllers\Restaurant\MenuController;
 use App\Http\Controllers\Cafe\CafeController;
+use App\Http\Controllers\ServiceHours\ServiceHourController;
 use App\Http\Controllers\Mail\ContactController;
 
 /*
@@ -29,6 +30,8 @@ Route::get("/restaurant/menu", [MenuController::class, "get"]);
 
 Route::get("/cafe/menu", [CafeController::class, "get"]);
 //Route::get("/cafe/data", [CafeController::class, "get"]);
+
+Route::get("/servicehours", [ServiceHourController::class, "get"]);
 
 Route::post("/mail/contact", [ContactController::class, "submit"]);
 //middleware(["middleware" => "trusted_access"])->

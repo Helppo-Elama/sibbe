@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const mix = require("laravel-mix");
+const mix = require("laravel-mix")
 
 /*
  |--------------------------------------------------------------------------
@@ -18,11 +18,19 @@ mix
 	.postCss("resources/css/app.css", "public/css", [
 		require("postcss-import"),
 		require("tailwindcss"),
-		require("autoprefixer"),
+		require("autoprefixer")
 	])
 	.sourceMaps()
-	.webpackConfig(require("./webpack.config"));
+	.webpackConfig(require("./webpack.config"))
 
 if (mix.inProduction()) {
-	mix.version();
+	mix.version()
+}
+if (process.env.npm_lifecycle_event === "hot") {
+	const path = require("path")
+	mix.webpackConfig({
+		devServer: {
+			contentBase: path.resolve(__dirname, "public")
+		}
+	})
 }

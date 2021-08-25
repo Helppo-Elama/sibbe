@@ -74,7 +74,7 @@ import { mdiEmailOutline } from "@mdi/js"
 const accommodationParser = Vue.extend({
 	name: "AccommodationRoomAdditionalParser",
 	props: {
-		additional: { type: Object as () => PropType<IRoomsAdditional> }
+		additional: { type: Object as () => PropType<IRoomsAdditional>, required: true }
 	},
 	data(): {
 		emailIcon: string

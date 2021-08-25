@@ -18,7 +18,15 @@
 								<span class="pt-4 pb-1 pl-1 text-gray-700 text-2xl block">Kategoria</span>
 								<input
 									type="text"
-									class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+									class="
+										block
+										mt-1
+										w-full
+										rounded-md
+										border-gray-300
+										shadow-sm
+										focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+									"
 									:value="item.type"
 									@change="item.type = $event.target.value"
 								/>

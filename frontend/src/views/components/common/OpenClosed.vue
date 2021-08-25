@@ -1,25 +1,27 @@
 <template>
 	<div>
-		<h1>Aukioloajat:</h1>
+		<h1 class="bello text-decoration-underline" :class="classList">Aukioloajat</h1>
 		<div v-for="(openClosed, i) in computedServiceHours" :key="i">
 			<div v-if="openClosed.open">
 				<div v-if="openClosed.open.start === openClosed.open.end">
-					<p>{{ capitalize(openClosed.open.start) }}na avoinna kello {{ openClosed.open.hours }}</p>
+					<h4 class="museo">
+						{{ capitalize(openClosed.open.start) }}: {{ openClosed.open.hours }}
+					</h4>
 				</div>
 				<div v-if="openClosed.open.start !== openClosed.open.end">
-					<p>
-						{{ capitalize(openClosed.open.start) }} - {{ openClosed.open.end }} avoinna kello
+					<h4 class="museo">
+						{{ capitalize(openClosed.open.start) }} - {{ openClosed.open.end }}:
 						{{ openClosed.open.hours }}
-					</p>
+					</h4>
 				</div>
 			</div>
 
 			<div v-if="openClosed.closed">
 				<div v-if="openClosed.closed.start === openClosed.closed.end">
-					<p>{{ capitalize(openClosed.closed.start) }}na suljettu</p>
-				</div>
-				<div v-if="openClosed.closed.start !== openClosed.closed.end">
-					<p>{{ capitalize(openClosed.closed.start) }} - {{ openClosed.closed.end }} suljettu</p>
+					<span
+						>{{ capitalize(openClosed.closed.start) }}na
+						<span class="closed font-weight-bold">suljettu</span></span
+					>
 				</div>
 			</div>
 		</div>
@@ -80,12 +82,6 @@ export default Vue.extend({
 						openClosed.push({
 							open: { start: day.day, end: day.day, hours: `${day.open} - ${day.close}` }
 						})
-				} else if (
-					len !== 0 &&
-					day.close === days[i - 1].close &&
-					Object.prototype.hasOwnProperty.call(openClosed[len - 1], "closed")
-				) {
-					openClosed[len - 1].closed.end = day.day
 				} else {
 					openClosed.push({
 						closed: { start: day.day, end: day.day }
@@ -94,9 +90,6 @@ export default Vue.extend({
 			})
 			return openClosed
 		}
-	},
-	mounted() {
-		console.log(this.computedServiceHours)
 	},
 	methods: {
 		capitalize(string: string): string {

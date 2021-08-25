@@ -5,7 +5,7 @@
 		<div class="min-h-screen bg-gray-100">
 			<nav class="bg-white border-b border-gray-100">
 				<!-- Primary Navigation Menu -->
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
 					<div class="flex justify-between h-16">
 						<div class="flex">
 							<!-- Logo -->
@@ -16,12 +16,12 @@
 							</div>
 
 							<!-- Navigation Links -->
-							<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+							<div class="hidden space-x-8 md:-my-px md:ml-10 md:flex">
 								<jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
 									Hallintapaneeli
 								</jet-nav-link>
 							</div>
-							<div class="hidden sm:flex sm:items-center sm:ml-6">
+							<div class="hidden md:flex md:items-center md:ml-6">
 								<jet-dropdown align="left" width="48">
 									<template #trigger>
 										<span class="inline-flex rounded-md">
@@ -76,12 +76,12 @@
 									</template>
 								</jet-dropdown>
 							</div>
-							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
+							<div class="hidden space-x-8 md:-my-px md:flex md:ml-6">
 								<jet-nav-link :href="route('cafe')" :active="route().current('cafe')">
 									Kahvila
 								</jet-nav-link>
 							</div>
-							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
+							<div class="hidden space-x-8 md:-my-px md:flex md:ml-6">
 								<jet-nav-link
 									:href="route('servicehours')"
 									:active="route().current('servicehours')"
@@ -89,14 +89,14 @@
 									Aukioloajat
 								</jet-nav-link>
 							</div>
-							<div class="hidden space-x-8 sm:-my-px sm:flex sm:ml-6">
+							<div class="hidden space-x-8 md:-my-px md:flex md:ml-6">
 								<jet-nav-link :href="route('portions')" :active="route().current('portions')">
 									Annospohjat
 								</jet-nav-link>
 							</div>
 						</div>
 
-						<div class="hidden sm:flex sm:items-center sm:ml-6">
+						<div class="hidden md:flex md:items-center md:ml-6">
 							<!-- Settings Dropdown -->
 							<div class="ml-3 relative">
 								<jet-dropdown align="right" width="48">
@@ -167,7 +167,7 @@
 
 										<!-- Authentication -->
 										<form @submit.prevent="logout">
-											<jet-dropdown-link as="button"> Kirjaudu ulos </jet-dropdown-link>
+											<jet-dropdown-link role="button"> Kirjaudu ulos </jet-dropdown-link>
 										</form>
 									</template>
 								</jet-dropdown>
@@ -175,7 +175,7 @@
 						</div>
 
 						<!-- Hamburger -->
-						<div class="-mr-2 flex items-center sm:hidden">
+						<div class="-mr-2 flex items-center md:hidden">
 							<button
 								class="
 									inline-flex
@@ -196,7 +196,7 @@
 									<path
 										:class="{
 											hidden: showingNavigationDropdown,
-											'inline-flex': !showingNavigationDropdown,
+											'inline-flex': !showingNavigationDropdown
 										}"
 										stroke-linecap="round"
 										stroke-linejoin="round"
@@ -206,7 +206,7 @@
 									<path
 										:class="{
 											hidden: !showingNavigationDropdown,
-											'inline-flex': showingNavigationDropdown,
+											'inline-flex': showingNavigationDropdown
 										}"
 										stroke-linecap="round"
 										stroke-linejoin="round"
@@ -223,9 +223,9 @@
 				<div
 					:class="{
 						block: showingNavigationDropdown,
-						hidden: !showingNavigationDropdown,
+						hidden: !showingNavigationDropdown
 					}"
-					class="sm:hidden"
+					class="md:hidden"
 				>
 					<div class="pt-2 pb-3 space-y-1">
 						<jet-responsive-nav-link
@@ -325,7 +325,7 @@
 
 							<!-- Authentication -->
 							<form method="POST" @submit.prevent="logout">
-								<jet-responsive-nav-link as="button"> Kirjaudu ulos </jet-responsive-nav-link>
+								<jet-responsive-nav-link role="button"> Kirjaudu ulos </jet-responsive-nav-link>
 							</form>
 						</div>
 					</div>
@@ -334,7 +334,7 @@
 
 			<!-- Page Heading -->
 			<header v-if="$slots.header" class="bg-white shadow">
-				<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+				<div class="max-w-7xl mx-auto py-6 px-4 md:px-6 lg:px-8">
 					<slot name="header"></slot>
 				</div>
 			</header>
@@ -351,6 +351,7 @@
 </template>
 
 <script lang="js">
+import { Link as InertiaLink } from "@inertiajs/inertia-vue"
 import JetApplicationMark from "@/Jetstream/ApplicationMark";
 import JetBanner from "@/Jetstream/Banner";
 import JetDropdown from "@/Jetstream/Dropdown";
@@ -368,6 +369,7 @@ export default {
 		JetDropdownSVG,
 		JetNavLink,
 		JetResponsiveNavLink,
+		InertiaLink
 	},
 
 	data() {

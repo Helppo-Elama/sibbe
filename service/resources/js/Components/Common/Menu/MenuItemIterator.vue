@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 frist:border-r-2">
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 		<div v-for="(item, i) in portions" :key="item + i">
 			<div class="mr-4">
 				<div class="grid grid-cols-1 lg:grid-cols-2 pb-3 text-2xl text-gray-700">
@@ -112,29 +112,29 @@
 	</div>
 </template>
 <script>
-import JetButton from "@/Jetstream/Button";
-import Search from "./PortionSearch";
+import JetButton from "@/Jetstream/Button"
+import Search from "./PortionSearch"
 
 export default {
 	components: {
 		JetButton,
-		Search,
+		Search
 	},
 	props: {
 		data: {
-			Type: Object,
+			Type: Object
 		},
 		date: {
-			Type: String,
+			Type: String
 		},
-		category: { Type: Number },
+		category: { Type: Number }
 	},
 	data() {
 		return {
 			searchModal: false,
 			searchIndex: undefined,
-			portions: undefined,
-		};
+			portions: undefined
+		}
 	},
 	watch: {
 		data: {
@@ -142,46 +142,46 @@ export default {
 			immediate: true,
 			handler() {
 				if (!this.portions) {
-					this.portions = window._.cloneDeep(this.data);
+					this.portions = window._.cloneDeep(this.data)
 				}
-			},
+			}
 		},
 		portions: {
 			deep: true,
 			handler() {
-				this.changeHandler();
-			},
-		},
+				this.changeHandler()
+			}
+		}
 	},
 	methods: {
 		changeHandler() {
-			const { category, portions } = this;
-			this.$emit("change", { category, portions });
+			const { category, portions } = this
+			this.$emit("change", { category, portions })
 		},
 		deleteHandler(category, i) {
-			this.$emit("delete", { category, i });
+			this.$emit("delete", { category, i })
 		},
 		searchHandler(i) {
-			this.searchIndex = i;
-			this.searchModal = true;
+			this.searchIndex = i
+			this.searchModal = true
 		},
 		searchResult(portion) {
-			this.searchModal = false;
+			this.searchModal = false
 			if (typeof this.searchIndex === "number" && this.searchIndex >= 0) {
 				this.portions[this.searchIndex] = window._.pick(portion, [
 					"title",
 					"body",
 					"allergenic",
 					"ingredients",
-					"price",
-				]);
-				this.changeHandler();
-			} else this.$message.warn("Annoksen lisääminen epäonnistui");
-			this.searchModal = false;
-		},
+					"price"
+				])
+				this.changeHandler()
+			} else this.$message.warn("Annoksen lisääminen epäonnistui")
+			this.searchModal = false
+		}
 	},
 	created() {
-		this.emitHandler = window._.debounce(this.changeHandler, 2000);
-	},
-};
+		this.emitHandler = window._.debounce(this.changeHandler, 2000)
+	}
+}
 </script>

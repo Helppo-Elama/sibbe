@@ -53,15 +53,4 @@ class PortionController extends Controller
         if (count($data) == 0) return response("true", 200);
         return response("false", 200);
     }
-
-    public function delete(Request $request)
-    {
-        if ($request->user()) {
-            if ($request->id) {
-                Portion::where(["id" => $request->id])
-                    ->delete();
-                return response()->json("Annos poistettu", 200);
-            } else return response()->json("Listalta ei löytynyt poistettavaa annosta", 200);
-        } else return response()->json("Ok", 200);
-    }
 }

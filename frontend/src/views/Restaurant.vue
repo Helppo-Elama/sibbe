@@ -23,13 +23,21 @@
 					</h3>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<ServiceHours :service-hours="serviceHours" :class-list="'color-dark'" />
+					<ServiceHours
+						v-if="serviceHours"
+						:service-hours="serviceHours"
+						:class-list="'color-dark'"
+					/>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<OpenClosed :service-hours="serviceHours" :class-list="'color-dark'" />
+					<OpenClosed
+						v-if="serviceHours"
+						:service-hours="serviceHours"
+						:class-list="'color-dark'"
+					/>
 				</v-col>
 			</v-row>
-			<v-row v-if="menu" class="light-on-green full-height pt-16 pb-16">
+			<v-row v-if="menu" class="light-on-green full-height pt-16 pb-16 px-1">
 				<v-col cols="12">
 					<h3 class="museo museo-heading">Villa Sibben ravintola</h3>
 				</v-col>
@@ -129,7 +137,10 @@ import { IImage } from "@d/interfaces/images.interface"
 import { axiosApi as axios } from "@in/axios"
 
 import ServiceHours from "@c/common/ServiceHours.vue"
-import { restaurant as serviceHours, IServiceHours } from "@d/interfaces/servicehours.interface"
+
+import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
+
+import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
 import OpenClosed from "@c/common/OpenClosed.vue"
 
 import VueFB from "@c/VueFB.vue"
@@ -187,7 +198,7 @@ export default Vue.extend({
 		lunches: undefined | IMenu
 		googleMapsInit: IGoogleMapsInit
 		haveLunches: boolean
-		serviceHours: IServiceHours
+		serviceHours: undefined | IServiceHours
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
@@ -199,22 +210,42 @@ export default Vue.extend({
 			lunches: undefined,
 			googleMapsInit,
 			haveLunches: false,
-			serviceHours
+			serviceHours: undefined
 		}
 	},
 	methods: {
 		async fetchData(target: string): Promise<undefined | IRestaurantData> {
 			const url = createURL(target)
-			if (!url) throw new Error(`❌ No URL for axios with target: ${target}`)
+			if (!url) throw new Error(`❌ No data URL for axios with target: ${target}`)
 			const response = await axios({ url })
 			if (response && isIRestaurantData(response)) {
 				return response
 			}
 			return undefined
 		},
+		async fetchServiceHours(target: string): Promise<undefined | IServiceHours> {
+			const url = serviceHoursApiUrl(target)
+			if (!url) throw new Error(`❌ No servicehours URL for axios with target: ${target}`)
+			const response = await axios({ url })
+			if (response) {
+				if (isIServiceHours(response[0].json)) {
+					const data = response[0].json
+					const l = data.length
+					for (let j = 0; j < l; j += 1) {
+						const day = data[j]
+						console.log(day)
+						if (day.open === null) data[j].open = ""
+						if (day.close === null) data[j].close = ""
+					}
+					return data
+				}
+			}
+			return undefined
+		},
+
 		async fetchMenu(target: string): Promise<undefined | IMenu> {
 			const url = createURL(target)
-			if (!url) throw new Error(` target: ${target}`)
+			if (!url) throw new Error(`❌ No menu URL for axios with target: ${target}`)
 			const response = await axios({ url })
 			if (response && isIMenu(response)) return response
 			return undefined
@@ -223,6 +254,7 @@ export default Vue.extend({
 	async mounted(): Promise<void> {
 		try {
 			// this.data = await this.fetchData("data");
+			this.serviceHours = await this.fetchServiceHours("restaurant")
 			this.menu = await this.fetchMenu("menu")
 			this.lunches = await this.fetchMenu("lunch")
 			if (isIMenu(this.lunches)) {

@@ -16,92 +16,22 @@ export interface IServiceHour {
 
 export type IServiceHours = Array<IServiceHour>
 
-export const cafe: IServiceHours = [
-	{
-		day: "sunnuntai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "maanantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "tiistai",
-		isOpen: false,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "keskiviikko",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "torstai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "perjantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "lauantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
+export function isIServiceHours(array: unknown): array is IServiceHours {
+	let result = true
+	if (Array.isArray(array)) {
+		array.forEach((object) => {
+			if (result === true)
+				if (
+					!Object.prototype.hasOwnProperty.call(object, "day") &&
+					!Object.prototype.hasOwnProperty.call(object, "isOpen") &&
+					!Object.prototype.hasOwnProperty.call(object, "open") &&
+					!Object.prototype.hasOwnProperty.call(object, "close") &&
+					result === true
+				) {
+					result = false
+				}
+		})
+		return result
 	}
-]
-
-export const restaurant: IServiceHours = [
-	{
-		day: "sunnuntai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "maanantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "tiistai",
-		isOpen: false,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "keskiviikko",
-		isOpen: false,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "torstai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "perjantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	},
-	{
-		day: "lauantai",
-		isOpen: true,
-		open: "12:00",
-		close: "17:00"
-	}
-]
+	return false
+}

@@ -17,33 +17,35 @@
 					</h3>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<ServiceHours :service-hours="serviceHours" />
+					<ServiceHours v-if="serviceHours" :service-hours="serviceHours" />
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<OpenClosed :service-hours="serviceHours" />
+					<OpenClosed v-if="serviceHours" :service-hours="serviceHours" />
 				</v-col>
 			</v-row>
-			<v-row>
-				<v-col cols="12" md="6" class="light-on-red full-height pb-16" data-aos="fade-up">
-					<h3 class="museo museo-heading pt-16 pb-16">Cafe Sibbe</h3>
-					<p>
-						Joensuun Tilan sataman sydämessä sykkii kesäisin rantakahvila Café Sibbe.
-						<br /><br />
-						Kahvilassa voit istahtaa aivan veden ääreen, lipaista jäätelötötterön, siemaista
-						kupillisen kahvia tai lasillisen kuohuvaa.
-						<br /><br />
-						Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café
-						Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat,
-						motoristit, polkupyöräilijät, uimarit, veneilijät…
-						<br /><br />
-						<b>Café Sibbe – kesän ystävän lempipaikka</b>
-					</p>
-					<img
-						class="pt-16 pb-10"
-						:src="lofbergsLogo.image"
-						:alt="lofbergsLogo.alt"
-						:style="lofbergsLogo.imageMaxWidth"
-					/>
+			<v-row class="mt-0 mx-0">
+				<v-col cols="12" md="6" class="light-on-red full-height pb-16 px-1">
+					<div data-aos="fade-up">
+						<h3 class="museo museo-heading pt-16 pb-16">Cafe Sibbe</h3>
+						<p>
+							Joensuun Tilan sataman sydämessä sykkii kesäisin rantakahvila Café Sibbe.
+							<br /><br />
+							Kahvilassa voit istahtaa aivan veden ääreen, lipaista jäätelötötterön, siemaista
+							kupillisen kahvia tai lasillisen kuohuvaa.
+							<br /><br />
+							Pikkupurtavat, grillituotteet ja viileät juomat kruunaavat kesäisen retkipäivän. Café
+							Sibben terassilla viihtyvät kaikki kesän ystävät; auringonpalvojat, fribaajat,
+							motoristit, polkupyöräilijät, uimarit, veneilijät…
+							<br /><br />
+							<b>Café Sibbe – kesän ystävän lempipaikka</b>
+						</p>
+						<img
+							class="pt-16 pb-10"
+							:src="lofbergsLogo.image"
+							:alt="lofbergsLogo.alt"
+							:style="lofbergsLogo.imageMaxWidth"
+						/>
+					</div>
 				</v-col>
 				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 					<v-lazy>
@@ -83,7 +85,11 @@ import { socialUrls } from "@d/company/company.data"
 
 import MenuParser from "@c/common/MenuParser.vue"
 
+import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
+
+import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
 import OpenClosed from "@c/common/OpenClosed.vue"
+import ServiceHours from "@c/common/ServiceHours.vue"
 
 import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
@@ -111,6 +117,7 @@ export default Vue.extend({
 	metaInfo: { ...metaData },
 	components: {
 		Carousel,
+		ServiceHours,
 		OpenClosed,
 		VueFB,
 		MenuParser,
@@ -123,6 +130,7 @@ export default Vue.extend({
 		carouselImages: Record<string, IImage[]>
 		data: undefined | ICafeData
 		menu: undefined | IMenu
+		serviceHours: undefined | IServiceHours
 		googleMapsInit: IGoogleMapsInit
 	} {
 		return {
@@ -136,6 +144,7 @@ export default Vue.extend({
 			carouselImages,
 			data: undefined,
 			menu: undefined,
+			serviceHours: undefined,
 			googleMapsInit
 		}
 	},
@@ -145,6 +154,18 @@ export default Vue.extend({
 			if (!url) throw new Error(`❌ No URL for axios with target: ${target}`)
 			const response = await axios({ url })
 			if (response && isICafeData(response)) return response
+			return undefined
+		},
+		async fetchServiceHours(target: string): Promise<undefined | IServiceHours> {
+			const url = serviceHoursApiUrl(target)
+			if (!url) throw new Error(`❌ No servicehours URL for axios with target: ${target}`)
+			const response = await axios({ url })
+			if (response) {
+				if (isIServiceHours(response[0].json)) {
+					const data = response[0].json
+					return data
+				}
+			}
 			return undefined
 		},
 		async fetchMenu(target: string): Promise<undefined | IMenu> {
@@ -159,7 +180,8 @@ export default Vue.extend({
 	},
 	async mounted(): Promise<void> {
 		try {
-			this.data = await this.fetchData("data")
+			// this.data = await this.fetchData("data")
+			this.serviceHours = await this.fetchServiceHours("restaurant")
 			this.menu = await this.fetchMenu("menu")
 		} catch (error) {
 			console.error(error)

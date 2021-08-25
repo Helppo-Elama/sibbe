@@ -1,35 +1,44 @@
 module.exports = {
 	root: true,
 	env: {
-		node: true,
+		node: true
 	},
-	extends: ["plugin:vue/essential", "@vue/airbnb", "plugin:prettier/recommended", "prettier"],
+	extends: ["plugin:vue/essential", "plugin:prettier/recommended", "@vue/airbnb", "prettier"],
 	parserOptions: {
-		parser: "@babel/eslint-parser",
+		parser: "@babel/eslint-parser"
 	},
 	rules: {
 		"no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+		"prettier/prettier": [
+			"warn",
+			{
+				doubleQuote: true,
+				semi: false,
+				trailingComma: "none",
+				includeExports: false
+			}
+		],
 		"import/extensions": [
 			"error",
 			"ignorePackages",
 			{
 				js: "off",
-				vue: "off",
-			},
-		],
+				vue: "off"
+			}
+		]
 	},
 	settings: {
 		"import/resolver": {
 			"eslint-import-resolver-custom-alias": {
 				alias: {
-					"@": "./resources/js",
+					"@": "./resources/js"
 				},
-				extensions: [".js", ".vue"],
+				extensions: [".js", ".vue"]
 			},
 			node: {
-				extensions: [".js", ".vue"],
-			},
-		},
-	},
-};
+				extensions: [".js", ".vue"]
+			}
+		}
+	}
+}

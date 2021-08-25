@@ -63,10 +63,10 @@ export default {
 		proxyChecked(val) {
 			const el = this.$refs.switchLabel;
 			if (val === true) {
-				el.classList.add("text-red-600");
+				el.classList.add("text-red-500");
 				el.classList.add("line-through");
 			} else {
-				el.classList.remove("text-red-600");
+				el.classList.remove("text-red-500");
 				el.classList.remove("line-through");
 			}
 			this.$emit("change", val);

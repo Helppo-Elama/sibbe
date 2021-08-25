@@ -53,7 +53,7 @@
 								@keyup="search = $event.target.value"
 							/>
 						</label>
-						<div v-if="zeroResults" class="text-red-400 text-center mt-3">
+						<div v-if="zeroResults" class="text-red-500 text-center mt-3">
 							<b>Valitettavasti emme löytäneet yhtään hakuun sopivaa tulosta...</b>
 						</div>
 						<div class="flex justify-center w-100 py-6 px-24">
@@ -79,45 +79,45 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout"
 
 import {
 	getPortionsApiUrl,
 	postPortionApiUrl,
 	getPortionsSearchApiUrl,
-	deletePortionApiUrl,
-} from "@/Helpers/apiEndPoints";
-import { axios, axiosPost, axiosDelete } from "@/Helpers/axios";
-import JetButton from "@/Jetstream/Button";
-import PortionIterator from "./PortionIterator";
+	deletePortionApiUrl
+} from "@/Helpers/apiEndPoints"
+import { axios, axiosPost, axiosDelete } from "@/Helpers/axios"
+import JetButton from "@/Jetstream/Button"
+import PortionIterator from "./PortionIterator"
 
 export default {
 	components: {
 		AppLayout,
 		JetButton,
-		PortionIterator,
+		PortionIterator
 	},
 	data() {
 		return {
 			newPortions: undefined,
 			portions: undefined,
 			search: undefined,
-			zeroResults: false,
-		};
+			zeroResults: false
+		}
 	},
 	watch: {
 		search: {
 			handler() {
-				this.searchHandlerWithDelay();
-			},
+				this.searchHandlerWithDelay()
+			}
 		},
 		data: {
 			deep: true,
 			immediate: true,
 			handler() {
-				this.portions = window._.cloneDeep(this.data);
-			},
-		},
+				this.portions = window._.cloneDeep(this.data)
+			}
+		}
 	},
 	methods: {
 		addPortion() {
@@ -126,71 +126,71 @@ export default {
 				body: "",
 				ingredients: "",
 				allergenic: "",
-				price: "",
-			};
-			if (!Array.isArray(this.newPortions)) this.newPortions = [];
-			this.newPortions.push(json);
+				price: ""
+			}
+			if (!Array.isArray(this.newPortions)) this.newPortions = []
+			this.newPortions.push(json)
 		},
 		clearAddPortions() {
-			this.newPortions = [];
+			this.newPortions = []
 		},
 		clearSearchPortions() {
-			this.portions = [];
+			this.portions = []
 		},
 		async fetchAllPortions() {
-			const url = getPortionsApiUrl();
-			const response = await axios(url);
+			const url = getPortionsApiUrl()
+			const response = await axios(url)
 			if (response) {
-				this.portions = response;
+				this.portions = response
 			}
 		},
 		async updatePortion({ target, i }) {
-			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i];
-			const data = window._.omit(portion, ["created_at", "updated_at"]);
-			const url = postPortionApiUrl();
-			const json = JSON.stringify(data);
-			const response = await axiosPost({ url, json });
+			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
+			const data = window._.omit(portion, ["created_at", "updated_at"])
+			const url = postPortionApiUrl()
+			const json = JSON.stringify(data)
+			const response = await axiosPost({ url, json })
 			if (response) {
 				if (response.message) {
-					this.$message.success(response.message);
-					if (response.id) portion.id = response.id;
-				} else this.$message.success(response);
-			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe");
+					this.$message.success(response.message)
+					if (response.id) portion.id = response.id
+				} else this.$message.success(response)
+			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
 		},
 		async deletePortion({ target, i }) {
-			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i];
+			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
 			if (portion.id) {
-				const url = deletePortionApiUrl();
-				const { id } = portion;
-				const request = { url, id };
-				const response = await axiosDelete(request);
+				const url = deletePortionApiUrl()
+				const { id } = portion
+				const request = { url, id }
+				const response = await axiosDelete(request)
 				if (response) {
-					this.$message.success(response);
-				} else this.$message.error("Annoskortin poistossa tapahtui virhe");
+					this.$message.success(response)
+				} else this.$message.error("Annoskortin poistossa tapahtui virhe")
 			}
-			this.portions.splice(i, 1);
+			this.portions.splice(i, 1)
 		},
 
 		searchHandlerWithDelay() {
-			if (this.search.length < 3) return;
+			if (this.search.length < 3) return
 
 			if (this.timer) {
-				clearTimeout(this.timer);
-				this.timer = null;
+				clearTimeout(this.timer)
+				this.timer = null
 			}
 			this.timer = setTimeout(() => {
-				this.fetchSearch();
-			}, 800);
+				this.fetchSearch()
+			}, 800)
 		},
 
 		async fetchSearch() {
-			const url = getPortionsSearchApiUrl(this.search);
-			const response = await axios(url);
+			const url = getPortionsSearchApiUrl(this.search)
+			const response = await axios(url)
 			if (response) {
-				this.portions = response;
-				this.zeroResults = false;
-			} else this.zeroResults = true;
-		},
-	},
-};
+				this.portions = response
+				this.zeroResults = false
+			} else this.zeroResults = true
+		}
+	}
+}
 </script>
