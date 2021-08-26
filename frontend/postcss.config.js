@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "development") {
 	module.exports = {
 		plugins: [
 			IN_PRODUCTION &&
-				// eslint-disable-next-line @typescript-eslint/no-var-requires
+				// eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
 				require("@fullhuman/postcss-purgecss")({
 					content: ["./public/**/*.html", "./src/**/*.vue", "./src/**/*.ts", "./src/**/*.js"],
 					defaultExtractor(content) {

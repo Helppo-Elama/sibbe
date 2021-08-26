@@ -181,7 +181,7 @@ export default Vue.extend({
 	async mounted(): Promise<void> {
 		try {
 			// this.data = await this.fetchData("data")
-			this.serviceHours = await this.fetchServiceHours("restaurant")
+			this.serviceHours = await this.fetchServiceHours("cafe")
 			this.menu = await this.fetchMenu("menu")
 		} catch (error) {
 			console.error(error)

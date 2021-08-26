@@ -19,8 +19,8 @@
 			<div v-if="openClosed.closed">
 				<div v-if="openClosed.closed.start === openClosed.closed.end">
 					<span
-						>{{ capitalize(openClosed.closed.start) }}na
-						<span class="closed font-weight-bold">suljettu</span></span
+						>{{ capitalize(openClosed.closed.start) }}na:
+						<span class="closed font-weight-bold"> suljettu</span></span
 					>
 				</div>
 			</div>

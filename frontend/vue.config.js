@@ -80,10 +80,7 @@ if (process.env.NODE_ENV === "production") {
 		css: {
 			loaderOptions: {
 				scss: {
-					additionalData: '@import "@s/main.scss";',
-					ssssOptions: {
-						quietDeps: true
-					}
+					additionalData: '@import "@s/main.scss";'
 				}
 			}
 		},
