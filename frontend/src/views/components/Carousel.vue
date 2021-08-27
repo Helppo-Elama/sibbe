@@ -91,10 +91,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
-import resize from "vue-resize-directive"
 import { IImage } from "@d/interfaces/images.interface"
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
+import Vue, { PropType } from "vue"
+import resize from "vue-resize-directive"
 
 export default Vue.extend({
 	name: "CafeCarousel",

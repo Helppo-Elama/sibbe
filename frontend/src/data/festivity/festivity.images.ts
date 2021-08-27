@@ -4,6 +4,7 @@ import festivityHeaderImg from "@i/originals/festivity/header.jpg?sizes[]=300,si
 import festivityHeaderWebp from "@i/originals/festivity/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp"
 import festivityHeaderImgCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import festivityHeaderWebpCropped from "@i/originals/festivity/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+
 import { IImage } from "../interfaces/images.interface"
 
 // festivity

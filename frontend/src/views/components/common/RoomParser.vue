@@ -48,13 +48,11 @@
 	</v-container>
 </template>
 <script lang="ts">
-import Vue, { PropType } from "vue"
-import RoomCarousel from "@c/common/RoomCarousel.vue"
-
 import AccommodationRoomAdditionalParser from "@c/accommodation/AccommodationRoomAdditionalParser.vue"
+import RoomCarousel from "@c/common/RoomCarousel.vue"
 import ConferenceRoomAdditionalParser from "@c/conference/ConferenceRoomAdditionalParser.vue"
-
 import { IRoomAdditionalData, IRooms } from "@d/interfaces/rooms.interface"
+import Vue, { PropType } from "vue"
 
 export default Vue.extend({
 	name: "RoomParser",

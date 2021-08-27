@@ -1,5 +1,6 @@
-import axios, { AxiosPromise } from "axios"
 import { ISiteminder } from "@d/interfaces/booking.interface"
+import axios, { AxiosPromise } from "axios"
+
 import { axiosError } from "../data/errors"
 import { IXHttp } from "../data/interfaces/xhttp.interface"
 

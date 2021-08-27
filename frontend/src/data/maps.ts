@@ -33,4 +33,4 @@ const routeDestination: IRouteDestinations = {
 	cafe: "Cafe+Sibbe"
 }
 
-export { placeIds, mapOptions, markerOptions, routeDestination }
+export { mapOptions, markerOptions, placeIds, routeDestination }

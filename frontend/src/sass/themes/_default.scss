@@ -4,58 +4,58 @@
 // -----------------------------------------------------------------------------
 
 .light-on-green {
-  background-color: $color3 !important;
-  color: $color5 !important;
+    background-color: $color3 !important;
+    color: $color5 !important;
 }
 .green-on-light {
-  background-color: $color5 !important;
-  color: $color3 !important;
+    background-color: $color5 !important;
+    color: $color3 !important;
 }
 .dark-on-yellow {
-  background-color: $color4 !important;
-  color: $color1 !important;
+    background-color: $color4 !important;
+    color: $color1 !important;
 }
 .yellow-on-dark {
-  background-color: $color1 !important;
-  color: $color4 !important;
+    background-color: $color1 !important;
+    color: $color4 !important;
 }
 
 .light-on-red {
-  background-color: $color2 !important;
-  color: $color5 !important;
+    background-color: $color2 !important;
+    color: $color5 !important;
 }
 
 .dark-on-light {
-  background-color: $color5 !important;
-  color: $color1 !important;
+    background-color: $color5 !important;
+    color: $color1 !important;
 }
 
 .light-on-dark {
-  background-color: $color1 !important;
-  color: $color5 !important;
+    background-color: $color1 !important;
+    color: $color5 !important;
 }
 
 .color-dark {
-  color: $color1;
+    color: $color1 !important;
 }
 .color-red {
-  color: $color2;
+    color: $color2 !important;
 }
 .color-green {
-  color: $color3;
+    color: $color3 !important;
 }
 .color-yellow {
-  color: $color4;
+    color: $color4 !important;
 }
 .color-light {
-  color: $color5;
+    color: $color5 !important;
 }
 .vertical-middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .v-dialog--active {
-  background-color: rgba($color1, 0.9);
-  @extend .vertical-middle;
+    background-color: rgba($color1, 0.9);
+    @extend .vertical-middle;
 }

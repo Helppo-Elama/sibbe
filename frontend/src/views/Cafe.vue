@@ -68,33 +68,27 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import VueFB from "@c/VueFB.vue"
-import { cafe as metaData } from "@h/metaData"
-
-import { axiosApi as axios } from "@in/axios"
+import "@h/dateExtensions"
 
 import Carousel from "@c/Carousel.vue"
-import { images, carouselImages, createURL } from "@d/cafe/cafe.data"
-import { ICafeData, isICafeData } from "@d/interfaces/cafe.interface"
-import { IMenu, isIMenu } from "@d/interfaces/menu.interface"
-
-import { IImage } from "@d/interfaces/images.interface"
-import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg"
-import { socialUrls } from "@d/company/company.data"
-
 import MenuParser from "@c/common/MenuParser.vue"
-
-import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
-
-import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
 import OpenClosed from "@c/common/OpenClosed.vue"
 import ServiceHours from "@c/common/ServiceHours.vue"
-
-import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps"
-import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import GoogleMaps from "@c/GoogleMaps.vue"
-import "@h/dateExtensions"
+import VueFB from "@c/VueFB.vue"
+import { carouselImages, createURL, images } from "@d/cafe/cafe.data"
+import { socialUrls } from "@d/company/company.data"
+import { ICafeData, isICafeData } from "@d/interfaces/cafe.interface"
+import { IImage } from "@d/interfaces/images.interface"
+import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
+import { IMenu, isIMenu } from "@d/interfaces/menu.interface"
+import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
+import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
+import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
+import { cafe as metaData } from "@h/metaData"
+import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg"
+import { axiosApi as axios } from "@in/axios"
+import Vue from "vue"
 
 const { cafe: placeId } = placeIds
 
@@ -163,6 +157,12 @@ export default Vue.extend({
 			if (response) {
 				if (isIServiceHours(response[0].json)) {
 					const data = response[0].json
+					const l = data.length
+					for (let j = 0; j < l; j += 1) {
+						const day = data[j]
+						if (day.open === null) data[j].open = ""
+						if (day.close === null) data[j].close = ""
+					}
 					return data
 				}
 			}

@@ -164,13 +164,13 @@ args = {
 const recreation = parse(args)
 
 export {
-	home,
 	accommodation,
-	conference,
 	booking,
-	contact,
 	cafe,
-	restaurant,
+	conference,
+	contact,
 	festivity,
-	recreation
+	home,
+	recreation,
+	restaurant
 }

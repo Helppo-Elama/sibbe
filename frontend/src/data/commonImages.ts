@@ -4,6 +4,7 @@ import headerImg from "@i/originals/header.jpg?sizes[]=300,sizes[]=400,sizes[]=6
 import headerWebp from "@i/originals/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp"
 import headerImgCropped from "@i/originals/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import headerWebpCropped from "@i/originals/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+
 import { IHeaderImages } from "./interfaces/images.interface"
 
 const headerImages: IHeaderImages = {

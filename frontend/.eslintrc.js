@@ -10,11 +10,13 @@ module.exports = {
 		"@vue/typescript/recommended",
 		"prettier"
 	],
+	plugins: ["simple-import-sort"],
 	parserOptions: {
 		ecmaVersion: 2021
 	},
 	rules: {
-		"no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+		// "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+		"no-console": process.env.NODE_ENV === "production" ? "off" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"prettier/prettier": [
 			"warn",
@@ -24,7 +26,9 @@ module.exports = {
 				trailingComma: "none",
 				includeExports: false
 			}
-		]
+		],
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error"
 		// "import/no-duplicates": ["warn", { considerQueryString: true }]
 	}
 }

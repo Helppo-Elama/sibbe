@@ -48,21 +48,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import { home as metaData } from "@h/metaData"
-
-import Header from "@c/Header.vue"
-
-import headerImages from "@d/commonImages"
-import { IHeaderImages } from "@d/interfaces/images.interface"
-
-import Hero from "@c/home/Hero.vue"
-
-import VueFB from "@c/VueFB.vue"
-import Reviews from "@c/home/Reviews.vue"
 import ContactForm from "@c/ContactForm.vue"
-
+import Header from "@c/Header.vue"
+import Hero from "@c/home/Hero.vue"
+import Reviews from "@c/home/Reviews.vue"
+import VueFB from "@c/VueFB.vue"
+import headerImages from "@d/commonImages"
 import { socialUrls } from "@d/company/company.data"
+import { IHeaderImages } from "@d/interfaces/images.interface"
+import { home as metaData } from "@h/metaData"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "Home",

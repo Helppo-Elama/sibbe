@@ -1,5 +1,10 @@
 export type IImageSizes = number[]
 
+export interface IImageAuthor {
+	name: string
+	url?: string
+}
+
 export interface IImage {
 	img: string
 	webp: string
@@ -11,9 +16,4 @@ export interface IHeaderImages {
 	normal: IImage
 	cropped: IImage
 	author?: IImageAuthor
-}
-
-export interface IImageAuthor {
-	name: string
-	url?: string
 }

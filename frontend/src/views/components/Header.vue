@@ -40,8 +40,8 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
 import { IImage } from "@d/interfaces/images.interface"
+import Vue, { PropType } from "vue"
 
 export default Vue.extend({
 	name: "Header",

@@ -1,7 +1,8 @@
 import { addDays } from "@h/dateExtensions"
-import { bookingCarouselImages as images } from "./booking.images"
-import { IBookingData, IBookingApiUrl, IBookingUrl } from "../interfaces/booking.interface"
+
+import { IBookingApiUrl, IBookingData, IBookingUrl } from "../interfaces/booking.interface"
 import { IRooms } from "../interfaces/rooms.interface"
+import { bookingCarouselImages as images } from "./booking.images"
 
 const serviceUrl: string = process.env.VUE_APP_SERVICE_URL
 

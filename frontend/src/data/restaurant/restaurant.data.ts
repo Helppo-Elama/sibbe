@@ -1,7 +1,8 @@
 import { addDays, dateToStringYYYYMMDD } from "@h/dateExtensions"
+
 import {
-	restaurantImages as images,
-	restaurantCarouselImages as carouselImages
+	restaurantCarouselImages as carouselImages,
+	restaurantImages as images
 } from "./restaurant.images"
 
 const serviceUrl: string = process.env.VUE_APP_SERVICE_URL
@@ -19,4 +20,4 @@ const createURL = (target: string): string | undefined => {
 	return result
 }
 
-export { images, carouselImages, createURL }
+export { carouselImages, createURL, images }

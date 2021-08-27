@@ -49,16 +49,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
-
-import { IMenu } from "@d/interfaces/menu.interface"
 import HorizontalLine from "@c/common/HorizontalLine.vue"
-
-import { dateToStringYYYYMMDD } from "@h/dateExtensions"
+import { IMenu } from "@d/interfaces/menu.interface"
 import { capitalize } from "@h/common"
-
-import { format, compareAsc } from "date-fns"
+import { dateToStringYYYYMMDD } from "@h/dateExtensions"
+import { compareAsc, format } from "date-fns"
 import { fi } from "date-fns/locale"
+import Vue, { PropType } from "vue"
 
 const now = dateToStringYYYYMMDD(new Date())
 const nowDate = new Date()
@@ -84,7 +81,6 @@ export default Vue.extend({
 		availableToday(date: string, index: number): boolean {
 			const i = index
 			let result = true
-			console.log(this.$props.items[0].serving_time)
 			if (date === now) {
 				if (this.$props.items[i].serving_time) {
 					const { end } = this.$props.items[i].serving_time

@@ -1,6 +1,5 @@
+import { IGoogleMapsDetails, IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import { Loader } from "@googlemaps/js-api-loader"
-
-import { IGoogleMapsInit, IGoogleMapsDetails } from "@d/interfaces/maps.interface"
 
 function parseMap(googleMapsInit: IGoogleMapsInit): IGoogleMapsDetails {
 	const { targetRef, mapOptions, placeId, id } = googleMapsInit

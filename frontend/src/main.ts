@@ -1,16 +1,15 @@
-import debounce from "lodash.debounce"
-
-import Vue from "vue"
-
 import "./registerServiceWorker"
+
 import { FontAwesomeIcon, FontAwesomeLayers } from "@fortawesome/vue-fontawesome"
 import AOS from "aos"
+import debounce from "lodash.debounce"
+import Vue from "vue"
 import Vuelidate from "vuelidate"
+
+import App from "./App.vue"
 import router from "./router"
 // import store from "./store";
 import vuetify from "./vuetify/vuetify"
-
-import App from "./App.vue"
 
 interface IWindow extends Window {
 	debounce?: typeof debounce
@@ -26,7 +25,7 @@ Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
 
-Vue.$googleMapsLoaded = false
+Vue.prototype.$googleMapsLoaded = false
 
 new Vue({
 	router,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module "@i/originals*" {
 	const image: any
 	export default image

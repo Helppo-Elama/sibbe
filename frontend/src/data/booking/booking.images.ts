@@ -1,15 +1,14 @@
 /* eslint-disable import/no-duplicates */
 // Header
+import { accommodationRoomsCarouselImages as images } from "@d/accommodation/accommodation.images"
+import { IHeaderImages, IImage } from "@d/interfaces/images.interface"
+// booking
+import bookingImg1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import bookingWebp1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
 import bookingHeaderImg from "@i/originals/booking/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600"
 import bookingHeaderWebp from "@i/originals/booking/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp"
 import bookingHeaderImgCropped from "@i/originals/booking/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import bookingHeaderWebpCropped from "@i/originals/booking/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
-
-// booking
-import bookingImg1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import bookingWebp1 from "@i/originals/booking/booking-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-import { accommodationRoomsCarouselImages as images } from "@d/accommodation/accommodation.images"
-import { IHeaderImages, IImage } from "@d/interfaces/images.interface"
 
 const bookingHeaderImages: IHeaderImages = {
 	normal: {
@@ -66,4 +65,4 @@ const bookingCarouselImages: Record<string, Array<IImage>> = {
 	]
 }
 
-export { bookingHeaderImages, bookingImages, bookingCarouselImages }
+export { bookingCarouselImages, bookingHeaderImages, bookingImages }

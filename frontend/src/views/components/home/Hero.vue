@@ -113,10 +113,9 @@
 	</v-row>
 </template>
 <script lang="ts">
-import Vue from "vue"
 import { library } from "@fortawesome/fontawesome-svg-core"
-
-import { faUsers, faBed, faHeart, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faBed, faCircle, faHeart, faUsers } from "@fortawesome/free-solid-svg-icons"
+import Vue from "vue"
 
 library.add(faUsers, faBed, faHeart, faCircle)
 

@@ -1,8 +1,8 @@
-import {
-	accommodationRoomsCarouselImages as images,
-	accommodationAdditionalImage as additionalImage
-} from "./accommodation.images"
 import { IRooms } from "../interfaces/rooms.interface"
+import {
+	accommodationAdditionalImage as additionalImage,
+	accommodationRoomsCarouselImages as images
+} from "./accommodation.images"
 
 const accommodation: IRooms = {
 	rooms: [

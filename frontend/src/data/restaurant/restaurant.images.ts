@@ -2,23 +2,22 @@
 // RESTAURANT CAROUSEL
 import restaurantCarouselImg1 from "@i/originals/restaurant/carousel-1.jpg?sizes[]=300,sizes[]=600"
 import restaurantCarouselWebp1 from "@i/originals/restaurant/carousel-1.jpg?sizes[]=300,sizes[]=600&format=webp"
-import restaurantCarouselImg2 from "@i/originals/restaurant/carousel-2.jpg?sizes[]=300,sizes[]=600"
-import restaurantCarouselWebp2 from "@i/originals/restaurant/carousel-2.jpg?sizes[]=300,sizes[]=600&format=webp"
-import restaurantCarouselImg3 from "@i/originals/restaurant/carousel-3.jpg?sizes[]=300,sizes[]=600"
-import restaurantCarouselWebp3 from "@i/originals/restaurant/carousel-3.jpg?sizes[]=300,sizes[]=600&format=webp"
-
 import restaurantCarouselCroppedImg1 from "@i/originals/restaurant/carousel-1-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import restaurantCarouselCroppedWebp1 from "@i/originals/restaurant/carousel-1-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+import restaurantCarouselImg2 from "@i/originals/restaurant/carousel-2.jpg?sizes[]=300,sizes[]=600"
+import restaurantCarouselWebp2 from "@i/originals/restaurant/carousel-2.jpg?sizes[]=300,sizes[]=600&format=webp"
 import restaurantCarouselCroppedImg2 from "@i/originals/restaurant/carousel-2-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import restaurantCarouselCroppedWebp2 from "@i/originals/restaurant/carousel-2-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+import restaurantCarouselImg3 from "@i/originals/restaurant/carousel-3.jpg?sizes[]=300,sizes[]=600"
+import restaurantCarouselWebp3 from "@i/originals/restaurant/carousel-3.jpg?sizes[]=300,sizes[]=600&format=webp"
 import restaurantCarouselCroppedImg3 from "@i/originals/restaurant/carousel-3-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import restaurantCarouselCroppedWebp3 from "@i/originals/restaurant/carousel-3-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
-
 // IMAGES
 import restaurantImg1 from "@i/originals/restaurant/restaurant-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
 import restaurantWebp1 from "@i/originals/restaurant/restaurant-1.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
 import restaurantImg2 from "@i/originals/restaurant/restaurant-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
 import restaurantWebp2 from "@i/originals/restaurant/restaurant-2.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
+
 import { IImage } from "../interfaces/images.interface"
 
 const restaurantCarouselImages: { normal: Array<IImage>; cropped: Array<IImage> } = {

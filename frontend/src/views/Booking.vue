@@ -116,39 +116,31 @@
 <script lang="ts">
 /* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
-import Vue from "vue"
-import { booking as metaData } from "@h/metaData"
+import RoomCarousel from "@c/common/RoomCarousel.vue"
 import Header from "@c/Header.vue"
-
-import { bookingHeaderImages as headerImages } from "@d/booking/booking.images"
-import { IHeaderImages } from "@d/interfaces/images.interface"
-
 import Loading from "@c/Loading.vue"
-
 import {
 	bookingData,
+	bookingRooms as rooms,
 	createApiURL,
-	createBookingURL,
-	bookingRooms as rooms
+	createBookingURL
 } from "@d/booking/booking.data"
-
-import { currentMonth, getMonth } from "@h/dateArray"
-import { ISOStringToDate, removeDays, addDays } from "@h/dateExtensions"
-import { IErrors, bookingErrors as errors } from "@d/errors"
-
+import { bookingHeaderImages as headerImages } from "@d/booking/booking.images"
 import { companyData } from "@d/company/company.data"
+import { bookingErrors as errors, IErrors } from "@d/errors"
+import { IBookingData, isISiteminder, ISiteminder } from "@d/interfaces/booking.interface"
 import { ICompanyData } from "@d/interfaces/company.interface"
-import { IBookingData, ISiteminder, isISiteminder } from "@d/interfaces/booking.interface"
-
+import { IHeaderImages } from "@d/interfaces/images.interface"
 import { IRoom, IRooms } from "@d/interfaces/rooms.interface"
-
+import { currentMonth, getMonth } from "@h/dateArray"
+import { addDays, ISOStringToDate, removeDays } from "@h/dateExtensions"
+import { booking as metaData } from "@h/metaData"
 import { axiosGetBookingData as axios, axiosGetBookingDatas as axiosAll } from "@in/axios"
-
-import RoomCarousel from "@c/common/RoomCarousel.vue"
 import { format } from "date-fns"
-import { fi } from "date-fns/locale"
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays"
+import { fi } from "date-fns/locale"
 import clonedeep from "lodash.clonedeep"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "Booking",

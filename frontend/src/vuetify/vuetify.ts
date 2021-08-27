@@ -1,8 +1,9 @@
+import siteminder from "@c/SiteminderIcon.vue"
 import Vue from "vue"
 // import Vuetify from "vuetify";
 import Vuetify from "vuetify/lib"
 import fi from "vuetify/src/locale/fi"
-import siteminder from "@c/SiteminderIcon.vue"
+
 import light from "./theme"
 
 Vue.use(Vuetify)

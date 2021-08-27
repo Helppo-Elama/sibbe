@@ -1,34 +1,18 @@
 /* eslint-disable import/no-duplicates */
 // Header
+import beachvolleyImg1 from "@i/originals/recreation/beach-volley.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import beachvolleyWebp1 from "@i/originals/recreation/beach-volley.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
 import recreationHeaderImg from "@i/originals/recreation/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600"
 import recreationHeaderWebp from "@i/originals/recreation/header.jpg?sizes[]=300,sizes[]=400,sizes[]=600&format=webp"
 import recreationHeaderImgCropped from "@i/originals/recreation/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048"
 import recreationHeaderWebpCropped from "@i/originals/recreation/header-cropped.jpg?sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
-
 // Recreation
-
 import joensuuntilaImg1 from "@i/originals/recreation/joensuun-tila.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
 import joensuuntilaWebp1 from "@i/originals/recreation/joensuun-tila.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
-import sipoonkorpiImg1 from "@i/originals/recreation/sipoonkorpi.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import sipoonkorpiWebp1 from "@i/originals/recreation/sipoonkorpi.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
 import norrkullaImg1 from "@i/originals/recreation/norrkulla.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
 import norrkullaWebp1 from "@i/originals/recreation/norrkulla.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
-import suppailuImg1 from "@i/originals/recreation/suppailu.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import suppailuWebp1 from "@i/originals/recreation/suppailu.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
-import beachvolleyImg1 from "@i/originals/recreation/beach-volley.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import beachvolleyWebp1 from "@i/originals/recreation/beach-volley.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
-/* eslint-disable import/no-duplicates */
-import uimajarviImg1 from "@i/originals/recreation/uimajarvi.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import uimajarviWebp1 from "@i/originals/recreation/uimajarvi.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
-import venevuokrausImg1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
-import venevuokrausWebp1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
-
+import sipoonkorpiImg1 from "@i/originals/recreation/sipoonkorpi.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import sipoonkorpiWebp1 from "@i/originals/recreation/sipoonkorpi.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
 // CAROUSEL
 import carouselImg1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048"
 import carouselWebp1 from "@i/originals/recreation/slides/frisbeegolf-1.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
@@ -36,6 +20,14 @@ import carouselImg2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes
 import carouselWebp2 from "@i/originals/recreation/slides/frisbeegolf-2.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
 import carouselImg3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048"
 import carouselWebp3 from "@i/originals/recreation/slides/frisbeegolf-3.jpg?sizes[]=300,sizes[]=400,sizes[]=600,sizes[]=800,sizes[]=1024,sizes[]=2048&format=webp"
+import suppailuImg1 from "@i/originals/recreation/suppailu.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import suppailuWebp1 from "@i/originals/recreation/suppailu.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
+/* eslint-disable import/no-duplicates */
+import uimajarviImg1 from "@i/originals/recreation/uimajarvi.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import uimajarviWebp1 from "@i/originals/recreation/uimajarvi.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
+import venevuokrausImg1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=300,sizes[]=600,sizes[]=900"
+import venevuokrausWebp1 from "@i/originals/recreation/venevuokraus.jpg?sizes[]=300,sizes[]=600,sizes[]=900&format=webp"
+
 import { IImage } from "../interfaces/images.interface"
 
 const recreationHeaderImages: { normal: IImage; cropped: IImage } = {
@@ -113,4 +105,4 @@ const recreationCarouselImages: Record<string, Array<IImage>> = {
 	]
 }
 
-export { recreationImages, recreationHeaderImages, recreationCarouselImages }
+export { recreationCarouselImages, recreationHeaderImages, recreationImages }

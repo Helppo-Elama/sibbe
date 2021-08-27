@@ -126,36 +126,28 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-
-import { restaurant as metaData } from "@h/metaData"
+import "@h/dateExtensions"
 
 import Carousel from "@c/Carousel.vue"
-import { images, carouselImages, createURL } from "@d/restaurant/restaurant.data"
-import { IImage } from "@d/interfaces/images.interface"
-
-import { axiosApi as axios } from "@in/axios"
-
-import ServiceHours from "@c/common/ServiceHours.vue"
-
-import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
-
-import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
+import MenuParser from "@c/common/MenuParser.vue"
 import OpenClosed from "@c/common/OpenClosed.vue"
-
+import ServiceHours from "@c/common/ServiceHours.vue"
+import ContactForm from "@c/ContactForm.vue"
+import GoogleMaps from "@c/GoogleMaps.vue"
+import LunchParser from "@c/restaurant/LunchParser.vue"
 import VueFB from "@c/VueFB.vue"
 import { socialUrls } from "@d/company/company.data"
-
-import ContactForm from "@c/ContactForm.vue"
-
-import MenuParser from "@c/common/MenuParser.vue"
-import LunchParser from "@c/restaurant/LunchParser.vue"
+import { IImage } from "@d/interfaces/images.interface"
+import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import { IMenu, isIMenu } from "@d/interfaces/menu.interface"
 import { IRestaurantData, isIRestaurantData } from "@d/interfaces/restaurant.interface"
-import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps"
-import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
-import GoogleMaps from "@c/GoogleMaps.vue"
-import "@h/dateExtensions"
+import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
+import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
+import { carouselImages, createURL, images } from "@d/restaurant/restaurant.data"
+import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
+import { restaurant as metaData } from "@h/metaData"
+import { axiosApi as axios } from "@in/axios"
+import Vue from "vue"
 
 const { one, two } = images
 
@@ -233,7 +225,6 @@ export default Vue.extend({
 					const l = data.length
 					for (let j = 0; j < l; j += 1) {
 						const day = data[j]
-						console.log(day)
 						if (day.open === null) data[j].open = ""
 						if (day.close === null) data[j].close = ""
 					}

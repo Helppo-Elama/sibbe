@@ -61,17 +61,15 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue"
-import { accommodation as metaData } from "@h/metaData"
-
-import Carousel from "@c/Carousel.vue"
 import AccommodationList from "@c/accommodation/AccommodationList.vue"
+import Carousel from "@c/Carousel.vue"
 import {
-	accommodationImages as images,
-	accommodationCarouselImages as carouselImages
+	accommodationCarouselImages as carouselImages,
+	accommodationImages as images
 } from "@d/accommodation/accommodation.images"
-
 import { IImage } from "@d/interfaces/images.interface"
+import { accommodation as metaData } from "@h/metaData"
+import Vue from "vue"
 
 const accommodation = Vue.extend({
 	name: "Accommodation",

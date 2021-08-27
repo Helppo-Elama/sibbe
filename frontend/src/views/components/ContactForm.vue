@@ -46,15 +46,31 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue"
-
-import { validationMixin } from "vuelidate"
-import { required, minLength, email } from "vuelidate/lib/validators"
-import { axiosPostContactData as axios } from "@in/axios"
-import { IXHttp } from "@d/interfaces/xhttp.interface"
 import createURL from "@d/contact/contact.data"
+import { IXHttp } from "@d/interfaces/xhttp.interface"
+import { axiosPostContactData as axios } from "@in/axios"
+import Vue, { VueConstructor } from "vue"
+import { Validation, validationMixin } from "vuelidate"
+import { email, minLength, required } from "vuelidate/lib/validators"
 
-const contactForm = Vue.extend({
+interface ValidationEvaluation {
+	[ruleName: string]: boolean
+}
+
+type ValidationProperties<V> = {
+	[P in Exclude<keyof V, "$v">]?: Validation & ValidationProperties<V[P]> & ValidationEvaluation
+}
+
+interface ValidationGroups {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[groupName: string]: Validation & ValidationProperties<any>
+}
+interface Vuelidate {
+	$v: ValidationProperties<Vue> & ValidationGroups & Validation
+	delayTouch(v: Validation): void
+}
+
+const contactForm = (Vue as VueConstructor<Vue & Vuelidate>).extend({
 	name: "ContactForm",
 	components: {},
 	mixins: [validationMixin],

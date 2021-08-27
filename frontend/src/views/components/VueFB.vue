@@ -30,6 +30,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable func-names */
+import debounce from "lodash.debounce"
 
 export default {
   name: "VueFB",
@@ -48,7 +49,7 @@ export default {
     } else {
       window.FB.XFBML.parse();
     }
-    this.dedouncedFbResize = window.debounce(this.fbResize, 300);
+    this.dedouncedFbResize = debounce(this.fbResize, 300);
     window.addEventListener("resize", this.dedouncedFbResize);
     this.$nextTick(() => {
       this.fbMaxWidth();

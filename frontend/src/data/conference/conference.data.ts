@@ -1,8 +1,8 @@
-import {
-	conferenceRoomsCarouselImages as images,
-	conferenceAdditionalImage as additionalImage
-} from "./conference.images"
 import { IRooms } from "../interfaces/rooms.interface"
+import {
+	conferenceAdditionalImage as additionalImage,
+	conferenceRoomsCarouselImages as images
+} from "./conference.images"
 
 const conference: IRooms = {
 	rooms: [

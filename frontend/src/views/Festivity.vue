@@ -50,22 +50,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-
-import { festivity as metaData } from "@h/metaData"
-
+import ContactForm from "@c/ContactForm.vue"
 import Header from "@c/Header.vue"
-
+import Hero from "@c/home/Hero.vue"
+import Reviews from "@c/home/Reviews.vue"
+import VueFB from "@c/VueFB.vue"
+import { socialUrls } from "@d/company/company.data"
 import festivityHeaderImages from "@d/festivity/festivity.images"
 import { IImage } from "@d/interfaces/images.interface"
-
-import Hero from "@c/home/Hero.vue"
-
-import VueFB from "@c/VueFB.vue"
-import Reviews from "@c/home/Reviews.vue"
-import ContactForm from "@c/ContactForm.vue"
-
-import { socialUrls } from "@d/company/company.data"
+import { festivity as metaData } from "@h/metaData"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "Festivity",

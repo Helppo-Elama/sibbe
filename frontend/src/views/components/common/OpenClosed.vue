@@ -29,10 +29,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
 import { IServiceHours, IWeekDays } from "@d/interfaces/servicehours.interface"
-import clonedeep from "lodash.clonedeep"
 import { capitalize } from "@h/common"
+import clonedeep from "lodash.clonedeep"
+import Vue, { PropType } from "vue"
 
 export default Vue.extend({
 	name: "OpenClosed",

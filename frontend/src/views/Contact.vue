@@ -68,15 +68,14 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue"
-import { contact as metaData } from "@h/metaData"
-
-import GoogleMaps from "@c/GoogleMaps.vue"
 import ContactForm from "@c/ContactForm.vue"
-
+import GoogleMaps from "@c/GoogleMaps.vue"
 import { companyData, images } from "@d/company/company.data"
-import { mapOptions, placeIds, markerOptions, routeDestination } from "@d/maps"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
+import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
+import { contact as metaData } from "@h/metaData"
+import Vue from "vue"
+
 import { ICompanyData } from "../data/interfaces/company.interface"
 import { IImage } from "../data/interfaces/images.interface"
 

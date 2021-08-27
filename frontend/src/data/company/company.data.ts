@@ -1,5 +1,5 @@
-import companyImages from "./company.images"
 import { ICompanyData } from "../interfaces/company.interface"
+import companyImages from "./company.images"
 
 const images = companyImages
 

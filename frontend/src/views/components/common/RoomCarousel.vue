@@ -52,12 +52,11 @@
 	</div>
 </template>
 <script lang="ts">
+import { IImage } from "@d/interfaces/images.interface"
+import { IRoom } from "@d/interfaces/rooms.interface"
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 import Vue from "vue"
 import resize from "vue-resize-directive"
-import { IRoom } from "@d/interfaces/rooms.interface"
-import { IImage } from "@d/interfaces/images.interface"
-
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 
 export default Vue.extend({
 	name: "RoomCarousel",

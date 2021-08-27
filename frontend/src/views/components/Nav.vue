@@ -37,20 +37,24 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue"
-
 import {
-	mdiMenu,
-	mdiHomeCircleOutline,
-	mdiBedOutline,
 	mdiAccountGroupOutline,
-	mdiHeartCircleOutline,
-	mdiMapSearchOutline,
+	mdiBedOutline,
+	mdiCalendarArrowRight,
+	mdiCoffeeOutline,
 	// mdiPartyPopper,
 	mdiFoodForkDrink,
-	mdiCoffeeOutline,
-	mdiCalendarArrowRight
+	mdiHeartCircleOutline,
+	mdiHomeCircleOutline,
+	mdiMapSearchOutline,
+	mdiMenu
 } from "@mdi/js"
+import Vue, { VueConstructor } from "vue"
+import { Framework } from "vuetify"
+
+interface VuetifyVue {
+	$vuetify: Framework
+}
 
 interface AppBarItem {
 	title: string
@@ -92,7 +96,7 @@ const appBar: Array<AppBarItem> = [
 
 	{ title: "Yhteystiedot", path: "/contact.html", icon: mdiMapSearchOutline }
 ]
-const nav = Vue.extend({
+const nav = (Vue as VueConstructor<Vue & VuetifyVue>).extend({
 	name: "Nav",
 	data() {
 		return {

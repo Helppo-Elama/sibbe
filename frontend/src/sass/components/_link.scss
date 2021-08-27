@@ -3,24 +3,24 @@
 // -----------------------------------------------------------------------------
 
 a {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 a:hover,
 a:active {
-  text-shadow: 0.01rem 0.01rem $color1;
+    text-shadow: 0.01rem 0.01rem $color1;
 }
 a.color-light:hover,
 a.color-light:active {
-  color: $color4;
+    color: $color4 !important;
 }
 
 a.color-dark:hover,
 a.color-dark:active {
-  color: $color2;
+    color: $color2 !important;
 }
 
 a.color-green:hover,
 a.color-green:active {
-  color: $color4 !important;
-  text-shadow: none;
+    color: $color4 !important;
+    text-shadow: none;
 }

@@ -1,8 +1,8 @@
-import Vue from "vue"
-import VueRouter, { RouteConfig } from "vue-router"
-import Home from "@v/Home.vue"
-import VueMeta from "vue-meta"
 import { companyData } from "@d/company/company.data"
+import Home from "@v/Home.vue"
+import Vue from "vue"
+import VueMeta from "vue-meta"
+import VueRouter, { RouteConfig } from "vue-router"
 
 Vue.use(VueRouter)
 Vue.use(VueMeta)

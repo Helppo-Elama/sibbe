@@ -125,17 +125,15 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from "vue"
-import { conference as metaData } from "@h/metaData"
-
-import Header from "@c/Header.vue"
 import ConferenceList from "@c/conference/ConferenceList.vue"
+import Header from "@c/Header.vue"
 import {
-	conferenceImages as images,
-	conferenceHeaderImages as headerImages
+	conferenceHeaderImages as headerImages,
+	conferenceImages as images
 } from "@d/conference/conference.images"
-
-import { IImage, IHeaderImages } from "@d/interfaces/images.interface"
+import { IHeaderImages, IImage } from "@d/interfaces/images.interface"
+import { conference as metaData } from "@h/metaData"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "Conference",

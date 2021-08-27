@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
 FOR FUTURE:
     //Vue.prototype.$classes = [];
@@ -8,13 +10,13 @@ FOR FUTURE:
     import { classList } from "@h/classlist";
 */
 
-const classList: any = (previousClassList: any) => {
+export default function classList(previousClassList: any): any {
 	if (process.env.ANALYZE) {
 		const allClasses: any = []
 		const allElements = document.querySelectorAll("*")
-		for (let i = 0; i < allElements.length; i++) {
+		for (let i = 0; i < allElements.length; i += 1) {
 			const classes = allElements[i].className.toString().split(/\s+/)
-			for (let j = 0; j < classes.length; j++) {
+			for (let j = 0; j < classes.length; j += 1) {
 				const cls = `/${classes[j]}/`
 				if (cls && allClasses.indexOf(cls) === -1) allClasses.push(cls)
 			}
@@ -23,11 +25,9 @@ const classList: any = (previousClassList: any) => {
 
 		const joinedClasses = allClasses.concat(previousClassList)
 		const parsedClasses = joinedClasses.filter(
-			(item: any, pos: any) => joinedClasses.indexOf(item) == pos
+			(item: any, pos: any) => joinedClasses.indexOf(item) === pos
 		)
 		return parsedClasses
 	}
 	return "Classlist only on env ANALYZE"
 }
-
-export { classList }

@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
 import Booking from "@i/stars/booking.com-logo.svg"
-import Hotels from "@i/stars/hotels.com-logo.svg"
 import Google from "@i/stars/google-logo.svg"
+import Hotels from "@i/stars/hotels.com-logo.svg"
 import Tripadvisor from "@i/stars/tripadvisor-logo.svg"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "Reviews",

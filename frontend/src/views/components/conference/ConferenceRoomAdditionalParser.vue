@@ -117,10 +117,10 @@
 	</v-container>
 </template>
 <script lang="ts">
-import Vue, { PropType } from "vue"
-import { IRoomAdditionalData } from "@d/interfaces/rooms.interface"
 import { IImage } from "@d/interfaces/images.interface"
+import { IRoomAdditionalData } from "@d/interfaces/rooms.interface"
 import { mdiEmailOutline } from "@mdi/js"
+import Vue, { PropType } from "vue"
 
 export default Vue.extend({
 	name: "RoomAdditionalParser",

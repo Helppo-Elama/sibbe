@@ -1,5 +1,5 @@
-import Vue from "vue"
 import { IServiceWorkerEvent } from "@d/interfaces/serviceworker.interface"
+import Vue from "vue"
 
 export default Vue.extend({
 	data(): {

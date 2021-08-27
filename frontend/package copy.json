@@ -21,7 +21,7 @@
     "@types/aos": "^3.0.3",
     "@types/googlemaps": "^3.43.3",
     "@types/lodash.clonedeep": "^4.5.6",
-    "@types/vuelidate": "^0.7.15",
+    "@types/vuelidate": "^0.7.13",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",

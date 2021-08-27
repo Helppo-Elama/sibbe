@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
-import { IServiceHours, IServiceHour } from "@d/interfaces/servicehours.interface"
+import { IServiceHour, IServiceHours } from "@d/interfaces/servicehours.interface"
 import clonedeep from "lodash.clonedeep"
+import Vue, { PropType } from "vue"
 
 const now = new Date()
-const dayIndex = 3 // now.getDay()
+const dayIndex = now.getDay()
 
 export default Vue.extend({
 	components: {},

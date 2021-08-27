@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
 import Nav from "@c/Nav.vue"
 import update from "@mix/serviceWorkerUpdate"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "App",

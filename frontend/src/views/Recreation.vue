@@ -439,22 +439,17 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-
 import Carousel from "@c/Carousel.vue"
-
-import { recreation as metaData } from "@h/metaData"
-
 import Header from "@c/Header.vue"
-import {
-	recreationHeaderImages as headerImages,
-	recreationImages as images,
-	recreationCarouselImages as carouselImages
-} from "@d/recreation/recreation.images"
-
-import sipooLogo from "@i/originals/recreation/sipoo-logo.svg"
-
 import { IImage } from "@d/interfaces/images.interface"
+import {
+	recreationCarouselImages as carouselImages,
+	recreationHeaderImages as headerImages,
+	recreationImages as images
+} from "@d/recreation/recreation.images"
+import { recreation as metaData } from "@h/metaData"
+import sipooLogo from "@i/originals/recreation/sipoo-logo.svg"
+import Vue from "vue"
 
 const { joensuuntila, sipoonkorpi, norrkulla, suppailu, beachvolley, uimajarvi, venevuokraus } =
 	images

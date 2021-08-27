@@ -10,10 +10,10 @@
 	</v-container>
 </template>
 <script lang="ts">
-import Vue from "vue"
 import RoomParser from "@c/common/RoomParser.vue"
 import accommodation from "@d/accommodation/accommodation.data"
 import { IRooms } from "@d/interfaces/rooms.interface"
+import Vue from "vue"
 
 export default Vue.extend({
 	name: "AccommodationList",

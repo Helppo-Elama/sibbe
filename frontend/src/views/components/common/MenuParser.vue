@@ -39,22 +39,22 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
-
 import { IMenu } from "@d/interfaces/menu.interface"
 import {
-	mdiHamburger,
+	mdiBeerOutline,
+	mdiCandycane,
+	mdiCoffeeOutline,
+	mdiCupcake,
 	mdiFoodCroissant,
 	mdiFoodForkDrink,
-	mdiIceCream,
-	mdiCoffeeOutline,
-	mdiCandycane,
 	mdiGlassFlute,
-	mdiSilverwareForkKnife,
 	mdiGlassMugVariant,
-	mdiCupcake,
-	mdiBeerOutline
+	mdiHamburger,
+	mdiIceCream,
+	mdiSilverwareForkKnife
 } from "@mdi/js"
+import Vue, { PropType } from "vue"
+
 import HorizontalLine from "./HorizontalLine.vue"
 
 export default Vue.extend({

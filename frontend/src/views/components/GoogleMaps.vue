@@ -5,10 +5,9 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue"
-
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import googleMapsInitFunction from "@in/googleMaps"
+import Vue, { PropType } from "vue"
 
 export default Vue.extend({
 	name: "GoogleMaps",
@@ -17,8 +16,8 @@ export default Vue.extend({
 	},
 	mounted() {
 		try {
-			const loaded = Vue.$googleMapsLoaded
-			Vue.$googleMapsLoaded = googleMapsInitFunction(this.$props.googleMapsInit, loaded)
+			const loaded = Vue.prototype.$googleMapsLoaded
+			Vue.prototype.$googleMapsLoaded = googleMapsInitFunction(this.$props.googleMapsInit, loaded)
 		} catch (error) {
 			console.error(error)
 		}
