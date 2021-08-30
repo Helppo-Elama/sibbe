@@ -6,10 +6,11 @@ export type IWeekDays =
 	| "torstai"
 	| "perjantai"
 	| "lauantai"
+	| "tänään"
 
 export interface IServiceHour {
 	day: IWeekDays
-	isOpen: boolean
+	openToday: boolean
 	open: undefined | string
 	close: undefined | string
 }
@@ -23,7 +24,7 @@ export function isIServiceHours(array: unknown): array is IServiceHours {
 			if (result === true)
 				if (
 					!Object.prototype.hasOwnProperty.call(object, "day") &&
-					!Object.prototype.hasOwnProperty.call(object, "isOpen") &&
+					!Object.prototype.hasOwnProperty.call(object, "openToday") &&
 					!Object.prototype.hasOwnProperty.call(object, "open") &&
 					!Object.prototype.hasOwnProperty.call(object, "close") &&
 					result === true

@@ -70,7 +70,7 @@ export default Vue.extend({
 			> = []
 			days.forEach((day, i) => {
 				const len = +openClosed.length
-				if (day.isOpen) {
+				if (day.openToday) {
 					if (
 						len !== 0 &&
 						day.open === days[i - 1].open &&

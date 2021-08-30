@@ -38,13 +38,13 @@
 											<tr
 												v-for="(day, j) in d.json"
 												:key="j"
-												:class="{ 'text-red-500': !day.isOpen }"
+												:class="{ 'text-red-500': !day.openToday }"
 											>
 												<td>
 													<input
 														class="ml-3 mr-1 rounded-md"
 														type="checkbox"
-														v-model="day.isOpen"
+														v-model="day.openToday"
 													/>
 												</td>
 												<td>
@@ -54,8 +54,8 @@
 												</td>
 												<td>
 													<input
-														:disabled="!day.isOpen"
-														:class="('text-red-500', day.isOpen)"
+														:disabled="!day.openToday"
+														:class="('text-red-500', day.openToday)"
 														type="time"
 														class="
 															my-2
@@ -71,18 +71,18 @@
 														v-model="day.open"
 													/>
 													<div
-														v-if="day.isOpen && notValid(day.open)"
+														v-if="day.openToday && notValid(day.open)"
 														class="text-center text-green-600 -mt-2"
 													>
 														Täytä
 													</div>
-													<div v-else-if="day.isOpen" class="-mt-2">&nbsp;</div>
+													<div v-else-if="day.openToday" class="-mt-2">&nbsp;</div>
 												</td>
 												<td class="text-center">-</td>
 												<td>
 													<input
 														type="time"
-														:disabled="!day.isOpen"
+														:disabled="!day.openToday"
 														class="
 															mr-3
 															my-2
@@ -98,12 +98,12 @@
 														v-model="day.close"
 													/>
 													<div
-														v-if="day.isOpen && notValid(day.close)"
+														v-if="day.openToday && notValid(day.close)"
 														class="text-center text-green-600 -mt-2"
 													>
 														Täytä
 													</div>
-													<div v-else-if="day.isOpen" class="-mt-2">&nbsp;</div>
+													<div v-else-if="day.openToday" class="-mt-2">&nbsp;</div>
 												</td>
 											</tr>
 										</table>
