@@ -72,6 +72,8 @@
 
 Jos jokin asia mietityttää niin kysykää aiheesta lisää.
 
+### Tästä projektista puuttuu dokumentointi täysin, mutta ymmärrän sen tärkeyden ja osaan myös käytännössä dokumentoida koodia (docblock), joka on erittäin tärkeää kun tehdään ryhmässä töitä. Pahoittelut että tästä paketista ne puuttuvat täysin.
+
 ### Frontend
 
 - Frontend puolella on käytössä Vue2 + Vuetify
