@@ -87,4 +87,4 @@ Jos jokin asia mietityttää niin kysykää aiheesta lisää.
 - Tietokantaa päivitetään aivan liian huolettomasti.
 - Tietokannassa käsitellään tietoja mahdollisimman paljon vapaassa JSON -muodossa (tyyliin MongoDB).
 - SQL taitoja pitää ehdottomasti terästää.
-- Huomasin tässä sellaisen pienen virheen että koko frontend pitäisi viedä Laravelin puolelle jolloin tietojen haku nopeutuu. Ei tarvitsisi enää käyttää axiosta erikseen.
+- Huomasin tässä taannoin sellaisen pienen virheen että koko frontend pitäisi viedä Laravelin puolelle jolloin tietojen haku nopeutuisi todella paljon. Ei tarvitsisi enää käyttää axiosta erikseen.
