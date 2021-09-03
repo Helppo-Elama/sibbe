@@ -1,45 +1,39 @@
-# TO DO
-
-## Facebook
-
-- [ ] Lisää Little Hotellier palikka: <https://help.littlehotelier.com/s/article/How-do-I-enable-Facebook-Bookings?language=en_US>
-
 ## <https://sibbe.fi>
+
+# TO DO
 
 ## Villa Sibbe
 
-- [x] Basic frontend
 - [ ] Find a correct way to organize interfaces, classes and types
-- [x] Karusellit automaattiseksi
-- [x] Axios sibbe service fetcher
-- [x] Korjaa tyylit (karuselli, kalenteri)
+- [x] Basic frontend
+- [x] Automatic carousels
+- [x] Axios Sibbe Service
+- [x] Fix styles (carousel, calendar)
 
-### Villa etusivu
+### Front page
 
-- [ ] Aukioloajat -> vie backend, etsi ratkaisu FaceBook
-- [x] Kevätravintola tulossa
+### Restaurant & Cafe
 
-### Ruokalista
+- [x] Menu
+- [x] Restaurant page
+- [x] Replace Google opening hours.
 
-- [x] Menu viikoittain - [ ] päivitettävissä etukäteen?
+### Festivity
 
-### Juhlasivut
+- [ ] Like conference page
+- [ ] Examples of party packages
 
-- [ ] Kokoustyyliin
-- [ ] Esimerkkejä
+## Booking
 
-## Varaussivu
-
-- [x] Soita, varaa, kysy lisää!
-- [x] Little hotellier
-- [x] Oma booking
+- [x] Call, reserve and ask
+- [x] Own booking page
 
 ## Cafe
 
-- [ ] Tapahtumat
-- [x] Facebook
-- [x] Muokattavaa ruokalistaa
-- [ ] Aukioloajat -> vie backend, etsi ratkaisu FaceBook
+- [ ] Events
+- [x] Menu
+- [x] Restaurant page
+- [x] Replace Google opening hours
 
 &nbsp;
 
@@ -47,23 +41,50 @@
 
 &nbsp;
 
-## <https://service.sibbe.fi>
-
 ## Service
+
+### Backend
+
+- [ ] Error handling!
+- [x] Lunch menus calendar
+- [x] A'la Carte
+- [ ] Other fields for frontend axios
+- [ ] Image uploader with srcset support and auto resize
+- [ ] Integrate Opening hours to Facebook
+
+### Proxy
+
+- [ ] Proxy Siteminder booking data with CRON -> store to database for fetching
 
 ### User control
 
 - [ ] Enable
-- [ ] No registration
+- [ ] No registration - only management can create users
 
 ### Api
 
 - [x] Fetch API for frontend (axios)
 - [x] Configure cross-origins properly
 
+---
+
+## Tower Media
+
+Jos jokin asia mietityttää niin kysykää aiheesta lisää.
+
+### Frontend
+
+- Frontend puolella on käytössä Vue2 + Vuetify
+- Optiomoitu pre-render tekniikalla
+- Paketti on SPA vaikka osoitteet päättyvät .html -muotoon. Tämä oli ainoa tapa saada sosiaalisen median metatiedot eri sivuille (https://metatags.io/)
+- 100% PWA
+- Kuvat ovat nyt valitettavasti suoraan frontend paketissa ja optiomoidaan build -vaiheessa. Tarkoitus on viedä kuvat backend puolelle siten että laravelilta saadaan suoraan srcset sopivat kuvat frontend puolelle.
+
 ### Backend
 
-- [ ] Lock management
-- [x] Lunch menus calendar
-- [ ] A'la Carte
-- [ ] Other fields for frontend axios
+- Backend puolella ei ole mitään JS/CSS optimointeja tällä hetkellä.
+- Backend puolelta puuttuu täysin virheiden hallinta. Se ei valitettavasti ole ollut prioriteettilistalla.
+- Tietokantaa päivitetään aivan liian huolettomasti.
+- Tietokannassa käsitellään tietoja mahdollisimman paljon vapaassa JSON -muodossa (tyyliin MongoDB).
+- SQL taitoja pitää ehdottomasti terästää.
+- Huomasin tässä sellaisen pienen virheen että koko frontend pitäisi viedä Laravelin puolelle jolloin tietojen haku nopeutuu. Ei tarvitsisi enää käyttää axiosta erikseen.
