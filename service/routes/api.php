@@ -32,6 +32,7 @@ Route::get("/cafe/menu", [CafeController::class, "get"]);
 //Route::get("/cafe/data", [CafeController::class, "get"]);
 
 Route::get("/servicehours", [ServiceHourController::class, "get"]);
+Route::get("/servicehours/closeduntil", [serviceHourController::class, "get_closed_until"]);
 
 Route::post("/mail/contact", [ContactController::class, "submit"]);
 //middleware(["middleware" => "trusted_access"])->

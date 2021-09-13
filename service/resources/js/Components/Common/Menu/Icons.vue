@@ -1,11 +1,29 @@
 <template>
 	<div>
-		<span class="pt-4 pb-1 pl-1 text-2xl text-gray-700 block">Valitse kuvake</span>
+		<span class="pt-4 pb-1 pl-1 text-gray-700 block">Valitse kuvake</span>
 		<jet-dropdown align="left" width="48" class="mt-1">
 			<template #trigger>
 				<button
 					type="button"
-					class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+					class="
+						inline-flex
+						justify-between
+						w-full
+						rounded-md
+						border border-gray-300
+						shadow-sm
+						px-4
+						py-2
+						bg-white
+						font-medium
+						text-gray-700
+						hover:bg-gray-50
+						focus:outline-none
+						focus:ring-2
+						focus:ring-offset-2
+						focus:ring-offset-gray-100
+						focus:ring-indigo-500
+					"
 				>
 					<div class="inline-flex">
 						<svg
@@ -57,10 +75,6 @@
 	</div>
 </template>
 <script>
-import JetDropdown from "@/Jetstream/Dropdown";
-import JetDropdownItem from "@/Jetstream/DropdownItem";
-import JetDropdownSVG from "@/Jetstream/DropDownSVG";
-
 import {
 	mdiHamburger,
 	mdiFoodCroissant,
@@ -72,15 +86,18 @@ import {
 	mdiSilverwareForkKnife,
 	mdiGlassMugVariant,
 	mdiCupcake,
-	mdiBeerOutline,
-} from "@mdi/js";
+	mdiBeerOutline
+} from "@mdi/js"
+import JetDropdown from "@/Jetstream/Dropdown"
+import JetDropdownItem from "@/Jetstream/DropdownItem"
+import JetDropdownSVG from "@/Jetstream/DropDownSVG"
 
 export default {
 	props: { icon: { type: String }, category: { type: Number } },
 	components: {
 		JetDropdown,
 		JetDropdownItem,
-		JetDropdownSVG,
+		JetDropdownSVG
 	},
 	data() {
 		return {
@@ -88,90 +105,90 @@ export default {
 				null: {
 					text: "Ei kuvaa",
 					icon: null,
-					name: null,
+					name: null
 				},
 				mdiHamburger: {
 					text: "Hampurilainen",
 					icon: mdiHamburger,
-					name: "mdiHamburger",
+					name: "mdiHamburger"
 				},
 				mdiFoodCroissant: {
 					text: "Croissant",
 					icon: mdiFoodCroissant,
-					name: "mdiFoodCroissant",
+					name: "mdiFoodCroissant"
 				},
 				mdiFoodForkDrink: {
 					text: "Ruoka-annos",
 					icon: mdiFoodForkDrink,
-					name: "mdiFoodForkDrink",
+					name: "mdiFoodForkDrink"
 				},
 				mdiIceCream: {
 					text: "Jäätelö",
 					icon: mdiIceCream,
-					name: "mdiIceCream",
+					name: "mdiIceCream"
 				},
 				mdiCoffeeOutline: {
 					text: "Kahvi",
 					icon: mdiCoffeeOutline,
-					name: "mdiCoffeeOutline",
+					name: "mdiCoffeeOutline"
 				},
 				mdiCandycane: {
 					text: "Karkki",
 					icon: mdiCandycane,
-					name: "mdiCandycane",
+					name: "mdiCandycane"
 				},
 				mdiGlassFlute: {
 					text: "Viini",
 					icon: mdiGlassFlute,
-					name: "mdiGlassFlute",
+					name: "mdiGlassFlute"
 				},
 				mdiGlassMugVariant: {
 					text: "Olut",
 					icon: mdiGlassMugVariant,
-					name: "mdiGlassMugVariant",
+					name: "mdiGlassMugVariant"
 				},
 				mdiSilverwareForkKnife: {
 					text: "Ruoka",
 					icon: mdiSilverwareForkKnife,
-					name: "mdiSilverwareForkKnife",
+					name: "mdiSilverwareForkKnife"
 				},
 				mdiCupcake: {
 					text: "Leivonnainen",
 					icon: mdiCupcake,
-					name: "mdiCupcake",
+					name: "mdiCupcake"
 				},
 
 				mdiBeerOutline: {
 					text: "Juoma",
 					icon: mdiBeerOutline,
-					name: "mdiBeerOutline",
-				},
+					name: "mdiBeerOutline"
+				}
 			},
 			selectedIcon: {
 				svg: undefined,
-				text: undefined,
-			},
-		};
+				text: undefined
+			}
+		}
 	},
 	watch: {
 		icon: {
 			immediate: true,
 			handler() {
-				const { icons, icon } = this;
+				const { icons, icon } = this
 				if (!icon) {
-					this.selectedIcon = icons.null;
-					return;
+					this.selectedIcon = icons.null
+					return
 				}
-				const { icon: svg, text } = icons[icon];
-				this.selectedIcon = { svg, text };
-			},
-		},
+				const { icon: svg, text } = icons[icon]
+				this.selectedIcon = { svg, text }
+			}
+		}
 	},
 	methods: {
 		emitIcon(icon, category) {
-			const { name } = icon;
-			this.$emit("change", { name, category });
-		},
-	},
-};
+			const { name } = icon
+			this.$emit("change", { name, category })
+		}
+	}
+}
 </script>

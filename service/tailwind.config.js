@@ -1,6 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 const colors = require("tailwindcss/colors")
-const path = require("path")
 
 module.exports = {
 	darkMode: "class", // or 'media' or 'class'
@@ -24,11 +23,13 @@ module.exports = {
 			opacity: ["disabled"]
 		},
 		purge: [
-			path.resolve(__dirname, "./node_modules/litepie-datepicker/**/*.js"),
+			"./node_modules/litepie-datepicker/**/*.js",
 			"./vendor/laravel/jetstream/**/*.blade.php",
 			"./storage/framework/views/*.php",
-			"./resources/views/**/*.blade.php",
-			"./resources/js/**/*.vue"
+			"./resources/js/**/*.vue",
+			"./resources/**/*.blade.php",
+			"./resources/**/*.js",
+			"./config/*.php"
 		]
 	},
 

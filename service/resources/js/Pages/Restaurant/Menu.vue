@@ -27,60 +27,60 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import JetButton from "@/Jetstream/Button";
-import { axiosPost, axiosDelete } from "@/Helpers/axios";
-import { postRestaurantTypeApiUrl } from "@/Helpers/apiEndPoints";
-import MenuIterator from "@/Components/Common/Menu/MenuIterator";
+import AppLayout from "@/Layouts/AppLayout"
+import JetButton from "@/Jetstream/Button"
+import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
+import { postRestaurantTypeApiUrl } from "@/Helpers/js/apiEndPoints"
+import MenuIterator from "@/Components/Common/Menu/MenuIterator"
 
-const url = postRestaurantTypeApiUrl();
+const url = postRestaurantTypeApiUrl()
 export default {
 	components: {
 		AppLayout,
 		MenuIterator,
-		JetButton,
+		JetButton
 	},
 	props: {
-		data: { type: Array, required: true },
+		data: { type: Array, required: true }
 	},
 	computed: {
 		menu: {
 			set(val) {
-				return val;
+				return val
 			},
 			get() {
-				let result;
+				let result
 				if (this.data) {
-					result = this.data;
+					result = this.data
 				} else {
-					result = [{ type: "", icon: "", json: "", id: null }];
+					result = [{ type: "", icon: "", json: "", id: null }]
 				}
-				return result;
-			},
-		},
+				return result
+			}
+		}
 	},
 	methods: {
 		async addType() {
-			const item = { type: "", icon: "", json: "", id: null };
-			const i = this.menu.push(item) - 1;
-			const json = JSON.stringify(item);
-			const request = { url, json };
-			const response = await axiosPost(request);
+			const item = { type: "", icon: "", json: "", id: null }
+			const i = this.menu.push(item) - 1
+			const json = JSON.stringify(item)
+			const request = { url, json }
+			const response = await axiosPost(request)
 			if (response) {
-				this.$message.success(response.message);
-				this.menu[i].id = response.id;
-			} else this.$message.error("Kategorian tallentamisessa tapahtui virhe");
+				this.$message.success(response.message)
+				this.menu[i].id = response.id
+			} else this.$message.error("Kategorian tallentamisessa tapahtui virhe")
 		},
 		async deleteType(i) {
-			const { id } = this.menu[i];
-			const request = { url, id };
-			const response = await axiosDelete(request);
+			const { id } = this.menu[i]
+			const request = { url, id }
+			const response = await axiosDelete(request)
 
 			if (response) {
-				this.$message.success(response);
-				this.menu.splice(i, 1);
-			} else this.$message.error("Kategorian poistossa tapahtui virhe");
-		},
-	},
-};
+				this.$message.success(response)
+				this.menu.splice(i, 1)
+			} else this.$message.error("Kategorian poistossa tapahtui virhe")
+		}
+	}
+}
 </script>

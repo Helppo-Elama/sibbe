@@ -57,23 +57,26 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import JetSwitch from "@/Jetstream/Switch";
-import JetButton from "@/Jetstream/Button";
+import AppLayout from "@/Layouts/AppLayout"
+import JetSwitch from "@/Jetstream/Switch"
+import JetButton from "@/Jetstream/Button"
 
-import { correctOffset, addDays } from "@/Helpers/dateFunctions";
+import { correctOffset, addDays } from "@/Helpers/js/dateFunctions"
 
-import { axios } from "@/Helpers/axios";
-import { getRestaurantLunchApiUrl, getRestaurantLunchDefaultsApiUrl } from "@/Helpers/apiEndPoints";
-import DateIterator from "./Lunch/LunchDateIterator";
+import { axios } from "@/Helpers/js/axios"
+import {
+	getRestaurantLunchApiUrl,
+	getRestaurantLunchDefaultsApiUrl
+} from "@/Helpers/js/apiEndPoints"
+import DateIterator from "./Lunch/LunchDateIterator"
 
-const now = new Date();
+const now = new Date()
 export default {
 	components: {
 		AppLayout,
 		JetSwitch,
 		JetButton,
-		DateIterator,
+		DateIterator
 	},
 	data() {
 		return {
@@ -83,7 +86,7 @@ export default {
 				allowedDateRange: { start: now, end: null },
 				selectedDateRange: { start: now, end: now },
 				disabledWhenSelecting: false,
-				disabledBeforeSelecting: true,
+				disabledBeforeSelecting: true
 			},
 			lunches: undefined,
 			componentKey: 0,
@@ -91,84 +94,85 @@ export default {
 				serving_time: { start: undefined, end: undefined },
 				type: undefined,
 				price: undefined,
-			},
-		};
+				price_additional: undefined
+			}
+		}
 	},
 	mounted() {
-		this.fetchData();
-		this.fetchDefaults();
+		this.fetchData()
+		this.fetchDefaults()
 	},
 	watch: {
 		// eslint-disable-next-line func-names
 		"datePicker.allowPastDate": function (val) {
 			if (val === false) {
-				this.datePicker.allowedDateRange.start = null;
+				this.datePicker.allowedDateRange.start = null
 			} else {
-				this.datePicker.allowedDateRange.start = now;
+				this.datePicker.allowedDateRange.start = now
 			}
 		},
 		// eslint-disable-next-line func-names
 		"datePicker.selectedDateRange.end": function (val) {
 			if (val !== null) {
-				this.datePicker.disabledBeforeSelecting = false;
-			} else this.datePicker.disabledBeforeSelecting = true;
-		},
+				this.datePicker.disabledBeforeSelecting = false
+			} else this.datePicker.disabledBeforeSelecting = true
+		}
 	},
 	methods: {
 		datePickerOnClick(val) {
-			const date = correctOffset(val.date);
+			const date = correctOffset(val.date)
 			const { removeRangeLimit, allowPastDate, selectedDateRange, allowedDateRange } =
-				this.datePicker;
+				this.datePicker
 			if (selectedDateRange.start === null || selectedDateRange.end !== null) {
-				this.datePicker.disabledWhenSelecting = true;
+				this.datePicker.disabledWhenSelecting = true
 
-				selectedDateRange.start = date;
-				selectedDateRange.end = null;
+				selectedDateRange.start = date
+				selectedDateRange.end = null
 
-				allowedDateRange.start = date;
+				allowedDateRange.start = date
 
 				if (removeRangeLimit) {
-					allowedDateRange.end = addDays(date, 14);
+					allowedDateRange.end = addDays(date, 14)
 				}
 			} else if (selectedDateRange.end === null) {
-				selectedDateRange.end = date;
-				allowedDateRange.end = null;
+				selectedDateRange.end = date
+				allowedDateRange.end = null
 				if (allowPastDate) {
-					allowedDateRange.start = now;
+					allowedDateRange.start = now
 				} else {
-					allowedDateRange.start = null;
+					allowedDateRange.start = null
 				}
-				this.datePicker.disabledWhenSelecting = false;
+				this.datePicker.disabledWhenSelecting = false
 			}
 		},
 		async fetchData() {
-			const { start, end } = this.datePicker.selectedDateRange;
-			const url = getRestaurantLunchApiUrl(start, end);
-			const response = await axios(url);
+			const { start, end } = this.datePicker.selectedDateRange
+			const url = getRestaurantLunchApiUrl(start, end)
+			const response = await axios(url)
 			if (response) {
-				this.lunches = response;
-				const { length } = this.lunches;
+				this.lunches = response
+				const { length } = this.lunches
 				for (let i = 0; i < length; i += 1) {
 					if (this.lunches[i].serving_time === null || undefined) {
-						this.$set(this.lunches[i], "serving_time", { start: undefined, end: undefined });
+						this.$set(this.lunches[i], "serving_time", { start: undefined, end: undefined })
 					}
 				}
 			}
-			this.forceRerender();
+			this.forceRerender()
 		},
 		async fetchDefaults() {
-			const url = getRestaurantLunchDefaultsApiUrl();
-			const response = await axios(url);
+			const url = getRestaurantLunchDefaultsApiUrl()
+			const response = await axios(url)
 			if (response) {
-				const object = response[0];
+				const object = response[0]
 				if (Object.prototype.hasOwnProperty.call(object, "json")) {
-					this.defaults = object.json;
+					this.defaults = object.json
 				}
 			}
 		},
 		forceRerender() {
-			this.componentKey += 1;
-		},
-	},
-};
+			this.componentKey += 1
+		}
+	}
+}
 </script>

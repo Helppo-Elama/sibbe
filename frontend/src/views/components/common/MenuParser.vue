@@ -17,11 +17,15 @@
 						<v-container fluid class="pa-0 ma-0">
 							<v-row class="text-left pb-5" no-gutters>
 								<v-col cols="8"
-									><b>{{ x + 1 }}. {{ it.title }}</b></v-col
+									><b class="break-word">{{ x + 1 }}. {{ it.title }}</b></v-col
 								>
-								<v-col cols="4" class="text-right"
-									><b>{{ it.price }} EUR</b></v-col
-								>
+								<v-col cols="4" class="text-right">
+									<b
+										>{{ it.price }}
+										<span v-if="it.price_additional"> - {{ it.price_additional }}</span>
+										EUR</b
+									>
+								</v-col>
 								<v-col v-if="it.body" cols="12" class="pt-2 pl-5">{{ it.body }}</v-col>
 								<v-col v-if="it.ingredients" cols="12" class="pt-2 pl-5">{{
 									it.ingredients

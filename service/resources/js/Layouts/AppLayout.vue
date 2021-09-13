@@ -1,7 +1,7 @@
 <template>
 	<div>
+		<BreakPoints v-if="developerMode" />
 		<jet-banner />
-
 		<div class="min-h-screen bg-gray-100">
 			<nav class="bg-white border-b border-gray-100">
 				<!-- Primary Navigation Menu -->
@@ -350,18 +350,20 @@
 	</div>
 </template>
 
-<script lang="js">
+<script>
 import { Link as InertiaLink } from "@inertiajs/inertia-vue"
-import JetApplicationMark from "@/Jetstream/ApplicationMark";
-import JetBanner from "@/Jetstream/Banner";
-import JetDropdown from "@/Jetstream/Dropdown";
-import JetDropdownLink from "@/Jetstream/DropdownLink";
-import JetDropdownSVG from "@/Jetstream/DropDownSVG";
-import JetNavLink from "@/Jetstream/NavLink";
-import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
+import BreakPoints from "@/Helpers/Vue/Breakpoints.vue"
+import JetApplicationMark from "@/Jetstream/ApplicationMark"
+import JetBanner from "@/Jetstream/Banner"
+import JetDropdown from "@/Jetstream/Dropdown"
+import JetDropdownLink from "@/Jetstream/DropdownLink"
+import JetDropdownSVG from "@/Jetstream/DropDownSVG"
+import JetNavLink from "@/Jetstream/NavLink"
+import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink"
 
 export default {
 	components: {
+		BreakPoints,
 		JetApplicationMark,
 		JetBanner,
 		JetDropdown,
@@ -374,14 +376,19 @@ export default {
 
 	data() {
 		return {
-			showingNavigationDropdown: false,
-		};
+			showingNavigationDropdown: false
+		}
+	},
+	computed: {
+		developerMode() {
+			return process.env.NODE_ENV === "development"
+		}
 	},
 	methods: {
 		logout() {
 			// eslint-disable-next-line no-undef
-			this.$inertia.post(route("logout"));
-		},
-	},
-};
+			this.$inertia.post(route("logout"))
+		}
+	}
+}
 </script>

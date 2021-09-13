@@ -55,6 +55,7 @@
 					<span class="pt-4 pb-1 block"><b>Ainesosat: </b>{{ portion.ingredients }}</span>
 					<span class="pt-4 pb-1 block"><b>Allergiatiedot: </b>{{ portion.allergenic }}</span>
 					<span class="pt-4 pb-1 block"><b>Hinta: </b>{{ portion.price }} EUR</span>
+					<span class="pt-4 pb-1 block"><b>Hinta(max): </b>{{ portion.price_additional }} EUR</span>
 					<span class="pt-4 pb-1 block"><b>Allergiatiedot: </b>{{ portion.allergenic }}</span>
 				</div>
 			</div>
@@ -65,8 +66,8 @@
 import JetButton from "@/Jetstream/Button"
 import JetDialogModal from "@/Jetstream/DialogModal"
 
-import { getPortionsSearchApiUrl } from "@/Helpers/apiEndPoints"
-import { axios } from "@/Helpers/axios"
+import { getPortionsSearchApiUrl } from "@/Helpers/js/apiEndPoints"
+import { axios } from "@/Helpers/js/axios"
 
 export default {
 	components: {

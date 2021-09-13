@@ -23,46 +23,47 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout"
 
-import Lunch from "./Data/Lunch";
+import Lunch from "@/Pages/Restaurant/Data/LunchData"
 
 export default {
 	components: {
 		AppLayout,
-		Lunch,
+		Lunch
 	},
 	props: {
-		data: Array,
+		data: Array
 	},
 	data() {
 		return {
-			menu: undefined,
-		};
+			menu: undefined
+		}
 	},
 	computed: {
 		lunch: {
 			set(val) {
-				return val;
+				return val
 			},
 			get() {
-				const { data } = this;
+				const { data } = this
 				const json = {
 					serving_time: { start: undefined, end: undefined },
 					type: null,
 					price: null,
-				};
-				let result;
-				if (Array.isArray(data)) {
-					const l = data.length;
-					for (let i = 0; i < l; i += 1) {
-						if (data[i].title && data[i].title === "lunch") result = data[i];
-					}
-					if (!result.json) result.json = json;
+					price_additional: null
 				}
-				return result;
-			},
-		},
-	},
-};
+				let result
+				if (Array.isArray(data)) {
+					const l = data.length
+					for (let i = 0; i < l; i += 1) {
+						if (data[i].title && data[i].title === "lunch") result = data[i]
+					}
+					if (!result.json) result.json = json
+				}
+				return result
+			}
+		}
+	}
+}
 </script>

@@ -14,7 +14,7 @@ class PortionController extends Controller
     {
         if ($request->id) {
             Portion::where(["id" => $request->id])
-                ->update(["title" => $request->title, "body" => $request->body, "ingredients" => $request->ingredients, "allergenic" => $request->allergenic, "price" => $request->price]);
+                ->update(["title" => $request->title, "body" => $request->body, "ingredients" => $request->ingredients, "allergenic" => $request->allergenic, "price" => $request->price, "price_additional" => $request->price_additional]);
             return response()->json("Annoskortti päivitetty", 200);
         } else {
             $portion = new Portion;
@@ -23,6 +23,7 @@ class PortionController extends Controller
             $portion->ingredients = $request->ingredients;
             $portion->allergenic = $request->allergenic;
             $portion->price = $request->price;
+            $portion->price_additional = $request->price_additional;
             $portion->save();
             return response()->json(["message" => "Annoskortti lisätty", "id" => $portion->id], 200);
         }
@@ -38,7 +39,7 @@ class PortionController extends Controller
         return response($data, 200);
     }
 
-    public function get(Request $request)
+    public function get()
     {
         $data = Portion::all();
         foreach ($data as $d) {

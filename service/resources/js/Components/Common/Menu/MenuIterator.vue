@@ -14,29 +14,13 @@
 					>
 						<Icons :icon="item.icon" :category="category" @change="updateIcon" />
 						<div>
-							<label>
-								<span class="pt-4 pb-1 pl-1 text-gray-700 text-2xl block">Kategoria</span>
-								<input
-									type="text"
-									class="
-										block
-										mt-1
-										w-full
-										rounded-md
-										border-gray-300
-										shadow-sm
-										focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-									"
-									:value="item.type"
-									@change="item.type = $event.target.value"
-								/>
-							</label>
+							<text-input v-model="item.type">Kategoria</text-input>
 						</div>
 					</div>
 					<div class="">
 						<hr class="my-4" />
 					</div>
-					<MenuItemIterator
+					<MenuItems
 						:data="item.json"
 						:category="category"
 						@delete="deleteItem"
@@ -54,9 +38,11 @@
 	</div>
 </template>
 <script>
-import JetButton from "@/Jetstream/Button";
+import JetButton from "@/Jetstream/Button"
 
-import { axiosPost } from "@/Helpers/axios";
+import TextInput from "@/Components/Common/InputText"
+
+import { axiosPost } from "@/Helpers/js/axios"
 import {
 	postRestaurantItemApiUrl,
 	deleteRestaurantItemApiUrl,
@@ -64,74 +50,75 @@ import {
 	// postRestaurantDataApiUrl
 	postCafeItemApiUrl,
 	deleteCafeItemApiUrl,
-	postCafeTypeApiUrl,
+	postCafeTypeApiUrl
 	// postCafeDataApiUrl,
-} from "@/Helpers/apiEndPoints";
+} from "@/Helpers/js/apiEndPoints"
 
-import MenuItemIterator from "./MenuItemIterator";
-import Icons from "./Icons";
+import MenuItems from "./MenuItems"
+import Icons from "./Icons"
 
 export default {
 	components: {
 		JetButton,
+		TextInput,
 		Icons,
-		MenuItemIterator,
+		MenuItems
 	},
 	props: {
 		data: { Type: Object },
-		type: { Type: String },
+		type: { Type: String }
 	},
 	data() {
 		return {
 			items: undefined,
-			componentKey: 0,
-		};
+			componentKey: 0
+		}
 	},
 	computed: {
 		url() {
-			let result = false;
+			let result = false
 			if (this.type === "cafe") {
 				result = {
 					item: postCafeItemApiUrl(),
 					delete: deleteCafeItemApiUrl(),
-					type: postCafeTypeApiUrl(),
+					type: postCafeTypeApiUrl()
 					// data: postCafeDataApiUrl,
-				};
+				}
 			} else if (this.type === "restaurant") {
 				result = {
 					item: postRestaurantItemApiUrl(),
 					delete: deleteRestaurantItemApiUrl(),
-					type: postRestaurantTypeApiUrl(),
+					type: postRestaurantTypeApiUrl()
 					// data: postCafeDataApiUrl,
-				};
+				}
 			}
-			return result;
-		},
+			return result
+		}
 	},
 	watch: {
 		data: {
 			deep: true,
 			immediate: true,
 			handler() {
-				this.items = window._.cloneDeep(this.data);
-			},
-		},
+				this.items = window._.cloneDeep(this.data)
+			}
+		}
 	},
 	methods: {
 		async deleteItem({ category, i }) {
-			this.items[category].json.splice(i, 1);
-			const json = window._.pick(this.items[category], ["type", "json"]);
-			const url = this.url.delete;
-			const response = await axiosPost({ url, json });
+			this.items[category].json.splice(i, 1)
+			const json = window._.pick(this.items[category], ["type", "json"])
+			const url = this.url.delete
+			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.warn(response);
-			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
-			this.forceRerender();
+				this.$message.warn(response)
+			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
+			this.forceRerender()
 		},
 		addItem(category) {
-			const i = category;
+			const i = category
 			if (!this.items[i].json) {
-				this.items[i].json = [];
+				this.items[i].json = []
 			}
 			this.items[i].json.push({
 				title: "",
@@ -139,40 +126,41 @@ export default {
 				ingredients: "",
 				allergenic: "",
 				price: "",
-			});
-			this.updateItem({ category, undefined });
-			this.forceRerender();
+				price_additional: ""
+			})
+			this.updateItem({ category, undefined })
+			this.forceRerender()
 		},
 		async updateItem({ category, portions }) {
-			const i = category;
-			if (portions) this.items[i].json = portions;
-			const json = JSON.stringify(this.items[i]);
-			const url = this.url.item;
-			const response = await axiosPost({ url, json });
+			const i = category
+			if (portions) this.items[i].json = portions
+			const json = JSON.stringify(this.items[i])
+			const url = this.url.item
+			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response);
-			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe");
+				this.$message.success(response)
+			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 		},
 		async updateType(i) {
-			const data = window._.pick(this.items[i], ["type", "icon", "id"]);
-			const url = this.url.type;
-			const json = JSON.stringify(data);
-			const response = await axiosPost({ url, json });
+			const data = window._.pick(this.items[i], ["type", "icon", "id"])
+			const url = this.url.type
+			const json = JSON.stringify(data)
+			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response);
-			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe");
+				this.$message.success(response)
+			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
 		},
 		updateIcon({ name, category }) {
-			this.items[category].icon = name;
-			this.updateType(category);
+			this.items[category].icon = name
+			this.updateType(category)
 		},
 		forceRerender() {
-			this.componentKey += 1;
-		},
+			this.componentKey += 1
+		}
 	},
 	created() {
-		this.updateType = window._.debounce(this.updateType, 1000);
-		this.updateItem = window._.debounce(this.updateItem, 1000);
-	},
-};
+		this.updateType = window._.debounce(this.updateType, 1000)
+		this.updateItem = window._.debounce(this.updateItem, 1000)
+	}
+}
 </script>

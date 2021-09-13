@@ -23,15 +23,16 @@
 					</h3>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<ServiceHours
+					<OpenClosed
 						v-if="serviceHours"
 						:service-hours="serviceHours"
 						:class-list="'color-dark'"
 					/>
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<OpenClosed
+					<ServiceHours
 						v-if="serviceHours"
+						:target="'restaurant'"
 						:service-hours="serviceHours"
 						:class-list="'color-dark'"
 					/>
@@ -191,6 +192,7 @@ export default Vue.extend({
 		googleMapsInit: IGoogleMapsInit
 		haveLunches: boolean
 		serviceHours: undefined | IServiceHours
+		lunchShowDaysAhead: number // Put to data and -> service
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
@@ -202,63 +204,71 @@ export default Vue.extend({
 			lunches: undefined,
 			googleMapsInit,
 			haveLunches: false,
-			serviceHours: undefined
+			serviceHours: undefined,
+			lunchShowDaysAhead: 7
 		}
 	},
 	methods: {
 		async fetchData(target: string): Promise<undefined | IRestaurantData> {
-			const url = createURL(target)
-			if (!url) throw new Error(`❌ No data URL for axios with target: ${target}`)
-			const response = await axios({ url })
-			if (response && isIRestaurantData(response)) {
-				return response
+			try {
+				const url = createURL(target)
+				const response = await axios({ url })
+				if (response && isIRestaurantData(response)) {
+					return response
+				}
+			} catch (err) {
+				console.log(err)
 			}
 			return undefined
 		},
 		async fetchServiceHours(target: string): Promise<undefined | IServiceHours> {
-			const url = serviceHoursApiUrl(target)
-			if (!url) throw new Error(`❌ No servicehours URL for axios with target: ${target}`)
-			const response = await axios({ url })
-			if (response) {
-				if (isIServiceHours(response[0].json)) {
-					const data = response[0].json
-					const l = data.length
-					for (let j = 0; j < l; j += 1) {
-						const day = data[j]
-						if (day.open === null) data[j].open = ""
-						if (day.close === null) data[j].close = ""
+			try {
+				const url = serviceHoursApiUrl(target)
+				const response = await axios({ url })
+				if (response) {
+					if (isIServiceHours(response[0].json)) {
+						const data = response[0].json
+						const l = data.length
+						for (let j = 0; j < l; j += 1) {
+							const day = data[j]
+							if (day.open === null) data[j].open = ""
+							if (day.close === null) data[j].close = ""
+						}
+						return data
 					}
-					return data
 				}
+			} catch (err) {
+				console.log(err)
 			}
 			return undefined
 		},
 
 		async fetchMenu(target: string): Promise<undefined | IMenu> {
-			const url = createURL(target)
-			if (!url) throw new Error(`❌ No menu URL for axios with target: ${target}`)
-			const response = await axios({ url })
-			if (response && isIMenu(response)) return response
+			let url: string
+			try {
+				if (target === "lunch") {
+					url = createURL(target, 7)
+				} else url = createURL(target)
+				const response = await axios({ url })
+				if (response && isIMenu(response)) return response
+			} catch (err) {
+				console.log(err)
+			}
 			return undefined
 		}
 	},
 	async mounted(): Promise<void> {
-		try {
-			// this.data = await this.fetchData("data");
-			this.serviceHours = await this.fetchServiceHours("restaurant")
-			this.menu = await this.fetchMenu("menu")
-			this.lunches = await this.fetchMenu("lunch")
-			if (isIMenu(this.lunches)) {
-				this.lunches.forEach((lunch) => {
-					if (Array.isArray(lunch.json)) {
-						if (lunch.json.length > 0) this.haveLunches = true
-					}
-				})
-			}
-		} catch (error) {
-			console.error(error)
+		// this.data = await this.fetchData("data");
+		this.serviceHours = await this.fetchServiceHours("restaurant")
+		this.menu = await this.fetchMenu("menu")
+		this.lunches = await this.fetchMenu("lunch")
+		if (isIMenu(this.lunches)) {
+			this.lunches.forEach((lunch) => {
+				if (Array.isArray(lunch.json)) {
+					if (lunch.json.length > 0) this.haveLunches = true
+				}
+			})
 		}
-
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY
 		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!")

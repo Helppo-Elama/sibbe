@@ -11,13 +11,14 @@ class Portion extends Model
     use HasFactory;
 
     protected $table = "portions";
-    protected $fillable = ["title", "body", "ingredients", "allergenic", "price"];
+    protected $fillable = ["title", "body", "ingredients", "allergenic", "price", "price_additional"];
     protected $attributes = [
         "title" => null,
         "body" => null,
         "ingredients" => null,
         "allergenic" => null,
         "price" => null,
+        "price_additional" => null,
     ];
 
     public function scopeSearch($query, $keywords)

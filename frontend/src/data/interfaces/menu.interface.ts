@@ -6,6 +6,7 @@ export interface IMenuItem {
 	body?: string
 	ingredients?: string
 	price?: string
+	price_additional?: string
 }
 
 interface IMenuArray {
@@ -18,6 +19,7 @@ interface IMenuArray {
 	date?: string
 	hours?: string
 	price?: string
+	price_additional?: string
 }
 
 export type IMenu = Array<IMenuArray>

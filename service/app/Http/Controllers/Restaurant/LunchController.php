@@ -17,7 +17,7 @@ class LunchController extends Controller
     public function post_date(Request $request)
     {
         Lunch::where(["date" => $request->date])
-            ->update(["price" => $request->price, "type" => $request->type, "serving_time" => $request->serving_time]);
+            ->update(["price" => $request->price, "price_additional" => $request->price_additional, "type" => $request->type, "serving_time" => $request->serving_time]);
 
         return response()->json("Päivä päivitetty", 200);
     } //end postLunch()
@@ -28,8 +28,11 @@ class LunchController extends Controller
             if ($data["price"] == "null") {
                 $data["price"] = "";
             }
+            if ($data["price_additional"] == "null") {
+                $data["price_additional"] = "";
+            }
             Lunch::where(["date" => $data["date"]])
-                ->update(["serving_time" => $data["serving_time"], "price" => $data["price"], "type" => $data["type"]]);
+                ->update(["serving_time" => $data["serving_time"], "price" => $data["price"], "price_additional" => $data["price_additional"], "type" => $data["type"]]);
         }
         return response()->json("Päivien oletusarvot päivitetty", 200);
     } //end postLunch()

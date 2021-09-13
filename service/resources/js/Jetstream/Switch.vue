@@ -46,33 +46,33 @@ export default {
 		disabled: { type: Boolean, default: false },
 		checked: {
 			type: Boolean,
-			default: false,
-		},
+			default: false
+		}
 	},
 	data() {
 		return {
-			proxyChecked: null,
-		};
+			proxyChecked: null
+		}
 	},
 	mounted() {
 		this.$nextTick(() => {
-			this.proxyChecked = this.checked;
-		});
+			this.proxyChecked = this.checked
+		})
 	},
 	watch: {
 		proxyChecked(val) {
-			const el = this.$refs.switchLabel;
+			const el = this.$refs.switchLabel
 			if (val === true) {
-				el.classList.add("text-red-500");
-				el.classList.add("line-through");
+				el.classList.add("text-red-500")
+				el.classList.add("line-through")
 			} else {
-				el.classList.remove("text-red-500");
-				el.classList.remove("line-through");
+				el.classList.remove("text-red-500")
+				el.classList.remove("line-through")
 			}
-			this.$emit("change", val);
-		},
-	},
-};
+			this.$emit("change", val)
+		}
+	}
+}
 </script>
 <style scoped>
 .tooltip-text {

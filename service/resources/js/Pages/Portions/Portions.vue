@@ -9,7 +9,7 @@
 					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
 						<div class="grid justify-items-stretch">
 							<div class="justify-self-center">
-								<div class="mt-8 mb-6 text-2xl text-center">Uudet annokset</div>
+								<div class="text-2xl text-center">Uudet annokset</div>
 								<div class="flex justify-center w-100 py-6 px-24">
 									<jet-button class="mr-3" action="add" @click.native="addPortion()">
 										Lisää uusi
@@ -21,13 +21,17 @@
 							</div>
 						</div>
 					</div>
-					<PortionIterator
-						:data="newPortions"
-						:target="'newPortions'"
-						class="pb-12"
-						@delete="deletePortion"
-						@change="updatePortion"
-					/>
+					<div class="bg-gray-200 bg-opacity-25">
+						<div class="p-4">
+							<PortionItems
+								:data="newPortions"
+								:target="'newPortions'"
+								class="pb-12"
+								@delete="deletePortion"
+								@change="updatePortion"
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,13 +69,17 @@
 							</jet-button>
 						</div>
 					</div>
-					<PortionIterator
-						:data="portions"
-						:target="'portions'"
-						class="pb-12"
-						@delete="deletePortion"
-						@change="updatePortion"
-					/>
+					<div class="bg-gray-200 bg-opacity-25">
+						<div class="p-4">
+							<PortionItems
+								:data="portions"
+								:target="'portions'"
+								class="pb-12"
+								@delete="deletePortion"
+								@change="updatePortion"
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -86,16 +94,16 @@ import {
 	postPortionApiUrl,
 	getPortionsSearchApiUrl,
 	deletePortionApiUrl
-} from "@/Helpers/apiEndPoints"
-import { axios, axiosPost, axiosDelete } from "@/Helpers/axios"
+} from "@/Helpers/js/apiEndPoints"
+import { axios, axiosPost, axiosDelete } from "@/Helpers/js/axios"
 import JetButton from "@/Jetstream/Button"
-import PortionIterator from "./PortionIterator"
+import PortionItems from "./PortionItems"
 
 export default {
 	components: {
 		AppLayout,
 		JetButton,
-		PortionIterator
+		PortionItems
 	},
 	data() {
 		return {
@@ -110,13 +118,6 @@ export default {
 			handler() {
 				this.searchHandlerWithDelay()
 			}
-		},
-		data: {
-			deep: true,
-			immediate: true,
-			handler() {
-				this.portions = window._.cloneDeep(this.data)
-			}
 		}
 	},
 	methods: {
@@ -126,7 +127,8 @@ export default {
 				body: "",
 				ingredients: "",
 				allergenic: "",
-				price: ""
+				price: "",
+				price_additional: ""
 			}
 			if (!Array.isArray(this.newPortions)) this.newPortions = []
 			this.newPortions.push(json)

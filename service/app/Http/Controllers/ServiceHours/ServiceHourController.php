@@ -30,10 +30,18 @@ class ServiceHourController extends Controller
             return response($data, 200);
         };
     }
+    public function get_closed_until(Request $request)
+    {
+        $data = ServiceHour::where(["title" => $request->title])->get();
+        foreach ($data as $d) {
+            $d->json = json_decode($d->json);
+        }
+        return response($data[0]->closed_until, 200);
+    }
     public function post(Request $request)
     {
         ServiceHour::where(["title" => $request->title])
-            ->update(["json" => $request->json]);
+            ->update(["closed_until" => $request->closed_until, "json" => $request->json]);
 
         $title = __($request->title);
         return response()->json("Aukioloajat " . $title . "lle on päivitetty", 200);

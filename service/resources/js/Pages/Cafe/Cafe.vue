@@ -35,8 +35,8 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import JetButton from "@/Jetstream/Button"
-import { axiosPost, axiosDelete } from "@/Helpers/axios"
-import { postCafeTypeApiUrl } from "@/Helpers/apiEndPoints"
+import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
+import { postCafeTypeApiUrl } from "@/Helpers/js/apiEndPoints"
 import MenuIterator from "@/Components/Common/Menu/MenuIterator"
 
 const url = postCafeTypeApiUrl()

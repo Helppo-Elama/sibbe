@@ -18,6 +18,7 @@ class CreateRestaurantLunchesTable extends Migration
             $table->timestamps();
             $table->date("date")->unique();
             $table->decimal("price", 10, 2,)->nullable();
+            $table->decimal("price_additional", 10, 2,)->nullable();
             $table->enum("type", ["lunch", "brunch"])->nullable();
             $table->json("json")->nullable();
             $table->json("serving_time")->nullable();

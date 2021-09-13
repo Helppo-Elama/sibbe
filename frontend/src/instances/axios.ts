@@ -11,7 +11,7 @@ const api = axios.create({
 	}
 })
 
-const axiosApi = async (request: IXHttp): Promise<Array<Record<string, string>> | undefined> => {
+const axiosApi = async (request: IXHttp): Promise<Array<Record<string, unknown>> | undefined> => {
 	try {
 		const response = await api.get(request.url)
 		const { data } = response

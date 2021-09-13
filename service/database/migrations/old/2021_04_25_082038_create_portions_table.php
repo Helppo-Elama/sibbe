@@ -21,6 +21,7 @@ class CreatePortionsTable extends Migration
             $table->text("ingredients")->nullable();
             $table->text("allergenic")->nullable();
             $table->decimal("price", 10, 2,)->nullable();
+            $table->decimal("price_additional", 10, 2,)->nullable();
         });
     }
 

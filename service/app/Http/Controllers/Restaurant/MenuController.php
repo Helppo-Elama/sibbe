@@ -43,7 +43,7 @@ class MenuController extends Controller
             ->update(["json" => $request->json]);
 
         return response()->json("Annos poistettu", 200);
-    } //end postLunch()
+    }
 
     public function delete_type(Request $request)
     {

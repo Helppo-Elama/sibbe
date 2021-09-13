@@ -11,9 +11,10 @@ class ServiceHour extends Model
     use HasFactory;
 
     protected $table = "service_hours";
-    protected $fillable = ["title", "json"];
+    protected $fillable = ["title", "json", "closed_until"];
     protected $attributes = [
         "title" => null,
         "json" => null,
+        "closed_until" => null,
     ];
 }

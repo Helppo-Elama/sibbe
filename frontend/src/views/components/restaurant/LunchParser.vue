@@ -28,9 +28,13 @@
 											<br />
 										</b>
 									</v-col>
-									<v-col v-if="it.price" cols="4" class="text-right"
-										><b>{{ it.price }} EUR</b></v-col
-									>
+									<v-col cols="4" class="text-right">
+										<b
+											>{{ it.price }}
+											<span v-if="it.price_additional"> - {{ it.price_additional }}</span>
+											EUR</b
+										>
+									</v-col>
 									<v-col v-if="it.body" cols="12" class="pt-2 pl-5">{{ item.body }}</v-col>
 									<v-col v-if="it.ingredients" cols="12" class="pt-2 pl-5">{{
 										item.ingredients
