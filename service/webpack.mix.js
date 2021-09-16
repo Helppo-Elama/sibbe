@@ -13,7 +13,30 @@ const path = require("path")
  |
  */
 
-mix.js("resources/js/app.js", "public/js").vue().webpackConfig(require("./webpack.config"))
+mix
+	.js("resources/js/app.js", "public/js")
+	.vue()
+	.webpackConfig({
+		resolve: {
+			alias: {
+				"@": path.resolve("resources/js")
+			}
+		}
+		/*
+			module: {
+				rules: [
+					{
+						test: /\.(postcss)$/,
+						use: [
+							"vue-style-loader",
+							{ loader: "css-loader", options: { importLoaders: 1 } },
+							"postcss-loader"
+						]
+					}
+				]
+			}
+			*/
+	})
 
 // DEV
 if (!mix.inProduction()) {
@@ -26,11 +49,11 @@ if (!mix.inProduction()) {
 			},
 			open: false
 		})
-		.sourceMaps()
 		.postCss("resources/css/app.css", "public/css", [
 			require("postcss-import"),
 			require("tailwindcss")
 		])
+		.sourceMaps()
 }
 
 // PROD
