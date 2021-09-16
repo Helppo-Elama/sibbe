@@ -2,11 +2,11 @@
 	<v-container fluid class="pa-0 ma-0">
 		<v-row class="ma-0">
 			<v-col cols="12">
-				<h3 class="museo museo-heading pt-16 pb-16"><slot></slot></h3>
+				<h3 class="museo museo-heading pt-16 pb-16"><slot /></h3>
 			</v-col>
-			<template v-for="(item, i) in items" cols="12" md="6" lg="4">
-				<template v-if="availableToday(item.date, +i)">
-					<v-col v-if="item.json" :key="item.type + i" cols="12" md="6" lg="4">
+			<template v-for="(item, i) in items">
+				<v-col v-if="availableToday(item.date, +i)" :key="item + i" cols="12" md="6" lg="4">
+					<v-col v-if="item.json" :key="item.type + i">
 						<div class="align-center mb-4">
 							<h4 class="museo">{{ lunchDate(item.date) }}</h4>
 							<h4 v-if="item.type" class="display-1 museo">{{ lunchType(item.type) }}</h4>
@@ -46,7 +46,7 @@
 							</v-container>
 						</div>
 					</v-col>
-				</template>
+				</v-col>
 			</template>
 		</v-row>
 	</v-container>

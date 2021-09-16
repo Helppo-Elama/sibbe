@@ -13,7 +13,7 @@
 			name="start"
 			step="300"
 			:value="proxyStart"
-			@input="proxyStart = $event.target.value"
+			@change="proxyStart = $event.target.value"
 		/>
 		<b>-</b>
 		<input
@@ -28,7 +28,7 @@
 			name="end"
 			step="300"
 			:value="proxyEnd"
-			@input="proxyEnd = $event.target.value"
+			@change="proxyEnd = $event.target.value"
 		/>
 	</label>
 </template>

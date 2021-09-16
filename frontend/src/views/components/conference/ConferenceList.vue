@@ -1,11 +1,9 @@
 <template>
 	<v-container fluid class="pa-0 ma-0">
 		<v-row class="ma-0 pa-0">
-			<v-lazy>
-				<v-col cols="12" class="ma-0 pa-0">
-					<RoomParser :rooms-data="conference" />
-				</v-col>
-			</v-lazy>
+			<v-col cols="12" class="ma-0 pa-0">
+				<RoomParser :rooms-data="conference" />
+			</v-col>
 		</v-row>
 	</v-container>
 </template>

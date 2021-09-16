@@ -15,9 +15,9 @@
 				:lg="room.breakpoints.lg"
 			>
 				<h3 class="museo museo-heading pt-16 pb-16">{{ room.title }}</h3>
-				<v-lazy>
-					<RoomCarousel :images="room.images" />
-				</v-lazy>
+
+				<SmallCarousel :images="room.images" />
+
 				<p class="pl-10 pr-10 pt-16 pb-16" v-html="room.body"></p>
 				<ul class="equipment">
 					<u class="museo pb-2">Huoneen lisätiedot</u>
@@ -49,7 +49,7 @@
 </template>
 <script lang="ts">
 import AccommodationRoomAdditionalParser from "@c/accommodation/AccommodationRoomAdditionalParser.vue"
-import RoomCarousel from "@c/common/RoomCarousel.vue"
+import SmallCarousel from "@c/common/SmallCarousel.vue"
 import ConferenceRoomAdditionalParser from "@c/conference/ConferenceRoomAdditionalParser.vue"
 import { IRoomAdditionalData, IRooms } from "@d/interfaces/rooms.interface"
 import Vue, { PropType } from "vue"
@@ -57,7 +57,7 @@ import Vue, { PropType } from "vue"
 export default Vue.extend({
 	name: "RoomParser",
 	components: {
-		RoomCarousel,
+		SmallCarousel,
 		AccommodationRoomAdditionalParser,
 		ConferenceRoomAdditionalParser
 	},

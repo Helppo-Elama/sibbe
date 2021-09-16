@@ -118,7 +118,7 @@ export default Vue.extend({
 		async fetchClosedUntil(): Promise<string | undefined> {
 			try {
 				const url = closedUntilApiURL(this.$props.target)
-				const response = (await axios({ url })) as unknown as string
+				const response = await axios<IServiceHours>({ url })
 				if (response) {
 					const date = ISOStringToDate(`${response}T08:00:00.000Z\`T08:00:00.000Z`)
 					const result = format(date, "EEEE dd.MM.yyyy", {

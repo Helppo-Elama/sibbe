@@ -23,22 +23,3 @@ interface IMenuArray {
 }
 
 export type IMenu = Array<IMenuArray>
-
-export function isIMenu(array: unknown): array is IMenu {
-	let result = false
-	if (Array.isArray(array)) {
-		array.forEach((object) => {
-			if (!Object.prototype.hasOwnProperty.call(object, "id")) throw new Error("❌ No id in IMenu")
-			else if (!Object.prototype.hasOwnProperty.call(object, "created_at"))
-				throw new Error("❌ No created_at in IMenu")
-			else if (!Object.prototype.hasOwnProperty.call(object, "updated_at"))
-				throw new Error("❌ No updated_at in IMenu")
-			else if (!Object.prototype.hasOwnProperty.call(object, "type"))
-				throw new Error("❌ No type in IMenu")
-			else if (!Object.prototype.hasOwnProperty.call(object, "json"))
-				throw new Error("❌ No json in IMenu")
-			else result = true
-		})
-	}
-	return result
-}

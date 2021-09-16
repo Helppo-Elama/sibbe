@@ -34,52 +34,52 @@
 export default {
 	props: {
 		align: {
-			default: "right",
+			default: "right"
 		},
 		width: {
-			default: "48",
+			default: "48"
 		},
 		contentClasses: {
-			default: () => ["py-1", "bg-white"],
-		},
+			default: () => ["py-1", "bg-white"]
+		}
 	},
 
 	data() {
 		return {
-			open: false,
-		};
+			open: false
+		}
 	},
 
 	created() {
 		const closeOnEscape = (e) => {
 			if (this.open && e.keyCode === 27) {
-				this.open = false;
+				this.open = false
 			}
-		};
+		}
 
 		this.$once("hook:destroyed", () => {
-			document.removeEventListener("keydown", closeOnEscape);
-		});
+			document.removeEventListener("keydown", closeOnEscape)
+		})
 
-		document.addEventListener("keydown", closeOnEscape);
+		document.addEventListener("keydown", closeOnEscape)
 	},
 
 	computed: {
 		widthClass() {
 			return {
-				48: "w-48",
-			}[this.width.toString()];
+				48: "w-48"
+			}[this.width.toString()]
 		},
 
 		alignmentClasses() {
 			if (this.align === "left") {
-				return "origin-top-left left-0";
+				return "origin-top-left left-0"
 			}
 			if (this.align === "right") {
-				return "origin-top-right right-0";
+				return "origin-top-right right-0"
 			}
-			return "origin-top";
-		},
-	},
-};
+			return "origin-top"
+		}
+	}
+}
 </script>

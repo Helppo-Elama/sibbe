@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<div v-for="(item, dateIndex) in items" :key="item + dateIndex" class="p-2">
+		<div v-for="(item, target) in items" :key="item + target" class="p-2">
 			<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300">
 				{{ parseDate(item.date) }}
 			</div>
 			<div
 				class="grid grid-cols-1 md:grid-cols-3 gap-4 place-content-evenly p-3 bg-gray-200"
-				@change="updateDate(dateIndex)"
+				@change="updateDate(target)"
 			>
 				<div>
 					<span class="pt-4 pb-1 pl-1 text-gray-700 block">Lounaan tyyppi</span>
@@ -35,19 +35,15 @@
 									focus:ring-indigo-500
 								"
 							>
-								{{ setDefaultType(dateIndex) }}
+								{{ setDefaultType(target) }}
 								<TypeTranslate :text="item.type" />
 								<JetDropdownSVG />
 							</button>
 						</template>
 						<template #content>
-							<jet-dropdown-item @clicked="updateType(null, dateIndex)">
-								(tyhjä)
-							</jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('lunch', dateIndex)">
-								Lounas
-							</jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('brunch', dateIndex)">
+							<jet-dropdown-item @clicked="updateType(null, target)"> (tyhjä) </jet-dropdown-item>
+							<jet-dropdown-item @clicked="updateType('lunch', target)"> Lounas </jet-dropdown-item>
+							<jet-dropdown-item @clicked="updateType('brunch', target)">
 								Brunssi
 							</jet-dropdown-item>
 							<div class="border-t border-gray-100"></div>
@@ -56,9 +52,9 @@
 				</div>
 				<div class="text-center">
 					<time-between-input
-						:start="getServingTime('start', dateIndex)"
+						:start="getServingTime('start', target)"
 						@start="item.serving_time.start = $event"
-						:end="getServingTime('end', dateIndex)"
+						:end="getServingTime('end', target)"
 						@end="item.serving_time.end = $event"
 						>Tarjoiluaika</time-between-input
 					>
@@ -76,13 +72,13 @@
 			<MenuItems
 				:data="item.json"
 				:date="item.date"
-				:target="dateIndex"
+				:target="target"
 				@delete="deleteItem"
 				@change="updateItem"
 				:key="componentKey"
 			/>
 			<div class="flex justify-center w-100 py-6">
-				<jet-button class="px-12" @click.native="addItem(dateIndex)" action="add">
+				<jet-button class="px-12" @click.native="addItem(target)" action="add">
 					Lisää uusi annos
 				</jet-button>
 			</div>
@@ -139,7 +135,20 @@ export default {
 			deep: true,
 			immediate: true,
 			handler() {
-				this.items = window._.cloneDeep(this.data)
+				if (!this.portions) {
+					// REMOVE WHEN ALL PORTIONS HAVE ADDITIONAL PRICE
+					const data = window._.cloneDeep(this.data)
+					if (Array.isArray(data)) {
+						const l = data.length
+						for (let i = 0; i < l; i += 1) {
+							const d = data[i]
+							if (!Object.prototype.hasOwnProperty.call(d, "price_additional")) {
+								d.price_additional = null
+							}
+						}
+						this.items = data
+					}
+				}
 			}
 		}
 	},
@@ -194,9 +203,9 @@ export default {
 			return result
 		},
 
-		async deleteItem({ dateIndex, i }) {
-			this.items[dateIndex].json.splice(i, 1)
-			const json = window._.pick(this.items[dateIndex], ["date", "json"])
+		async deleteItem({ target, i }) {
+			this.items[target].json.splice(i, 1)
+			const json = window._.pick(this.items[target], ["date", "json"])
 			const url = deleteRestaurantLunchApiUrl()
 			const response = await axiosPost({ url, json })
 			if (response) {
@@ -204,8 +213,8 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 			this.forceRerender()
 		},
-		addItem(dateIndex) {
-			const i = dateIndex
+		addItem(target) {
+			const i = target
 			if (!this.items[i].json) {
 				this.items[i].json = []
 			}
@@ -217,11 +226,11 @@ export default {
 				price: "",
 				price_additional: ""
 			})
-			this.updateItem({ dateIndex, undefined })
+			this.updateItem({ target, undefined })
 			this.forceRerender()
 		},
-		async updateItem({ dateIndex, portions }) {
-			const i = dateIndex
+		async updateItem({ target, portions }) {
+			const i = target
 			if (portions) this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
 			const url = postRestaurantLunchApiUrl()
@@ -231,17 +240,17 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 		},
 
-		setDefaultType(dateIndex) {
-			const i = dateIndex
+		setDefaultType(target) {
+			const i = target
 			if (this.items[i].type === undefined) this.items[i].type = this.defaults.type
 		},
-		updateType(type, dateIndex) {
-			const i = dateIndex
+		updateType(type, target) {
+			const i = target
 			this.items[i].type = type
 			this.updateDate(i)
 		},
-		async updateDate(dateIndex) {
-			const i = dateIndex
+		async updateDate(target) {
+			const i = target
 			const data = window._.pick(this.items[i], [
 				"date",
 				"price",

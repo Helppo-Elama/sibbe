@@ -17,15 +17,15 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import ApiTokenManager from "./ApiTokenManager";
+import AppLayout from "@/Layouts/AppLayout"
+import ApiTokenManager from "./ApiTokenManager"
 
 export default {
 	props: ["tokens", "availablePermissions", "defaultPermissions"],
 
 	components: {
 		ApiTokenManager,
-		AppLayout,
-	},
-};
+		AppLayout
+	}
+}
 </script>

@@ -101,13 +101,13 @@
 </template>
 
 <script>
-import JetAuthenticationCard from "@/Jetstream/AuthenticationCard";
-import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
-import JetButton from "@/Jetstream/Button";
-import JetInput from "@/Jetstream/Input";
-import JetCheckbox from "@/Jetstream/Checkbox";
-import JetLabel from "@/Jetstream/Label";
-import JetValidationErrors from "@/Jetstream/ValidationErrors";
+import JetAuthenticationCard from "@/Jetstream/AuthenticationCard"
+import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo"
+import JetButton from "@/Jetstream/Button"
+import JetInput from "@/Jetstream/Input"
+import JetCheckbox from "@/Jetstream/Checkbox"
+import JetLabel from "@/Jetstream/Label"
+import JetValidationErrors from "@/Jetstream/ValidationErrors"
 
 export default {
 	components: {
@@ -117,7 +117,7 @@ export default {
 		JetInput,
 		JetCheckbox,
 		JetLabel,
-		JetValidationErrors,
+		JetValidationErrors
 	},
 
 	data() {
@@ -127,17 +127,17 @@ export default {
 				email: "",
 				password: "",
 				password_confirmation: "",
-				terms: false,
-			}),
-		};
+				terms: false
+			})
+		}
 	},
 
 	methods: {
 		submit() {
 			this.form.post(this.route("register"), {
-				onFinish: () => this.form.reset("password", "password_confirmation"),
-			});
-		},
-	},
-};
+				onFinish: () => this.form.reset("password", "password_confirmation")
+			})
+		}
+	}
+}
 </script>

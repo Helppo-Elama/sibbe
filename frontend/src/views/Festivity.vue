@@ -23,14 +23,12 @@
 					</h3>
 				</v-col>
 			</v-row>
-			<v-lazy>
-				<Hero />
-			</v-lazy>
+
+			<Hero />
+
 			<v-row>
-				<v-col cols="12" md="6" class="green-on-light full-height pt-16 pb-16 pl-5 pr-5">
-					<v-lazy>
-						<Reviews />
-					</v-lazy>
+				<v-col cols="12" md="6" class="green-on-light full-height pt-16 pb-16 px-5">
+					<Reviews />
 				</v-col>
 				<v-col cols="12" md="6" class="pl-0 pr-0 ma-0 yellow-on-dark full-height pt-16 pb-16">
 					<v-lazy>
@@ -40,9 +38,7 @@
 			</v-row>
 			<v-row>
 				<v-col cols="12" class="dark-on-yellow full-height pt-16 pb-16">
-					<v-lazy>
-						<ContactForm :sender="'festivity'" />
-					</v-lazy>
+					<ContactForm :sender="'festivity'" />
 				</v-col>
 			</v-row>
 		</v-container>

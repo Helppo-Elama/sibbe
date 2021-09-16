@@ -21,17 +21,17 @@ module.exports = {
 			textOpacity: ["disabled"],
 			textColor: ["disabled"],
 			opacity: ["disabled"]
-		},
-		purge: [
-			"./node_modules/litepie-datepicker/**/*.js",
-			"./vendor/laravel/jetstream/**/*.blade.php",
-			"./storage/framework/views/*.php",
-			"./resources/js/**/*.vue",
-			"./resources/**/*.blade.php",
-			"./resources/**/*.js",
-			"./config/*.php"
-		]
+		}
 	},
+	purge: [
+		"./node_modules/litepie-datepicker/**/*.js",
+		"./vendor/laravel/jetstream/**/*.blade.php",
+		"./storage/framework/views/*.php",
+		"./resources/js/**/*.vue",
+		"./resources/**/*.blade.php",
+		"./resources/**/*.js",
+		"./config/*.php"
+	],
 
 	// eslint-disable-next-line import/no-extraneous-dependencies, global-require
 	plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")]

@@ -35,7 +35,7 @@
 export default {
 	model: {
 		prop: "value",
-		event: "input"
+		event: "change"
 	},
 	props: {
 		value: {
@@ -52,7 +52,7 @@ export default {
 				return this.value
 			},
 			set(val) {
-				this.$emit("input", val)
+				this.$emit("change", val)
 			}
 		}
 	}

@@ -102,24 +102,20 @@
 				</v-col>
 			</v-row>
 			<v-row data-aos="fade-up" class="light-on-red half-height pt-16 pb-16">
-				<v-lazy>
-					<v-col cols="12">
-						<h3 class="museo pb-16 museo-heading">Tilat ja varustelu</h3>
-						<p>
-							Villa Sibbessä on 2 pääasiallista kokoustilaa joista löytyy tarvittavaa AV-tekniikkaa
-							esityksiä varten. Lisäksi Villasta löytyy myös 1 ryhmätyötila Isäntä sekä pihapiirista
-							idyllinen, wanhanajan henkeä pursuava Aitta. Kokousten perusvälineet kuten lehtiöt ja
-							kynät, kuuluvat varusteluun joka tilassa.
-						</p>
-					</v-col>
-				</v-lazy>
+				<v-col cols="12">
+					<h3 class="museo pb-16 museo-heading">Tilat ja varustelu</h3>
+					<p>
+						Villa Sibbessä on 2 pääasiallista kokoustilaa joista löytyy tarvittavaa AV-tekniikkaa
+						esityksiä varten. Lisäksi Villasta löytyy myös 1 ryhmätyötila Isäntä sekä pihapiirista
+						idyllinen, wanhanajan henkeä pursuava Aitta. Kokousten perusvälineet kuten lehtiöt ja
+						kynät, kuuluvat varusteluun joka tilassa.
+					</p>
+				</v-col>
 			</v-row>
 			<v-row class="text-center">
-				<v-lazy>
-					<v-col class="ma-0 pa-0">
-						<ConferenceList />
-					</v-col>
-				</v-lazy>
+				<v-col class="ma-0 pa-0">
+					<ConferenceList />
+				</v-col>
 			</v-row>
 		</v-container>
 	</div>

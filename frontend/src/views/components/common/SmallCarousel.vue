@@ -13,7 +13,7 @@
 				<picture>
 					<source :srcSet="image.webp.srcSet" type="image/webp" />
 					<img
-						class="accommodation-carousel-image zoom-in"
+						class="smaill-carousel-image zoom-in"
 						@click="showDialog(image)"
 						:ref="image.img.src"
 						:data-v="image.img.src"
@@ -59,7 +59,7 @@ import Vue from "vue"
 import resize from "vue-resize-directive"
 
 export default Vue.extend({
-	name: "RoomCarousel",
+	name: "SmallCarousel",
 	directives: {
 		resize
 	},

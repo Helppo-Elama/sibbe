@@ -49,6 +49,8 @@ export interface ISiteminder {
 	room_types: IRoomType[]
 }
 
+export type ISiteminderArray = Array<ISiteminder>
+
 export function isISiteminder(object: unknown): object is ISiteminder {
 	if (typeof object !== "object") return false
 	return (

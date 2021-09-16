@@ -1,4 +1,4 @@
-import { ISiteminder } from "@d/interfaces/booking.interface"
+import { ISiteminderArray } from "@d/interfaces/booking.interface"
 import axios, { AxiosPromise } from "axios"
 
 import { axiosError } from "../data/errors"
@@ -10,11 +10,12 @@ const api = axios.create({
 		"X-Requested-With": "XMLHttpRequest"
 	}
 })
-
-const axiosApi = async (request: IXHttp): Promise<Array<Record<string, unknown>> | undefined> => {
+const axiosApi = async <T>(request: IXHttp): Promise<T | undefined> => {
 	try {
 		const response = await api.get(request.url)
 		const { data } = response
+		if (response.status !== 200 && !data)
+			throw new Error(`Request: ${request.url} did not get any data at response`)
 		return data
 	} catch (error) {
 		axiosError(200, error)
@@ -22,41 +23,22 @@ const axiosApi = async (request: IXHttp): Promise<Array<Record<string, unknown>>
 	}
 }
 
-const booking = axios.create({
-	headers: {
-		"X-Requested-With": "XMLHttpRequest"
-	}
-})
-
-const axiosGetBookingData = async (request: IXHttp): Promise<ISiteminder | undefined> => {
-	let siteminder: ISiteminder
-	try {
-		const response = await booking.get(request.url)
-		// eslint-disable-next-line prefer-destructuring
-		siteminder = response.data[0]
-	} catch (error) {
-		axiosError(200, error)
-		return undefined
-	}
-	return siteminder
-}
-
 const axiosGetBookingDatas = async (
 	requests: Array<IXHttp>,
 	delay?: boolean
-): Promise<Array<unknown> | undefined> => {
+): Promise<ISiteminderArray | undefined> => {
 	if (delay) {
-		booking.interceptors.request.use(
+		api.interceptors.request.use(
 			(config) => new Promise((resolve) => setTimeout(() => resolve(config), 100))
 		)
 	}
 	try {
-		const axiosRequests: Array<AxiosPromise<Record<string, unknown>>> = []
+		const axiosRequests: Array<AxiosPromise<ISiteminderArray>> = []
 		requests.forEach((request) => {
-			axiosRequests.push(booking.get(request.url))
+			axiosRequests.push(api.get(request.url))
 		})
 		const responses = await axios.all(axiosRequests)
-		const data: Array<unknown> = []
+		const data: ISiteminderArray = []
 		responses.forEach((response) => {
 			data.push(response.data[0])
 		})
@@ -80,4 +62,4 @@ const axiosPostContactData = async (
 	}
 }
 
-export { api, axiosApi, axiosGetBookingData, axiosGetBookingDatas, axiosPostContactData }
+export { axiosApi, axiosGetBookingDatas, axiosPostContactData }

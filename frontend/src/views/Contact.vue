@@ -15,7 +15,7 @@
 					</h3>
 				</v-col>
 			</v-row>
-			<v-row class="ma-0 light-on-green full-height pt-16 pb-16 pl-5 pr-5">
+			<v-row class="ma-0 light-on-green full-height pt-16 pb-16 px-5">
 				<v-col cols="12" align="center" justify="center"
 					><h3 class="museo museo-heading text-center">
 						{{ companyData.title }}
@@ -59,9 +59,7 @@
 			</v-row>
 			<v-row class="ma-0 full-height dark-on-yellow full-height pt-16 pb-16">
 				<v-col cols="12">
-					<v-lazy>
-						<ContactForm :sender="'contact'" />
-					</v-lazy>
+					<ContactForm :sender="'contact'" />
 				</v-col>
 			</v-row>
 		</v-container>

@@ -21,29 +21,29 @@
 </template>
 
 <script>
-import Modal from "./Modal";
+import Modal from "./Modal"
 
 export default {
 	components: {
-		Modal,
+		Modal
 	},
 
 	props: {
 		show: {
-			default: false,
+			default: false
 		},
 		maxWidth: {
-			default: "2xl",
+			default: "2xl"
 		},
 		closeable: {
-			default: true,
-		},
+			default: true
+		}
 	},
 
 	methods: {
 		close() {
-			this.$emit("close");
-		},
-	},
-};
+			this.$emit("close")
+		}
+	}
+}
 </script>

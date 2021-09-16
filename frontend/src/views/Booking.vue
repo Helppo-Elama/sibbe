@@ -16,7 +16,7 @@
 					</h3>
 				</v-col>
 			</v-row>
-			<v-row class="ma-0 light-on-green full-height pt-16 pb-16 pl-5 pr-5">
+			<v-row class="ma-0 light-on-green full-height pt-16 pb-16 px-5">
 				<v-col cols="12">
 					<h2 class="museo museo-heading pb-16">Varaukset</h2>
 					<p>
@@ -67,7 +67,7 @@
 									<h1>{{ selectedRoom.title }}</h1>
 								</v-col>
 								<v-col v-if="parsedSiteminder" cols="12" md="6">
-									<RoomCarousel :images="selectedRoom.images" />
+									<SmallCarousel :images="selectedRoom.images" />
 								</v-col>
 								<v-col cols="12" md="6">
 									<p v-html="selectedRoom.body"></p>
@@ -99,7 +99,7 @@
 										<div class="text-center pt-2" v-if="!siteminderLoaded.more">
 											<Loading :text="'Haetaan lisää kuukausia'" />
 										</div>
-										<v-btn :disabled="!siteminderLink.show" class="thertiary mt-10">
+										<v-btn :disabled="!!siteminderLink.disabled" class="thertiary mt-10">
 											<a v-if="!siteminderLink.show" :href="siteminderLink.url">Valitse päivät</a>
 											<a v-else :href="siteminderLink.url">Siirry varaamaan</a>
 										</v-btn>
@@ -116,7 +116,7 @@
 <script lang="ts">
 /* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
-import RoomCarousel from "@c/common/RoomCarousel.vue"
+import SmallCarousel from "@c/common/SmallCarousel.vue"
 import Header from "@c/Header.vue"
 import Loading from "@c/Loading.vue"
 import {
@@ -128,14 +128,20 @@ import {
 import { bookingHeaderImages as headerImages } from "@d/booking/booking.images"
 import { companyData } from "@d/company/company.data"
 import { bookingErrors as errors, IErrors } from "@d/errors"
-import { IBookingData, isISiteminder, ISiteminder } from "@d/interfaces/booking.interface"
+import {
+	IBookingData,
+	isISiteminder,
+	ISiteminder,
+	ISiteminderArray
+} from "@d/interfaces/booking.interface"
 import { ICompanyData } from "@d/interfaces/company.interface"
 import { IHeaderImages } from "@d/interfaces/images.interface"
 import { IRoom, IRooms } from "@d/interfaces/rooms.interface"
+import { indexOfWithBooleanReturn } from "@h/common"
 import { currentMonth, getMonth } from "@h/dateArray"
 import { addDays, ISOStringToDate, removeDays } from "@h/dateExtensions"
 import { booking as metaData } from "@h/metaData"
-import { axiosGetBookingData as axios, axiosGetBookingDatas as axiosAll } from "@in/axios"
+import { axiosApi as axios, axiosGetBookingDatas as axiosAll } from "@in/axios"
 import { format } from "date-fns"
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays"
 import { fi } from "date-fns/locale"
@@ -148,7 +154,7 @@ export default Vue.extend({
 	components: {
 		Header,
 		Loading,
-		RoomCarousel
+		SmallCarousel
 	},
 	data(): {
 		headerImages: IHeaderImages
@@ -163,6 +169,7 @@ export default Vue.extend({
 			availableDates: Array<string>
 			availableOne: Array<string>
 			availableMore: Array<string>
+			availableMoreLength: boolean | undefined
 		}
 		selectRoomIndex: number
 		errors: IErrors
@@ -181,7 +188,8 @@ export default Vue.extend({
 				minDate: "",
 				availableDates: [],
 				availableOne: [],
-				availableMore: []
+				availableMore: [],
+				availableMoreLength: undefined
 			},
 			errors,
 			selectRoomIndex: 1,
@@ -190,9 +198,11 @@ export default Vue.extend({
 		}
 	},
 	computed: {
-		siteminderLink(): { show: boolean; url?: string } {
-			const { selectedDates } = this.dates
-			if (!Array.isArray(selectedDates)) return { show: false }
+		siteminderLink(): { disabled: boolean; url?: string } {
+			const { selectedDates } = clonedeep(this.dates)
+			if (selectedDates.length === 0) {
+				return { disabled: true }
+			}
 
 			let url: string
 			selectedDates.sort()
@@ -209,7 +219,7 @@ export default Vue.extend({
 					id: this.siteminder?.room_types[this.selectRoomIndex].id
 				})
 			}
-			return { show: true, url }
+			return { disabled: false, url }
 		},
 		selectedRoom(): IRoom | undefined {
 			if (this.selectRoomIndex !== undefined) {
@@ -283,6 +293,7 @@ export default Vue.extend({
 						this.dates.availableMore.push(date.date)
 					}
 				})
+				this.dates.availableMoreLength = this.dates.availableMore.length !== 0
 			}
 		},
 		roomNameShort(roomName: string): string {
@@ -296,20 +307,19 @@ export default Vue.extend({
 			return false
 		},
 		getEventDates(date: string): Array<string> | string {
-			if (this.dates.availableMore.length === 0 && this.dates.availableDates.indexOf(date) !== -1) {
-				return "#86ba90"
+			const available = indexOfWithBooleanReturn(date, this.dates.availableDates)
+			const more = indexOfWithBooleanReturn(date, this.dates.availableMore)
+			const len = this.dates.availableMoreLength
+			if (!len && available) {
+				return "#86ba90" // Available, one type
 			}
-			if (
-				this.dates.availableMore.length !== 0 &&
-				this.dates.availableDates.indexOf(date) !== -1 &&
-				this.dates.availableMore.indexOf(date) === -1
-			) {
+			if (len && available && !more) {
 				return "#f5f3bb"
 			}
-			if (this.dates.availableMore.indexOf(date) !== -1) {
-				return ["#86ba90", "#f5f3bb"]
+			if (available && more) {
+				return ["#86ba90", "#f5f3bb"] // Available, two same type
 			}
-			return "#cb2631"
+			return "#cb2631" // Reserved all types
 		},
 		setDatePickerTitle() {
 			const dates = clonedeep(this.dates.selectedDates)
@@ -419,12 +429,12 @@ export default Vue.extend({
 		},
 		async siteminderMore() {
 			const requests = this.createRequestsForSiteminder()
-			const siteminderMore = await axiosAll(requests)
-			siteminderMore?.forEach((s) => {
-				if (isISiteminder(s)) {
+			const siteminderMore: ISiteminderArray | undefined = await axiosAll(requests)
+			if (siteminderMore) {
+				siteminderMore.forEach((s) => {
 					this.siteminderPush(s)
-				}
-			})
+				})
+			}
 			this.siteminderLoaded.more = true
 		}
 	},
@@ -432,11 +442,11 @@ export default Vue.extend({
 		this.setMaxDate()
 		this.setMinDate()
 		const { request } = this.bookingData
-		const siteminder = await axios(request)
+		const siteminder = await axios<ISiteminderArray>(request)
 		this.siteminderLoaded.first = true
-		if (isISiteminder(siteminder)) {
+		if (Array.isArray(siteminder)) {
 			this.parsedSiteminder = true
-			this.siteminder = siteminder
+			this.siteminder = siteminder[0]
 			this.selectRoomIndex = 0
 			this.siteminderMore()
 		}

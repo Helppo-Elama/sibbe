@@ -51,11 +51,9 @@
 				</v-col>
 			</v-row>
 			<v-row class="text-center">
-				<v-lazy>
-					<v-col class="ma-0 pa-0">
-						<AccommodationList />
-					</v-col>
-				</v-lazy>
+				<v-col class="ma-0 pa-0">
+					<AccommodationList />
+				</v-col>
 			</v-row>
 		</v-container>
 	</div>

@@ -1,18 +1,18 @@
 <template>
 	<div class="bg-gray-200 bg-opacity-25">
 		<div class="p-4">
-			<div v-for="(item, category) in items" :key="item + category">
+			<div v-for="(item, target) in items" :key="item + target">
 				<div class="p-4 rounded-xl shadow-md">
 					<div class="flex w-100 justify-end">
-						<jet-button class="px-6 ml-3" @click.native="$emit('delete', category)" action="delete">
+						<jet-button class="px-6 ml-3" @click.native="$emit('delete', target)" action="delete">
 							Poista kategoria
 						</jet-button>
 					</div>
 					<div
 						class="pb-6 grid grid-cols-2 md:grid-cols-3 gap-4 place-content-evenly"
-						@change="updateType(category)"
+						@change="updateType(target)"
 					>
-						<Icons :icon="item.icon" :category="category" @change="updateIcon" />
+						<Icons :icon="item.icon" :target="target" @change="updateIcon" />
 						<div>
 							<text-input v-model="item.type">Kategoria</text-input>
 						</div>
@@ -22,13 +22,13 @@
 					</div>
 					<MenuItems
 						:data="item.json"
-						:category="category"
+						:target="target"
 						@delete="deleteItem"
 						@change="updateItem"
 						:key="componentKey"
 					/>
 					<div class="flex justify-center w-100 py-6">
-						<jet-button class="px-12" @click.native="addItem(category)" action="add">
+						<jet-button class="px-12" @click.native="addItem(target)" action="add">
 							Lisää uusi annos
 						</jet-button>
 					</div>
@@ -105,9 +105,9 @@ export default {
 		}
 	},
 	methods: {
-		async deleteItem({ category, i }) {
-			this.items[category].json.splice(i, 1)
-			const json = window._.pick(this.items[category], ["type", "json"])
+		async deleteItem({ target, i }) {
+			this.items[target].json.splice(i, 1)
+			const json = window._.pick(this.items[target], ["type", "json"])
 			const url = this.url.delete
 			const response = await axiosPost({ url, json })
 			if (response) {
@@ -115,8 +115,8 @@ export default {
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 			this.forceRerender()
 		},
-		addItem(category) {
-			const i = category
+		addItem(target) {
+			const i = target
 			if (!this.items[i].json) {
 				this.items[i].json = []
 			}
@@ -128,11 +128,11 @@ export default {
 				price: "",
 				price_additional: ""
 			})
-			this.updateItem({ category, undefined })
+			this.updateItem({ target, undefined })
 			this.forceRerender()
 		},
-		async updateItem({ category, portions }) {
-			const i = category
+		async updateItem({ target, portions }) {
+			const i = target
 			if (portions) this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
 			const url = this.url.item
@@ -150,9 +150,9 @@ export default {
 				this.$message.success(response)
 			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
 		},
-		updateIcon({ name, category }) {
-			this.items[category].icon = name
-			this.updateType(category)
+		updateIcon({ name, target }) {
+			this.items[target].icon = name
+			this.updateType(target)
 		},
 		forceRerender() {
 			this.componentKey += 1

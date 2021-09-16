@@ -1,6 +1,7 @@
 import { addDays, dateToStringYYYYMMDD } from "@h/dateExtensions"
 
 import {
+	carouselMenuImages as menuImages,
 	restaurantCarouselImages as carouselImages,
 	restaurantImages as images
 } from "./restaurant.images"
@@ -21,4 +22,4 @@ const createURL = (target: string, days?: number): string => {
 	return `${serviceUrl}/api/restaurant/${target}`
 }
 
-export { carouselImages, createURL, images }
+export { carouselImages, createURL, images, menuImages }

@@ -12,7 +12,8 @@
 				shadow-sm
 				focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
 			"
-			v-model="proxyValue"
+			:value="proxyValue"
+			@change="proxyValue = $event.target.value"
 		/>
 	</label>
 </template>
@@ -21,7 +22,7 @@
 export default {
 	model: {
 		prop: "value",
-		event: "input"
+		event: "change"
 	},
 	props: {
 		value: {
@@ -34,7 +35,7 @@ export default {
 				return this.value
 			},
 			set(val) {
-				this.$emit("input", val)
+				this.$emit("change", val)
 			}
 		}
 	}

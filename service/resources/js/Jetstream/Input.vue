@@ -7,7 +7,7 @@
 			shadow-sm
 		"
 		:value="value"
-		@input="$emit('input', $event.target.value)"
+		@change="$emit('input', $event.target.value)"
 		ref="input"
 	/>
 </template>

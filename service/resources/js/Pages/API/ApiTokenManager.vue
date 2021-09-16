@@ -178,19 +178,19 @@
 </template>
 
 <script>
-import JetActionMessage from "@/Jetstream/ActionMessage";
-import JetActionSection from "@/Jetstream/ActionSection";
-import JetButton from "@/Jetstream/Button";
-import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
-import JetDangerButton from "@/Jetstream/DangerButton";
-import JetDialogModal from "@/Jetstream/DialogModal";
-import JetFormSection from "@/Jetstream/FormSection";
-import JetInput from "@/Jetstream/Input";
-import JetCheckbox from "@/Jetstream/Checkbox";
-import JetInputError from "@/Jetstream/InputError";
-import JetLabel from "@/Jetstream/Label";
-import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import JetSectionBorder from "@/Jetstream/SectionBorder";
+import JetActionMessage from "@/Jetstream/ActionMessage"
+import JetActionSection from "@/Jetstream/ActionSection"
+import JetButton from "@/Jetstream/Button"
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal"
+import JetDangerButton from "@/Jetstream/DangerButton"
+import JetDialogModal from "@/Jetstream/DialogModal"
+import JetFormSection from "@/Jetstream/FormSection"
+import JetInput from "@/Jetstream/Input"
+import JetCheckbox from "@/Jetstream/Checkbox"
+import JetInputError from "@/Jetstream/InputError"
+import JetLabel from "@/Jetstream/Label"
+import JetSecondaryButton from "@/Jetstream/SecondaryButton"
+import JetSectionBorder from "@/Jetstream/SectionBorder"
 
 export default {
 	components: {
@@ -206,7 +206,7 @@ export default {
 		JetInputError,
 		JetLabel,
 		JetSecondaryButton,
-		JetSectionBorder,
+		JetSectionBorder
 	},
 
 	props: ["tokens", "availablePermissions", "defaultPermissions"],
@@ -215,57 +215,59 @@ export default {
 		return {
 			createApiTokenForm: this.$inertia.form({
 				name: "",
-				permissions: this.defaultPermissions,
+				permissions: this.defaultPermissions
 			}),
 
 			updateApiTokenForm: this.$inertia.form({
-				permissions: [],
+				permissions: []
 			}),
 
 			deleteApiTokenForm: this.$inertia.form(),
 
 			displayingToken: false,
 			managingPermissionsFor: null,
-			apiTokenBeingDeleted: null,
-		};
+			apiTokenBeingDeleted: null
+		}
 	},
 
 	methods: {
 		createApiToken() {
-			this.createApiTokenForm.post(route("api-tokens.store"), {
+			this.createApiTokenForm.post(this.route("api-tokens.store"), {
 				preserveScroll: true,
 				onSuccess: () => {
-					this.displayingToken = true;
-					this.createApiTokenForm.reset();
-				},
-			});
+					this.displayingToken = true
+					this.createApiTokenForm.reset()
+				}
+			})
 		},
 
 		manageApiTokenPermissions(token) {
-			this.updateApiTokenForm.permissions = token.abilities;
+			this.updateApiTokenForm.permissions = token.abilities
 
-			this.managingPermissionsFor = token;
+			this.managingPermissionsFor = token
 		},
 
 		updateApiToken() {
-			this.updateApiTokenForm.put(route("api-tokens.update", this.managingPermissionsFor), {
+			this.updateApiTokenForm.put(this.route("api-tokens.update", this.managingPermissionsFor), {
 				preserveScroll: true,
 				preserveState: true,
-				onSuccess: () => (this.managingPermissionsFor = null),
-			});
+				// eslint-disable-next-line no-return-assign
+				onSuccess: () => (this.managingPermissionsFor = null)
+			})
 		},
 
 		confirmApiTokenDeletion(token) {
-			this.apiTokenBeingDeleted = token;
+			this.apiTokenBeingDeleted = token
 		},
 
 		deleteApiToken() {
-			this.deleteApiTokenForm.delete(route("api-tokens.destroy", this.apiTokenBeingDeleted), {
+			this.deleteApiTokenForm.delete(this.route("api-tokens.destroy", this.apiTokenBeingDeleted), {
 				preserveScroll: true,
 				preserveState: true,
-				onSuccess: () => (this.apiTokenBeingDeleted = null),
-			});
-		},
-	},
-};
+				// eslint-disable-next-line no-return-assign
+				onSuccess: () => (this.apiTokenBeingDeleted = null)
+			})
+		}
+	}
+}
 </script>

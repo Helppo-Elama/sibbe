@@ -43,23 +43,23 @@
 </template>
 
 <script>
-import JetButton from "./Button";
-import JetDialogModal from "./DialogModal";
-import JetInput from "./Input";
-import JetInputError from "./InputError";
-import JetSecondaryButton from "./SecondaryButton";
+import JetButton from "./Button"
+import JetDialogModal from "./DialogModal"
+import JetInput from "./Input"
+import JetInputError from "./InputError"
+import JetSecondaryButton from "./SecondaryButton"
 
 export default {
 	props: {
 		title: {
-			default: "Confirm Password",
+			default: "Varmista salasana"
 		},
 		content: {
-			default: "For your security, please confirm your password to continue.",
+			default: "Turvallisuutesi vuoksi varmista ensin salasanasi."
 		},
 		button: {
-			default: "Confirm",
-		},
+			default: "Varmista"
+		}
 	},
 
 	components: {
@@ -67,7 +67,7 @@ export default {
 		JetDialogModal,
 		JetInput,
 		JetInputError,
-		JetSecondaryButton,
+		JetSecondaryButton
 	},
 
 	data() {
@@ -75,48 +75,49 @@ export default {
 			confirmingPassword: false,
 			form: {
 				password: "",
-				error: "",
-			},
-		};
+				error: ""
+			}
+		}
 	},
 
 	methods: {
 		startConfirmingPassword() {
-			axios.get(route("password.confirmation")).then((response) => {
+			window.axios.get(this.route("password.confirmation")).then((response) => {
 				if (response.data.confirmed) {
-					this.$emit("confirmed");
+					this.$emit("confirmed")
 				} else {
-					this.confirmingPassword = true;
+					this.confirmingPassword = true
 
-					setTimeout(() => this.$refs.password.focus(), 250);
+					setTimeout(() => this.$refs.password.focus(), 250)
 				}
-			});
+			})
 		},
 
 		confirmPassword() {
-			this.form.processing = true;
+			this.form.processing = true
 
-			axios
-				.post(route("password.confirm"), {
-					password: this.form.password,
+			window.axios.axios
+				.post(this.route("password.confirm"), {
+					password: this.form.password
 				})
 				.then(() => {
-					this.form.processing = false;
-					this.closeModal();
-					this.$nextTick(() => this.$emit("confirmed"));
+					this.form.processing = false
+					this.closeModal()
+					this.$nextTick(() => this.$emit("confirmed"))
 				})
 				.catch((error) => {
-					this.form.processing = false;
-					this.form.error = error.response.data.errors.password[0];
-					this.$refs.password.focus();
-				});
+					this.form.processing = false
+					// eslint-disable-next-line prefer-destructuring
+					this.form.error = error.response.data.errors.password[0]
+					this.$refs.password.focus()
+				})
 		},
 
 		closeModal() {
-			this.confirmingPassword = false;
-			this.form.password = "";
-			this.form.error = "";
-		},
-	},
-};
+			this.confirmingPassword = false
+			this.form.password = ""
+			this.form.error = ""
+		}
+	}
+}
 </script>

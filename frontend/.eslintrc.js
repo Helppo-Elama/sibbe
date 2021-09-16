@@ -27,6 +27,7 @@ module.exports = {
 				includeExports: false
 			}
 		],
+		"no-bitwise": ["warn", { allow: ["~"] }],
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error"
 		// "import/no-duplicates": ["warn", { considerQueryString: true }]

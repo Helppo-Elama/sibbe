@@ -81,8 +81,8 @@ import { socialUrls } from "@d/company/company.data"
 import { ICafeData, isICafeData } from "@d/interfaces/cafe.interface"
 import { IImage } from "@d/interfaces/images.interface"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
-import { IMenu, isIMenu } from "@d/interfaces/menu.interface"
-import { IServiceHours, isIServiceHours } from "@d/interfaces/servicehours.interface"
+import { IMenu } from "@d/interfaces/menu.interface"
+import { IServiceHours, IServiceHoursData } from "@d/interfaces/servicehours.interface"
 import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
 import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
 import { cafe as metaData } from "@h/metaData"
@@ -156,18 +156,16 @@ export default Vue.extend({
 		async fetchServiceHours(target: string): Promise<undefined | IServiceHours> {
 			try {
 				const url = serviceHoursApiUrl(target)
-				const response = await axios({ url })
+				const response = await axios<IServiceHoursData>({ url })
 				if (response) {
-					if (isIServiceHours(response[0].json)) {
-						const data = response[0].json
-						const l = data.length
-						for (let j = 0; j < l; j += 1) {
-							const day = data[j]
-							if (day.open === null) data[j].open = ""
-							if (day.close === null) data[j].close = ""
-						}
-						return data
+					const data = response[0].json
+					const l = data.length
+					for (let j = 0; j < l; j += 1) {
+						const day = data[j]
+						if (day.open === null) data[j].open = ""
+						if (day.close === null) data[j].close = ""
 					}
+					return data
 				}
 			} catch (err) {
 				console.log(err)
@@ -177,8 +175,8 @@ export default Vue.extend({
 		async fetchMenu(target: string): Promise<undefined | IMenu> {
 			try {
 				const url = createURL(target)
-				const response = await axios({ url })
-				if (response && isIMenu(response)) {
+				const response = await axios<IMenu>({ url })
+				if (response) {
 					return response
 				}
 			} catch (err) {

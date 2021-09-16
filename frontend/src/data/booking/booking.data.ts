@@ -54,21 +54,6 @@ const bookingRooms: IRooms = {
 	rooms: [
 		{
 			id: 0,
-			title: "Olavi ja Kaarlo",
-			breakpoints: { md: 7 },
-			body: "Ihastuttava huone kahdelle, lisävuodemahdollisuudella.<br /><br />Sängyn saa halutessaan parivuoteena tai erillisinä, yhden hengen vuoteina.<br /><br />Kaarlosta avautuu hieno näkymä venesataman suuntaan.",
-			equipments: [
-				{
-					title: "Parivuode tai kaksi yksittäistä sänkyä"
-				},
-				{
-					title: "Lisävuodemahdollisuus"
-				}
-			],
-			images: images.olaviKaarlo
-		},
-		{
-			id: 1,
 			breakpoints: { md: 6 },
 			title: "Lilja ja Rico",
 			body: "Hurmaava huone kahdelle, lisävuodemahdollisuudella.<br /><br />Sängyn saa halutessaan parivuoteena tai erillisinä, yhden hengen vuoteina. Liljasta on näkyvyys kartanon pihapiiriin.",
@@ -81,6 +66,21 @@ const bookingRooms: IRooms = {
 				}
 			],
 			images: images.liljaRico
+		},
+		{
+			id: 1,
+			title: "Olavi ja Kaarlo",
+			breakpoints: { md: 7 },
+			body: "Ihastuttava huone kahdelle, lisävuodemahdollisuudella.<br /><br />Sängyn saa halutessaan parivuoteena tai erillisinä, yhden hengen vuoteina.<br /><br />Kaarlosta avautuu hieno näkymä venesataman suuntaan.",
+			equipments: [
+				{
+					title: "Parivuode tai kaksi yksittäistä sänkyä"
+				},
+				{
+					title: "Lisävuodemahdollisuus"
+				}
+			],
+			images: images.olaviKaarlo
 		},
 		{
 			id: 2,

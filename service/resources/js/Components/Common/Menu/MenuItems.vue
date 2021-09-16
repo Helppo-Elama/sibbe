@@ -66,7 +66,18 @@ export default {
 			immediate: true,
 			handler() {
 				if (!this.portions) {
-					this.portions = window._.cloneDeep(this.data)
+					// REMOVE WHEN ALL PORTIONS HAVE ADDITIONAL PRICE
+					const data = window._.cloneDeep(this.data)
+					if (Array.isArray(data)) {
+						const l = data.length
+						for (let i = 0; i < l; i += 1) {
+							const d = data[i]
+							if (!Object.prototype.hasOwnProperty.call(d, "price_additional")) {
+								d.price_additional = null
+							}
+						}
+						this.portions = data
+					}
 				}
 			}
 		},

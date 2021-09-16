@@ -16,7 +16,7 @@
 					focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
 				"
 				:value="proxyPrice"
-				@input="proxyPrice = $event.target.value"
+				@change="proxyPrice = $event.target.value"
 			/>
 			<b>-</b>
 			<input
@@ -33,7 +33,7 @@
 					focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
 				"
 				:value="proxyPriceAdditional"
-				@input="proxyPriceAdditional = $event.target.value"
+				@change="proxyPriceAdditional = $event.target.value"
 			/>
 			<b>EUR</b>
 		</div>
