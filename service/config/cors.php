@@ -25,7 +25,8 @@ return [
 
     "allowed_methods" => ["*"],
 
-    "allowed_origins" => [env("CORS_URL", "")],
+
+    "allowed_origins" => [env("CORS_URL")],
 
     "allowed_origins_patterns" => [],
 

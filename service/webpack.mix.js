@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const mix = require("laravel-mix")
+const path = require("path")
 
 /*
  |--------------------------------------------------------------------------
@@ -12,22 +13,37 @@ const mix = require("laravel-mix")
  |
  */
 
-mix
-	.js("resources/js/app.js", "public/js")
-	.version()
-	.vue()
-	.postCss("resources/css/app.css", "public/css", [
-		require("postcss-import"),
-		require("tailwindcss"),
-		require("autoprefixer")
-	])
-	.webpackConfig(require("./webpack.config"))
+mix.js("resources/js/app.js", "public/js").vue().webpackConfig(require("./webpack.config"))
 
+// DEV
+if (!mix.inProduction()) {
+	mix
+		.browserSync({
+			proxy: "https://service.sibbe.test",
+			https: {
+				key: path.resolve(__dirname, "ssl/cert.key"),
+				cert: path.resolve(__dirname, "ssl/cert.crt")
+			},
+			open: false
+		})
+		.sourceMaps()
+		.postCss("resources/css/app.css", "public/css", [
+			require("postcss-import"),
+			require("tailwindcss")
+		])
+}
+
+// PROD
 if (mix.inProduction()) {
-	mix.version()
+	mix
+		.postCss("resources/css/app.css", "public/css", [
+			require("postcss-import"),
+			require("tailwindcss"),
+			require("autoprefixer")
+		])
+		.version()
 }
 if (process.env.npm_lifecycle_event === "hot") {
-	const path = require("path")
 	mix.webpackConfig({
 		devServer: {
 			contentBase: path.resolve(__dirname, "public")

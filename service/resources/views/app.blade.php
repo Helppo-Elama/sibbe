@@ -42,7 +42,13 @@
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
+
     <body class="font-sans antialiased">
         @inertia
+
+        <!--Browsersync-->
+        @if (app()->isLocal())
+        <script src="https://localhost:3000/browser-sync/browser-sync-client.js"></script>
+        @endif
     </body>
 </html>
