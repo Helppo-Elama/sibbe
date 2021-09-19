@@ -153,11 +153,11 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import { axiosPost } from "@/Helpers/js/axios"
-import { postServiceHourApiUrl } from "@/Helpers/js/apiEndPoints"
+import { postServiceHoursApiUrl } from "@/Helpers/js/apiEndPoints"
 import { capitalize } from "@/Helpers/js/common"
 import { dateToStringYYYYMMDD } from "@/Helpers/js/dateFunctions"
 
-const url = postServiceHourApiUrl()
+const url = postServiceHoursApiUrl()
 
 export default {
 	components: {
