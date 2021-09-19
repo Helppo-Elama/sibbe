@@ -77,6 +77,7 @@ namespace App\Models\Portions{
  * @property string|null $ingredients
  * @property string|null $allergenic
  * @property string|null $price
+ * @property string|null $price_additional
  * @method static \Illuminate\Database\Eloquent\Builder|Portion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Portion newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Portion query()
@@ -87,6 +88,7 @@ namespace App\Models\Portions{
  * @method static \Illuminate\Database\Eloquent\Builder|Portion whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Portion whereIngredients($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Portion wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Portion wherePriceAdditional($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Portion whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Portion whereUpdatedAt($value)
  */
@@ -103,6 +105,7 @@ namespace App\Models\Restaurant{
  * @property string $date
  * @property string|null $serving_time
  * @property string|null $price
+ * @property string|null $price_additional
  * @property string|null $type
  * @property string|null $json
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch newModelQuery()
@@ -113,6 +116,7 @@ namespace App\Models\Restaurant{
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch whereJson($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lunch wherePriceAdditional($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch whereServingTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lunch whereUpdatedAt($value)
@@ -152,9 +156,11 @@ namespace App\Models\ServiceHours{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $title
  * @property string|null $json
+ * @property string|null $closed_until
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour whereClosedUntil($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceHour whereJson($value)

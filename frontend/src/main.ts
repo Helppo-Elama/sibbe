@@ -22,6 +22,7 @@ Vue.component("FontAwesomeIcon", FontAwesomeIcon)
 Vue.component("FontAwesomeLayers", FontAwesomeLayers)
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 Vue.use(Vuelidate)
 

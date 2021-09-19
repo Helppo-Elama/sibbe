@@ -82,7 +82,6 @@ const { villa } = routeDestination
 
 const googleMapsInit: IGoogleMapsInit = {
 	apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
-	targetRef: "map",
 	language: "fi",
 	region: "FI",
 	libraries: ["places"],
@@ -91,7 +90,7 @@ const googleMapsInit: IGoogleMapsInit = {
 	placeId,
 	markerOptions,
 	routeDestination: villa,
-	id: "map"
+	id: "mapContact"
 }
 
 export default Vue.extend({

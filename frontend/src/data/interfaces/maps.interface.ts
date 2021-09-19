@@ -1,6 +1,5 @@
 export interface IGoogleMapsInit {
 	apiKey: string
-	targetRef: string
 	language: string
 	region: string
 	libraries: Array<"drawing" | "geometry" | "localContext" | "places" | "visualization">

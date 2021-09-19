@@ -131,14 +131,13 @@ const googleMapsInit: IGoogleMapsInit = {
 	apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
 	language: "fi",
 	region: "FI",
-	targetRef: "map",
 	libraries: ["places"],
 	version: "weekly",
 	mapOptions,
 	placeId,
 	markerOptions,
 	routeDestination: routeDestination.villa,
-	id: "map"
+	id: "mapRestaurant"
 }
 
 export default Vue.extend({

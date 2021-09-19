@@ -20,6 +20,11 @@ export default Vue.extend({
 	name: "App",
 	components: { Nav },
 	mixins: [update],
+	data(): { rendered: undefined | true } {
+		return {
+			rendered: undefined
+		}
+	},
 	mounted(): void {
 		console.log("👏 App mounted")
 	}

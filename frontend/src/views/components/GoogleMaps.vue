@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="map-responsive" ref="map" data-aos="fade-up" id="map"></div>
+		<div class="map-responsive" :id="googleMapsInit.id"></div>
 	</div>
 </template>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Filemanager\FileManagerController;
 
 Route::middleware(["auth:sanctum", "verified"])
     ->get("/dashboard", function () {
@@ -29,7 +30,6 @@ Route::middleware(["auth:sanctum", "verified"])
     ->prefix("defaults")
     ->group(base_path("routes/service/defaults.php"));
 
-
 Route::get("/", function () {
     return Inertia::render("Auth/Login", ["canResetPassword" => true]);
 });
@@ -40,3 +40,5 @@ Route::get("/", function () {
     return Inertia::render("Auth/Register");
 });
 */
+
+Route::get("filemanager", [FileManagerController::class, "index"]);

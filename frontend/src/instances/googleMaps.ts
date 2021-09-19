@@ -2,10 +2,10 @@ import { IGoogleMapsDetails, IGoogleMapsInit } from "@d/interfaces/maps.interfac
 import { Loader } from "@googlemaps/js-api-loader"
 
 function parseMap(googleMapsInit: IGoogleMapsInit): IGoogleMapsDetails {
-	const { targetRef, mapOptions, placeId, id } = googleMapsInit
+	const { mapOptions, placeId, id } = googleMapsInit
 	const el = document.getElementById(id)
 	if (!el) {
-		throw new Error(`❌ No matching element with id: ${targetRef}`)
+		throw new Error(`❌ No matching element with id: ${id}`)
 	}
 	if (!google) {
 		throw new Error("❌ No google!")
