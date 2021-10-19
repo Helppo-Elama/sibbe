@@ -20,8 +20,3 @@ export interface ICafeCompanyData {
 export interface ICafeData {
 	json: Record<string, string>
 }
-
-export function isICafeData(object: unknown): object is ICafeData {
-	const result = Object.prototype.hasOwnProperty.call(object, "json")
-	return result
-}

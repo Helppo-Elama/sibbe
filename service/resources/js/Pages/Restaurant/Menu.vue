@@ -14,7 +14,12 @@
 							<div class="justify-self-center"></div>
 						</div>
 					</div>
-					<MenuIterator :data="menu" :type="'restaurant'" @delete="deleteType" />
+					<MenuIterator
+						:data="menu"
+						:type="'restaurant'"
+						@delete="deleteType"
+						@change="updateType"
+					/>
 					<div class="flex justify-center w-100 py-6">
 						<jet-button class="px-24" @click.native="addType()" action="add">
 							Lisää uusi kategoria
@@ -30,10 +35,9 @@
 import AppLayout from "@/Layouts/AppLayout"
 import JetButton from "@/Jetstream/Button"
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import { postRestaurantTypeApiUrl } from "@/Helpers/js/apiEndPoints"
+import { postRestaurantTypeUrl, deleteRestaurantTypeUrl } from "@/Helpers/js/apiEndPoints"
 import MenuIterator from "@/Components/Common/Menu/MenuIterator"
 
-const url = postRestaurantTypeApiUrl()
 export default {
 	components: {
 		AppLayout,
@@ -64,6 +68,7 @@ export default {
 			const item = { type: "", icon: "", json: "", id: null }
 			const i = this.menu.push(item) - 1
 			const json = JSON.stringify(item)
+			const url = postRestaurantTypeUrl()
 			const request = { url, json }
 			const response = await axiosPost(request)
 			if (response) {
@@ -73,13 +78,26 @@ export default {
 		},
 		async deleteType(i) {
 			const { id } = this.menu[i]
+			const url = deleteRestaurantTypeUrl()
 			const request = { url, id }
 			const response = await axiosDelete(request)
-
 			if (response) {
-				this.$message.success(response)
+				this.$message.success(response.message)
 				this.menu.splice(i, 1)
+				this.forceRerender()
 			} else this.$message.error("Kategorian poistossa tapahtui virhe")
+		},
+		async updateType({ data, i }) {
+			const url = postRestaurantTypeUrl()
+			const json = JSON.stringify(data)
+			const response = await axiosPost({ url, json })
+			if (response) {
+				this.$message.success(response.message)
+				this.menu[i] = data
+			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
+		},
+		forceRerender() {
+			this.componentKey += 1
 		}
 	}
 }

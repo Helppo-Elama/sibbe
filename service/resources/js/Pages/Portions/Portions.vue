@@ -90,10 +90,10 @@
 import AppLayout from "@/Layouts/AppLayout"
 
 import {
-	getPortionsApiUrl,
-	postPortionApiUrl,
-	getPortionsSearchApiUrl,
-	deletePortionApiUrl
+	getPortionsUrl,
+	postPortionUrl,
+	getPortionsSearchUrl,
+	deletePortionUrl
 } from "@/Helpers/js/apiEndPoints"
 import { axios, axiosPost, axiosDelete } from "@/Helpers/js/axios"
 import JetButton from "@/Jetstream/Button"
@@ -140,7 +140,7 @@ export default {
 			this.portions = []
 		},
 		async fetchAllPortions() {
-			const url = getPortionsApiUrl()
+			const url = getPortionsUrl()
 			const response = await axios(url)
 			if (response) {
 				this.portions = response
@@ -149,25 +149,25 @@ export default {
 		async updatePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
 			const data = window._.omit(portion, ["created_at", "updated_at"])
-			const url = postPortionApiUrl()
+			const url = postPortionUrl()
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
 				if (response.message) {
 					this.$message.success(response.message)
 					if (response.id) portion.id = response.id
-				} else this.$message.success(response)
+				} else this.$message.success(response.message)
 			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
 		},
 		async deletePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
 			if (portion.id) {
-				const url = deletePortionApiUrl()
+				const url = deletePortionUrl()
 				const { id } = portion
 				const request = { url, id }
 				const response = await axiosDelete(request)
 				if (response) {
-					this.$message.success(response)
+					this.$message.success(response.message)
 				} else this.$message.error("Annoskortin poistossa tapahtui virhe")
 			}
 			this.portions.splice(i, 1)
@@ -186,7 +186,7 @@ export default {
 		},
 
 		async fetchSearch() {
-			const url = getPortionsSearchApiUrl(this.search)
+			const url = getPortionsSearchUrl(this.search)
 			const response = await axios(url)
 			if (response) {
 				this.portions = response

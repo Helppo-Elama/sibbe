@@ -26,6 +26,16 @@ mix
 if (mix.inProduction()) {
 	mix.version()
 }
+if (!mix.inProduction()) {
+	mix.browserSync({
+		proxy: "service.sibbe.test",
+		open: false,
+		https: {
+			key: "./ssl/cert.key",
+			cert: "./ssl/cert.crt"
+		}
+	})
+}
 if (process.env.npm_lifecycle_event === "hot") {
 	const path = require("path")
 	mix.webpackConfig({

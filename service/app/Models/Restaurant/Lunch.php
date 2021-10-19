@@ -11,7 +11,6 @@ class Lunch extends Model
 
     use HasFactory;
 
-
     protected $table = "restaurant_lunches";
     protected $fillable = ["date", "price", "price_additional", "type", "json", "serving_time"];
     protected $attributes = [

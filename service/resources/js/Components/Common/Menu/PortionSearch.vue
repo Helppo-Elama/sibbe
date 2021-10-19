@@ -66,7 +66,7 @@
 import JetButton from "@/Jetstream/Button"
 import JetDialogModal from "@/Jetstream/DialogModal"
 
-import { getPortionsSearchApiUrl } from "@/Helpers/js/apiEndPoints"
+import { getPortionsSearchUrl } from "@/Helpers/js/apiEndPoints"
 import { axios } from "@/Helpers/js/axios"
 
 export default {
@@ -147,7 +147,7 @@ export default {
 		},
 
 		async fetchSearch() {
-			const url = getPortionsSearchApiUrl(this.search)
+			const url = getPortionsSearchUrl(this.search)
 			const response = await axios(url)
 			if (response) {
 				this.result.data = response

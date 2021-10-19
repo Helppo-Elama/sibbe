@@ -1,103 +1,110 @@
 import { dateToStringYYYYMMDD } from "./dateFunctions"
 
 const url = process.env.MIX_APP_URL
-// const apiUrl = `${url}/api`;
+// const Url = `${url}/`;
 
 // RESTAURANT
-export const getRestaurantLunchApiUrl = (start, end) => {
-	const result = `${url}/restaurant/lunch/authorized?start_date=${dateToStringYYYYMMDD(
+export const getRestaurantLunchUrl = (start, end) => {
+	const result = `${url}/restaurant/lunch/lunches?start_date=${dateToStringYYYYMMDD(
 		start
 	)}&end_date=${dateToStringYYYYMMDD(end)}`
 	return result
 }
 
-export const getRestaurantLunchDefaultsApiUrl = () => {
-	const result = `${url}/restaurant/defaults/authorized/lunch`
+export const getRestaurantLunchDefaultsUrl = () => {
+	const result = `${url}/defaults/restaurant/lunch`
 	return result
 }
 
-export const postRestaurantLunchDateDefaultsApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/date/defaults`
+export const postRestaurantLunchDateUrl = () => {
+	const result = `${url}/restaurant/lunch/date/post`
 	return result
 }
 
-export const postRestaurantLunchDateApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/date`
+export const postRestaurantLunchUrl = () => {
+	const result = `${url}/restaurant/lunch/post`
 	return result
 }
 
-export const postRestaurantLunchApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/post`
-	return result
-}
-export const deleteRestaurantLunchApiUrl = () => {
-	const result = `${url}/restaurant/lunch/authorized/delete`
-	return result
-}
-export const postRestaurantLunchDefaultsApiUrl = () => {
-	const result = `${url}/defaults/authorized`
+export const deleteRestaurantLunchUrl = () => {
+	const result = `${url}/restaurant/lunch/delete`
 	return result
 }
 
-export const postRestaurantItemApiUrl = () => {
-	const result = `${url}/restaurant/menu/authorized/item`
-	return result
-}
-export const deleteRestaurantItemApiUrl = () => {
-	const result = `${url}/restaurant/menu/authorized/item/delete`
+export const postRestaurantLunchDefaultDaysUrl = () => {
+	const result = `${url}/defaults/restaurant/lunch/days/post`
 	return result
 }
 
-export const postRestaurantTypeApiUrl = () => {
-	const result = `${url}/restaurant/menu/authorized/type`
+export const postRestaurantItemUrl = () => {
+	const result = `${url}/restaurant/menu/post`
+	return result
+}
+export const deleteRestaurantItemUrl = () => {
+	const result = `${url}/restaurant/menu/delete`
+	return result
+}
+
+export const postRestaurantTypeUrl = () => {
+	const result = `${url}/restaurant/menu/type/post`
+	return result
+}
+
+export const deleteRestaurantTypeUrl = () => {
+	const result = `${url}/restaurant/menu/type/delete`
 	return result
 }
 
 // CAFE
-export const postCafeItemApiUrl = () => {
-	const result = `${url}/cafe/authorized/item`
+export const postCafeItemUrl = () => {
+	const result = `${url}/cafe/post`
 	return result
 }
 
-export const deleteCafeItemApiUrl = () => {
-	const result = `${url}/cafe/authorized/item/delete`
+export const deleteCafeItemUrl = () => {
+	const result = `${url}/cafe/delete`
 	return result
 }
 
-export const postCafeTypeApiUrl = () => {
-	const result = `${url}/cafe/authorized/type`
+export const postCafeTypeUrl = () => {
+	const result = `${url}/cafe/type/post`
 	return result
 }
 
-export const postCafeDataApiUrl = () => {
-	const result = `${url}/cafe/authorized/data`
+export const deleteCafeTypeUrl = () => {
+	const result = `${url}/cafe/type/delete`
+	return result
+}
+
+export const postCafeDataUrl = () => {
+	const result = `${url}/cafe/data/post`
 	return result
 }
 
 // PORTION
-export const getPortionsApiUrl = () => {
-	const result = `${url}/portions/authorized/`
+export const getPortionsUrl = () => {
+	const result = `${url}/portions/portions`
 	return result
 }
-export const postPortionApiUrl = () => {
-	const result = `${url}/portions/authorized/portion`
+export const postPortionUrl = () => {
+	const result = `${url}/portions/portion`
 	return result
 }
-export const getPortionsSearchApiUrl = (title) => {
-	const result = `${url}/portions/authorized/search?title=${title}`
+export const getPortionsSearchUrl = (title) => {
+	const result = `${url}/portions/search?title=${title}`
 	return result
 }
-export const checkPortionApiUrl = (title) => {
-	const result = `${url}/portions/authorized/check?title=${title}`
+export const checkPortionUrl = (title) => {
+	const result = `${url}/portions/check?title=${title}`
 	return result
 }
-export const deletePortionApiUrl = () => {
-	const result = `${url}/portions/authorized/portion`
+export const deletePortionUrl = () => {
+	const result = `${url}/portions/delete`
 	return result
 }
 
 // SERVICE HOURS
-export const postServiceHoursApiUrl = () => {
-	const result = `${url}/servicehours/authorized/servicehour`
+export const postServiceHoursUrl = () => {
+	const result = `${url}/servicehours/servicehour`
 	return result
 }

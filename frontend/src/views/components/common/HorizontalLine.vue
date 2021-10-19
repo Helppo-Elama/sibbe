@@ -13,9 +13,6 @@ export default Vue.extend({
 				return undefined
 			}
 		}
-	},
-	mounted(): void {
-		console.log("🤭 Horizontal line mounted!")
 	}
 })
 </script>

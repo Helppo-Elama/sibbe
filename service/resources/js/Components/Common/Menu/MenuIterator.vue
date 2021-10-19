@@ -14,7 +14,7 @@
 					>
 						<Icons :icon="item.icon" :target="target" @change="updateIcon" />
 						<div>
-							<text-input v-model="item.type">Kategoria</text-input>
+							<text-input v-model="item.type"> Kategoria</text-input>
 						</div>
 					</div>
 					<div class="">
@@ -42,16 +42,16 @@ import JetButton from "@/Jetstream/Button"
 
 import TextInput from "@/Components/Common/InputText"
 
-import { axiosPost } from "@/Helpers/js/axios"
+import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
 import {
-	postRestaurantItemApiUrl,
-	deleteRestaurantItemApiUrl,
-	postRestaurantTypeApiUrl,
-	// postRestaurantDataApiUrl
-	postCafeItemApiUrl,
-	deleteCafeItemApiUrl,
-	postCafeTypeApiUrl
-	// postCafeDataApiUrl,
+	postRestaurantItemUrl,
+	deleteRestaurantItemUrl,
+	postRestaurantTypeUrl,
+	// postRestaurantDataUrl
+	postCafeItemUrl,
+	deleteCafeItemUrl,
+	postCafeTypeUrl
+	// postCafeDataUrl,
 } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "./MenuItems"
@@ -79,17 +79,17 @@ export default {
 			let result = false
 			if (this.type === "cafe") {
 				result = {
-					item: postCafeItemApiUrl(),
-					delete: deleteCafeItemApiUrl(),
-					type: postCafeTypeApiUrl()
-					// data: postCafeDataApiUrl,
+					item: postCafeItemUrl(),
+					delete: deleteCafeItemUrl(),
+					type: postCafeTypeUrl()
+					// data: postCafeDataUrl,
 				}
 			} else if (this.type === "restaurant") {
 				result = {
-					item: postRestaurantItemApiUrl(),
-					delete: deleteRestaurantItemApiUrl(),
-					type: postRestaurantTypeApiUrl()
-					// data: postCafeDataApiUrl,
+					item: postRestaurantItemUrl(),
+					delete: deleteRestaurantItemUrl(),
+					type: postRestaurantTypeUrl()
+					// data: postCafeDataUrl,
 				}
 			}
 			return result
@@ -104,14 +104,15 @@ export default {
 			}
 		}
 	},
+
 	methods: {
 		async deleteItem({ target, i }) {
 			this.items[target].json.splice(i, 1)
 			const json = window._.pick(this.items[target], ["type", "json"])
 			const url = this.url.delete
-			const response = await axiosPost({ url, json })
+			const response = await axiosDelete({ url, json })
 			if (response) {
-				this.$message.warn(response)
+				this.$message.warn(response.message)
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 			this.forceRerender()
 		},
@@ -138,17 +139,12 @@ export default {
 			const url = this.url.item
 			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response)
+				this.$message.success(response.message)
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 		},
 		async updateType(i) {
 			const data = window._.pick(this.items[i], ["type", "icon", "id"])
-			const url = this.url.type
-			const json = JSON.stringify(data)
-			const response = await axiosPost({ url, json })
-			if (response) {
-				this.$message.success(response)
-			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
+			this.$emit("change", { data, i })
 		},
 		updateIcon({ name, target }) {
 			this.items[target].icon = name

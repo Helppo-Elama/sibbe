@@ -32,7 +32,6 @@
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
 					<ServiceHours
 						v-if="serviceHours"
-						:target="'restaurant'"
 						:service-hours="serviceHours"
 						:class-list="'color-dark'"
 					/>
@@ -117,10 +116,9 @@ import { IImage } from "@d/interfaces/images.interface"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import { IMenu } from "@d/interfaces/menu.interface"
 import { IRestaurantData } from "@d/interfaces/restaurant.interface"
-import { IServiceHours, IServiceHoursData } from "@d/interfaces/servicehours.interface"
+import { IServiceHoursData } from "@d/interfaces/servicehours.interface"
 import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
 import { carouselImages, createURL, images, menuImages } from "@d/restaurant/restaurant.data"
-import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
 import { restaurant as metaData } from "@h/metaData"
 import { axiosApi as axios } from "@in/axios"
 import Vue from "vue"
@@ -165,8 +163,7 @@ export default Vue.extend({
 		lunches: undefined | IMenu
 		googleMapsInit: IGoogleMapsInit
 		haveLunches: boolean
-		serviceHours: undefined | IServiceHours
-		lunchShowDaysAhead: number // Put to data and -> service
+		serviceHours: undefined | IServiceHoursData
 	} {
 		return {
 			fbUrl: socialUrls.fbUrl,
@@ -178,64 +175,37 @@ export default Vue.extend({
 			lunches: undefined,
 			googleMapsInit,
 			haveLunches: false,
-			serviceHours: undefined,
-			lunchShowDaysAhead: 7
+			serviceHours: undefined
 		}
 	},
 	methods: {
-		async fetchData(target: string): Promise<undefined | IRestaurantData> {
+		async fetchAll(): Promise<void> {
+			const url = createURL()
 			try {
-				const url = createURL(target)
-				const response = await axios<IRestaurantData>({ url })
+				const response = await axios<{
+					lunches: IMenu
+					menu: IMenu
+					service_hours: IServiceHoursData
+				}>({ url })
 				if (response) {
-					return response
-				}
-			} catch (err) {
-				console.log(err)
-			}
-			return undefined
-		},
-		async fetchServiceHours(target: string): Promise<IServiceHours | undefined> {
-			try {
-				const url = serviceHoursApiUrl(target)
-				const response = await axios<IServiceHoursData>({ url })
-				if (response) {
-					const data = response[0].json
-					const l = data.length
+					this.lunches = response.lunches
+					this.menu = response.menu
+					const serviceHours = response.service_hours
+					const l = serviceHours.json.length
 					for (let j = 0; j < l; j += 1) {
-						const day = data[j]
-						if (day.open === null) data[j].open = ""
-						if (day.close === null) data[j].close = ""
+						const day = serviceHours.json[j]
+						if (day.open === null) serviceHours.json[j].open = ""
+						if (day.close === null) serviceHours.json[j].close = ""
 					}
-					return data
+					this.serviceHours = serviceHours
 				}
 			} catch (err) {
 				console.log(err)
 			}
-			return undefined
-		},
-
-		async fetchMenu(target: string): Promise<undefined | IMenu> {
-			let url: string
-			try {
-				if (target === "lunch") {
-					url = createURL(target, 7)
-				} else url = createURL(target)
-				const result = await axios<IMenu>({ url })
-				if (result) {
-					return result
-				}
-			} catch (err) {
-				console.log(err)
-			}
-			return undefined
 		}
 	},
 	async mounted(): Promise<void> {
-		// this.data = await this.fetchData("data");
-		this.serviceHours = await this.fetchServiceHours("restaurant")
-		this.menu = await this.fetchMenu("menu")
-		this.lunches = await this.fetchMenu("lunch")
+		await this.fetchAll()
 		if (this.lunches) {
 			this.lunches.forEach((lunch) => {
 				if (Array.isArray(lunch.json)) {

@@ -153,11 +153,11 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import { axiosPost } from "@/Helpers/js/axios"
-import { postServiceHoursApiUrl } from "@/Helpers/js/apiEndPoints"
+import { postServiceHoursUrl } from "@/Helpers/js/apiEndPoints"
 import { capitalize } from "@/Helpers/js/common"
 import { dateToStringYYYYMMDD } from "@/Helpers/js/dateFunctions"
 
-const url = postServiceHoursApiUrl()
+const url = postServiceHoursUrl()
 
 export default {
 	components: {
@@ -200,7 +200,7 @@ export default {
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response)
+				this.$message.success(response.message)
 			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
 		}
 	},

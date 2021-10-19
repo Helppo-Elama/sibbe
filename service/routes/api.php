@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Restaurant\LunchController;
-use App\Http\Controllers\Restaurant\MenuController;
-use App\Http\Controllers\Cafe\CafeController;
-use App\Http\Controllers\ServiceHours\ServiceHourController;
-use App\Http\Controllers\Mail\ContactController;
+use App\Http\Controllers\Api\Restaurant\LunchController;
+use App\Http\Controllers\Api\Restaurant\MenuController;
+use App\Http\Controllers\Api\Restaurant\EventsController;
+use App\Http\Controllers\Api\Restaurant\RestaurantController;
+use App\Http\Controllers\Api\Cafe\CafeController;
+use App\Http\Controllers\Api\ServiceHours\ServiceHourController;
+use App\Http\Controllers\Api\Mail\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +25,8 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::get("/restaurant/lunch", [LunchController::class, "get"]);
-Route::get("/restaurant/menu", [MenuController::class, "get"]);
-//Route::get("/restaurant/data", [MenuController::class, "get"]);
+Route::get("/restaurant", [RestaurantController::class, "get"]);
 
+Route::get("/cafe", [CafeController::class, "get"]);
 
-Route::get("/cafe/menu", [CafeController::class, "get"]);
-//Route::get("/cafe/data", [CafeController::class, "get"]);
-
-Route::get("/servicehours", [ServiceHourController::class, "get"]);
-Route::get("/servicehours/closeduntil", [serviceHourController::class, "get_closed_until"]);
-
-Route::post("/mail/contact", [ContactController::class, "submit"]);
-//middleware(["middleware" => "trusted_access"])->
+Route::post("/mail/contact/post", [ContactController::class, "submit"]);

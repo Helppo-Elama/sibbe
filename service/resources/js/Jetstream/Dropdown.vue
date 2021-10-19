@@ -1,5 +1,5 @@
 <template>
-	<div class="relative">
+	<span>
 		<div @click="open = !open">
 			<slot name="trigger"></slot>
 		</div>
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</transition>
-	</div>
+	</span>
 </template>
 
 <script>

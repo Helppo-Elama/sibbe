@@ -112,12 +112,12 @@ export default {
 					"price_additional"
 				])
 				this.changeHandler()
-			} else this.$message.warn("Annoksen lisääminen epäonnistui")
+			} else this.$message.error("Annoksen lisääminen epäonnistui")
 			this.searchModal = false
 		}
 	},
 	created() {
-		this.emitHandler = window._.debounce(this.changeHandler, 2000)
+		this.emitHandler = window._.debounce(this.changeHandler, 1000)
 	}
 }
 </script>

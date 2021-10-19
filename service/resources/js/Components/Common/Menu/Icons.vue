@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="relative">
 		<span class="pt-4 pb-1 pl-1 text-gray-700 block">Valitse kuvake</span>
 		<jet-dropdown align="left" width="48" class="mt-1">
 			<template #trigger>
@@ -15,14 +15,10 @@
 						px-4
 						py-2
 						bg-white
-						font-medium
-						text-gray-700
-						hover:bg-gray-50
-						focus:outline-none
-						focus:ring-2
-						focus:ring-offset-2
-						focus:ring-offset-gray-100
-						focus:ring-indigo-500
+						rounded-md
+						border-gray-300
+						shadow-sm
+						focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
 					"
 				>
 					<div class="inline-flex">
@@ -45,7 +41,7 @@
 			</template>
 			<template #content>
 				<jet-dropdown-item v-for="icon in icons" :key="icon.text">
-					<div @click="emitIcon(icon, category)">
+					<div @click="emitIcon(icon.name, target)">
 						<div v-if="icon.icon === null" class="flex">
 							<div class="w-8 mr-3"><br /></div>
 							<div>
@@ -93,7 +89,7 @@ import JetDropdownItem from "@/Jetstream/DropdownItem"
 import JetDropdownSVG from "@/Jetstream/DropDownSVG"
 
 export default {
-	props: { icon: { type: String }, category: { type: Number } },
+	props: { icon: { type: String }, target: { type: Number } },
 	components: {
 		JetDropdown,
 		JetDropdownItem,
@@ -185,9 +181,8 @@ export default {
 		}
 	},
 	methods: {
-		emitIcon(icon, category) {
-			const { name } = icon
-			this.$emit("change", { name, category })
+		emitIcon(name, target) {
+			this.$emit("change", { name, target })
 		}
 	}
 }

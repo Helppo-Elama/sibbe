@@ -42,7 +42,7 @@ class ContactMail extends Mailable
         } elseif ($this->sender == "festivity") {
             $subject = "Juhlatilatiedustelu Villa Sibbe -sivustolta";
         } else {
-            $subject = "Tuntematon " . $this->sender . ", ilmoittakaa verkkovastaavalle) tiedustelu Villa Sibbe -sivustolta";
+            $subject = "Tuntematon " . $this->sender . " tiedustelu Villa Sibbe -sivustolta (ilmoittakaa verkkovastaavalle)...";
         } //end if
         return $this->from($this->email, $this->name)
             ->replyTo($this->reply_to, $this->name)

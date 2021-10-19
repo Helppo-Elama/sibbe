@@ -11,23 +11,23 @@ Route::middleware(["auth:sanctum", "verified"])
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("restaurant")
-    ->group(base_path("routes/service/restaurant.php"));
+    ->group(base_path("routes/web/restaurant.php"));
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("cafe")
-    ->group(base_path("routes/service/cafe.php"));
+    ->group(base_path("routes/web/cafe.php"));
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("portions")
-    ->group(base_path("routes/service/portions.php"));
+    ->group(base_path("routes/web/portions.php"));
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("servicehours")
-    ->group(base_path("routes/service/servicehours.php"));
+    ->group(base_path("routes/web/servicehours.php"));
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("defaults")
-    ->group(base_path("routes/service/defaults.php"));
+    ->group(base_path("routes/web/defaults.php"));
 
 
 Route::get("/", function () {

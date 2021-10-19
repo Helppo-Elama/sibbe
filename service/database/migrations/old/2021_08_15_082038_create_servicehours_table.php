@@ -18,7 +18,7 @@ class CreateServiceHoursTable extends Migration
             $table->timestamps();
             $table->string("title")->nullable();
             $table->date("closed_until")->nullable();
-            $table->longtext("json")->nullable();
+            $table->json("json")->nullable();
         });
     }
 

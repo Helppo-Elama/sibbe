@@ -39,7 +39,7 @@ export default Vue.extend({
 	components: {},
 	props: {
 		serviceHours: {
-			type: Array as () => PropType<IServiceHours>,
+			type: Object as () => PropType<IServiceHours>,
 			required: true
 		},
 		classList: {
@@ -63,7 +63,7 @@ export default Vue.extend({
 	watch: {
 		openNow: {
 			handler(val: IOpenToday): void {
-				const days: IServiceHours = clonedeep(this.$props.serviceHours)
+				const days: IServiceHours = clonedeep(this.$props.serviceHours.json)
 				if (val === undefined) return
 				if (!val) {
 					this.weekDayArray.forEach((el) => {
@@ -103,7 +103,7 @@ export default Vue.extend({
 		openToday(i: number): boolean | undefined {
 			const hours = now.getHours()
 			const minutes = now.getMinutes()
-			const days: IServiceHours = clonedeep(this.$props.serviceHours)
+			const days: IServiceHours = clonedeep(this.$props.serviceHours.json)
 			let result: IOpenToday = false
 			if (i > 6) {
 				return undefined

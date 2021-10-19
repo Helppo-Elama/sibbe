@@ -29,7 +29,8 @@ module.exports = {
 		],
 		"no-bitwise": ["warn", { allow: ["~"] }],
 		"simple-import-sort/imports": "error",
-		"simple-import-sort/exports": "error"
+		"simple-import-sort/exports": "error",
+		camelcase: "off"
 		// "import/no-duplicates": ["warn", { considerQueryString: true }]
 	}
 }

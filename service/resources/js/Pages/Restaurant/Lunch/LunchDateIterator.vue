@@ -9,46 +9,9 @@
 				@change="updateDate(target)"
 			>
 				<div>
-					<span class="pt-4 pb-1 pl-1 text-gray-700 block">Lounaan tyyppi</span>
-					<jet-dropdown align="left" class="mt-1">
-						<template #trigger>
-							<button
-								type="button"
-								class="
-									inline-flex
-									justify-between
-									w-full
-									rounded-md
-									border border-gray-300
-									shadow-sm
-									px-4
-									py-2
-									bg-white
-									text-sm
-									font-medium
-									text-gray-700
-									hover:bg-gray-50
-									focus:outline-none
-									focus:ring-2
-									focus:ring-offset-2
-									focus:ring-offset-gray-100
-									focus:ring-indigo-500
-								"
-							>
-								{{ setDefaultType(target) }}
-								<TypeTranslate :text="item.type" />
-								<JetDropdownSVG />
-							</button>
-						</template>
-						<template #content>
-							<jet-dropdown-item @clicked="updateType(null, target)"> (tyhjä) </jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('lunch', target)"> Lounas </jet-dropdown-item>
-							<jet-dropdown-item @clicked="updateType('brunch', target)">
-								Brunssi
-							</jet-dropdown-item>
-							<div class="border-t border-gray-100"></div>
-						</template>
-					</jet-dropdown>
+					<drop-down :target="target" :type="item.type" @change="updateType">
+						{{ setDefaultType(target) }}
+					</drop-down>
 				</div>
 				<div class="text-center">
 					<time-between-input
@@ -90,35 +53,28 @@ import { format } from "date-fns"
 import fi from "date-fns/locale/fi"
 import NumberBetweenInput from "@/Components/Common/InputNumberBetween"
 import TimeBetweenInput from "@/Components/Common/InputTimeBetween"
+import DropDown from "./Components/LunchTypeDropDown"
 import JetButton from "@/Jetstream/Button"
-import JetDropdown from "@/Jetstream/Dropdown"
-import JetDropdownItem from "@/Jetstream/DropdownItem"
-import JetDropdownSVG from "@/Jetstream/DropDownSVG"
 
 import { capitalize } from "@/Helpers/js/common"
 import { ISOStringToDate } from "@/Helpers/js/dateFunctions"
 
-import { axiosPost } from "@/Helpers/js/axios"
+import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
 import {
-	postRestaurantLunchApiUrl,
-	postRestaurantLunchDateApiUrl,
-	postRestaurantLunchDateDefaultsApiUrl,
-	deleteRestaurantLunchApiUrl
+	postRestaurantLunchUrl,
+	postRestaurantLunchDateUrl,
+	deleteRestaurantLunchUrl
 } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "@/Components/Common/Menu/MenuItems"
-import TypeTranslate from "./TypeTranslate"
 
 export default {
 	components: {
 		NumberBetweenInput,
 		TimeBetweenInput,
+		DropDown,
 		JetButton,
-		JetDropdown,
-		JetDropdownItem,
-		JetDropdownSVG,
-		MenuItems,
-		TypeTranslate
+		MenuItems
 	},
 	props: {
 		data: { Type: Object },
@@ -154,9 +110,6 @@ export default {
 	},
 	methods: {
 		parseDate(date) {
-			if (typeof date !== "string") {
-				throw new Error(`parseDate(date) needs date as string but is: ${typeof date}.`)
-			}
 			let result
 			try {
 				const isoString = `${date}T12:00:00.000Z`
@@ -171,30 +124,21 @@ export default {
 			return result
 		},
 		getServingTime(time, i) {
-			if (time !== "start" && time !== "end") {
-				throw new Error(`getServinGtime(time, i) needs time (start or end), but is: ${time}.`)
-			}
-			if (typeof i !== "number") {
-				throw new Error(`getServinGtime(time, i) needs index as number but is: ${typeof i}.`)
-			}
 			const item = this.items[i]
 			const { start, end } = item.serving_time
 			const { start: defaultStart, end: defaultEnd } = this.$props.defaults.serving_time
 			let result
 			let key
-
 			if (time === "start") {
 				key = "start"
 				if (start === undefined) {
 					result = defaultStart
-					this.updateDefaults()
 				} else result = start
 			}
 			if (time === "end") {
 				key = "end"
 				if (end === undefined) {
 					result = defaultEnd
-					this.updateDefaults()
 				} else result = end
 			}
 			if (key) {
@@ -206,10 +150,10 @@ export default {
 		async deleteItem({ target, i }) {
 			this.items[target].json.splice(i, 1)
 			const json = window._.pick(this.items[target], ["date", "json"])
-			const url = deleteRestaurantLunchApiUrl()
-			const response = await axiosPost({ url, json })
+			const url = deleteRestaurantLunchUrl()
+			const response = await axiosDelete({ url, json })
 			if (response) {
-				this.$message.warn(response)
+				this.$message.warn(response.message)
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 			this.forceRerender()
 		},
@@ -233,10 +177,10 @@ export default {
 			const i = target
 			if (portions) this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
-			const url = postRestaurantLunchApiUrl()
+			const url = postRestaurantLunchUrl()
 			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response)
+				this.$message.success(response.message)
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 		},
 
@@ -244,7 +188,7 @@ export default {
 			const i = target
 			if (this.items[i].type === undefined) this.items[i].type = this.defaults.type
 		},
-		updateType(type, target) {
+		updateType({ type, target }) {
 			const i = target
 			this.items[i].type = type
 			this.updateDate(i)
@@ -258,35 +202,12 @@ export default {
 				"serving_time",
 				"type"
 			])
-			const url = postRestaurantLunchDateApiUrl()
+			const url = postRestaurantLunchDateUrl()
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
-				this.$message.success(response)
+				this.$message.success(response.message)
 			} else this.$message.error("Päivän tallentamisessa tapahtui virhe")
-		},
-		async updateDefaults() {
-			// UPDATES OTHER DEFAULT VALUES TOO!
-			const data = []
-			Object.keys(this.items).forEach((i) => {
-				if (!this.items[i].price) this.items[i].price = null // for SQL
-				if (!this.items[i].price_additional) this.items[i].price_additional = null // for SQL
-				data.push(
-					window._.pick(this.items[i], [
-						"date",
-						"serving_time",
-						"type",
-						"price",
-						"price_additional"
-					])
-				)
-			})
-			const url = postRestaurantLunchDateDefaultsApiUrl()
-			const json = JSON.stringify(data)
-			const response = await axiosPost({ url, json })
-			if (response) {
-				this.$message.success(response)
-			} else this.$message.error("Tarjoiluaikojen tallentamisessa tapahtui virhe")
 		},
 		forceRerender() {
 			this.componentKey += 1
@@ -305,10 +226,8 @@ export default {
 			})
 		}
 	},
-
 	created() {
 		this.updateDate = window._.debounce(this.updateDate, 1000)
-		this.updateDefaults = window._.debounce(this.updateDefaults, 1000)
 	}
 }
 </script>

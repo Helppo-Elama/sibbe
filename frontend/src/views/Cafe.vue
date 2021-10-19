@@ -20,7 +20,7 @@
 					<OpenClosed v-if="serviceHours" :service-hours="serviceHours" />
 				</v-col>
 				<v-col cols="12" md="6" lg="4" class="d-flex align-center justify-center pb-16">
-					<ServiceHours v-if="serviceHours" :service-hours="serviceHours" :target="'cafe'" />
+					<ServiceHours v-if="serviceHours" :service-hours="serviceHours" />
 				</v-col>
 			</v-row>
 			<v-row class="mt-0 mx-0">
@@ -78,13 +78,12 @@ import GoogleMaps from "@c/GoogleMaps.vue"
 import VueFB from "@c/VueFB.vue"
 import { carouselImages, createURL, images } from "@d/cafe/cafe.data"
 import { socialUrls } from "@d/company/company.data"
-import { ICafeData, isICafeData } from "@d/interfaces/cafe.interface"
+import { ICafeData } from "@d/interfaces/cafe.interface"
 import { IImage } from "@d/interfaces/images.interface"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
 import { IMenu } from "@d/interfaces/menu.interface"
-import { IServiceHours, IServiceHoursData } from "@d/interfaces/servicehours.interface"
+import { IServiceHoursData } from "@d/interfaces/servicehours.interface"
 import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
-import { createApiURL as serviceHoursApiUrl } from "@d/servicehours/servicehours.data"
 import { cafe as metaData } from "@h/metaData"
 import lofbergsLogo from "@i/originals/cafe/lofbergs-logo.svg"
 import { axiosApi as axios } from "@in/axios"
@@ -124,7 +123,7 @@ export default Vue.extend({
 		carouselImages: Record<string, IImage[]>
 		data: undefined | ICafeData
 		menu: undefined | IMenu
-		serviceHours: undefined | IServiceHours
+		serviceHours: undefined | IServiceHoursData
 		googleMapsInit: IGoogleMapsInit
 	} {
 		return {
@@ -143,52 +142,31 @@ export default Vue.extend({
 		}
 	},
 	methods: {
-		async fetchData(target: string): Promise<undefined | ICafeData> {
+		async fetchAll(): Promise<void> {
+			const url = createURL()
 			try {
-				const url = createURL(target)
-				const response = await axios({ url })
-				if (response && isICafeData(response)) return response
-			} catch (err) {
-				console.log(err)
-			}
-			return undefined
-		},
-		async fetchServiceHours(target: string): Promise<undefined | IServiceHours> {
-			try {
-				const url = serviceHoursApiUrl(target)
-				const response = await axios<IServiceHoursData>({ url })
+				const response = await axios<{
+					menu: IMenu
+					service_hours: IServiceHoursData
+				}>({ url })
 				if (response) {
-					const data = response[0].json
-					const l = data.length
+					this.menu = response.menu
+					const serviceHours = response.service_hours
+					const l = serviceHours.json.length
 					for (let j = 0; j < l; j += 1) {
-						const day = data[j]
-						if (day.open === null) data[j].open = ""
-						if (day.close === null) data[j].close = ""
+						const day = serviceHours.json[j]
+						if (day.open === null) serviceHours.json[j].open = ""
+						if (day.close === null) serviceHours.json[j].close = ""
 					}
-					return data
+					this.serviceHours = serviceHours
 				}
 			} catch (err) {
 				console.log(err)
 			}
-			return undefined
-		},
-		async fetchMenu(target: string): Promise<undefined | IMenu> {
-			try {
-				const url = createURL(target)
-				const response = await axios<IMenu>({ url })
-				if (response) {
-					return response
-				}
-			} catch (err) {
-				console.log(err)
-			}
-			return undefined
 		}
 	},
 	async mounted(): Promise<void> {
-		// this.data = await this.fetchData("data")
-		this.serviceHours = await this.fetchServiceHours("cafe")
-		this.menu = await this.fetchMenu("menu")
+		await this.fetchAll()
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY
 		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!")

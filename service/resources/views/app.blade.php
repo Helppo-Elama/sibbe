@@ -43,6 +43,10 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+        @if (env('APP_ENV') !='production')
+        <script src="https://localhost:3000/browser-sync/browser-sync-client.js"></script>
+        @endif
+        <!-- Inertia -->
         @inertia
     </body>
 </html>

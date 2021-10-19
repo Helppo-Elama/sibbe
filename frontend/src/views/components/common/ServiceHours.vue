@@ -35,11 +35,9 @@
 </template>
 
 <script lang="ts">
-import { IServiceHours, IWeekDays } from "@d/interfaces/servicehours.interface"
-import { closedUntilApiURL } from "@d/servicehours/servicehours.data"
+import { IServiceHours, IServiceHoursData, IWeekDays } from "@d/interfaces/servicehours.interface"
 import { capitalize } from "@h/common"
 import { ISOStringToDate } from "@h/dateExtensions"
-import { axiosApi as axios } from "@in/axios"
 import { format } from "date-fns"
 import { fi } from "date-fns/locale"
 import clonedeep from "lodash.clonedeep"
@@ -50,11 +48,7 @@ export default Vue.extend({
 	components: {},
 	props: {
 		serviceHours: {
-			type: Array as () => PropType<IServiceHours>,
-			required: true
-		},
-		target: {
-			type: String,
+			type: Object as () => PropType<IServiceHoursData>,
 			required: true
 		},
 		classList: {
@@ -69,7 +63,7 @@ export default Vue.extend({
 	},
 	computed: {
 		computedServiceHours() {
-			const serviceHours: IServiceHours = clonedeep(this.$props.serviceHours)
+			const serviceHours: IServiceHours = clonedeep(this.$props.serviceHours.json)
 			const days: IServiceHours = []
 			let first
 			serviceHours.forEach((day, i) => {
@@ -115,29 +109,20 @@ export default Vue.extend({
 		capitalize(string: string): string {
 			return capitalize(string)
 		},
-		async fetchClosedUntil(): Promise<string | undefined> {
-			try {
-				const url = closedUntilApiURL(this.$props.target)
-				const response = await axios<IServiceHours>({ url })
-				if (response) {
-					const date = ISOStringToDate(`${response}T08:00:00.000Z\`T08:00:00.000Z`)
-					const result = format(date, "EEEE dd.MM.yyyy", {
-						locale: fi
-					})
-					return result
-				}
-			} catch (err) {
-				console.log(err)
-			}
-			return undefined
+		setClosedUntil(): string | undefined {
+			const closedUntil = this.$props.serviceHours.closed_until
+			if (closedUntil === null) return undefined
+			const date = ISOStringToDate(`${closedUntil}T08:00:00.000Z\`T08:00:00.000Z`)
+			return format(date, "EEEE dd.MM.yyyy", {
+				locale: fi
+			})
 		}
 	},
 	async mounted(): Promise<void> {
-		const days: IServiceHours = clonedeep(this.$props.serviceHours)
-		const result = days.every((day) => day.openToday === false)
-		if (result) {
+		const days: IServiceHours = clonedeep(this.$props.serviceHours.json)
+		if (days.every((day) => day.openToday === false)) {
 			this.closed.forNow = true
-			this.closed.openNext = await this.fetchClosedUntil()
+			this.closed.openNext = this.setClosedUntil()
 		}
 	}
 })

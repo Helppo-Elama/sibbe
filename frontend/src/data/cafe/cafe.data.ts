@@ -2,9 +2,8 @@ import { cafeCarouselImages as carouselImages, cafeImages as images } from "./ca
 
 const serviceUrl: string = process.env.VUE_APP_SERVICE_URL
 
-const createURL = (target: string): string => {
-	if (target === undefined) throw new Error(`❌ createURL does not have a target set: ${target}`)
-	const url = `${serviceUrl}/api/cafe/${target}`
+const createURL = (): string => {
+	const url = `${serviceUrl}/api/cafe`
 	return url
 }
 

@@ -18,8 +18,8 @@ export interface IServiceHour {
 
 export type IServiceHours = Array<IServiceHour>
 
-export type IServiceHoursData = Array<{
+export type IServiceHoursData = {
 	title: string
 	closed_until: string | null
 	json: IServiceHours
-}>
+}

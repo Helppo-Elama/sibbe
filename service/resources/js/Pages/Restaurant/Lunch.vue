@@ -64,10 +64,7 @@ import JetButton from "@/Jetstream/Button"
 import { correctOffset, addDays } from "@/Helpers/js/dateFunctions"
 
 import { axios } from "@/Helpers/js/axios"
-import {
-	getRestaurantLunchApiUrl,
-	getRestaurantLunchDefaultsApiUrl
-} from "@/Helpers/js/apiEndPoints"
+import { getRestaurantLunchUrl, getRestaurantLunchDefaultsUrl } from "@/Helpers/js/apiEndPoints"
 import DateIterator from "./Lunch/LunchDateIterator"
 
 const now = new Date()
@@ -147,7 +144,7 @@ export default {
 		},
 		async fetchData() {
 			const { start, end } = this.datePicker.selectedDateRange
-			const url = getRestaurantLunchApiUrl(start, end)
+			const url = getRestaurantLunchUrl(start, end)
 			const response = await axios(url)
 			if (response) {
 				this.lunches = response
@@ -161,7 +158,7 @@ export default {
 			this.forceRerender()
 		},
 		async fetchDefaults() {
-			const url = getRestaurantLunchDefaultsApiUrl()
+			const url = getRestaurantLunchDefaultsUrl()
 			const response = await axios(url)
 			if (response) {
 				const object = response[0]
