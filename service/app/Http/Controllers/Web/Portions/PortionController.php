@@ -36,7 +36,7 @@ class PortionController extends Controller
         foreach ($data as $d) {
             $d->json = json_decode($d->json);
         }
-        return response($data, 200);
+        return response()->json($data, 200);
     }
 
     public function get()
@@ -45,14 +45,14 @@ class PortionController extends Controller
         foreach ($data as $d) {
             $d->json = json_decode($d->json);
         }
-        return response($data, 200);
+        return response()->json($data, 200);
     }
 
     public function check(Request $request)
     {
         $data = Portion::where(["title" => $request->title])->get();
         if (count($data) == 0) return response("true", 200);
-        return response("false", 200);
+        return response()->json("false", 200);
     }
 
     public function delete(Request $request)

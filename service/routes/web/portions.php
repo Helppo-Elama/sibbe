@@ -5,9 +5,9 @@ use App\Http\Controllers\Web\Portions\PortionController;
 use Inertia\Inertia;
 
 // PORTIONS
-Route::post("/portion", [PortionController::class, "post"]);
+Route::post("/portion/post", [PortionController::class, "post"]);
 
-Route::delete("/delete", [PortionController::class, "delete"]);
+Route::delete("/portion/delete", [PortionController::class, "delete"]);
 
 Route::get("/search", [PortionController::class, "search"]);
 Route::get("/check", [PortionController::class, "check"]);

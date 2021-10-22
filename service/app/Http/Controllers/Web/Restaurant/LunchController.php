@@ -83,6 +83,6 @@ class LunchController extends Controller
             $lunch->json = json_decode($lunch->json);
             $lunch->serving_time = json_decode($lunch->serving_time);
         }
-        return response($lunches, 200);
+        return response()->json($lunches, 200);
     }
 }

@@ -31,8 +31,8 @@ export const deleteRestaurantLunchUrl = () => {
 	return result
 }
 
-export const postRestaurantLunchDefaultDaysUrl = () => {
-	const result = `${url}/defaults/restaurant/lunch/days/post`
+export const postRestaurantLunchDefaults = () => {
+	const result = `${url}/defaults/restaurant/lunch/post`
 	return result
 }
 
@@ -87,7 +87,7 @@ export const getPortionsUrl = () => {
 	return result
 }
 export const postPortionUrl = () => {
-	const result = `${url}/portions/portion`
+	const result = `${url}/portions/portion/post`
 	return result
 }
 export const getPortionsSearchUrl = (title) => {
@@ -99,7 +99,7 @@ export const checkPortionUrl = (title) => {
 	return result
 }
 export const deletePortionUrl = () => {
-	const result = `${url}/portions/delete`
+	const result = `${url}/portions/portion/delete`
 	return result
 }
 

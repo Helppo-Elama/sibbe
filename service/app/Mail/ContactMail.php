@@ -22,7 +22,7 @@ class ContactMail extends Mailable
         $this->message = $message;
         $this->sender = $sender;
         $this->email = $email;
-    } //end __construct()
+    }
 
     /**
      * Build the message.
@@ -43,7 +43,7 @@ class ContactMail extends Mailable
             $subject = "Juhlatilatiedustelu Villa Sibbe -sivustolta";
         } else {
             $subject = "Tuntematon " . $this->sender . " tiedustelu Villa Sibbe -sivustolta (ilmoittakaa verkkovastaavalle)...";
-        } //end if
+        }
         return $this->from($this->email, $this->name)
             ->replyTo($this->reply_to, $this->name)
             ->subject($subject)
@@ -52,5 +52,5 @@ class ContactMail extends Mailable
             ->with("email", $this->email)
             ->with("body", $this->message)
             ->with("reply_to", $this->reply_to);
-    } //end build()
-} //end class
+    }
+}

@@ -14,7 +14,7 @@ class RestaurantController extends Controller
         $menu_items = RestaurantDataHarvester::getMenu();
         //$events = RestaurantDataHarvester::getEvents();
         $service_hours = RestaurantDataHarvester::getServiceHours();
-        return response([
+        return response()->json([
             "lunches" => $lunches,
             "menu" => $menu_items,
             //"events" => $events,

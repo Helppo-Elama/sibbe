@@ -17,7 +17,8 @@ class RestaurantDataHarvester
     {
         $start = date("Y-m-d");
         $defaults = RestaurantDefault::where(["title" => "lunch"])->first()->toArray();
-        $end = date("Y-m-d", strtotime($start . " + " . $defaults["number"] . " days"));
+        $json = json_decode($defaults["json"]);
+        $end = date("Y-m-d", strtotime($start . " + " . $json->days . " days"));
 
         $lunches = Lunch::whereBetween("date", [$start, $end])->orderBy("date", "asc")->get();
         foreach ($lunches as $lunch) {

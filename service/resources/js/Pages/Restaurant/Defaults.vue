@@ -11,9 +11,6 @@
 					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
 						<div class="mt-8 text-2xl text-center">Lounas</div>
 						<div class="mt-6"></div>
-						<div class="flex">
-							<LunchDays :days="lunch.number" />
-						</div>
 					</div>
 					<Lunch :data="lunch" />
 				</div>
@@ -25,13 +22,11 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import Lunch from "./Defaults/LunchDefaults"
-import LunchDays from "./Defaults/LunchDefaultsDays"
 
 export default {
 	components: {
 		AppLayout,
-		Lunch,
-		LunchDays
+		Lunch
 	},
 	props: {
 		data: Array
@@ -55,11 +50,12 @@ export default {
 							serving_time: { start: undefined, end: undefined },
 							type: null,
 							price: null,
-							price_additional: null
+							price_additional: null,
+							days: null
 						}
 					}
-					if (typeof result.number === "number") {
-						result.number = result.number.toString()
+					if (typeof result.json.days === "number") {
+						result.json.days = result.json.days.toString()
 					}
 				}
 				return result

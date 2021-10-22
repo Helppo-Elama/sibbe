@@ -27,21 +27,26 @@
 						>Päivän hinta</number-between-input
 					>
 				</div>
+				<div>
+					<number-input v-model="defaults.json.days">Näkyvien lounaspäivien lkm</number-input>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+import NumberInput from "@/Components/Common/InputNumber"
 import DropDown from "../Lunch/Components/LunchTypeDropDown"
 import NumberBetweenInput from "@/Components/Common/InputNumberBetween"
 import TimeBetweenInput from "@/Components/Common/InputTimeBetween"
 
 import { axiosPost } from "@/Helpers/js/axios"
 
-import { postRestaurantLunchInitialDataUrl } from "@/Helpers/js/apiEndPoints"
+import { postRestaurantLunchDefaults } from "@/Helpers/js/apiEndPoints"
 
 export default {
 	components: {
+		NumberInput,
 		DropDown,
 		NumberBetweenInput,
 		TimeBetweenInput
@@ -67,7 +72,7 @@ export default {
 		async updateDefaults() {
 			const data = window._.cloneDeep(this.defaults)
 			data.title = "lunch"
-			const url = postRestaurantLunchInitialDataUrl()
+			const url = postRestaurantLunchDefaults()
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {

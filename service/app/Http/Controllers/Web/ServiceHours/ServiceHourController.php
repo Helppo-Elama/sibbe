@@ -26,7 +26,7 @@ class ServiceHourController extends Controller
         foreach ($service_hour_items as $item) {
             $item->json = json_decode($item->json);
         }
-        return response($service_hour_items, 200);
+        return response()->json($service_hour_items, 200);
     }
     public function getClosedUntil(Request $request)
     {
@@ -34,7 +34,7 @@ class ServiceHourController extends Controller
         foreach ($service_hour_items as $item) {
             $item->json = json_decode($item->json);
         }
-        return response($service_hour_items[0]->closed_until, 200);
+        return response()->json($service_hour_items[0]->closed_until, 200);
     }
     public function post(Request $request)
     {

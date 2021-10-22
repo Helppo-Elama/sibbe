@@ -20,5 +20,5 @@ class ContactController extends Controller
             new ContactMail($request["name"], $validated["email"], $validated["message"], $request["sender"], config("mail.from.address"))
         );
         return response()->json(null, 200);
-    } //end submit()
-}//end class
+    }
+}

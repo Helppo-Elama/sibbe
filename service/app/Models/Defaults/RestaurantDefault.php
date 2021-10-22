@@ -13,11 +13,9 @@ class RestaurantDefault extends Model
 
 
     protected $table = "restaurant_defaults";
-    protected $fillable = ["title", "json", "number", "text"];
+    protected $fillable = ["title", "json"];
     protected $attributes = [
         "title" => null,
-        "json" => null,
-        "number" => null,
-        "text" => null,
+        "json" => null
     ];
 }

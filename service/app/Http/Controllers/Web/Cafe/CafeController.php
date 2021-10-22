@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Web\Cafe;
 
 use Illuminate\Http\Request;
 use App\Models\Cafe\Cafe;
-use App\Models\Cafe\Data;
 use Inertia\Inertia;
 
 
@@ -55,7 +54,7 @@ class CafeController extends Controller
         } else return response()->json(["message" => "Listalta ei löytynyt poistettavaa kategoriaa"], 200);
     }
 
-    public function get(Request $request)
+    public function get()
     {
         $data = Cafe::all();
         foreach ($data as $d) {

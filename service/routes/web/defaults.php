@@ -9,5 +9,4 @@ Route::get("/", [RestaurantController::class, "get"])->name("restaurant.data");
 Route::get("/restaurant/lunch", [RestaurantController::class, "getLunchesDefaults"]);
 
 // POST DATA
-Route::post("/restaurant", [RestaurantController::class, "post"]);
-Route::post("/days", [RestaurantController::class, "post"]);
+Route::post("/restaurant/lunch/post", [RestaurantController::class, "post"]);

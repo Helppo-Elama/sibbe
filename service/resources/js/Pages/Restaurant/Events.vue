@@ -2,29 +2,54 @@
 	<app-layout>
 		<template #header>
 			<h2 class="font-semibold text-xl text-gray-800 text-2xl text-center">
-				Ravintolan tapahtumapäivät
+				Ravintolan tapahtumat
 			</h2>
 		</template>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white shadow-xl sm:rounded-lg">
 					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-						<div class="mt-8 text-2xl text-center">Valikoima</div>
+						<div class="mt-8 text-2xl text-center">Valitse päivämäärä</div>
+						<div class="mt-6">
+							<v-date-picker
+								:value="null"
+								:available-dates="datePicker.allowedDateRange"
+								:model-config="datePicker.modelConfig"
+								:first-day-of-week="2"
+								locale="fi"
+								@dayclick="datePickerOnClick"
+								is-range
+								is-expanded
+								:columns="$screens({ default: 1, lg: 2 })"
+							/>
+						</div>
 						<div class="grid justify-items-stretch">
-							<div class="justify-self-center"></div>
+							<div class="justify-self-center">
+								<jet-button
+									class="mt-6 pl-6 pr-6"
+									:disabled="datePicker.disabledBeforeSelecting"
+									@click.native="fetchData"
+								>
+									Hae tiedot
+								</jet-button>
+							</div>
+						</div>
+						<div class="mt-6">
+							<JetSwitch
+								label="Aikaraja on rajattu kahden (2) viikon mittaiseksi."
+								:disabled="datePicker.disabledWhenSelecting"
+								@change="datePicker.removeRangeLimit = !datePicker.removeRangeLimit"
+							/>
+						</div>
+						<div class="mt-2">
+							<JetSwitch
+								label="Menneitä päiviä ei voi muokata."
+								:disabled="datePicker.disabledWhenSelecting"
+								@change="datePicker.allowPastDate = !datePicker.allowPastDate"
+							/>
 						</div>
 					</div>
-					<MenuIterator
-						:data="menu"
-						:type="'restaurant'"
-						@delete="deleteType"
-						@change="updateMenuIterator"
-					/>
-					<div class="flex justify-center w-100 py-6">
-						<jet-button class="px-24" @click.native="addType()" action="add">
-							Lisää uusi kategoria
-						</jet-button>
-					</div>
+					<DateIterator :data="lunches" :defaults="defaults" :key="componentKey" />
 				</div>
 			</div>
 		</div>
@@ -33,61 +58,117 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout"
+import JetSwitch from "@/Jetstream/Switch"
 import JetButton from "@/Jetstream/Button"
-import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import { postRestaurantTypeUrl } from "@/Helpers/js/apiEndPoints"
-import MenuIterator from "@/Components/Common/Menu/MenuIterator"
 
-const url = postRestaurantTypeUrl()
+import { correctOffset, addDays } from "@/Helpers/js/dateFunctions"
+
+import { axios } from "@/Helpers/js/axios"
+import { getRestaurantLunchUrl, getRestaurantLunchDefaultsUrl } from "@/Helpers/js/apiEndPoints"
+import DateIterator from "./Lunch/LunchDateIterator"
+
+const now = new Date()
 export default {
 	components: {
 		AppLayout,
-		MenuIterator,
-		JetButton
+		JetSwitch,
+		JetButton,
+		DateIterator
 	},
-	props: {
-		data: { type: Array, required: true }
-	},
-	computed: {
-		menu: {
-			set(val) {
-				return val
+	data() {
+		return {
+			datePicker: {
+				removeRangeLimit: false,
+				allowPastDate: false,
+				allowedDateRange: { start: now, end: null },
+				selectedDateRange: { start: now, end: now },
+				disabledWhenSelecting: false,
+				disabledBeforeSelecting: true
 			},
-			get() {
-				let result
-				if (this.data) {
-					result = this.data
-				} else {
-					result = [{ type: "", icon: "", json: "", id: null }]
-				}
-				return result
+			lunches: undefined,
+			componentKey: 0,
+			defaults: {
+				serving_time: { start: undefined, end: undefined },
+				type: undefined,
+				price: undefined,
+				price_additional: undefined
 			}
 		}
 	},
+	mounted() {
+		this.fetchData()
+		this.fetchDefaults()
+	},
+	watch: {
+		// eslint-disable-next-line func-names
+		"datePicker.allowPastDate": function (val) {
+			if (val === false) {
+				this.datePicker.allowedDateRange.start = null
+			} else {
+				this.datePicker.allowedDateRange.start = now
+			}
+		},
+		// eslint-disable-next-line func-names
+		"datePicker.selectedDateRange.end": function (val) {
+			if (val !== null) {
+				this.datePicker.disabledBeforeSelecting = false
+			} else this.datePicker.disabledBeforeSelecting = true
+		}
+	},
 	methods: {
-		async addType() {
-			const item = { type: "", icon: "", json: "", id: null }
-			const i = this.menu.push(item) - 1
-			const json = JSON.stringify(item)
-			const request = { url, json }
-			const response = await axiosPost(request)
-			if (response) {
-				this.$message.success(response.message)
-				this.menu[i].id = response.id
-			} else this.$message.error("Kategorian tallentamisessa tapahtui virhe")
-		},
-		async deleteType(i) {
-			const { id } = this.menu[i]
-			const request = { url, id }
-			const response = await axiosDelete(request)
+		datePickerOnClick(val) {
+			const date = correctOffset(val.date)
+			const { removeRangeLimit, allowPastDate, selectedDateRange, allowedDateRange } =
+				this.datePicker
+			if (selectedDateRange.start === null || selectedDateRange.end !== null) {
+				this.datePicker.disabledWhenSelecting = true
 
-			if (response) {
-				this.$message.success(response.message)
-				this.menu.splice(i, 1)
-			} else this.$message.error("Kategorian poistossa tapahtui virhe")
+				selectedDateRange.start = date
+				selectedDateRange.end = null
+
+				allowedDateRange.start = date
+
+				if (removeRangeLimit) {
+					allowedDateRange.end = addDays(date, 14)
+				}
+			} else if (selectedDateRange.end === null) {
+				selectedDateRange.end = date
+				allowedDateRange.end = null
+				if (allowPastDate) {
+					allowedDateRange.start = now
+				} else {
+					allowedDateRange.start = null
+				}
+				this.datePicker.disabledWhenSelecting = false
+			}
 		},
-		updateMenuIterator(items) {
-			this.menu = window._.cloneDeep(items)
+		async fetchData() {
+			const { start, end } = this.datePicker.selectedDateRange
+			const url = getRestaurantLunchUrl(start, end)
+			const response = await axios(url)
+			if (response) {
+				this.lunches = response
+				const { length } = this.lunches
+				for (let i = 0; i < length; i += 1) {
+					if (this.lunches[i].serving_time === null || undefined) {
+						this.$set(this.lunches[i], "serving_time", { start: undefined, end: undefined })
+					}
+				}
+			}
+			this.forceRerender()
+		},
+		async fetchDefaults() {
+			const url = getRestaurantLunchDefaultsUrl()
+			const response = await axios(url)
+			if (response) {
+				const object = response[0]
+				if (Object.prototype.hasOwnProperty.call(object, "json")) {
+					this.defaults = object.json
+				}
+			}
+		},
+		forceRerender() {
+			this.componentKey += 1
 		}
 	}
 }

@@ -91,7 +91,8 @@ export default {
 				serving_time: { start: undefined, end: undefined },
 				type: undefined,
 				price: undefined,
-				price_additional: undefined
+				price_additional: undefined,
+				days: undefined
 			}
 		}
 	},
