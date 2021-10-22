@@ -3,10 +3,7 @@
 /public/storage
 /public/js
 /public/css
-/storage/framework/cache/*
-/storage/framework/logs/*
-/storage/framework/sessions/*
-/storage/views/*
+/storage/*.key
 /ssl
 /vendor
 .env
