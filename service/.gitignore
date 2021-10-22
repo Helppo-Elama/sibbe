@@ -4,7 +4,7 @@
 /public/js
 /public/css
 /storage/*.key
-/ssl
+/ssl/*
 /vendor
 .env
 .env.backup

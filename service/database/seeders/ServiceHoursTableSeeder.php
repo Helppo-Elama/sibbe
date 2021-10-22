@@ -11,7 +11,7 @@ class ServiceHoursTableSeeder extends Seeder
     public function run()
     {
         DB::table("service_hours")->delete();
-        ServiceHour::create(array("title" => "restaurant", "json" => ""));
-        ServiceHour::create(array("title" => "cafe", "json" => ""));
+        ServiceHour::create(array("title" => "restaurant", "json" => null));
+        ServiceHour::create(array("title" => "cafe", "json" => null));
     }
 }

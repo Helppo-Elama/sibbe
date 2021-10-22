@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 use Inertia\Inertia;
 
 Route::middleware(["auth:sanctum", "verified"])
@@ -29,6 +30,12 @@ Route::middleware(["auth:sanctum", "verified"])
     ->prefix("defaults")
     ->group(base_path("routes/web/defaults.php"));
 
+
+Route::middleware(["auth:sanctum", "verified"])
+    ->prefix("laravel-filemanager")
+    ->group(function () {
+        Lfm::routes();
+    });
 
 Route::get("/", function () {
     return Inertia::render("Auth/Login", ["canResetPassword" => true]);
