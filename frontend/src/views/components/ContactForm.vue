@@ -79,9 +79,6 @@ const contactForm = (Vue as VueConstructor<Vue & Vuelidate>).extend({
 		email: { required, email },
 		message: { required, minLength: minLength(10) }
 	},
-	mounted(): void {
-		console.log("📞 Contact form mounted.")
-	},
 	props: {
 		sender: { type: String, required: true }
 	},

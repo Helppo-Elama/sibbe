@@ -1,5 +1,3 @@
-import { addDays, dateToStringYYYYMMDD } from "@h/dateExtensions"
-
 import {
 	carouselMenuImages as menuImages,
 	restaurantCarouselImages as carouselImages,

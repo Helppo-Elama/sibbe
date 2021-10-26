@@ -101,9 +101,6 @@ export default Vue.extend({
 		iconify(icon: string): string | undefined {
 			return this.icons[icon]
 		}
-	},
-	mounted(): void {
-		console.log("😀 Menu parser mounted!")
 	}
 })
 </script>

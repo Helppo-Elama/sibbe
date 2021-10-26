@@ -43,7 +43,6 @@ export default {
   },
 
   mounted() {
-    console.log("😇 Facebook mounted!");
     if (typeof FB === "undefined") {
       this.fbInit();
     } else {

@@ -119,9 +119,6 @@ export default Vue.extend({
 			}
 			return result
 		}
-	},
-	mounted(): void {
-		console.log("😀 Lunch parser mounted!")
 	}
 })
 </script>

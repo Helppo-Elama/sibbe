@@ -32,7 +32,7 @@ Route::middleware(["auth:sanctum", "verified"])
 
 
 Route::middleware(["auth:sanctum", "verified"])
-    ->prefix("laravel-filemanager")
+    ->prefix("filemanager")
     ->group(function () {
         Lfm::routes();
     });

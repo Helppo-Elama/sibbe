@@ -21,7 +21,6 @@ export default Vue.extend({
 		} catch (error) {
 			console.error(error)
 		}
-		console.log("🗺 Maps mounted.")
 	}
 })
 </script>

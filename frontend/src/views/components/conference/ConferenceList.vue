@@ -24,9 +24,6 @@ export default Vue.extend({
 			conference,
 			roomType: "conference"
 		}
-	},
-	mounted(): void {
-		console.log("🏠 Conference list mounted.")
 	}
 })
 </script>

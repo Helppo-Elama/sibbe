@@ -24,9 +24,6 @@ export default Vue.extend({
 			accommodation,
 			roomType: "accommodation"
 		}
-	},
-	mounted(): void {
-		console.log("🏠 Accommodation list mounted.")
 	}
 })
 </script>

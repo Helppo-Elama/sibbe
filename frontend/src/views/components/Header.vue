@@ -47,10 +47,6 @@ export default Vue.extend({
 	name: "Header",
 	props: {
 		images: { type: Object as () => PropType<Record<string, IImage>>, required: true }
-	},
-
-	mounted() {
-		console.log("👍 Header mounted!")
 	}
 })
 </script>

@@ -61,9 +61,6 @@ export default Vue.extend({
 	name: "Festivity",
 	metaInfo: { ...metaData },
 	components: { Header, Hero, VueFB, Reviews, ContactForm },
-	mounted(): void {
-		console.log("👽 Recreation mounted!")
-	},
 	data(): {
 		fbUrl: string
 		headerImages: Record<string, IImage>

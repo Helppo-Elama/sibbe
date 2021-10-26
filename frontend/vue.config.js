@@ -140,7 +140,9 @@ if (process.env.NODE_ENV === "production") {
 				plugins: [new TsconfigPathsPlugin({})]
 			}
 		},
-
+		devServer: {
+			host: "localhost"
+		},
 		css: {
 			loaderOptions: {
 				scss: {

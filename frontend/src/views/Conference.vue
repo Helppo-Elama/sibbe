@@ -141,9 +141,6 @@ export default Vue.extend({
 			two: images.two,
 			headerImages
 		}
-	},
-	mounted(): void {
-		console.log("🎀 Conference mounted.")
 	}
 })
 </script>

@@ -43,7 +43,7 @@
         <script src="<?php echo e(mix('js/app.js')); ?>" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <?php if(env('APP_ENV') !='production'): ?>
+        <?php if(app()->environment('local')): ?>
         <script src="https://localhost:3000/browser-sync/browser-sync-client.js"></script>
         <?php endif; ?>
         <!-- Inertia -->

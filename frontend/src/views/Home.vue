@@ -67,9 +67,6 @@ export default Vue.extend({
 			fbUrl: socialUrls.fbUrl,
 			headerImages
 		}
-	},
-	mounted(): void {
-		console.log("👽 Home mounted!")
 	}
 })
 </script>

@@ -88,7 +88,6 @@ export default Vue.extend({
 		}
 	},
 	mounted(): void {
-		console.log("🎈 Reviews mounted.")
 		let max: number
 		this.stars.forEach((data) => {
 			if (max < data.level) max = data.level

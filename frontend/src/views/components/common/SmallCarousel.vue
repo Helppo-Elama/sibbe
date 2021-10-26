@@ -104,7 +104,6 @@ export default Vue.extend({
 		}
 	},
 	mounted(): void {
-		console.log("🎠 Room Carousel mounted.")
 		this.$nextTick(() => {
 			this.getCarouselHeight()
 		})

@@ -14,7 +14,6 @@ const mix = require("laravel-mix")
 
 mix
 	.js("resources/js/app.js", "public/js")
-	.version()
 	.vue()
 	.postCss("resources/css/app.css", "public/css", [
 		require("postcss-import"),
@@ -26,7 +25,9 @@ mix
 if (mix.inProduction()) {
 	mix.version()
 }
+
 if (!mix.inProduction()) {
+	console.log("hep")
 	mix.browserSync({
 		proxy: "service.sibbe.test",
 		open: false,
@@ -36,6 +37,7 @@ if (!mix.inProduction()) {
 		}
 	})
 }
+
 if (process.env.npm_lifecycle_event === "hot") {
 	const path = require("path")
 	mix.webpackConfig({

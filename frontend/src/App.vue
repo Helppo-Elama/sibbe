@@ -19,10 +19,7 @@ import Vue from "vue"
 export default Vue.extend({
 	name: "App",
 	components: { Nav },
-	mixins: [update],
-	mounted(): void {
-		console.log("👏 App mounted")
-	}
+	mixins: [update]
 })
 </script>
 <style lang="scss">

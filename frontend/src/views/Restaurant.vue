@@ -2,14 +2,14 @@
 	<div class="text-center">
 		<Carousel :images="carouselImages" :text-overlay="['VILLA', 'Sibbe']" />
 		<v-container fluid>
+			<!--
 			<v-row
 				class="half-quart-height"
 				:class="{
 					'mb-16': $vuetify.breakpoint.xsOnly
 				}"
-				align="center"
-				justify="center"
-			>
+				 -->
+			<v-row align="center" justify="center">
 				<v-col cols="12" class="green-on-light pb-16 pt-16">
 					<h3
 						class="font-italic"
@@ -36,6 +36,13 @@
 						:class-list="'color-dark'"
 					/>
 				</v-col>
+			</v-row>
+			<v-row class="dark-on-light">
+				<v-col cols="12" class="d-flex align-center justify-center pb-16"
+					><h1 class="bello text-center">Tulevia tapahtumia</h1></v-col
+				>
+				<v-col cols="12" class="d-flex pb-16"><Isanpaiva /></v-col>
+				<v-col cols="12" class="d-flex pb-16"><Joulu /></v-col>
 			</v-row>
 			<v-row class="light-on-green full-height pt-16 pb-16">
 				<v-col cols="12 px-1">
@@ -109,6 +116,8 @@ import ServiceHours from "@c/common/ServiceHours.vue"
 import SmallCarousel from "@c/common/SmallCarousel.vue"
 import ContactForm from "@c/ContactForm.vue"
 import GoogleMaps from "@c/GoogleMaps.vue"
+import Isanpaiva from "@c/restaurant/Isanpaiva.vue"
+import Joulu from "@c/restaurant/Joulu.vue"
 import LunchParser from "@c/restaurant/LunchParser.vue"
 import VueFB from "@c/VueFB.vue"
 import { socialUrls } from "@d/company/company.data"
@@ -147,6 +156,8 @@ export default Vue.extend({
 		SmallCarousel,
 		ServiceHours,
 		OpenClosed,
+		Isanpaiva,
+		Joulu,
 		VueFB,
 		ContactForm,
 		MenuParser,
@@ -216,7 +227,6 @@ export default Vue.extend({
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY
 		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!")
-		console.log("🍕 Restaurant mounted!")
 	}
 })
 </script>

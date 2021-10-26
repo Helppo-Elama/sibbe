@@ -72,9 +72,6 @@ export default Vue.extend({
 		data(): IRoomAdditionalData {
 			return this.$props.additional.data
 		}
-	},
-	mounted(): void {
-		console.log("👓 Accommodation additional data parser mounted.")
 	}
 })
 </script>

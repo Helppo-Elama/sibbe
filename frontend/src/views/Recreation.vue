@@ -476,9 +476,6 @@ export default Vue.extend({
 			uimajarvi,
 			venevuokraus
 		}
-	},
-	mounted(): void {
-		console.log("👽 Recreation mounted!")
 	}
 })
 </script>

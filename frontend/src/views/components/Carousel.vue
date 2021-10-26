@@ -141,7 +141,6 @@ export default Vue.extend({
 		}
 	},
 	mounted(): void {
-		console.log("🎭 Carousel mounted.")
 		this.$nextTick(() => {
 			this.getCarouselHeight()
 		})

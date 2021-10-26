@@ -450,7 +450,6 @@ export default Vue.extend({
 			this.selectRoomIndex = 0
 			this.siteminderMore()
 		}
-		console.log("🏰 Booking mounted.")
 	}
 })
 </script>

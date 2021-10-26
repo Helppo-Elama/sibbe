@@ -78,9 +78,6 @@ const accommodation = Vue.extend({
 			one: images.one,
 			carouselImages
 		}
-	},
-	mounted(): void {
-		console.log("🎀 Accommodation mounted.")
 	}
 })
 export default accommodation

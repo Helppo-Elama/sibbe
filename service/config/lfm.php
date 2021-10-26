@@ -15,7 +15,7 @@ return [
     |--------------------------------------------------------------------------
      */
 
-    'use_package_routes'       => true,
+    'use_package_routes'       => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -55,6 +55,7 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
+                'image/webp',
                 'image/svg+xml',
                 'application/pdf',
                 'text/plain',
@@ -69,6 +70,7 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
+                'image/webp',
                 'image/svg+xml',
             ],
         ],
@@ -125,6 +127,7 @@ return [
         'image/jpeg',
         'image/pjpeg',
         'image/png',
+        'image/webp',
     ],
 
     'thumb_img_width'          => 200, // px
@@ -148,6 +151,7 @@ return [
         'jpg'  => 'JPEG Image',
         'jpeg' => 'JPEG Image',
         'png'  => 'PNG Image',
+        'webp'  => 'WEBP Image',
         'ppt'  => 'Microsoft PowerPoint',
         'pptx' => 'Microsoft PowerPoint',
     ],

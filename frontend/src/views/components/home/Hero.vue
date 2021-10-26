@@ -121,9 +121,6 @@ library.add(faUsers, faBed, faHeart, faCircle)
 
 export default Vue.extend({
 	name: "Hero",
-	mounted(): void {
-		console.log("🦺 Hero mounted!")
-	},
 	methods: {
 		faHoverStyle(el: string) {
 			;(this.$refs[el] as SVGElement).classList.add(`${el}-circle-hover`)

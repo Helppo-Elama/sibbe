@@ -108,8 +108,6 @@ const nav = (Vue as VueConstructor<Vue & VuetifyVue>).extend({
 	},
 	mounted() {
 		if (this.$vuetify.breakpoint.xlOnly) this.sidebar = true
-
-		console.log("🥽 Nav mounted.")
 	}
 })
 export default nav
