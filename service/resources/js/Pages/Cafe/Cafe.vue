@@ -20,7 +20,14 @@
 							<div class="justify-self-center"></div>
 						</div>
 					</div>
-					<MenuIterator :data="menu" :type="'cafe'" @delete="deleteType" @change="updateType" />
+					<MenuIterator
+						:data="menu"
+						:type="'cafe'"
+						@delete="deleteType"
+						@change="updateType"
+						@update-items="updateItems"
+						:key="componentKey"
+					/>
 					<div class="flex justify-center w-100 py-6">
 						<jet-button class="px-24" @click.native="addType()" action="add">
 							Lisää uusi kategoria
@@ -36,7 +43,7 @@
 import AppLayout from "@/Layouts/AppLayout"
 import JetButton from "@/Jetstream/Button"
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import { postCafeTypeUrl, deleteCafeTypeUrl } from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 import MenuIterator from "@/Components/Common/Menu/MenuIterator"
 
 export default {
@@ -65,8 +72,14 @@ export default {
 		}
 	},
 	methods: {
+		refreshComponent() {
+			this.componentKey += 1
+		},
+		updateItems({ i, portions }) {
+			this.menu[i].json = portions
+		},
 		async addType() {
-			const url = postCafeTypeUrl()
+			const url = buildUrl("cafe/type/post")
 			const item = { type: "", icon: "", json: "", id: null }
 			const i = this.menu.push(item) - 1
 			const json = JSON.stringify(item)
@@ -78,27 +91,24 @@ export default {
 			} else this.$message.error("Kategorian tallentamisessa tapahtui virhe")
 		},
 		async deleteType(i) {
-			const url = deleteCafeTypeUrl()
+			const url = buildUrl("cafe/type/delete")
 			const { id } = this.menu[i]
 			const request = { url, id }
 			const response = await axiosDelete(request)
 			if (response) {
 				this.$message.success(response.message)
 				this.menu.splice(i, 1)
-				this.forceRerender()
+				this.$nextTick(() => this.refreshComponent())
 			} else this.$message.error("Kategorian poistossa tapahtui virhe")
 		},
 		async updateType({ data, i }) {
-			const url = postCafeTypeUrl()
+			const url = buildUrl("cafe/type/post")
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
 				this.$message.success(response.message)
 				this.menu[i] = data
 			} else this.$message.error("Tietojen tallentamisessa tapahtui virhe")
-		},
-		forceRerender() {
-			this.componentKey += 1
 		}
 	}
 }

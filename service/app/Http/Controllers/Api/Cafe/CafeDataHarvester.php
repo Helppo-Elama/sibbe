@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\Cafe;
 
 use App\Models\Cafe\Cafe;
-use App\Models\Cafe\Event;
+use App\Models\Events\Event;
 use App\Models\ServiceHours\ServiceHour;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class CafeDataHarvester
@@ -19,7 +18,7 @@ class CafeDataHarvester
         }
         return $menu_items;
     }
-
+    /*
     public static function getEvents(): Builder
     {
 
@@ -30,7 +29,7 @@ class CafeDataHarvester
         }
         return $events;
     }
-
+*/
     public static function getServiceHours(): ServiceHour
     {
         $service_hour_item = ServiceHour::where(["title" => "cafe"])->get()->first();

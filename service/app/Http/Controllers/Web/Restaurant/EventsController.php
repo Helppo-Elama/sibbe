@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\Restaurant;
 
 
 use Illuminate\Http\Request;
-use App\Models\Restaurant\Event;
+use App\Models\Events\Event;
 use Inertia\Inertia;
 
 

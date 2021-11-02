@@ -30,6 +30,11 @@ Route::middleware(["auth:sanctum", "verified"])
     ->prefix("defaults")
     ->group(base_path("routes/web/defaults.php"));
 
+Route::middleware(["auth:sanctum", "verified"])
+    ->get("/editor", function () {
+        return Inertia::render("Editor");
+    })
+    ->name("dashboard");
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("filemanager")

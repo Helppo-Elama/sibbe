@@ -15,7 +15,7 @@ class CafeController extends Controller
         return response()->json([
             "menu" => $menu_items,
             //"events" => $events,
-            "service_hours" => $service_hours,
+            "serviceHours" => $service_hours,
         ], 200);
     }
 }

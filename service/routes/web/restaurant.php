@@ -11,11 +11,14 @@ use Inertia\Inertia;
 Route::get("/lunch", function () {
     return Inertia::render("Restaurant/Lunch");
 })->name("restaurant.lunch");
-Route::get("/lunch/lunches", [LunchController::class, "get"]);
+
+Route::get("/lunch/lunches", [LunchController::class, "getLunches"]);
+Route::get("/lunch/presistent", [LunchController::class, "getPresistentLunch"]);
 Route::get("/defaults/lunch", [DefaultsController::class, "getLunchDefaults"]);
 
 Route::post("/lunch/post", [LunchController::class, "postLunch"]);
 Route::post("/lunch/date/post", [LunchController::class, "postDate"]);
+Route::post("/lunch/presistent/post", [LunchController::class, "postPresistentLunch"]);
 
 Route::delete("/lunch/delete", [LunchController::class, "deleteLunch"]);
 

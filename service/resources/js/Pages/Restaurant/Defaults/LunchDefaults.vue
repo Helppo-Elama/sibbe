@@ -42,7 +42,7 @@ import TimeBetweenInput from "@/Components/Common/InputTimeBetween"
 
 import { axiosPost } from "@/Helpers/js/axios"
 
-import { postRestaurantLunchDefaults } from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 
 export default {
 	components: {
@@ -72,7 +72,7 @@ export default {
 		async updateDefaults() {
 			const data = window._.cloneDeep(this.defaults)
 			data.title = "lunch"
-			const url = postRestaurantLunchDefaults()
+			const url = buildUrl("defaults/restaurant/lunch/post")
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {

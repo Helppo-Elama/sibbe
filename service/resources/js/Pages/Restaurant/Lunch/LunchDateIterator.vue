@@ -60,11 +60,7 @@ import { capitalize } from "@/Helpers/js/common"
 import { ISOStringToDate } from "@/Helpers/js/dateFunctions"
 
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import {
-	postRestaurantLunchUrl,
-	postRestaurantLunchDateUrl,
-	deleteRestaurantLunchUrl
-} from "@/Helpers/js/apiEndPoints"
+import { buildUrl, deleteRestaurantLunchUrl } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "@/Components/Common/Menu/MenuItems"
 
@@ -177,7 +173,7 @@ export default {
 			const i = target
 			if (portions) this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
-			const url = postRestaurantLunchUrl()
+			const url = buildUrl("restaurant/lunch/post")
 			const response = await axiosPost({ url, json })
 			if (response) {
 				this.$message.success(response.message)
@@ -202,7 +198,7 @@ export default {
 				"serving_time",
 				"type"
 			])
-			const url = postRestaurantLunchDateUrl()
+			const url = buildUrl("restaurant/lunch/date/post")
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {

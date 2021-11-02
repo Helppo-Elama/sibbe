@@ -6,12 +6,12 @@ use LimitIterator;
 
 use Illuminate\Http\Request;
 use App\Models\Restaurant\Lunch;
+use App\Models\Restaurant\Data;
 use App\Models\Defaults\RestaurantDefault;
 use Helpers\Date\DateRangeIterator;
 
 use App\Http\Controllers\Controller;
-
-
+use App\Models\ServiceHours\ServiceHour;
 
 class LunchController extends Controller
 {
@@ -19,7 +19,6 @@ class LunchController extends Controller
     {
         Lunch::where(["date" => $request->date])
             ->update(["price" => $request->price, "price_additional" => $request->price_additional, "type" => $request->type, "serving_time" => $request->serving_time]);
-
         return response()->json(["message" => "Päivä päivitetty"], 200);
     }
 
@@ -27,20 +26,18 @@ class LunchController extends Controller
     {
         Lunch::where(["date" => $request->date])
             ->update(["json" => $request->json]);
-
         return response()->json(["message" => "Lounas päivitetty"], 200);
     }
+
     public function deleteLunch(Request $request)
     {
         Lunch::where(["date" => $request->date])
             ->update(["json" => $request->json]);
-
         return response()->json(["message" => "Annos poistettu"], 200);
     }
 
-    public function get(Request $request)
+    public function getLunches(Request $request)
     {
-
         $start = $request->start_date;
         $end = $request->end_date;
         $max = 50;
@@ -84,5 +81,16 @@ class LunchController extends Controller
             $lunch->serving_time = json_decode($lunch->serving_time);
         }
         return response()->json($lunches, 200);
+    }
+
+    public function getPresistentLunch(): mixed
+    {
+        $data = ["json" => Data::getPresistentLunch(), "service_hours" => ServiceHour::getPresistentLunch()];
+        return response()->json($data, 200);
+    }
+    public function postPresistentLunch(Request $request)
+    {
+        $message = Data::postPresistentLunch($request);
+        return response()->json(["message" => $message], 200);
     }
 }

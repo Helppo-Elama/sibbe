@@ -60,11 +60,7 @@ import { capitalize } from "@/Helpers/js/common"
 import { ISOStringToDate } from "@/Helpers/js/dateFunctions"
 
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import {
-	postRestaurantLunchUrl,
-	postRestaurantLunchDateUrl,
-	deleteRestaurantLunchUrl
-} from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "@/Components/Common/Menu/MenuItems"
 
@@ -150,7 +146,7 @@ export default {
 		async deleteItem({ target, i }) {
 			this.items[target].json.splice(i, 1)
 			const json = window._.pick(this.items[target], ["date", "json"])
-			const url = deleteRestaurantLunchUrl()
+			const url = buildUrl("restaurant/lunch/delete")
 			const response = await axiosDelete({ url, json })
 			if (response) {
 				this.$message.warn(response.message)

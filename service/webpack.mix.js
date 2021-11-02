@@ -27,7 +27,6 @@ if (mix.inProduction()) {
 }
 
 if (!mix.inProduction()) {
-	console.log("hep")
 	mix.browserSync({
 		proxy: "service.sibbe.test",
 		open: false,

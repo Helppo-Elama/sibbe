@@ -16,7 +16,7 @@
 				</div>
 				<div @change="updateHandler(i)">
 					<text-input v-model="portion.title">Nimike</text-input>
-					<text-area v-model="portion.body">Nimike</text-area>
+					<text-area v-model="portion.body">Tarkempi kuvaus</text-area>
 					<text-input v-model="portion.ingredients">Ainesosat</text-input>
 					<number-between-input
 						:price="portion.price"

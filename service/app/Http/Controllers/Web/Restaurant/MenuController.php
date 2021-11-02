@@ -31,7 +31,7 @@ class MenuController extends Controller
 
     public function postItem(Request $request)
     {
-        Menu::where(["type" => $request->type])
+        Menu::where(["id" => $request->id])
             ->update(["json" => $request->json]);
 
         return response()->json(["message" => "Lista päivitetty"], 200);
@@ -39,7 +39,7 @@ class MenuController extends Controller
 
     public function deleteItem(Request $request)
     {
-        Menu::where(["type" => $request->type])
+        Menu::where(["id" => $request->id])
             ->update(["json" => $request->json]);
 
         return response()->json(["message" => "Annos poistettu"], 200);

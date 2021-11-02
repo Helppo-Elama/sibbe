@@ -31,7 +31,7 @@ class CafeController extends Controller
 
     public function postItem(Request $request)
     {
-        Cafe::where(["type" => $request->type])
+        Cafe::where(["id" => $request->id])
             ->update(["json" => $request->json]);
 
         return response()->json(["message" => "Annos päivitetty"], 200);
@@ -39,7 +39,7 @@ class CafeController extends Controller
 
     public function deleteItem(Request $request)
     {
-        Cafe::where(["type" => $request->type])
+        Cafe::where(["id" => $request->id])
             ->update(["json" => $request->json]);
 
         return response()->json(["message" => "Annos poistettu"], 200);

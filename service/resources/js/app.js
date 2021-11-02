@@ -5,6 +5,8 @@ import Vue from "vue"
 
 import { App as InertiaApp, plugin as InertiaPlugin } from "@inertiajs/inertia-vue"
 
+import CKEditor from "@ckeditor/ckeditor5-vue2"
+
 import VueGlobalMessage from "vue-global-message"
 
 import PortalVue from "portal-vue"
@@ -14,6 +16,8 @@ import VCalendar from "v-calendar"
 require("./bootstrap")
 
 Vue.use(InertiaPlugin)
+
+Vue.use(CKEditor, {})
 
 Vue.use(VueGlobalMessage, {
 	zindex: 1000,

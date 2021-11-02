@@ -9,8 +9,7 @@
 				:class="{ 'translate-x-2': proxyChecked }"
 			></div>
 		</div>
-		<span class="mx-2" ref="switchLabel">{{ label }}</span>
-		<slot></slot>
+		<span class="mx-2" ref="switchLabel"><slot></slot></span>
 	</div>
 	<div v-else class="flex tooltip relative cursor-not-allowed">
 		<span
@@ -35,16 +34,19 @@
 				:class="{ 'translate-x-2': proxyChecked }"
 			></div>
 		</div>
-		<span class="ml-2" ref="switchLabel">{{ label }}</span>
+		<span class="ml-2" ref="switchLabel"><slot></slot></span>
 	</div>
 </template>
 
 <script>
 export default {
 	props: {
-		label: { type: String, default: "" },
 		disabled: { type: Boolean, default: false },
 		checked: {
+			type: Boolean,
+			default: false
+		},
+		inverted: {
 			type: Boolean,
 			default: false
 		}
@@ -62,12 +64,20 @@ export default {
 	watch: {
 		proxyChecked(val) {
 			const el = this.$refs.switchLabel
-			if (val === true) {
-				el.classList.add("text-red-500")
-				el.classList.add("line-through")
-			} else {
+			if (!this.inverted) {
+				if (val === true) {
+					el.classList.add("text-red-500")
+					el.classList.add("line-through")
+				} else {
+					el.classList.remove("text-red-500")
+					el.classList.remove("line-through")
+				}
+			} else if (val === true) {
 				el.classList.remove("text-red-500")
 				el.classList.remove("line-through")
+			} else {
+				el.classList.add("text-green-600")
+				el.classList.add("line-through")
 			}
 			this.$emit("change", val)
 		}

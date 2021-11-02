@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestaurantDatasTable extends Migration
+class CreateServiceHoursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateRestaurantDatasTable extends Migration
      */
     public function up()
     {
-        Schema::create("restaurant_datas", function (Blueprint $table) {
+        Schema::create("service_hours", function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("title")->nullable();
+            $table->date("closed_until")->nullable();
             $table->json("json")->nullable();
+            $table->date("start")->nullable();
+            $table->date("end")->nullable();
         });
     }
 
@@ -27,6 +31,6 @@ class CreateRestaurantDatasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("restaurant_datas");
+        Schema::dropIfExists("service_hours");
     }
 }

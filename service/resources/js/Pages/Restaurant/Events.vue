@@ -35,18 +35,18 @@
 							</div>
 						</div>
 						<div class="mt-6">
-							<JetSwitch
-								label="Aikaraja on rajattu kahden (2) viikon mittaiseksi."
+							<jet-switch
 								:disabled="datePicker.disabledWhenSelecting"
 								@change="datePicker.removeRangeLimit = !datePicker.removeRangeLimit"
-							/>
+								>Aikaraja on rajattu kahden (2) viikon mittaiseksi.</jet-switch
+							>
 						</div>
 						<div class="mt-2">
-							<JetSwitch
-								label="Menneitä päiviä ei voi muokata."
+							<jet-switch
 								:disabled="datePicker.disabledWhenSelecting"
 								@change="datePicker.allowPastDate = !datePicker.allowPastDate"
-							/>
+								>Menneitä päiviä ei voi muokata.</jet-switch
+							>
 						</div>
 					</div>
 					<DateIterator :data="lunches" :defaults="defaults" :key="componentKey" />

@@ -43,16 +43,7 @@ import JetButton from "@/Jetstream/Button"
 import TextInput from "@/Components/Common/InputText"
 
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import {
-	postRestaurantItemUrl,
-	deleteRestaurantItemUrl,
-	postRestaurantTypeUrl,
-	// postRestaurantDataUrl
-	postCafeItemUrl,
-	deleteCafeItemUrl,
-	postCafeTypeUrl
-	// postCafeDataUrl,
-} from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "./MenuItems"
 import Icons from "./Icons"
@@ -79,17 +70,17 @@ export default {
 			let result = false
 			if (this.type === "cafe") {
 				result = {
-					item: postCafeItemUrl(),
-					delete: deleteCafeItemUrl(),
-					type: postCafeTypeUrl()
-					// data: postCafeDataUrl,
+					item: buildUrl("cafe/post"),
+					delete: buildUrl("cafe/delete"),
+					data: buildUrl("cafe/data/post"),
+					type: buildUrl("cafe/type/post")
 				}
 			} else if (this.type === "restaurant") {
 				result = {
-					item: postRestaurantItemUrl(),
-					delete: deleteRestaurantItemUrl(),
-					type: postRestaurantTypeUrl()
-					// data: postCafeDataUrl,
+					item: buildUrl("restaurant/menu/post"),
+					delete: buildUrl("restaurant/menu/delete"),
+					data: buildUrl("restaurant/data/post"),
+					type: buildUrl("restaurant/menu/type/post")
 				}
 			}
 			return result
@@ -108,7 +99,7 @@ export default {
 	methods: {
 		async deleteItem({ target, i }) {
 			this.items[target].json.splice(i, 1)
-			const json = window._.pick(this.items[target], ["type", "json"])
+			const json = window._.pick(this.items[target], ["id", "json"])
 			const url = this.url.delete
 			const response = await axiosDelete({ url, json })
 			if (response) {
@@ -140,6 +131,7 @@ export default {
 			const response = await axiosPost({ url, json })
 			if (response) {
 				this.$message.success(response.message)
+				this.$emit("update-items", { i, portions })
 			} else this.$message.error("Annoksen tallentamisessa tapahtui virhe")
 		},
 		async updateType(i) {

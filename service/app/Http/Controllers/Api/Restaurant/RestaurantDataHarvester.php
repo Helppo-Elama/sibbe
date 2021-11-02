@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\Restaurant;
 
 use App\Models\Restaurant\Menu;
 use App\Models\Restaurant\Lunch;
+use App\Models\Restaurant\Data;
 use App\Models\Defaults\RestaurantDefault;
-use App\Models\Restaurant\Event;
+use App\Models\Events\Event;
 use App\Models\ServiceHours\ServiceHour;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class RestaurantDataHarvester
@@ -28,6 +28,11 @@ class RestaurantDataHarvester
         return $lunches;
     }
 
+    public static function getPresistentLunch()
+    {
+        $data = Data::getPresistentLunch();
+    }
+
     public static function getMenu(): Collection
     {
         $menu_items = Menu::all();
@@ -36,7 +41,7 @@ class RestaurantDataHarvester
         }
         return $menu_items;
     }
-
+    /*
     public static function getEvents(): Builder
     {
 
@@ -47,7 +52,7 @@ class RestaurantDataHarvester
         }
         return $events;
     }
-
+*/
     public static function getServiceHours(): ServiceHour
     {
         $service_hour_item = ServiceHour::where(["title" => "restaurant"])->get()->first();

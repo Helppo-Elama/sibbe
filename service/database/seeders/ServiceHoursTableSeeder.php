@@ -10,8 +10,10 @@ class ServiceHoursTableSeeder extends Seeder
 {
     public function run()
     {
+        $week_days = [["day" => "sunnuntai"], ["day" => "maanantai"], ["day" => "tiistai"], ["day" => "keskiviikko"], ["day" => "torstai"], ["day" => "perjantai"], ["day" => "lauantai"]];
         DB::table("service_hours")->delete();
-        ServiceHour::create(array("title" => "restaurant", "json" => null));
-        ServiceHour::create(array("title" => "cafe", "json" => null));
+        ServiceHour::create(array("title" => "restaurant", "json" => json_encode($week_days)));
+        ServiceHour::create(array("title" => "cafe", "json" => json_encode($week_days)));
+        ServiceHour::create(array("title" => "presistent_lunch", "json" => json_encode($week_days)));
     }
 }

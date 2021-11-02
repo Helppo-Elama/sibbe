@@ -15,6 +15,8 @@
     "@vue/cli-plugin-babel": "^4.5.11",
     "@vue/cli-service": "^4.5.11",
     "@vue/eslint-config-airbnb": "^5.3.0",
+    "browser-sync": "^2.27.7",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-custom-alias": "^1.2.0",
@@ -27,6 +29,8 @@
     "webpack-dev-server": "^4.0.0-rc.1"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^31.0.0",
+    "@ckeditor/ckeditor5-vue2": "^1.0.5",
     "@inertiajs/inertia-vue": "^0.7.2",
     "@mdi/js": "^5.9.55",
     "autoprefixer": "^10.3.2",

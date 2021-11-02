@@ -35,7 +35,7 @@
 						v-for="(d, i) in data"
 						:key="d.title"
 						class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-2"
-						@change="update(i)"
+						@change="update({ i })"
 					>
 						<div
 							class="
@@ -126,23 +126,7 @@
 								</tr>
 							</table>
 						</div>
-						<div>
-							<div class="text-xl text-bold text-center mt-6 mb-3">
-								{{ capitalize(translate(d.title)) }}n pidempiaikainen kiinniolo
-							</div>
-							<div class="text-bold text-center mt-6 mb-3">Avaamispäivä jos on tiedossa</div>
-							<div class="flex justify-center">
-								<div>
-									<v-date-picker
-										timezone="Europe/Helsinki"
-										locale="fi"
-										:min-date="new Date()"
-										:value="d.closedUntil"
-										@input="updateClosedUntil(i, $event)"
-									/>
-								</div>
-							</div>
-						</div>
+						<ClosedUntil :title="d.title" :closedUntil="d.closed_until" :i="i" @change="update" />
 					</div>
 				</div>
 			</div>
@@ -152,26 +136,20 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout"
+import ClosedUntil from "./ClosedUntil"
 import { axiosPost } from "@/Helpers/js/axios"
-import { postServiceHoursUrl } from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 import { capitalize } from "@/Helpers/js/common"
-import { dateToStringYYYYMMDD } from "@/Helpers/js/dateFunctions"
-
-const url = postServiceHoursUrl()
 
 export default {
 	components: {
-		AppLayout
+		AppLayout,
+		ClosedUntil
 	},
 	props: {
 		data: Array
 	},
 	methods: {
-		updateClosedUntil(dayIndex, date) {
-			const i = dayIndex
-			const isoDate = date ? dateToStringYYYYMMDD(date) : null
-			this.update(i, isoDate)
-		},
 		notValid(string) {
 			if (!string || !string.match(/\d+:\d+/)) {
 				return true
@@ -186,7 +164,7 @@ export default {
 			if (string === "restaurant") return "ravintola"
 			return undefined
 		},
-		async update(i, closedUntil) {
+		async update({ i, closedUntil }) {
 			const data = window._.pick(this.$props.data[i], ["title", "json", "closed_until"])
 			if (closedUntil !== data.closed_until) {
 				data.closed_until = closedUntil
@@ -198,6 +176,7 @@ export default {
 				if (day.close === (undefined || "")) data.json[j].close = null
 			}
 			const json = JSON.stringify(data)
+			const url = buildUrl("servicehours/post")
 			const response = await axiosPost({ url, json })
 			if (response) {
 				this.$message.success(response.message)
@@ -206,11 +185,9 @@ export default {
 	},
 	created() {
 		this.update = window._.debounce(this.update, 1000)
+	},
+	mounted() {
+		console.log(this.data)
 	}
 }
 </script>
-<style>
-tr:nth-child(2n) {
-	background-color: rgba(0, 0, 0, 0.05);
-}
-</style>

@@ -196,12 +196,13 @@ export default Vue.extend({
 				const response = await axios<{
 					lunches: IMenu
 					menu: IMenu
-					service_hours: IServiceHoursData
+					serviceHours: IServiceHoursData
 				}>({ url })
 				if (response) {
-					this.lunches = response.lunches
-					this.menu = response.menu
-					const serviceHours = response.service_hours
+					if (Array.isArray(response.lunches) && response.lunches.length)
+						this.lunches = response.lunches
+					if (Array.isArray(response.menu) && response.menu.length) this.menu = response.menu
+					const { serviceHours } = response
 					const l = serviceHours.json.length
 					for (let j = 0; j < l; j += 1) {
 						const day = serviceHours.json[j]

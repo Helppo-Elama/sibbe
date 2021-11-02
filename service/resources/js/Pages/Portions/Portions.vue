@@ -89,12 +89,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 
-import {
-	getPortionsUrl,
-	postPortionUrl,
-	getPortionsSearchUrl,
-	deletePortionUrl
-} from "@/Helpers/js/apiEndPoints"
+import { buildUrl, getPortionsSearchUrl } from "@/Helpers/js/apiEndPoints"
 import { axios, axiosPost, axiosDelete } from "@/Helpers/js/axios"
 import JetButton from "@/Jetstream/Button"
 import PortionItems from "./PortionItems"
@@ -140,7 +135,7 @@ export default {
 			this.portions = []
 		},
 		async fetchAllPortions() {
-			const url = getPortionsUrl()
+			const url = buildUrl("portions/portions")
 			const response = await axios(url)
 			if (response) {
 				this.portions = response
@@ -149,7 +144,7 @@ export default {
 		async updatePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
 			const data = window._.omit(portion, ["created_at", "updated_at"])
-			const url = postPortionUrl()
+			const url = buildUrl("portions/portion/post")
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
@@ -162,7 +157,7 @@ export default {
 		async deletePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
 			if (portion.id) {
-				const url = deletePortionUrl()
+				const url = buildUrl("portions/portion/delete")
 				const { id } = portion
 				const request = { url, id }
 				const response = await axiosDelete(request)

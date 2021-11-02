@@ -53,7 +53,10 @@
 					</v-lazy>
 				</v-col>
 			</v-row>
-			<v-row v-if="menu" class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16">
+			<v-row
+				v-if="menu !== undefined"
+				class="pl-0 pr-0 ma-0 light-on-green full-height pt-16 pb-16"
+			>
 				<v-col cols="12" class="pa-0 ma-0">
 					<menu-parser :items="menu" :color="'#eaeaea'" :class-list="'light-on-green'"
 						>Tarjoi&shy;lem&shy;me teille</menu-parser
@@ -147,11 +150,11 @@ export default Vue.extend({
 			try {
 				const response = await axios<{
 					menu: IMenu
-					service_hours: IServiceHoursData
+					serviceHours: IServiceHoursData
 				}>({ url })
 				if (response) {
-					this.menu = response.menu
-					const serviceHours = response.service_hours
+					if (Array.isArray(response.menu) && response.menu.length) this.menu = response.menu
+					const { serviceHours } = response
 					const l = serviceHours.json.length
 					for (let j = 0; j < l; j += 1) {
 						const day = serviceHours.json[j]
