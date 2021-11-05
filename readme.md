@@ -5,18 +5,10 @@
 ## Villa Sibbe
 
 - [ ] Find a correct way to organize interfaces, classes and types
-- [x] Basic frontend
-- [x] Automatic carousels
-- [x] Axios Sibbe Service
-- [x] Fix styles (carousel, calendar)
 
 ### Front page
 
 ### Restaurant & Cafe
-
-- [x] Menu
-- [x] Restaurant page
-- [x] Replace Google opening hours.
 
 ### Festivity
 
@@ -25,15 +17,11 @@
 
 ## Booking
 
-- [x] Call, reserve and ask
-- [x] Own booking page
+- [ ] Make it better (API)
 
 ## Cafe
 
 - [ ] Events
-- [x] Menu
-- [x] Restaurant page
-- [x] Replace Google opening hours
 
 &nbsp;
 
@@ -45,10 +33,8 @@
 
 ### Backend
 
-- [ ] Error handling!
-- [x] Lunch menus calendar
-- [x] A'la Carte
-- [ ] Other fields for frontend axios
+- [ ] Error handling! <- who needs this? No me...
+- [ ] Other fields for frontend
 - [ ] Image uploader with srcset support and auto resize
 - [ ] Integrate Opening hours to Facebook
 
@@ -63,5 +49,4 @@
 
 ### Api
 
-- [x] Fetch API for frontend (axios)
-- [x] Configure cross-origins properly
+- [ ] Make it faster!
