@@ -173,7 +173,7 @@ export default {
 			const i = target
 			if (portions) this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
-			const url = postRestaurantLunchUrl()
+			const url = buildUrl()
 			const response = await axiosPost({ url, json })
 			if (response) {
 				this.$message.success(response.message)
@@ -198,7 +198,7 @@ export default {
 				"serving_time",
 				"type"
 			])
-			const url = postRestaurantLunchDateUrl()
+			const url = buildUrl()
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
 			if (response) {
@@ -223,7 +223,7 @@ export default {
 		}
 	},
 	created() {
-		this.updateDate = window._.debounce(this.updateDate, 1000)
+		this.updateDate = window._.debounce(this.updateDate, 2000)
 	}
 }
 </script>

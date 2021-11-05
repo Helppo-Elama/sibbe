@@ -34,7 +34,7 @@ Route::middleware(["auth:sanctum", "verified"])
     ->get("/editor", function () {
         return Inertia::render("Editor");
     })
-    ->name("dashboard");
+    ->name("editor");
 
 Route::middleware(["auth:sanctum", "verified"])
     ->prefix("filemanager")

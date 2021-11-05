@@ -147,8 +147,8 @@ export default {
 		}
 	},
 	created() {
-		this.updateType = window._.debounce(this.updateType, 1000)
-		this.updateItem = window._.debounce(this.updateItem, 1000)
+		this.updateType = window._.debounce(this.updateType, 2000)
+		this.updateItem = window._.debounce(this.updateItem, 2000)
 	}
 }
 </script>

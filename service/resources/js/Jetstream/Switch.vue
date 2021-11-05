@@ -1,15 +1,24 @@
 <template>
-	<div v-if="!disabled" class="flex cursor-pointer" @click="proxyChecked = !proxyChecked">
+	<div
+		v-if="!disabled"
+		class="flex cursor-pointer"
+		:class="{ 'justify-center': center }"
+		@click="proxyChecked = !proxyChecked"
+	>
 		<div
 			class="w-8 h-5 flex items-center bg-gray-300 rounded-full p-1 duration-300 ease-in-out"
-			:class="{ 'bg-red-600': proxyChecked }"
+			:class="{ 'bg-red-600': proxyChecked, 'bg-green-600': !proxyChecked }"
 		>
 			<div
 				class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out"
 				:class="{ 'translate-x-2': proxyChecked }"
 			></div>
 		</div>
-		<span class="mx-2" ref="switchLabel"><slot></slot></span>
+		<span
+			class="mx-2"
+			:class="{ 'text-red-500 line-through': proxyChecked, 'text-green-600': !proxyChecked }"
+			><slot></slot
+		></span>
 	</div>
 	<div v-else class="flex tooltip relative cursor-not-allowed">
 		<span
@@ -27,14 +36,18 @@
 		>
 		<div
 			class="w-8 h-5 flex items-center bg-gray-300 rounded-full p-1 duration-300 ease-in-out"
-			:class="{ 'bg-red-600': proxyChecked }"
+			:class="{ 'bg-red-600': proxyChecked, 'bg-green-600': !proxyChecked }"
 		>
 			<div
 				class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out"
-				:class="{ 'translate-x-2': proxyChecked }"
+				:class="{ 'translate-x-2': proxyChecked, 'text-green-600': !proxyChecked }"
 			></div>
 		</div>
-		<span class="ml-2" ref="switchLabel"><slot></slot></span>
+		<span
+			class="ml-2"
+			:class="{ 'text-red-500 line-through': proxyChecked, 'text-green-600': !proxyChecked }"
+			><slot></slot
+		></span>
 	</div>
 </template>
 
@@ -46,23 +59,19 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		inverted: {
+		center: {
 			type: Boolean,
 			default: false
 		}
 	},
 	data() {
 		return {
-			proxyChecked: null
+			proxyChecked: this.checked
 		}
-	},
-	mounted() {
-		this.$nextTick(() => {
-			this.proxyChecked = this.checked
-		})
 	},
 	watch: {
 		proxyChecked(val) {
+			/*
 			const el = this.$refs.switchLabel
 			if (!this.inverted) {
 				if (val === true) {
@@ -73,12 +82,13 @@ export default {
 					el.classList.remove("line-through")
 				}
 			} else if (val === true) {
-				el.classList.remove("text-red-500")
+				el.classList.remove("text-green-600")
 				el.classList.remove("line-through")
 			} else {
 				el.classList.add("text-green-600")
 				el.classList.add("line-through")
 			}
+			*/
 			this.$emit("change", val)
 		}
 	}

@@ -19,20 +19,23 @@ class Data extends Model
         "json" => null,
     ];
 
-    public static function getPresistentLunch(): mixed
+    public static function getPresistentLunch() //: Mixed
     {
         $data = Data::where(["title" => "presistent_lunch_data"])->get()->first();
         $json = json_decode($data->json);
         return $json;
     }
-    public static function postPresistentLunch(Request $request) //: string
+    public static function postPresistentLunchData(String $json): String
     {
-        $start = $request->start;
-        $end = $request->end;
-        $enabled = $request->enabled;
-        $portions = $request->portions;
         $data = new Data;
-        $data->where(["title" => "presistent_lunch_data"]);
+        $data->where(["title" => "presistent_lunch_data"])->update(["json" => $json]);
         return "Lounastiedot päivitetty!";
+    }
+
+    public static function deletePresistentLunchDataPortions(string $portions): String
+    {
+        $data = new Data;
+        $data->where(["title" => "presistent_lunch_data"])->update(["json->portions" => $portions]);
+        return "Annos poistettu";
     }
 }

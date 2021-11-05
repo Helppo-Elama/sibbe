@@ -14,9 +14,13 @@
 							<h5 v-if="item.serving_time.start">
 								Tarjoiluaika: {{ item.serving_time.start }} - {{ item.serving_time.end }}
 							</h5>
-							<h5 v-else class="dislpay-1 museo"><br /></h5>
-							<h5 v-if="item.price" class="pt-5">Päivän hinta: {{ item.price }} EUR</h5>
-							<h5 v-else class="dislpay-1 museo pt-5"><br /></h5>
+							<h5 v-else class=""><br /></h5>
+							<h5 v-if="item.price" class="pt-5">
+								Päivän hinta: {{ item.price }}
+								<span v-if="item.price_additional"> - {{ item.price_additional }}</span> EUR
+							</h5>
+
+							<h5 v-else class="museo pt-5"><br /></h5>
 						</div>
 						<HorizontalLine :class-list="classList" />
 						<div v-for="(it, x) in item.json" :key="it.title + x" class="pl-10 pr-10 pb-5">
@@ -37,7 +41,7 @@
 									</v-col>
 									<v-col v-if="it.body" cols="12" class="pt-2 pl-5">{{ it.body }}</v-col>
 									<v-col v-if="it.ingredients" cols="12" class="pt-2 pl-5">{{
-										item.ingredients
+										it.ingredients
 									}}</v-col>
 									<v-col v-if="it.allergenic" cols="12" class="pt-2 pl-5"
 										><i>{{ it.allergenic }}</i></v-col

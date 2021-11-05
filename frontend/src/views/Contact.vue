@@ -124,7 +124,6 @@ export default Vue.extend({
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY
 		} else console.error("❌ VUE_APP_GOOGLE_API_KEY not set in .env!")
-		console.log("📡 Contact mounted.")
 	}
 })
 </script>

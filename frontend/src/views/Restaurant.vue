@@ -70,6 +70,13 @@
 					</p>
 				</v-col>
 			</v-row>
+			<v-row v-if="havePresistentLunches" class="dark-on-yellow full-height pt-16 pb-16">
+				<v-col cols="12" class="pa-0 ma-0">
+					<presistent-lunch-parser :data="lunches" :color="'#424242'" :class-list="'dark-on-yellow'"
+						>Lounas</presistent-lunch-parser
+					>
+				</v-col>
+			</v-row>
 			<v-row v-if="haveLunches" class="dark-on-yellow full-height pt-16 pb-16">
 				<v-col cols="12" class="pa-0 ma-0">
 					<lunch-parser :items="lunches" :color="'#424242'" :class-list="'dark-on-yellow'"
@@ -119,11 +126,12 @@ import GoogleMaps from "@c/GoogleMaps.vue"
 import Isanpaiva from "@c/restaurant/Isanpaiva.vue"
 import Joulu from "@c/restaurant/Joulu.vue"
 import LunchParser from "@c/restaurant/LunchParser.vue"
+import PresistentLunchParser from "@c/restaurant/PresistentLunchParser.vue"
 import VueFB from "@c/VueFB.vue"
 import { socialUrls } from "@d/company/company.data"
 import { IImage } from "@d/interfaces/images.interface"
 import { IGoogleMapsInit } from "@d/interfaces/maps.interface"
-import { IMenu } from "@d/interfaces/menu.interface"
+import { ILunch, IMenu } from "@d/interfaces/menu.interface"
 import { IRestaurantData } from "@d/interfaces/restaurant.interface"
 import { IServiceHoursData } from "@d/interfaces/servicehours.interface"
 import { mapOptions, markerOptions, placeIds, routeDestination } from "@d/maps"
@@ -162,6 +170,7 @@ export default Vue.extend({
 		ContactForm,
 		MenuParser,
 		LunchParser,
+		PresistentLunchParser,
 		GoogleMaps
 	},
 	data(): {
@@ -171,9 +180,10 @@ export default Vue.extend({
 		menuImages: Array<IImage>
 		data: undefined | IRestaurantData
 		menu: undefined | IMenu
-		lunches: undefined | IMenu
+		lunches: undefined | ILunch
 		googleMapsInit: IGoogleMapsInit
 		haveLunches: boolean
+		havePresistentLunches: boolean
 		serviceHours: undefined | IServiceHoursData
 	} {
 		return {
@@ -186,6 +196,7 @@ export default Vue.extend({
 			lunches: undefined,
 			googleMapsInit,
 			haveLunches: false,
+			havePresistentLunches: false,
 			serviceHours: undefined
 		}
 	},
@@ -194,12 +205,14 @@ export default Vue.extend({
 			const url = createURL()
 			try {
 				const response = await axios<{
-					lunches: IMenu
+					lunches: ILunch
 					menu: IMenu
 					serviceHours: IServiceHoursData
 				}>({ url })
 				if (response) {
-					if (Array.isArray(response.lunches) && response.lunches.length)
+					if (Object.hasOwnProperty.call(response.lunches, "presistentLunch")) {
+						this.lunches = response.lunches
+					} else if (Array.isArray(response.lunches) && response.lunches.length)
 						this.lunches = response.lunches
 					if (Array.isArray(response.menu) && response.menu.length) this.menu = response.menu
 					const { serviceHours } = response
@@ -219,11 +232,15 @@ export default Vue.extend({
 	async mounted(): Promise<void> {
 		await this.fetchAll()
 		if (this.lunches) {
-			this.lunches.forEach((lunch) => {
-				if (Array.isArray(lunch.json)) {
-					if (lunch.json.length > 0) this.haveLunches = true
-				}
-			})
+			if (Object.hasOwnProperty.call(this.lunches, "presistentLunch")) {
+				this.havePresistentLunches = true
+			} else {
+				;(this.lunches as IMenu).forEach((lunch) => {
+					if (Array.isArray(lunch.json)) {
+						if (lunch.json.length > 0) this.haveLunches = true
+					}
+				})
+			}
 		}
 		if (process.env.VUE_APP_GOOGLE_API_KEY) {
 			this.googleMapsInit.apiKey = process.env.VUE_APP_GOOGLE_API_KEY

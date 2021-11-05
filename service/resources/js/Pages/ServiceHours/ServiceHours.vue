@@ -6,16 +6,16 @@
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white shadow-xl sm:rounded-lg pb-6">
-					<div class="pt-2 px-6">
-						<div class="font-semibold text-xl pb-1">Aukioloaikojen täyttöohje</div>
-						<ul class="list-disc prose px-6 pb-3">
+					<div class="pt-6 px-10">
+						<div class="font-semibold text-xl pb-4 text-center">Aukioloaikojen täyttöohje</div>
+						<ul class="list-disc px-6 pb-3">
 							<li>
 								Raksi ruudussa, jolloin viikonpäivä ei ole punaisella, merkitsee sitä että olemme
 								auki.
 							</li>
 							<li>
 								Täyttäkää huolellisesti pyydetyt ajat. Jos päivä ei ole punaisella eli olemme auki
-								ja jokin aika puuttuu se tulee puuttumaan myös asiakasnäkymästä.
+								ja jokin aika puuttuu se tulee näkymään "undefined" -tekstinä asiakasnäkymässä.
 							</li>
 							<li>
 								Jos olemme kiinni aukioloaikoja ei tarvitse poistaa vaan ne voivat odottaa rauhassa
@@ -184,10 +184,7 @@ export default {
 		}
 	},
 	created() {
-		this.update = window._.debounce(this.update, 1000)
-	},
-	mounted() {
-		console.log(this.data)
+		this.update = window._.debounce(this.update, 2000)
 	}
 }
 </script>

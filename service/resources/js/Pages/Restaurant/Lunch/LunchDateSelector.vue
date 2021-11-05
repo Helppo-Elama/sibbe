@@ -1,6 +1,8 @@
 <template>
-	<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-		<div class="text-2xl text-center">Päiväkohtainen lounaslista</div>
+	<div class="pt-2 px-2">
+		<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300 bg-gray-300">
+			Päiväkohtainen lounaslista
+		</div>
 		<div class="mt-6">
 			<v-date-picker
 				:value="null"
@@ -24,12 +26,12 @@
 			</div>
 		</div>
 		<div class="mt-6">
-			<jet-switch :disabled="disabledWhenSelecting" @change="removeRangeLimit = !removeRangeLimit"
+			<jet-switch :disabled="disabledWhenSelecting" @change="noRangeLimit = !noRangeLimit"
 				>Aikaraja on rajattu kahden (2) viikon mittaiseksi.</jet-switch
 			>
 		</div>
 		<div class="mt-2">
-			<jet-switch :disabled="disabledWhenSelecting" @change="allowPastDate = !allowPastDate">
+			<jet-switch :disabled="disabledWhenSelecting" @change="noPastDates = !noPastDates">
 				Menneitä päiviä ei voi muokata.</jet-switch
 			>
 		</div>
@@ -51,8 +53,8 @@ export default {
 	},
 	data() {
 		return {
-			removeRangeLimit: false,
-			allowPastDate: false,
+			noRangeLimit: false,
+			noPastDates: false,
 			allowedDateRange: { start: now, end: null },
 			selectedDateRange: { start: null, end: null },
 			disabledWhenSelecting: false,
@@ -61,8 +63,8 @@ export default {
 	},
 	watch: {
 		// eslint-disable-next-line func-names
-		allowPastDate(val) {
-			if (val === false) {
+		noPastDates(val) {
+			if (val === true) {
 				this.allowedDateRange.start = null
 			} else {
 				this.allowedDateRange.start = now
@@ -78,7 +80,7 @@ export default {
 	methods: {
 		datePickerOnClick(val) {
 			const date = correctOffset(val.date)
-			const { removeRangeLimit, allowPastDate, selectedDateRange, allowedDateRange } = this
+			const { noRangeLimit, noPastDates, selectedDateRange, allowedDateRange } = this
 			if (selectedDateRange.start === null || selectedDateRange.end !== null) {
 				this.disabledWhenSelecting = true
 
@@ -87,13 +89,13 @@ export default {
 
 				allowedDateRange.start = date
 
-				if (removeRangeLimit) {
+				if (!noRangeLimit) {
 					allowedDateRange.end = addDays(date, 14)
 				}
 			} else if (selectedDateRange.end === null) {
 				selectedDateRange.end = date
 				allowedDateRange.end = null
-				if (allowPastDate) {
+				if (!noPastDates) {
 					allowedDateRange.start = now
 				} else {
 					allowedDateRange.start = null

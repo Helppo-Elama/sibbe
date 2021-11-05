@@ -1,3 +1,4 @@
+import { IServiceHours } from "./servicehours.interface"
 /* eslint-disable camelcase */
 
 export interface IMenuItem {
@@ -23,3 +24,10 @@ interface IMenuArray {
 }
 
 export type IMenu = Array<IMenuArray>
+
+export interface IPresistentLunch {
+	presistentLunch: { enabled: boolean; portions: Array<IMenuItem> }
+	serviceHours: IServiceHours
+}
+
+export type ILunch = IMenu | IPresistentLunch

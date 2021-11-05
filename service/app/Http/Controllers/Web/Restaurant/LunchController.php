@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\Web\Restaurant;
 
-use LimitIterator;
-
 use Illuminate\Http\Request;
 use App\Models\Restaurant\Lunch;
 use App\Models\Restaurant\Data;
-use App\Models\Defaults\RestaurantDefault;
-use Helpers\Date\DateRangeIterator;
-
 use App\Http\Controllers\Controller;
 use App\Models\ServiceHours\ServiceHour;
 
@@ -17,80 +12,53 @@ class LunchController extends Controller
 {
     public function postDate(Request $request)
     {
-        Lunch::where(["date" => $request->date])
-            ->update(["price" => $request->price, "price_additional" => $request->price_additional, "type" => $request->type, "serving_time" => $request->serving_time]);
-        return response()->json(["message" => "Päivä päivitetty"], 200);
+        $data = ["date" => $request->date, "price" => $request->price, "price_additional" => $request->price_additional, "type" => $request->type, "serving_time" => $request->serving_time];
+        $message = Lunch::postDate($data);
+        return response()->json(["message" => $message], 200);
     }
 
     public function postLunch(Request $request)
     {
-        Lunch::where(["date" => $request->date])
-            ->update(["json" => $request->json]);
-        return response()->json(["message" => "Lounas päivitetty"], 200);
+        $data = ["date" => $request->date, "json" => $request->json];
+        $message = Lunch::postLunch($data);
+        return response()->json(["message" => $message], 200);
     }
 
     public function deleteLunch(Request $request)
     {
-        Lunch::where(["date" => $request->date])
-            ->update(["json" => $request->json]);
-        return response()->json(["message" => "Annos poistettu"], 200);
+        $data = ["date" => $request->date, "json" => $request->json];
+        $message = Lunch::deleteLunch($data);
+        return response()->json(["message" => $message], 200);
     }
 
     public function getLunches(Request $request)
     {
-        $start = $request->start_date;
-        $end = $request->end_date;
-        $max = 50;
-
-        $lunches = Lunch::whereBetween("date", [$start, $end])->orderBy("date", "asc")->limit($max)->get();
-
-        $dates = [];
-        foreach (new LimitIterator(new DateRangeIterator($start, $end), 0, $max) as $date) {
-            array_push($dates, $date);
-        }
-        $dates_missing = [];
-
-        $defaults = RestaurantDefault::where(["title" => "lunch"])->first()->toArray();
-
-        // extract $serving_time, $price, $price_additional and $type from $defaults
-        extract((array)json_decode($defaults["json"]));
-        foreach ($dates as $date) {
-            if ($lunches->contains("date", $date) === false) {
-                $lunches->push((object)[
-                    "date" => $date,
-                    "json" =>  "",
-                    "serving_time" => json_encode($serving_time),
-                    "price" => $price,
-                    "price_additional" => $price_additional,
-                    "type" => $type
-                ]);
-                array_push($dates_missing, $date);
-            }
-        }
-        foreach ($lunches as $lunch) {
-            if (array_search($lunch->date, $dates_missing) !== false) {
-                Lunch::create([
-                    "date" => $lunch->date,
-                    "serving_time" => json_encode($serving_time),
-                    "price" => $price,
-                    "price_additional" => $price_additional,
-                    "type" => $type
-                ]);
-            }
-            $lunch->json = json_decode($lunch->json);
-            $lunch->serving_time = json_decode($lunch->serving_time);
-        }
+        $data = ["start" => $request->start_date, "end" => $request->end_date];
+        $lunches = Lunch::getLunches($data);
         return response()->json($lunches, 200);
     }
 
-    public function getPresistentLunch(): mixed
+    public function getPresistentLunch() //: Mixed
     {
         $data = ["json" => Data::getPresistentLunch(), "service_hours" => ServiceHour::getPresistentLunch()];
         return response()->json($data, 200);
     }
-    public function postPresistentLunch(Request $request)
+    public function postPresistentLunchData(Request $request)
     {
-        $message = Data::postPresistentLunch($request);
+        $json = json_encode(["enabled" => $request->enabled, "portions" => $request->portions]);
+        $message = Data::postPresistentLunchData($json);
+        return response()->json(["message" => $message], 200);
+    }
+    public function postPresistentLunchServiceHours(Request $request)
+    {
+        $data = ["json" => json_encode($request->service_hours), "start" => $request->start, "end" => $request->end];
+        $message = ServiceHour::postPresistentLunchServiceHours($data);
+        return response()->json(["message" => $message], 200);
+    }
+
+    public function deletePresistentLunchDataPortions(Request $request)
+    {
+        $message = Data::deletePresistentLunchDataPortions($request->getContent());
         return response()->json(["message" => $message], 200);
     }
 }

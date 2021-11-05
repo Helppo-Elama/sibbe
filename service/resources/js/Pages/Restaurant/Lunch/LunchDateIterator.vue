@@ -32,18 +32,22 @@
 					>
 				</div>
 			</div>
-			<MenuItems
-				:data="item.json"
-				:date="item.date"
-				:target="target"
-				@delete="deleteItem"
-				@change="updateItem"
-				:key="componentKey"
-			/>
-			<div class="flex justify-center w-100 py-6">
-				<jet-button class="px-12" @click.native="addItem(target)" action="add">
-					Lisää uusi annos
-				</jet-button>
+			<div class="bg-gray-200 bg-opacity-25">
+				<div class="p-4">
+					<MenuItems
+						:data="item.json"
+						:date="item.date"
+						:target="target"
+						@delete="deleteItem"
+						@change="updateItem"
+						:key="componentKey"
+					/>
+					<div class="flex justify-center w-100 py-2">
+						<jet-button class="px-12" @click.native="addItem(target)" action="add">
+							Lisää uusi annos
+						</jet-button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,7 +64,7 @@ import { capitalize } from "@/Helpers/js/common"
 import { ISOStringToDate } from "@/Helpers/js/dateFunctions"
 
 import { axiosPost, axiosDelete } from "@/Helpers/js/axios"
-import { buildUrl, deleteRestaurantLunchUrl } from "@/Helpers/js/apiEndPoints"
+import { buildUrl } from "@/Helpers/js/apiEndPoints"
 
 import MenuItems from "@/Components/Common/Menu/MenuItems"
 
@@ -146,7 +150,7 @@ export default {
 		async deleteItem({ target, i }) {
 			this.items[target].json.splice(i, 1)
 			const json = window._.pick(this.items[target], ["date", "json"])
-			const url = deleteRestaurantLunchUrl()
+			const url = buildUrl("restaurant/lunch/delete")
 			const response = await axiosDelete({ url, json })
 			if (response) {
 				this.$message.warn(response.message)
@@ -223,7 +227,7 @@ export default {
 		}
 	},
 	created() {
-		this.updateDate = window._.debounce(this.updateDate, 1000)
+		this.updateDate = window._.debounce(this.updateDate, 2000)
 	}
 }
 </script>

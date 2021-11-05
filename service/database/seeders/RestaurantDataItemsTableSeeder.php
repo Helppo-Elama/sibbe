@@ -12,7 +12,7 @@ class RestaurantDataItemsTableSeeder extends Seeder
     public function run()
     {
         DB::table("restaurant_data_items")->delete();
-        $json = ["start" => "", "end" => "", "enabled" => "", "portions" => []];
+        $json = ["enabled" => "", "portions" => []];
         Data::create(array("title" => "presistent_lunch_data", "description" => "Holds JSON data for presistent lunches. See service_hours for dates and times", "json" => json_encode($json)));
     }
 }

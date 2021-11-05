@@ -5,58 +5,52 @@
 		</template>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-						<div class="grid justify-items-stretch">
-							<div class="justify-self-center">
-								<div class="text-2xl text-center">Uudet annokset</div>
-								<div class="flex justify-center w-100 py-6 px-24">
-									<jet-button class="mr-3" action="add" @click.native="addPortion()">
-										Lisää uusi
-									</jet-button>
-									<jet-button class="ml-3" action="delete" @click.native="clearAddPortions()">
-										Tyhjennä tämä näkymä
-									</jet-button>
-								</div>
+				<div class="bg-white shadow-xl sm:rounded-lg pb-6">
+					<div class="pt-2 px-2">
+						<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300 bg-gray-300">
+							Uudet annoskortit
+						</div>
+						<div class="bg-gray-200 bg-opacity-25">
+							<div class="flex justify-center w-100 py-6 px-24">
+								<jet-button class="mr-3" action="add" @click.native="addPortion()">
+									Lisää uusi
+								</jet-button>
+								<jet-button class="ml-3" action="delete" @click.native="clearAddPortions()">
+									Tyhjennä tämä näkymä
+								</jet-button>
 							</div>
 						</div>
 					</div>
-					<div class="bg-gray-200 bg-opacity-25">
-						<div class="p-4">
-							<PortionItems
-								:data="newPortions"
-								:target="'newPortions'"
-								class="pb-12"
-								@delete="deletePortion"
-								@change="updatePortion"
-							/>
+					<PortionItems
+						:data="newPortions"
+						:target="'newPortions'"
+						class="pb-12"
+						@delete="deletePortion"
+						@change="updatePortion"
+					/>
+					<div class="pt-2 px-2">
+						<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300 bg-gray-300">
+							Hae ja muokkaa vanhoja annoksia
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="pb-6">
-			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-						<div class="mt-8 mb-6 text-2xl text-center">Hae ja muokkaa vanhoja annoksia</div>
-						<label>
-							<span class="pt-4 pb-1 pl-2 text-gray-700 block">Nimike</span>
-							<input
-								type="text"
-								class="
-									block
-									mt-1
-									w-full
-									rounded-md
-									border-gray-300
-									shadow-sm
-									focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-								"
-								placeholder="Etsi nimikettä..."
-								@keyup="search = $event.target.value"
-							/>
-						</label>
+						<div class="flex justify-center">
+							<label>
+								<span class="pt-4 pb-1 pl-2 text-gray-700 block">Nimike</span>
+								<input
+									type="text"
+									class="
+										block
+										mt-1
+										w-52
+										rounded-md
+										border-gray-300
+										shadow-sm
+										focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+									"
+									placeholder="Etsi nimikettä..."
+									@keyup="search = $event.target.value"
+								/>
+							</label>
+						</div>
 						<div v-if="zeroResults" class="text-red-500 text-center mt-3">
 							<b>Valitettavasti emme löytäneet yhtään hakuun sopivaa tulosta...</b>
 						</div>
@@ -69,17 +63,13 @@
 							</jet-button>
 						</div>
 					</div>
-					<div class="bg-gray-200 bg-opacity-25">
-						<div class="p-4">
-							<PortionItems
-								:data="portions"
-								:target="'portions'"
-								class="pb-12"
-								@delete="deletePortion"
-								@change="updatePortion"
-							/>
-						</div>
-					</div>
+					<PortionItems
+						:data="portions"
+						:target="'portions'"
+						class="pb-12"
+						@delete="deletePortion"
+						@change="updatePortion"
+					/>
 				</div>
 			</div>
 		</div>
@@ -102,8 +92,8 @@ export default {
 	},
 	data() {
 		return {
-			newPortions: undefined,
-			portions: undefined,
+			newPortions: [],
+			portions: [],
 			search: undefined,
 			zeroResults: false
 		}
@@ -125,7 +115,6 @@ export default {
 				price: "",
 				price_additional: ""
 			}
-			if (!Array.isArray(this.newPortions)) this.newPortions = []
 			this.newPortions.push(json)
 		},
 		clearAddPortions() {
@@ -143,7 +132,14 @@ export default {
 		},
 		async updatePortion({ target, i }) {
 			const portion = target === "newPortions" ? this.newPortions[i] : this.portions[i]
-			const data = window._.omit(portion, ["created_at", "updated_at"])
+			const data = window._.pick(portion, [
+				"title",
+				"body",
+				"price",
+				"price_additional",
+				"allergenic",
+				"ingredients"
+			])
 			const url = buildUrl("portions/portion/post")
 			const json = JSON.stringify(data)
 			const response = await axiosPost({ url, json })
@@ -165,7 +161,8 @@ export default {
 					this.$message.success(response.message)
 				} else this.$message.error("Annoskortin poistossa tapahtui virhe")
 			}
-			this.portions.splice(i, 1)
+			if (target === "newPortions") this.newPortions.splice(i, 1)
+			else this.portions.splice(i, 1)
 		},
 
 		searchHandlerWithDelay() {

@@ -11,13 +11,13 @@ class RestaurantController extends Controller
     public function get()
     {
         $lunches = RestaurantDataHarvester::getLunches();
-        $presistent_lunches = RestaurantDataHarvester::getPresistentLunch();
+        //$presistent_lunches = RestaurantDataHarvester::getPresistentLunch();
         $menu_items = RestaurantDataHarvester::getMenu();
         //$events = RestaurantDataHarvester::getEvents();
         $service_hours = RestaurantDataHarvester::getServiceHours();
         return response()->json([
             "lunches" => $lunches,
-            "presistentLunches" => $presistent_lunches,
+            //"presistentLunches" => $presistent_lunches,
             "menu" => $menu_items,
             //"events" => $events,
             "serviceHours" => $service_hours

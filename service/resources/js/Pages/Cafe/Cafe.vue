@@ -5,19 +5,10 @@
 		</template>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-						<div class="mt-8 text-2xl text-center">Perustiedot</div>
-						<div class="grid justify-items-stretch">
-							<div class="justify-self-center"></div>
-						</div>
-					</div>
-				</div>
-				<div class="bg-white shadow-xl sm:rounded-lg">
-					<div class="py-6 px-3 sm:px-5 md:px-20 bg-white border-b border-gray-200">
-						<div class="mt-8 text-2xl text-center">Valikoima</div>
-						<div class="grid justify-items-stretch">
-							<div class="justify-self-center"></div>
+				<div class="bg-white shadow-xl sm:rounded-lg pb-6">
+					<div class="pt-2 px-2">
+						<div class="mt-3 py-6 text-grey-600 text-2xl text-center bg-gray-300 bg-gray-300">
+							Valikoima
 						</div>
 					</div>
 					<MenuIterator
@@ -54,6 +45,11 @@ export default {
 	},
 	props: {
 		data: Array
+	},
+	data() {
+		return {
+			componentKey: 0
+		}
 	},
 	computed: {
 		menu: {

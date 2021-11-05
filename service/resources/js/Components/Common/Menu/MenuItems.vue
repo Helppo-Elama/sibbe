@@ -1,9 +1,9 @@
 <template>
-	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 px-2">
 		<div v-for="(item, i) in portions" :key="item + i">
 			<div class="mr-4">
 				<div class="pb-3 text-2xl text-gray-700">
-					<div class="break-words">{{ i + 1 }}. {{ item.title }}</div>
+					<div class="break-all">{{ i + 1 }}. {{ item.title }}</div>
 					<div class="flex justify-end">
 						<jet-button class="px-6 ml-3" @click.native="searchHandler(i)" action="search">
 							Hae
@@ -46,7 +46,7 @@ export default {
 	},
 	props: {
 		data: {
-			Type: Object
+			Type: Array
 		},
 		date: {
 			Type: String
@@ -57,7 +57,8 @@ export default {
 		return {
 			searchModal: false,
 			searchIndex: undefined,
-			portions: undefined
+			portions: [],
+			noUpdateFlag: false
 		}
 	},
 	watch: {
@@ -65,26 +66,21 @@ export default {
 			deep: true,
 			immediate: true,
 			handler() {
-				if (!this.portions) {
-					// REMOVE WHEN ALL PORTIONS HAVE ADDITIONAL PRICE
-					const data = window._.cloneDeep(this.data)
-					if (Array.isArray(data)) {
-						const l = data.length
-						for (let i = 0; i < l; i += 1) {
-							const d = data[i]
-							if (!Object.prototype.hasOwnProperty.call(d, "price_additional")) {
-								d.price_additional = null
-							}
-						}
-						this.portions = data
-					}
+				this.portions = []
+				const data = window._.cloneDeep(this.data)
+				const portions = window._.cloneDeep(this.portions)
+				if (data !== portions) {
+					this.portions = this.data
 				}
 			}
 		},
 		portions: {
 			deep: true,
-			handler() {
-				this.changeHandler()
+			handler(val, old) {
+				if (old.length !== 0 && this.noUpdateFlag === false) {
+					this.changeHandler()
+				}
+				if (this.noUpdateFlag) this.noUpdateFlag = false
 			}
 		}
 	},
@@ -95,29 +91,27 @@ export default {
 		},
 		deleteHandler(target, i) {
 			this.$emit("delete", { target, i })
+			this.noUpdateFlag = true
 		},
 		searchHandler(i) {
 			this.searchIndex = i
 			this.searchModal = true
 		},
-		searchResult(portion) {
+		searchResult(result) {
 			this.searchModal = false
 			if (typeof this.searchIndex === "number" && this.searchIndex >= 0) {
-				this.portions[this.searchIndex] = window._.pick(portion, [
-					"title",
-					"body",
-					"allergenic",
-					"ingredients",
-					"price",
-					"price_additional"
-				])
-				this.changeHandler()
+				this.$set(this.portions[this.searchIndex], "title", result.title)
+				this.$set(this.portions[this.searchIndex], "body", result.body)
+				this.$set(this.portions[this.searchIndex], "allergenic", result.allergenic)
+				this.$set(this.portions[this.searchIndex], "ingredients", result.ingredients)
+				this.$set(this.portions[this.searchIndex], "price", result.price)
+				this.$set(this.portions[this.searchIndex], "price_additional", result.price_additional)
 			} else this.$message.error("Annoksen lisääminen epäonnistui")
 			this.searchModal = false
 		}
 	},
 	created() {
-		this.emitHandler = window._.debounce(this.changeHandler, 1000)
+		this.emitHandler = window._.debounce(this.changeHandler, 2000)
 	}
 }
 </script>

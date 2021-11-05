@@ -23,3 +23,11 @@ export type IServiceHoursData = {
 	closed_until: string | null
 	json: IServiceHours
 }
+
+export type IOpenClosed = Array<
+	Record<
+		string,
+		| { start: IWeekDays; end: IWeekDays | undefined; hours?: string }
+		| { start: IWeekDays; end: IWeekDays | undefined }
+	>
+>

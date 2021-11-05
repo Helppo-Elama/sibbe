@@ -46,7 +46,6 @@ export const axiosDelete = async (request) => {
 				}
 			})
 		}
-		if (!response) throw new Error("❌ Cannot delete. No id, json, type or date")
 		return response.data
 	} catch (error) {
 		axiosError(200, error)

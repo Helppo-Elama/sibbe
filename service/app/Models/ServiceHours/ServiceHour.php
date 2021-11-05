@@ -21,7 +21,7 @@ class ServiceHour extends Model
         "end" => null,
     ];
 
-    public static function getRestaurantAndCafe(): mixed
+    public static function getRestaurantAndCafe() //: Mixed
     {
         $service_hour_items = ServiceHour::whereIn("title", ["restaurant", "cafe"])->get();
         $service_hour_items->makeHidden(["start", "end", "created_at", "updated_at", "id"]);
@@ -31,7 +31,7 @@ class ServiceHour extends Model
         return $service_hour_items;
     }
 
-    public static function getPresistentLunch(): mixed
+    public static function getPresistentLunch() //: Mixed
     {
         $service_hour_item = ServiceHour::where(["title" => "presistent_lunch"])->get()->first();
         $service_hour_item->makeHidden(["title", "closed_until", "created_at", "updated_at", "id"]);
@@ -39,7 +39,7 @@ class ServiceHour extends Model
         return $service_hour_item;
     }
 
-    public static function getClosedUntil(Request $request): mixed
+    public static function getClosedUntil(Request $request) //: Mixed
     {
         $service_hour_items = ServiceHour::where(["title" => $request->title])->get();
         foreach ($service_hour_items as $item) {
@@ -48,7 +48,7 @@ class ServiceHour extends Model
         return $service_hour_items[0]->closed_until;
     }
 
-    public static function post(Request $request): mixed
+    public static function post(Request $request) //: Mixed
     {
         if ($request->title === "presistent_lunch") {
             ServiceHour::where(["title" => $request->title])
@@ -59,5 +59,12 @@ class ServiceHour extends Model
             ->update(["closed_until" => $request->closed_until, "json" => $request->json]);
         $title = __($request->title);
         return ["message" => "Aukioloajat " . $title . "lle on päivitetty"];
+    }
+
+    public static function postPresistentLunchServiceHours(array $request_data): String
+    {
+        $service_hours = new ServiceHour;
+        $service_hours->where(["title" => "presistent_lunch"])->update(["json" => $request_data["json"], "start" => $request_data["start"], "end" => $request_data["end"]]);
+        return "Lounastietojen ajat päivitetty!";
     }
 }

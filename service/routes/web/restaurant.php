@@ -13,15 +13,20 @@ Route::get("/lunch", function () {
 })->name("restaurant.lunch");
 
 Route::get("/lunch/lunches", [LunchController::class, "getLunches"]);
-Route::get("/lunch/presistent", [LunchController::class, "getPresistentLunch"]);
 Route::get("/defaults/lunch", [DefaultsController::class, "getLunchDefaults"]);
 
 Route::post("/lunch/post", [LunchController::class, "postLunch"]);
 Route::post("/lunch/date/post", [LunchController::class, "postDate"]);
-Route::post("/lunch/presistent/post", [LunchController::class, "postPresistentLunch"]);
 
 Route::delete("/lunch/delete", [LunchController::class, "deleteLunch"]);
 
+// PRESISTENT LUNCH
+Route::get("/lunch/presistent", [LunchController::class, "getPresistentLunch"]);
+
+Route::post("/lunch/presistent/data/post", [LunchController::class, "postPresistentLunchData"]);
+Route::post("/lunch/presistent/servicehours/post", [LunchController::class, "postPresistentLunchServiceHours"]);
+
+Route::delete("/lunch/presistent/data/portions/delete", [LunchController::class, "deletePresistentLunchDataPortions"]);
 
 // MENU
 Route::get("/menu", [MenuController::class, "get"])->name("restaurant.menu");

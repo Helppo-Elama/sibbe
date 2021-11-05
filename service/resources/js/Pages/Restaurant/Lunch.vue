@@ -7,7 +7,7 @@
 		</template>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<div class="bg-white shadow-xl sm:rounded-lg">
+				<div class="bg-white shadow-xl sm:rounded-lg pb-6">
 					<PresistentLunch />
 					<LunchDateSelector @change="fetchData" />
 					<DateIterator :data="lunches" :defaults="defaults" :key="componentKey" />

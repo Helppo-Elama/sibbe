@@ -9,12 +9,23 @@ use App\Models\Defaults\RestaurantDefault;
 use App\Models\Events\Event;
 use App\Models\ServiceHours\ServiceHour;
 use Illuminate\Database\Eloquent\Collection;
+use DateTime;
 
 class RestaurantDataHarvester
 {
 
-    public static function getLunches(): Collection
+    public static function getLunches() //: Collection
     {
+        $presistent_lunch_data = Data::getPresistentLunch();
+        if ($presistent_lunch_data->enabled === true) {
+            $presistent_lunch_service_hours = ServiceHour::getPresistentLunch();
+            $date = new DateTime(date("Y-m-d"));
+            $start = new DateTime($presistent_lunch_service_hours["start"]);
+            $end = new DateTime($presistent_lunch_service_hours["end"]);
+            if ($date->getTimestamp() > $start->getTimestamp() && $date->getTimestamp() < $end->getTimestamp()) {
+                return ["presistentLunch" => $presistent_lunch_data, "serviceHours" => $presistent_lunch_service_hours];
+            };
+        };
         $start = date("Y-m-d");
         $defaults = RestaurantDefault::where(["title" => "lunch"])->first()->toArray();
         $json = json_decode($defaults["json"]);
@@ -26,11 +37,6 @@ class RestaurantDataHarvester
             $lunch->serving_time = json_decode($lunch->serving_time);
         }
         return $lunches;
-    }
-
-    public static function getPresistentLunch()
-    {
-        $data = Data::getPresistentLunch();
     }
 
     public static function getMenu(): Collection
