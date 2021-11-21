@@ -5,3 +5,6 @@
 tr:nth-child(2n) {
   background-color: rgba(0, 0, 0, 0.05);
 }
+.ck-content {
+  height: 400px !important;
+}

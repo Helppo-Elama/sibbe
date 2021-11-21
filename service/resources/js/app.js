@@ -5,19 +5,17 @@ import Vue from "vue"
 
 import { App as InertiaApp, plugin as InertiaPlugin } from "@inertiajs/inertia-vue"
 
-import CKEditor from "@ckeditor/ckeditor5-vue2"
-
 import VueGlobalMessage from "vue-global-message"
 
 import PortalVue from "portal-vue"
+
+import CKEditor from "ckeditor4-vue"
 
 import VCalendar from "v-calendar"
 
 require("./bootstrap")
 
 Vue.use(InertiaPlugin)
-
-Vue.use(CKEditor, {})
 
 Vue.use(VueGlobalMessage, {
 	zindex: 1000,
@@ -27,6 +25,8 @@ Vue.use(VueGlobalMessage, {
 Vue.use(PortalVue)
 
 Vue.use(VCalendar, {})
+
+Vue.use(CKEditor)
 
 // eslint-disable-next-line no-undef
 Vue.mixin({ methods: { route } })

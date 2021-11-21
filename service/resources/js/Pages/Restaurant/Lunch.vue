@@ -19,11 +19,11 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout"
-import PresistentLunch from "./Lunch/PresistentLunch"
-import LunchDateSelector from "./Lunch/LunchDateSelector"
+import PresistentLunch from "./Lunch/PresistentLunch.vue"
+import LunchDateSelector from "./Lunch/LunchDateSelector.vue"
 import { axios } from "@/Helpers/js/axios"
 import { getRestaurantLunchUrl, buildUrl } from "@/Helpers/js/apiEndPoints"
-import DateIterator from "./Lunch/LunchDateIterator"
+import DateIterator from "./Lunch/LunchDateIterator.vue"
 
 const now = new Date()
 export default {

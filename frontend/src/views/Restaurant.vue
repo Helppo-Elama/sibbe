@@ -41,7 +41,6 @@
 				<v-col cols="12" class="d-flex align-center justify-center pb-16"
 					><h1 class="bello text-center">Tulevia tapahtumia</h1></v-col
 				>
-				<v-col cols="12" class="d-flex pb-16"><Isanpaiva /></v-col>
 				<v-col cols="12" class="d-flex pb-16"><Joulu /></v-col>
 			</v-row>
 			<v-row class="light-on-green full-height pt-16 pb-16">
@@ -123,7 +122,6 @@ import ServiceHours from "@c/common/ServiceHours.vue"
 import SmallCarousel from "@c/common/SmallCarousel.vue"
 import ContactForm from "@c/ContactForm.vue"
 import GoogleMaps from "@c/GoogleMaps.vue"
-import Isanpaiva from "@c/restaurant/Isanpaiva.vue"
 import Joulu from "@c/restaurant/Joulu.vue"
 import LunchParser from "@c/restaurant/LunchParser.vue"
 import PresistentLunchParser from "@c/restaurant/PresistentLunchParser.vue"
@@ -164,7 +162,6 @@ export default Vue.extend({
 		SmallCarousel,
 		ServiceHours,
 		OpenClosed,
-		Isanpaiva,
 		Joulu,
 		VueFB,
 		ContactForm,

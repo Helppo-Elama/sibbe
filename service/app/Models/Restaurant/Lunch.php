@@ -23,28 +23,28 @@ class Lunch extends Model
         "serving_time" => null,
     ];
 
-    public static function postDate(array $data): String
+    public static function postDate(array $data) //: String
     {
         Lunch::where(["date" => $data["date"]])
             ->update(["price" => $data["price"], "price_additional" => $data["price_additional"], "type" => $data["type"], "serving_time" => $data["serving_time"]]);
         return "Päivä päivitetty";
     }
 
-    public static function postLunch(array $data): String
+    public static function postLunch(array $data) //: String
     {
         Lunch::where(["date" => $data["date"]])
             ->update(["json" => $data["json"]]);
         return "Lounas päivitetty";
     }
 
-    public static function deleteLunch(array $data): String
+    public static function deleteLunch(array $data) //: String
     {
         Lunch::where(["date" => $data["date"]])
             ->update(["json" => $data["json"]]);
         return "Annos poistettu";
     }
 
-    public static function getLunches(array $data): Collection
+    public static function getLunches(array $data) //: Collection
     {
         $start = $data["start"];
         $end = $data["end"];

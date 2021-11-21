@@ -109,10 +109,10 @@ export default {
 		},
 		addItem(target) {
 			const i = target
-			if (!this.items[i].json) {
-				this.items[i].json = []
-			}
-			this.items[i].json.push({
+			const clone = window._.cloneDeep(this.items[i].json)
+			console.log("hep")
+			const portions = Array.isArray(clone) ? clone : []
+			portions.push({
 				title: "",
 				body: "",
 				ingredients: "",
@@ -120,12 +120,15 @@ export default {
 				price: "",
 				price_additional: ""
 			})
-			this.updateItem({ target, undefined })
-			this.forceRerender()
+			this.$set(this.items[i], "json", portions)
+			console.log(portions.length)
+			this.updateItem({ target, portions })
 		},
 		async updateItem({ target, portions }) {
 			const i = target
-			if (portions) this.items[i].json = portions
+			if (this.items.length === 0 && portions.length === 0) return
+			if (window._.isEqual(this.data[i], this.items[i])) return
+			this.items[i].json = portions
 			const json = JSON.stringify(this.items[i])
 			const url = this.url.item
 			const response = await axiosPost({ url, json })
@@ -147,8 +150,8 @@ export default {
 		}
 	},
 	created() {
-		this.updateType = window._.debounce(this.updateType, 2000)
-		this.updateItem = window._.debounce(this.updateItem, 2000)
+		this.updateType = window._.debounce(this.updateType, 500)
+		this.updateItem = window._.debounce(this.updateItem, 500)
 	}
 }
 </script>

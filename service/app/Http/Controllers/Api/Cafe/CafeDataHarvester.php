@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 class CafeDataHarvester
 {
 
-    public static function getMenu(): Collection
+    public static function getMenu() //: Collection
     {
         $menu_items = Cafe::all();
         foreach ($menu_items as $item) {
@@ -30,7 +30,7 @@ class CafeDataHarvester
         return $events;
     }
 */
-    public static function getServiceHours(): ServiceHour
+    public static function getServiceHours() //: ServiceHour
     {
         $service_hour_item = ServiceHour::where(["title" => "cafe"])->get()->first();
         $service_hour_item->json = json_decode($service_hour_item->json);

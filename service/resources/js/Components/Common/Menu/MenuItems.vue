@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<text-input v-model="item.title">Nimike</text-input>
-				<text-area v-model="item.body" :heightClass="'h16'">Tarkempi kuvaus</text-area>
+				<text-area v-model="item.body">Tarkempi kuvaus</text-area>
 				<text-input v-model="item.ingredients">Ainesosat</text-input>
 				<number-between-input
 					:price="item.price"
@@ -66,7 +66,6 @@ export default {
 			deep: true,
 			immediate: true,
 			handler() {
-				this.portions = []
 				const data = window._.cloneDeep(this.data)
 				const portions = window._.cloneDeep(this.portions)
 				if (data !== portions) {
@@ -76,11 +75,8 @@ export default {
 		},
 		portions: {
 			deep: true,
-			handler(val, old) {
-				if (old.length !== 0 && this.noUpdateFlag === false) {
-					this.changeHandler()
-				}
-				if (this.noUpdateFlag) this.noUpdateFlag = false
+			handler() {
+				this.changeHandler()
 			}
 		}
 	},
@@ -91,7 +87,6 @@ export default {
 		},
 		deleteHandler(target, i) {
 			this.$emit("delete", { target, i })
-			this.noUpdateFlag = true
 		},
 		searchHandler(i) {
 			this.searchIndex = i
@@ -111,7 +106,7 @@ export default {
 		}
 	},
 	created() {
-		this.emitHandler = window._.debounce(this.changeHandler, 2000)
+		this.emitHandler = window._.debounce(this.changeHandler, 1000)
 	}
 }
 </script>

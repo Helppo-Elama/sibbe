@@ -25,14 +25,14 @@ class Data extends Model
         $json = json_decode($data->json);
         return $json;
     }
-    public static function postPresistentLunchData(String $json): String
+    public static function postPresistentLunchData(string $json) //: String
     {
         $data = new Data;
         $data->where(["title" => "presistent_lunch_data"])->update(["json" => $json]);
         return "Lounastiedot päivitetty!";
     }
 
-    public static function deletePresistentLunchDataPortions(string $portions): String
+    public static function deletePresistentLunchDataPortions(string $portions) //: String
     {
         $data = new Data;
         $data->where(["title" => "presistent_lunch_data"])->update(["json->portions" => $portions]);

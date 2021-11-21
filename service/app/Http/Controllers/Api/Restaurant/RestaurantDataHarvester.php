@@ -39,7 +39,7 @@ class RestaurantDataHarvester
         return $lunches;
     }
 
-    public static function getMenu(): Collection
+    public static function getMenu() //: Collection
     {
         $menu_items = Menu::all();
         foreach ($menu_items as $item) {

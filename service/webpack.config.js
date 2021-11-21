@@ -3,6 +3,7 @@ const path = require("path")
 module.exports = {
 	resolve: {
 		alias: {
+			"@assets": path.resolve("resources/assets"),
 			"@": path.resolve("resources/js")
 		}
 	},

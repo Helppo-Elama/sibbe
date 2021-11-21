@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import CKEditor from "@ckeditor/ckeditor5-build-classic"
-import "@ckeditor/ckeditor5-build-classic/build/translations/fi"
 import AppLayout from "@/Layouts/AppLayout"
 
 export default {
@@ -27,29 +25,7 @@ export default {
 		AppLayout
 	},
 	data() {
-		return {
-			editor: CKEditor,
-			editorData: "",
-			editorConfig: {
-				language: "fi",
-				/*
-				toolbar: [
-					"heading",
-					"|",
-					"bold",
-					"italic",
-					"link",
-					"bulletedList",
-					"numberedList",
-					"blockQuote"
-				],
-				*/
-				filebrowserImageBrowseUrl: "/filemanager?type=Images",
-				filebrowserImageUploadUrl: "/filemanager/upload?type=Images&_token=",
-				filebrowserBrowseUrl: "/filemanager?type=Files",
-				filebrowserUploadUrl: "/filemanager/upload?type=Files&_token="
-			}
-		}
+		return {}
 	}
 }
 </script>

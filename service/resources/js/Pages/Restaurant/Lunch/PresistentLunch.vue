@@ -4,10 +4,13 @@
 		<ul class="list-disc px-6 pb-3">
 			<li>Jos jatkuvien loudaiden valitsin ja teksti on vihreällä <b>muita lounaita ei näy!</b></li>
 			<li>
+				<b>Valitkaa kalenterista päiväväli, jolla viikkokohtainen lounas on näkyvillä.</b> Ei niitä
+				päiviä, jolloin itse lounasta tarjoillaan.
+			</li>
+			<li>
 				Raksi ruudussa, jolloin viikonpäivä ei ole punaisella, merkitsee sitä lounasta tarjoillaan
 				sinä viikonpäivänä.
 			</li>
-
 			<li>
 				Täyttäkää huolellisesti pyydetyt ajat. Jos päivä ei ole punaisella eli lounasta tarjoillaan
 				ja jokin aika puuttuu se tulee näkymään "undefined" -tekstinä asiakasnäkymässä.
@@ -132,6 +135,7 @@
 					/>
 				</div>
 				<div v-if="hasSelectedDateRange()" class="text-center pt-2">
+					<div>Viikkokohtainen lounas on näkyvillä aikavälillä:</div>
 					<div>
 						<b>{{ parseSelectedDateRange() }}</b>
 					</div>
